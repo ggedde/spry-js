@@ -1,0 +1,36 @@
+{
+  "name": "@ggedde/spry-js",
+  "version": "1.0.0",
+  "description": "A simple JS Toolkit while being as lightweight as possible",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ggedde/spry-js.git"
+  },
+  "keywords": [
+    "JS",
+    "Utilities"
+  ],
+  "author": "ggedde",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ggedde/spry-js/issues"
+  },
+  "homepage": "https://github.com/ggedde/spry-js#readme",
+  "scripts": {
+    "build-esm": "bun build ./src/spry.mts --outdir ./docs --entry-naming spry.mjs --minify --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
+    "build-js": "bun build ./src/spry.ts --outdir ./docs --entry-naming spry.js --minify --format iife --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
+    "watch-esm": "bun build ./src/spry.mts --outdir ./docs --entry-naming spry.mjs --minify --watch --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
+    "watch-js": "bun build ./src/spry.ts --outdir ./docs --entry-naming spry.js --minify --watch --format iife --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
+    "build": "bun run build-esm; bun run build-js",
+    "dev": "bun run watch-esm | bun run watch-js"
+
+  },
+  "module": "src/spry.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
