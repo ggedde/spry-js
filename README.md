@@ -1,6 +1,6 @@
-# SpryCss
-A simple and customizable CSS Toolkit while being as lightweight as possible
+# SpryJs
+A simple and lightweight JS Toolkit
 
-![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ggedde/spry-css?include_prereleases) &nbsp; ![GitHub](https://img.shields.io/github/license/ggedde/spry-css?label=license)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ggedde/spry-js?include_prereleases) &nbsp; ![GitHub](https://img.shields.io/github/license/ggedde/spry-js?label=license)
 
-## [View Documentation](https://ggedde.github.io/spry-css)
+## [View Documentation](https://ggedde.github.io/spry-js)
