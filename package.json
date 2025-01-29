@@ -17,11 +17,11 @@
   },
   "homepage": "https://github.com/ggedde/spry-js#readme",
   "scripts": {
-    "build-esm": "bun build ./src/spry.mts --outdir ./docs --entry-naming spry.mjs --minify --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
-    "build-js": "bun build ./src/spry.ts --outdir ./docs --entry-naming spry.js --minify --format iife --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
-    "watch-esm": "bun build ./src/spry.mts --outdir ./docs --entry-naming spry.mjs --minify --watch --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
-    "watch-js": "bun build ./src/spry.ts --outdir ./docs --entry-naming spry.js --minify --watch --format iife --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
-    "build": "bun run build-esm; bun run build-js",
+    "build-esm": "bun build ./src/spry.mts --outdir ./dist --entry-naming spry.mjs --minify --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
+    "build-js": "bun build ./src/spry.ts --outdir ./dist --entry-naming spry.js --minify --format iife --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
+    "watch-esm": "bun build ./src/spry.mts --outdir ./dist --entry-naming spry.mjs --minify --watch --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
+    "watch-js": "bun build ./src/spry.ts --outdir ./dist --entry-naming spry.js --minify --watch --format iife --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
+    "build": "bun run build-esm; bun run build-js; cp ./dist/spry.js ./docs/spry.js; cp ./dist/spry.mjs ./docs/spry.mjs",
     "dev": "bun run watch-esm | bun run watch-js"
 
   },

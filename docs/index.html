@@ -209,7 +209,7 @@
                 <h5 class="mt-3">Example HTML Toggle with collapse element.</h5>
 
 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;!-- Toggle Activator --&gt;
-&lt;label class="button toggle"&gt;
+&lt;button class="button toggle"&gt;
     &lt;span class="checked:none"&gt;Open&lt;/span&gt;
     &lt;span class="none checked:revert"&gt;Close&lt;/span&gt;
     &lt;input type="checkbox"&gt;
@@ -226,23 +226,39 @@
                 <table class="mb-2 mt-3 border-faint">
                     <thead>
                         <tr>
-                            <th width="190"><h4>Toggle Classes</h4></th>
+                            <th width="190"><h4>Toggle Attributes</h4></th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="md:pl-2"><code class="color-primary">toggle</code></td>
-                            <td>Initiate the toggle activator. Input elements inside a toggle are automatically hidden.
-                                <br>
-                                A toggle can contain <code class="color-primary">.none checked:revert</code> and <code class="color-primary">.checked:none</code> child elements that will change their display based on if the toggle is active or not.
+                            <td class="md:pl-2"><code class="color-primary">data-toggle="{selector}"</code></td>
+                            <td><code class="color-primary">selector</code> can be:
+                                <ul>
+                                    <li>Any css selector</li>
+                                    <li><code class="color-primary">next</code> which will be the nextElementSibling</li>
+                                    <li><code class="color-primary">prev</code> which will be the previousElementSibling</li>
+                                    <li><code class="color-primary">{empty}</code> If empty or excluded then it will toggle itself.</li>
+                                </ul>
                             </td>
+                        </tr>
+                        <tr>
+                            <td class="md:pl-2"><code class="color-primary">data-toggle-dismissible</code></td>
+                            <td>This will allow you to click outside the Toggle Element or press the escape key to close the toggle.</td>
+                        </tr>
+                        <tr>
+                            <td class="md:pl-2"><code class="color-primary">data-toggle-escapable</code></td>
+                            <td>This will allow you to press the escape key to close the toggle.</td>
+                        </tr>
+                        <tr>
+                            <td class="md:pl-2"><code class="color-primary">data-toggle-timeout="{milliseconds}"</code></td>
+                            <td>This will auto close the toggle element in the milliseconds you specify.</td>
                         </tr>
                     </tbody>
                 </table>
 
                 <div class="show-code" data-title="Basic Toggle">
-                    <button data-toggle="next" data-toggle-timeout="3000" data-toggle-dismissible data-toggle-escapable>
+                    <button data-toggle="next" data-toggle-dismissible>
                         <span class="open:none">
                             Open
                         </span>
@@ -267,15 +283,6 @@
                             </p>
                         </div>
                     </div>
-
-                    <button data-toggle="prev">
-                        <span class="open:none">
-                            Open
-                        </span>
-                        <span class="none open:revert">
-                            Close
-                        </span>
-                    </button>
                 </div>
 
                 <div id="toggle-group" class="my-4">
@@ -1332,7 +1339,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     <script type="module">
-        import { loadToggles, loadSliders, loadScrollSpy, loadNavigable, q } from './spry.mjs';
+        import { loadToggles, loadSliders, loadScrollSpy, loadNavigable, q } from './docs/spry.mjs';
         loadToggles();
         loadSliders();
         loadNavigable();
