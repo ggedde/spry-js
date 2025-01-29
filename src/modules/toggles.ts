@@ -151,10 +151,14 @@ export function loadToggles(userOptions?: SpryJsToggleOptions) {
                 if (togglerObject.toggleSelector && (!forceAction || forceAction === 'toggle')) {
                     getElements(togglerObject.toggleSelector, elem).forEach(toggleElement => {
                         toggleElement.classList.toggle(options.classOpen);
-                        toggleElement.toggleAttribute('aria-expanded');
                         opened = toggleElement.classList.contains(options.classOpen) ? true : false;
+                        if (opened) {
+                            toggleElement.setAttribute('aria-expanded', 'true');
+                        } else {
+                            toggleElement.setAttribute('aria-expanded', 'false');
+                        }
+                        
                         elementData.push(toggleElement);
-
                     });
                 }
 
@@ -173,21 +177,7 @@ export function loadToggles(userOptions?: SpryJsToggleOptions) {
                 if (opened && togglerObject.timeout && togglerObject.timeout > 0) {
                     togglerObject.timer = setTimeout(() => {
                         if (togglerObject.toggleSelector) {
-                            // getElements(togglerObject.toggleSelector, elem).forEach(toggleElement => {
-
-                                toggle(togglerObject.el);
-
-                                // toggleElement.classList.remove(options.classOpen);
-                                // toggleElement.removeAttribute('aria-expanded');
-                                // elementData.push(toggleElement);
-                                // togglerObject.el.removeAttribute('aria-pressed');
-                                // togglerObject.el.classList.remove(options.classActive);
-                               
-                                // if (document.activeElement === togglerObject.el) {
-                                //     (document.activeElement as HTMLElement).blur();
-                                // }
-
-                            // });
+                            toggle(togglerObject.el);
                         }
                     }, togglerObject.timeout);
                 }
@@ -274,12 +264,7 @@ export function loadToggles(userOptions?: SpryJsToggleOptions) {
                             }
 
                             if (toggleElement.classList.contains(options.classOpen)) {
-
                                 toggle(togglerObject.el);
-                                // toggleElement.classList.remove(options.classOpen);
-                                // toggleElement.removeAttribute("aria-expanded");
-                                // togglerObject.el.removeAttribute("aria-pressed");
-                                // togglerObject.el.classList.remove(options.classActive);
                             }
                         }, 20);
                     });

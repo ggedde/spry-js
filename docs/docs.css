@@ -3,7 +3,7 @@
  */
 
 html:has(.code-content-container:target),
-html:has(#toggle-group:target) {
+html:has(#toggle-group:target, table:target) {
 	scroll-padding-top: 200px;
 }
 @keyframes blinkTarget {

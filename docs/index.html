@@ -184,608 +184,36 @@
                 </div>
             </section>
 
-            <!-- TOGGLES -->
-            <section id="toggles" class="bg-inherit py-0 pb-3">
+            <!-- COOKIES -->
+            <section id="cookies" class="bg-inherit py-0 pb-3">
                 <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
-                    <i class="icon mr-1">
-                        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M7,10L12,15L17,10H7Z" /></svg>
-                    </i>
-                    Toggles
+                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9c0-.5-.04-1-.13-1.5C20.6 10 20 10 20 10h-2V9c0-1-1-1-1-1h-2V7c0-1-1-1-1-1h-1V4c0-1-1-1-1-1M9.5 6A1.5 1.5 0 0 1 11 7.5 1.5 1.5 0 0 1 9.5 9 1.5 1.5 0 0 1 8 7.5 1.5 1.5 0 0 1 9.5 6m-3 4A1.5 1.5 0 0 1 8 11.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 5 11.5 1.5 1.5 0 0 1 6.5 10m5 1a1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5m5 2a1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5M11 16a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 11 19a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 11 16z" /></svg>
+                    Cookies
                 </h2>
-
-                <h5>Toggles are HTML only elements that switch other elements that have
-                    an <b>ON</b> or <b>OFF</b> state like <a href="#collapse">Collapse</a> and <a href="#icons">Icons</a>.</h5>
-                <h5 class="mt-2">Supported Components:</h5>
-                <div class="row primary columns-auto g-1 mt-1 content-start">
-                    <a class="button pill outline border/60" href="#accordions">Accordions</a>
-                    <a class="button pill outline border/60" href="#button pills">Buttons</a>
-                    <a class="button pill outline border/60" href="#dropdowns">Dropdowns</a>
-                    <a class="button pill outline border/60" href="#icons">Icons</a>
-                    <a class="button pill outline border/60" href="#lists">Lists</a>
-                    <a class="button pill outline border/60" href="#menus">Menus</a>
-                    <a class="button pill outline border/60" href="#tabs">Tabs</a>
-                </div>
-                
-                <h5 class="mt-3">Example HTML Toggle with collapse element.</h5>
-
-<code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;!-- Toggle Activator --&gt;
-&lt;button class="button toggle"&gt;
-    &lt;span class="checked:none"&gt;Open&lt;/span&gt;
-    &lt;span class="none checked:revert"&gt;Close&lt;/span&gt;
-    &lt;input type="checkbox"&gt;
-&lt;/label&gt;
-
-&lt;!-- Toggle Element --&gt;
-&lt;div class="collapse"&gt;
-    &lt;p&gt;Collapsed Content Here&lt;/p&gt;
-&lt;/div&gt;
-</code>
-
-                <cite>* See <a href="#collapse">Collapse</a> for all Collapse Classes and Attributes.</cite>
-
-                <table class="mb-2 mt-3 border-faint">
-                    <thead>
-                        <tr>
-                            <th width="190"><h4>Toggle Attributes</h4></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="md:pl-2"><code class="color-primary">data-toggle="{selector}"</code></td>
-                            <td><code class="color-primary">selector</code> can be:
-                                <ul>
-                                    <li>Any css selector</li>
-                                    <li><code class="color-primary">next</code> which will be the nextElementSibling</li>
-                                    <li><code class="color-primary">prev</code> which will be the previousElementSibling</li>
-                                    <li><code class="color-primary">{empty}</code> If empty or excluded then it will toggle itself.</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="md:pl-2"><code class="color-primary">data-toggle-dismissible</code></td>
-                            <td>This will allow you to click outside the Toggle Element or press the escape key to close the toggle.</td>
-                        </tr>
-                        <tr>
-                            <td class="md:pl-2"><code class="color-primary">data-toggle-escapable</code></td>
-                            <td>This will allow you to press the escape key to close the toggle.</td>
-                        </tr>
-                        <tr>
-                            <td class="md:pl-2"><code class="color-primary">data-toggle-timeout="{milliseconds}"</code></td>
-                            <td>This will auto close the toggle element in the milliseconds you specify.</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="show-code" data-title="Basic Toggle">
-                    <button data-toggle="next" data-toggle-dismissible>
-                        <span class="open:none">
-                            Open
-                        </span>
-                        <span class="none open:revert">
-                            Close
-                        </span>
-                    </button>
-
-                    <div class="collapse">
-                        <div class="hidden">
-                            <p class="mt-2">
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                sed diam nonumy eirmod tempor invidunt ut labore et dolore.
-                                Nonumy eirmod tempor invidunt ut labore et dolore magna erat,
-                                sed diam voluptua. At vero eos et accusam et justo duo
-                                dolores et ea rebum. Stet clita kasd gubergren, no sea
-                                takimata sanctus est Lorem ipsum dolor sit amet.
-                            </p>
-                            <p>
-                                Sed diam nonumy eirm Lorem ipsum dolor sit amet,
-                                consetetur sadipscing elitr, sed diam nonumy.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="toggle-group" class="my-4">
-                    <div class="show-code mt-4" data-title="Toggle Group">
-                        <div class="toggle-group">
-
-                            <p class="my-2">Top Content...</p>
-
-                            <div class="collapse">
-                                <div>
-                                    <p class="b-1 p-2">
-                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                                        justo duo
-                                        dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                                        sit amet.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <p class="my-2">Middle Content...</p>
-
-                            <label class="button toggle">
-                                <span class="open:none">
-                                    Open
-                                </span>
-                                <span class="none open:revert">
-                                    Close
-                                </span>
-                                <input class="hide" type="checkbox">
-                            </label>
-
-                            <p class="my-2">Middle Content...</p>
-
-                            <div class="collapse">
-                                <div>
-                                    <p class="b-1 p-2">
-                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                                        justo duo
-                                        dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                                        sit amet.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="show-code mt-4" data-title="Toggle Element by ID" data-warning="* Not keyboard accessible. Use &lt;a href='#toggle-group'&gt;Toggle Group&lt;/a&gt; instead Or use JS.">
-                    <label for="toggleByIdHtml" class="button" data-toggle="#toggleByIdHtml">
-                        <span class="open:none">
-                            Open
-                        </span>
-                        <span class="none open:revert">
-                            Close
-                        </span>
-                    </label>
-
-                    <p class="my-2">Middle Content...</p>
-
-                    <div id="toggleByIdHtml" class="collapse">
-                        <div>
-                            <p class="b-1 p-2">
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                                justo duo
-                                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                                sit amet.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="show-code" data-title="Menu" data-footer-note="* See &lt;a href='#toggles'&gt;Toogles&lt;/a&gt;, &lt;a href='#accordions'&gt;Accordions&lt;/a&gt;, &lt;a href='#dropdowns'&gt;Dropdowns&lt;/a&gt; and &lt;a href='#menus'&gt;Menus&lt;/a&gt; for more variations">
-                    <div class="relative">
-                        <button class="toggle button link icon menu open:close" data-toggle="next" data-toggle-dismissible data-toggle-escapable></button>
-                        <div class="collapse from-top overlay clip-top">
-                            <nav class="list bg-faint round open:side shadow max-w-200 p-1">
-                                <ul>
-                                    <li class="p-1">Pick an Item<hr class="m-0 mt-1"></li>
-                                    <li><a href="#">Link 1</a></li>
-                                    <li><a href="#">Link 2</a>
-                                        <input type="checkbox" class="toggle button link circle icon down shy open:rotate absolute right sm m-1">
-                                        <ul class="from-default">
-                                            <li><a href="#">SubLink 1</a></li>
-                                            <li><a href="#">SubLink 2</a></li>
-                                            <li><a href="#">SubLink 3</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Link 3</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="show-code mt-4" data-title="As Switch From Left Slow">
-                    <div class="from-left slow">
-                        <label class="toggle inline">
-                            <input class="switch" type="checkbox">
-                            <span class="none checked:revert">On</span>
-                            <span class="checked:none">Off</span>
-                        </label>
-                        <div class="collapse hidden">
-                            <div>
-                                <p class="b-1 border-gray p-2 mt-2 bg-dark">
-                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                    invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                                    justo duo
-                                    dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                                    sit amet.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
             </section>
 
-            <!-- MODALS -->
-            <section id="modals" class="bg-inherit py-0 pb-3 mt-2">
+            <!-- NAVIGABLE -->
+            <section id="navigable" class="bg-inherit py-0 pb-3">
                 <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
-                    <i class="icon mr-1">
-                        <svg viewBox="0 0 24 24"><path d="M4,4H20V20H4V4M6,8V18H18V8H6Z" /></svg>
-                    </i>
-                    Modals
+                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M9.5,13.09L10.91,14.5L6.41,19H10V21H3V14H5V17.59L9.5,13.09M10.91,9.5L9.5,10.91L5,6.41V10H3V3H10V5H6.41L10.91,9.5M14.5,13.09L19,17.59V14H21V21H14V19H17.59L13.09,14.5L14.5,13.09M13.09,9.5L17.59,5H14V3H21V10H19V6.41L14.5,10.91L13.09,9.5Z" /></svg>
+                    Navigable
                 </h2>
-                
-                <h5>Modals consist of a container with the class <code class="color-primary">modal</code> and a child element considered as the modal box. Add max-width classes to the modal box to restrain the width.</h5>
+            </section>
 
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;!-- Basic Modal --&gt;
-&lt;div class="modal open"&gt;
-    &lt;div class="max-w-400"&gt;
-        Content Here
-    &lt;/div&gt;
-&lt;/div&gt;</code>
+            <!-- QUERY -->
+            <section id="query" class="bg-inherit py-0 pb-3">
+                <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
+                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+                    Query
+                </h2>
+            </section>
 
-                <table class="mb-3 mt-3 border-faint">
-                    <thead>
-                        <tr>
-                            <th width="150"><h4>Classes</h4></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code class="color-primary">modal</code></td>
-                            <td>Main Modal Element</td>
-                        </tr>
-                        <tr>
-                            <td><code class="color-primary">open</code></td>
-                            <td>Opens the modal</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">bg-blur-sm</code><br>
-                                <code class="color-primary">bg-blur</code><br>
-                                <code class="color-primary">bg-blur-lg</code>
-                            </td>
-                            <td>Adds blur to background when open</td>
-                        </tr>
-                        <tr>
-                            <td><code class="color-primary">bounce</code></td>
-                            <td>Adds bounce animation. Only occurs once.</td>
-                        </tr>
-                        <tr>
-                            <td><code class="color-primary">bg-none</code></td>
-                            <td>Removes the Backdrop and allows to click through the background.</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="show-code" data-title="Basic Modal">
-                    <div class="language-select" data-language="html">
-                        <button popovertarget="popoverModal">
-                            Open Modal with HTML Popover
-                        </button>
-
-                        <div id="popoverModal" class="modal bg-blur scroll-none" popover>
-                            <article class="w max-w-400 bg-theme b-1 r-3">
-                                <p>HTML Popover Modal</p>
-                                <button popovertarget="popoverModal">
-                                    Close Toggle
-                                </button>
-                            </article>
-                        </div>
-                    </div>
-
-                    <div class="language-select" data-language="spryJs">
-                        <button data-toggle="next" data-toggle-escapable>
-                            Open Modal with SpryJS
-                        </button>
-
-                        <div class="modal bg-blur" data-toggle-close>
-                            <article class="w max-w-400 bg-theme b-1 r-3">
-                                <p>SpryJS Modal</p>
-                                <button data-toggle-close>
-                                    Close Modal
-                                </button>
-                            </article>
-                        </div>
-                    </div>
-
-                    <div class="language-select" data-language="js">
-                        <button onkeyup="event.keyCode !== 27 || this.nextElementSibling.classList.remove('open')" onclick="this.nextElementSibling.classList.add('open')">
-                            Open Modal with JS
-                        </button>
-
-                        <div class="modal bg-blur" onclick="this !== event.target || this.classList.remove('open')">
-                            <article class="w max-w-400 bg-theme b-1 r-3">
-                                <p>JS Modal</p>
-                                <button onclick="this.closest('.modal').classList.remove('open')">
-                                    Close Modal
-                                </button>
-                            </article>
-                        </div>
-                    </div>
-
-                    <div class="language-select" data-language="petiteVue">
-                        <div id="modalPetiteVue" @keyup="event.keyCode === 27 ? open = false : null">
-                            <button @click="open = true">
-                                Open Modal with Petite Vue
-                            </button>
-
-                            <div class="modal bg-blur" ref="modal" :class="{open: open}" @click="clickClose(event)">
-                                <article class="w max-w-400 bg-theme b-1 r-3">
-                                    <p>Petite Vue Modal</p>
-                                    <button @click="open = false">
-                                        Close Modal
-                                    </button>
-                                </article>
-                            </div>
-                        </div>
-
-                        <script type="module">
-                            import { createApp } from 'https://unpkg.com/petite-vue?module';
-                            createApp({
-                                open: false,
-                                clickClose(event) {
-                                    event.target === this.$refs.modal ? this.open = false : null;
-                                }
-                            }).mount('#modalPetiteVue');
-                        </script>
-                    </div>
-
-                    <div class="language-select" data-language="vueJs">
-                        <div id="modalVueJs">
-                            <button @click="open = true" @keyup.esc="open = false">
-                                Open Modal with VueJS
-                            </button>
-
-                            <div class="modal bg-blur" ref="modal" :class="{open: open}" @click="clickClose($event)">
-                                <article class="w max-w-400 bg-theme b-1 r-3">
-                                    <p>VueJS Modal</p>
-                                    <button @click="open = false">
-                                        Close Modal
-                                    </button>
-                                </article>
-                            </div>
-                        </div>
-
-                        <script type="module">
-                            import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-                             createApp({
-                                 setup(props, context) {
-                                     const modal = ref();
-                                     const open = ref(false);
-                                     function clickClose(event) {
-                                        event.target === modal.value ? open.value = false : null;
-                                     }
-                                     return {
-                                         open,
-                                         modal,
-                                         clickClose,
-                                     }
-                                 }
-                             }).mount('#modalVueJs');
-                         </script>
-                    </div>
-
-                    <div class="language-select" data-language="alpineJs">
-                        <div x-data="{open: false}">
-                            <button @click="open = true" @keyup.esc="open = false">
-                                Open Modal with Alpine.js
-                            </button>
-
-                            <div class="modal bg-blur" x-ref="modal" :class="{open: open}" @click="event.target === $refs.modal ? open = false : null">
-                                <article class="w max-w-400 bg-theme b-1 r-3">
-                                    <p>Alpine.js Modal</p>
-                                    <button @click="open = false">
-                                        Close Modal
-                                    </button>
-                                </article>
-                            </div>
-                        </div>
-
-                        <!-- AlpineJsScript -->
-                    </div>
-                </div>
-
-
-                <div class="show-code" data-title="Login Modal Example">
-                    <button popovertarget="loginModal">
-                        Login
-                    </button>
-
-                    <div id="loginModal" class="modal" popover>
-                        <article class="max-w-400 outline bg-theme shadow g-0">
-                            <header>
-                                <h4>Login or Sign Up</h4>
-                                <button class="link icon close circle" popovertarget="loginModal"></button>
-                            </header>
-                            <div class="p-4">
-                                <form class="accent-primary column g-2 show-invalid">
-                                    <label>
-                                        <sup>Email</sup>
-                                        <input id="login-email" type="email" required placeholder=" ">
-                                    </label>
-                                    <label>
-                                        <sup>Password</sup>
-                                        <input type="password" required placeholder=" ">
-                                    </label>
-                                    <div class="flex content-between mt-3 sm">
-                                        <a class="button primary link">Forgot Password?</a>
-                                        <a class="button primary link">Sign Up!</a>
-                                    </div>
-                                    <button class="primary block self-center max-w-200 m-3 mt-4" type="submit">Login</button>
-                                </form>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-
-                <div class="show-code" data-title="Required Modal with Blur">
-                    <button popovertarget="requiredModal">
-                        Open Required Modal
-                    </button>
-
-                    <div id="requiredModal" class="modal bg-blur bounce" popover="manual">
-                        <form class="max-w-400">
-                            <article class="outline bg-theme shadow">
-                                <header>
-                                    <h4>Required Modal Example</h4>
-                                </header>
-                                <div class="px-4">
-                                    <p>This Modal is Required!</p>
-                                    <label>
-                                        <input type="checkbox" name="accept" required value="yes"> I Agree to the Terms
-                                    </label>
-                                </div>
-                                <footer>
-                                    <button type="button" class="outline sm" popovertarget="requiredModal">Cancel</button>
-                                    <button type="submit" class="primary sm">Accept</button>
-                                </footer>
-                            </article>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="show-code" data-title="No Backdrop">
-                    <button popovertarget="noBackDropModal">
-                        Open No Backdrop Modal
-                    </button>
-
-                    <div id="noBackDropModal" class="modal bg-none" popover>
-                        <article class="max-w-400 bg-theme shadow outline pb-4">
-                            <header>
-                                <h4>No Backdrop Modal Example</h4>
-                                <button class="link icon close circle" popovertarget="noBackDropModal"></button>
-                            </header>
-                            <p class="px-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod</p>
-                        </article>
-                    </div>
-                </div>
-    
-                <div class="show-code" data-title="Large Content Model">
-                    <button popovertarget="largeModal">
-                        Open Large Modal
-                    </button>
-
-                    <div id="largeModal" class="modal" popover>
-                        <article class="bg-theme outline shadow max-w-1200">
-                            <header>
-                                <h4>Lorem ipsum dolor</h4>
-                            </header>
-                            <div class="px-3 max-h-500 auto">
-                                <h4>Modal Heading Content</h4>
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                                    vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-                                    consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                                    dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
-                                    duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                                    Lorem ipsum dolor sit amet.</p>
-                                <p>Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                    sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                    invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                    accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                                    sanctus est Lorem ipsum dolor sit amet.</p>
-                                <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-                                    gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-                                    amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                                    dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
-                                    duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                                    Lorem ipsum dolor sit amet.</p>
-                                <h4>Modal Heading Content Again.</h4>
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                                    vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-                                    consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                                    dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
-                                    duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                                    Lorem ipsum dolor sit amet.</p>
-                                <p>Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                    sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                    invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                    accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                                    sanctus est Lorem ipsum dolor sit amet.</p>
-                                <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-                                    gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-                                    amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                                    dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
-                                    duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                                    Lorem ipsum dolor sit amet.</p>
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                                    vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-                                    consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                                    dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
-                                    duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                                    Lorem ipsum dolor sit amet.</p>
-                                <p>Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                    sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                    invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                    accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                                    sanctus est Lorem ipsum dolor sit amet.</p>
-                                <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-                                    gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-                                    amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                                    dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
-                                    duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                                    Lorem ipsum dolor sit amet.</p>
-                                <h4>Modal Heading Content Again.</h4>
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                                    vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-                                    consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                                    dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
-                                    duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                                    Lorem ipsum dolor sit amet.</p>
-                                <p>Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                    sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                    invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                    accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                                    sanctus est Lorem ipsum dolor sit amet.</p>
-                                <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-                                    gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-                                    amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                                    dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
-                                    duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                                    Lorem ipsum dolor sit amet.</p>
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                                    vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-                                    consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                                    dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
-                                    duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                                    Lorem ipsum dolor sit amet.</p>
-                                <p>Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                    sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                    invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                    accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                                    sanctus est Lorem ipsum dolor sit amet.</p>
-                                <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-                                    gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-                                    amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                                    dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
-                                    duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                                    Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <footer class="px-2">
-                                <button type="button" class="sm outline" popovertarget="largeModal">Cancel</button>
-                                <button type="button" class="primary sm ml-1 md:ml-3" popovertarget="largeModal">Accept</button>
-                            </footer>
-                        </article>
-                    </div>
-                </div>
+            <!-- SCROLLSPY -->
+            <section id="scrollspy" class="bg-inherit py-0 pb-3">
+                <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
+                    <svg class="icon mr-1" viewBox="0 0 24 24"><title>eye-settings-outline</title><path d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C16.86,4.5 21.22,7.5 23,12C20.61,18.08 13.75,21.06 7.67,18.67C4.62,17.47 2.2,15.06 1,12C2.78,7.5 7.14,4.5 12,4.5M3.18,12C5.56,16.87 11.45,18.89 16.32,16.5C18.28,15.54 19.86,13.96 20.82,12C18.44,7.13 12.55,5.11 7.68,7.5C5.72,8.46 4.14,10.04 3.18,12M9,22H7V24H9V22M13,22H11V24H13V22M17,22H15V24H17V22Z" /></svg>
+                    Scroll Spy
+                </h2>
             </section>
             
             <!-- SLIDERS -->
@@ -1118,19 +546,194 @@
                 </div>
             </section>
             
-            <!-- TABS -->
-            <section id="tabs" class="bg-inherit py-0 pb-3">
+            <!-- TOGGLES -->
+            <section id="toggles" class="bg-inherit py-0 pb-6">
                 <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
                     <i class="icon mr-1">
-                        <svg viewBox="0 0 24 24"><path d="M21 3H3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m0 16H3V5h10v4h8v10z" /></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M7,10L12,15L17,10H7Z" /></svg>
                     </i>
-                    Tabs
+                    Toggles
                 </h2>
 
-                <div class="show-code" data-title="Basic Vertical Tabs">
+                <h5>Toggles are a way to toggle an element <b>ON</b> or <b>OFF</b></h5>
+
+                <h5>Loading Toggles</h5>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
+    import { loadToggles } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
+    loadToggles({options});
+&lt;/script&gt;</code>
+
+                <p class="note">* loadToggles() can be called multiple times without creating duplicated event listeners and other side effects. loadToggles() will ignore any pre-registered toggles. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
+                
+                <h5 class="mt-3">Toggle Example.</h5>
+
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;!-- Toggle Activator --&gt;
+&lt;button data-toggle="next"&gt;&lt;/button&gt;
+
+&lt;!-- Toggle Element --&gt;
+&lt;div&gt;...&lt;/div&gt;</code>
+
+                <table class="mt-4">
+                    <thead>
+                        <tr>
+                            <th width="150"><h4>Options</h4></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="color-primary">classOpen</code></td>
+                            <td>The class that gets applied to an opened toggled element<br><code class="color-gray">default:</code> <code class="color-primary">open</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">classActive</code></td>
+                            <td>The class that gets applied to an opened toggled activator<br><code class="color-gray">default:</code> <code class="color-primary">active</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="mt-4">
+                    <thead>
+                        <tr>
+                            <th width="190"><h4>Toggle Attributes</h4></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="color-primary">data-toggle="{selector}"</code></td>
+                            <td><code class="color-primary">selector</code> can be:
+                                <ul class="mt-1">
+                                    <li>Any css selector.<p class="note">See <a href="#toggles-special-selector-values">Special Selector Values</a> for additional values.</p></li>
+                                    <li><code class="color-primary">next</code> which will be the nextElementSibling</li>
+                                    <li><code class="color-primary">prev</code> which will be the previousElementSibling</li>
+                                    <li><code class="color-primary">{empty}</code> If empty or excluded then it will toggle itself.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">data-toggle-close="{selector}"</code></td>
+                            <td>This runs before data-toggle="{selector}" and force closes elements.<br><br><code class="color-primary">selector</code> can be:
+                                <ul class="mt-1">
+                                    <li>Any css selector<p class="note">See <a href="#toggles-special-selector-values">Special Selector Values</a> for additional values.</p></li>
+                                    <li><code class="color-primary">next</code> which will be the nextElementSibling</li>
+                                    <li><code class="color-primary">prev</code> which will be the previousElementSibling</li>
+                                    <li><code class="color-primary">{empty}</code> If empty or excluded then it will close the closest opened toggled element, including itself.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">data-toggle-open="{selector}"</code></td>
+                            <td>This runs before data-toggle="{selector}" and force opens elements.<br><br><code class="color-primary">selector</code> can be:
+                                <ul class="mt-1">
+                                    <li>Any css selector<p class="note">See <a href="#toggles-special-selector-values">Special Selector Values</a> for additional values.</p></li>
+                                    <li><code class="color-primary">next</code> which will be the nextElementSibling</li>
+                                    <li><code class="color-primary">prev</code> which will be the previousElementSibling</li>
+                                    <li><code class="color-primary">{empty}</code> If empty or excluded then it will open the closest closed toggled element, including itself.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">data-toggle-dismissible</code></td>
+                            <td>This will allow you to click outside the Toggle Element or press the escape key to close the toggle.</td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">data-toggle-escapable</code></td>
+                            <td>This will allow you to press the escape key to close the toggle.</td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">data-toggle-close</code></td>
+                            <td>Closes the closest Opened Toggled Element.</td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">data-toggle-timeout="{n}"</code></td>
+                            <td>This will auto close the toggle element in the milliseconds.<br><code class="color-primary">{n}</code> is the time in milliseconds</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table id="toggles-special-selector-values" class="mt-4">
+                    <thead>
+                        <tr>
+                            <th colspan="2"><h4>Special Selector Values</h4></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td width="260"><code class="color-primary">{closest-selector}</code></td>
+                            <td>
+                                Starting your selector with <code class="color-primary">{...}</code> will use its value to select the closest node.
+                                <br><br>
+                                Example:<br>
+                                <code class="color-primary">{.container} ul li button</code><br>
+                                Is equivalent to: <span class="color-gray">this.closest('.container').querySelectorAll('ul li button')</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="260"><code class="color-primary">{n}</code></td>
+                            <td>
+                                Using <code class="color-primary">{n}</code> will get replaced with the current nodes index value.
+                                <br><br>
+                                Example:<br>
+                                <code class="color-primary">{.container} ul li:nth-child({n}) > div</code><br>
+                                Is equivalent to:<br>
+                                <span class="color-gray">var nodeIndex = Array.from(this.parentElement.children).indexOf(this);</span><br>
+                                <span class="color-gray">this.closest('.container').querySelectorAll('ul li:nth-child('+(nodeIndex+1)+') > div')</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="show-code" data-title="Basic Toggle" data-footer-note="Uses &lt;a href='https://ggedde.github.io/spry-css'&gt;SpryCSS&lt;/a&gt;">
+                    <button data-toggle="next">
+                        Toggle
+                    </button>
+
+                    <div class="collapse">
+                        <div>
+                            <p class="mt-2">
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                                sed diam nonumy eirmod tempor invidunt ut labore et dolore.
+                                Nonumy eirmod tempor invidunt ut labore et dolore magna erat,
+                                sed diam voluptua. At vero eos et accusam et justo duo
+                                dolores et ea rebum. Stet clita kasd gubergren, no sea
+                                takimata sanctus est Lorem ipsum dolor sit amet.
+                            </p>
+                            <p>
+                                Sed diam nonumy eirm Lorem ipsum dolor sit amet,
+                                consetetur sadipscing elitr, sed diam nonumy.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="show-code" data-title="Toggle By ID and is Dismissible" data-footer-note="Uses &lt;a href='https://ggedde.github.io/spry-css'&gt;SpryCSS&lt;/a&gt;">
+                    <button data-toggle="#toggle-1" data-toggle-dismissible>
+                        Toggle
+                    </button>
+
+                    <div id="toggle-1" class="collapse">
+                        <div>
+                            <p class="mt-2">
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                                sed diam nonumy eirmod tempor invidunt ut labore et dolore.
+                                Nonumy eirmod tempor invidunt ut labore et dolore magna erat,
+                                sed diam voluptua. At vero eos et accusam et justo duo
+                                dolores et ea rebum. Stet clita kasd gubergren, no sea
+                                takimata sanctus est Lorem ipsum dolor sit amet.
+                            </p>
+                            <p>
+                                Sed diam nonumy eirm Lorem ipsum dolor sit amet,
+                                consetetur sadipscing elitr, sed diam nonumy.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="show-code" data-title="Using Closest and Nth Child Selectors" data-footer-note="Uses &lt;a href='https://ggedde.github.io/spry-css'&gt;SpryCSS&lt;/a&gt;">
                     <div class="tabs primary outline">
                         <nav class="list navigable bg-faint">
-                            <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open" aria-pressed="true">Tab 1</button>
+                            <button class="link active" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open" aria-pressed="true">Tab 1</button>
                             <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 2</button>
                             <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 3 lorem ipsum</button>
                             <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 4</button>
@@ -1138,7 +741,7 @@
                             <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 6</button>
                         </nav>
                         <div>
-                            <div class="p-3 open"><p>Tab 1 content. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p></div>
+                            <div class="p-3 open" aria-expanded="true"><p>Tab 1 content. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p></div>
                             <div class="p-3">
                                 <p>Tab 2 content. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
                                 <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
@@ -1153,164 +756,8 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="show-code" data-title="Basic Horizontal Tabs">
-                    <div class="tabs column primary outline">
-                        <nav class="list row navigable bg-faint content-center">
-                            <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open" aria-pressed="true">Tab 1</button>
-                            <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 2</button>
-                            <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 3 lorem ipsum</button>
-                            <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 4</button>
-                            <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 5</button>
-                            <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 6</button>
-                        </nav>
-                        <div>
-                            <div class="p-3 open"><p>Tab 1 content. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p></div>
-                            <div class="p-3">
-                                <p>Tab 2 content. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                                <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                            </div>
-                            <div class="p-3"><p>Tab 3 asldkf</p></div>
-                            <div class="p-3">Tab 4 content. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</div>
-                            <div class="p-3">Tab 5 content. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</div>
-                            <div class="p-3">Tab 6 content. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="show-code" data-title="Responsive Tabs">
-                    <div class="@container">
-                        <div class="tabs column primary @md:row outline">
-                            <nav class="list row @md:column text-center navigable bg-faint">
-                                <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open" aria-pressed="true">Tab 1</button>
-                                <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 2</button>
-                                <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 3 With Long Title</button>
-                                <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 4</button>
-                                <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 5</button>
-                                <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 6</button>
-                                <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 7 With Long Title</button>
-                                <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 8</button>
-                                <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 9 With Longer Title</button>
-                                <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 10</button>
-                            </nav>
-                            <ul class="p-4">
-                                <li class="open"><p>Tab 1 content. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p></li>
-                                <li><h3>Tab 2 Content.</h3><p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p><p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p><h3>Another Heading</h3><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p></li>
-                                <li>Tab 3 content. Dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur. </li>
-                                <li>Tab 4 content. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
-                                <li>Tab 5 content. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
-                                <li>Tab 6 content. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
-                                <li>Tab 7 content. Duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
-                                <li><p>Tab 8 content. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p><p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p></li>
-                                <li>Tab 9 content. Duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
-                                <li><p>Tab 10 content. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p><p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="show-code" data-title="Vertical Right Tabs with Accent">
-                    <div class="tabs outline primary border-primary">
-                        <nav class="list navigable bg-primary bg/2 primary order-2">
-                            <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open" aria-pressed="true">Tab 1</button>
-                            <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 2</button>
-                            <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 3 lorem ipsum</button>
-                            <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 4</button>
-                            <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 5</button>
-                            <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 6</button>
-                        </nav>
-                        <ul class="p-4">
-                            <li class="open"><p>Tab 1 content. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p></li>
-                            <li><h3>Tab 2 Content.</h3><p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p><p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p><h3>Another Heading</h3><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p></li>
-                            <li>Tab 3 content. Dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur. </li>
-                            <li>Tab 4 content. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
-                            <li>Tab 5 content. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
-                            <li>Tab 6 content. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
-                            <li>Tab 7 content. Duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
-                            <li><p>Tab 8 content. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p><p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p></li>
-                            <li>Tab 9 content. Duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
-                            <li><p>Tab 10 content. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p><p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="show-code" data-title="Bottom Fixed Tabs">
-                    <div class="tabs column primary outline">
-                        <nav class="list row order-2 navigable content-center text-center bg-faint">
-                            <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open" aria-pressed="true">Tab 1</button>
-                            <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 2</button>
-                            <button class="link" data-toggle="{.list} + * > :nth-child({n})" data-toggle-close="{.tabs} .open">Tab 3 With Long Title</button>
-                        </nav>
-                        <div>
-                            <div class="p-4 open text-center"><h3>Tab 1 Content.</h3></div>
-                            <div class="p-4 text-center"><h3>Tab 2 Content.</h3></div>
-                            <div class="p-4 text-center"><h3>Tab 3 Content.</h3></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="show-code" data-title="Selection Tabs With None Selected Default">
-                    <div class="tabs outline row">
-                        <nav class="list navigable">
-                            <label class="button link" data-toggle="{.tabs} .list + * > :nth-child(1)" data-toggle-close="{.tabs} .open">
-                                <input class="ml-0 mr-2" name="list-item-tabs2a" type="checkbox">
-                                Option 1
-                            </label>
-                            <label class="button link" data-toggle="{.tabs} .list + * > :nth-child(2)" data-toggle-close="{.tabs} .open">
-                                <input class="ml-0 mr-2" name="list-item-tabs2b" type="checkbox">
-                                Option 2
-                            </label>
-                            <label class="button link" data-toggle="{.tabs} .list + * > :nth-child(3)" data-toggle-close="{.tabs} .open">
-                                <input class="ml-0 mr-2" name="list-item-tabs2c" type="checkbox">
-                                Option 3
-                            </label>
-                        </nav>
-                        <div>
-                            <div class="p-3">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
-                            <div class="p-3">At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</div>
-                            <div class="p-3">Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.</div>
-                            <div class="p-3 open color-gray">Select one to see details.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <nav class="list navigable">
-                    <ul>
-                        <li><a href="#">Link 1</a></li>
-                        <li><a href="#" onclick="alert(123);">Link 2</a></li>
-                        <li><a href="#">Link 3</a></li>
-                    </ul>
-                </nav>
-
-                <nav class="list">
-                    <ul>
-                        <li><div class="button navigable" tabindex="0">DLink 1</div></li>
-                        <li><div class="button navigable" tabindex="0" onclick="alert(123);">Link 2</div></li>
-                        <li><div class="button navigable" tabindex="0">Link 3</div></li>
-                    </ul>
-                </nav>
-
-                <span class="relative navigable">
-                    <button class="relative index-1" data-toggle="next" data-toggle-dismissible data-toggle-escapable>
-                        View Items
-                        <svg class="icon open:rotate lg" viewBox="0 0 24 24">
-                            <path d="M7.41 8.58 12 13.17l4.59-4.59L18 10l-6 6-6-6 1.41-1.42z"></path>
-                        </svg>
-                    </button>
-                    <div class="collapse overlay hidden from-top f:open">
-                        <nav class="list bg-faint round-bottom shadow p-1 b-1 g-1">
-                            <ul>
-                                <li><button data-toggle-close class="link">Item 1</button></li>
-                                <li><button data-toggle-close onclick="alert(123)" class="link">Item 2</button></li>
-                                <li><button data-toggle-close class="link">Item 3</button></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </span>
             </section>
+
         </main>
     </div>
     <div id="copy-code-modal" class="modal bg-none">
@@ -1339,7 +786,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     <script type="module">
-        import { loadToggles, loadSliders, loadScrollSpy, loadNavigable, q } from './docs/spry.mjs';
+        import { loadToggles, loadSliders, loadScrollSpy, loadNavigable, q } from './spry.mjs';
         loadToggles();
         loadSliders();
         loadNavigable();
