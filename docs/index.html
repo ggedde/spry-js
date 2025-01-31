@@ -22,7 +22,7 @@
                 <div class="navigable">
                     <button id="header-nav-mobile-button"class="open:pointer-none button link icon menu open:close md:none" data-toggle="next" data-toggle-dismissible></button>
                     <div class="collapse md:open f:open from-left">
-                        <nav id="header-nav" class="list absolute left max-w-200 outer-bottom bg-theme border-alpha-30 vh auto py-3 px-3 pb-6 sm br-1 bt-1 shadow md:shadow-none scrollspy">
+                        <nav id="header-nav" class="list absolute left max-w-200 outer-bottom bg-theme border-alpha-30 vh auto py-3 px-3 pb-6 sm br-1 bt-1 shadow md:shadow-none scroll-spy">
                             <ul>
                                 <li>
                                     <h5 class="pl-2">
@@ -44,6 +44,7 @@
                                 <li><a href="#cookies">Cookies</a></li>
                                 <li><a href="#navigable">Navigable</a></li>
                                 <li><a href="#query">Query</a></li>
+                                <li><a href="#scrollevents">Scroll Events</a></li>
                                 <li><a href="#scrollspy">Scroll Spy</a></li>
                                 <li><a href="#sliders">Sliders</a></li>
                                 <li><a href="#toggles">Toggles</a></li>
@@ -126,7 +127,7 @@
                     Installation
                 </h2>
 
-                <h3>From CDN:</h3>
+                <h3 class="scroll-watch">From CDN:</h3>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
 &lt;script&gt;
     SpryJS.loadToggles();
@@ -136,7 +137,7 @@
 &lt;/script&gt;
                     </code>
 
-                <h3>ESM from CDN:</h3>
+                <h3 class="scroll-watch">ESM from CDN:</h3>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
     import { loadToggles, loadSliders, loadScrollSpy, loadNavigable, q } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
     loadToggles();
@@ -146,7 +147,7 @@
 &lt;/script&gt;
                         </code>
     
-                <h3>Using a package manager:</h3>
+                <h3 class="scroll-watch">Using a package manager:</h3>
                 <div class="row columns-auto items-center mt-3 ml-3">
                     <div style="width: 30px">npm</div>
                     <div class="relative span-fill">
@@ -208,10 +209,46 @@
                 </h2>
             </section>
 
+            <!-- SCROLLEVENTS -->
+            <section id="scrollevents" class="bg-inherit py-0 pb-3">
+                <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
+                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M13,9V15H16L12,19L8,15H11V9H8L12,5L16,9H13M4,2H20V4H4V2M4,20H20V22H4V20Z" /></svg>
+                    Scroll Events
+                </h2>
+
+                <div class="b-3 max-h-200 md:max-h-400 hidden">
+                    <img class="scroll-parallax w cover" src="img.webp">
+                </div>
+                <p class="mt-2 mb-5 note">Photo by <a href="https://unsplash.com/@joelfilip?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Joel Filipe</a> on <a href="https://unsplash.com/photos/multicolored-abstract-painting-QwoNAhbmLLo?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></p>
+                
+                
+                <div class="b-3 max-h-200 md:max-h-400 hidden">
+                    <img class="scroll-parallax scroll-horizontal min-w-1200 cover" style="min-width: 150vw;" src="img-wide.webp">
+                </div>
+                <p class="mt-2 mb-5 note">Photo by <a href="https://unsplash.com/@kitera?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Kitera Dent</a> on <a href="https://unsplash.com/photos/person-in-white-shirt-walking-on-brown-field-during-daytime-3iJ2LaOGu3s?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></p>
+
+                <br><br>
+                <div class="b-3 max-h-200 md:max-h-200 hidden">
+                    <div class="scroll-parallax cover" data-parallax="object">
+                        <p>1111111</p>
+                        <p>2222222</p>
+                        <p>3333333</p>
+                        <p>4444444</p>
+                        <p>5555555</p>
+                        <p>6666666</p>
+                        <p>7777777</p>
+                        <p>8888888</p>
+                        <p>9999999</p>
+                        <p>0000000</p>
+                    </div>
+                </div>
+
+            </section>
+
             <!-- SCROLLSPY -->
             <section id="scrollspy" class="bg-inherit py-0 pb-3">
                 <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
-                    <svg class="icon mr-1" viewBox="0 0 24 24"><title>eye-settings-outline</title><path d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C16.86,4.5 21.22,7.5 23,12C20.61,18.08 13.75,21.06 7.67,18.67C4.62,17.47 2.2,15.06 1,12C2.78,7.5 7.14,4.5 12,4.5M3.18,12C5.56,16.87 11.45,18.89 16.32,16.5C18.28,15.54 19.86,13.96 20.82,12C18.44,7.13 12.55,5.11 7.68,7.5C5.72,8.46 4.14,10.04 3.18,12M9,22H7V24H9V22M13,22H11V24H13V22M17,22H15V24H17V22Z" /></svg>
+                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C16.86,4.5 21.22,7.5 23,12C20.61,18.08 13.75,21.06 7.67,18.67C4.62,17.47 2.2,15.06 1,12C2.78,7.5 7.14,4.5 12,4.5M3.18,12C5.56,16.87 11.45,18.89 16.32,16.5C18.28,15.54 19.86,13.96 20.82,12C18.44,7.13 12.55,5.11 7.68,7.5C5.72,8.46 4.14,10.04 3.18,12M9,22H7V24H9V22M13,22H11V24H13V22M17,22H15V24H17V22Z" /></svg>
                     Scroll Spy
                 </h2>
             </section>
@@ -781,16 +818,18 @@
     <footer class="bg-faint color-gray p-2 text-right sm">
         &copy; 2023 - SpryJS
     </footer>
-    <script src="docs.min.js?v=3.0.0-rc.2"></script>
+
     <script defer src="prism.min.js?v=3.0.0-rc.2"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="docs.min.js" defer></script>
     <script type="module">
-        import { loadToggles, loadSliders, loadScrollSpy, loadNavigable, q } from './spry.mjs';
+        import { loadToggles, loadSliders, loadScrollSpy, loadScrollEvents, loadNavigable, q } from './spry.mjs';
         loadToggles();
         loadSliders();
         loadNavigable();
         loadScrollSpy();
+        loadScrollEvents();
     </script>
 </body>
 

@@ -6,7 +6,6 @@ type SpryJsScrollSpyOptions = {
 };
 
 type SpryJsScrollSpyAnchor = {
-    id: string;
     top: number;
     link: Element;
 }
@@ -14,31 +13,57 @@ type SpryJsScrollSpyAnchor = {
 export function loadScrollSpy(userOptions?: SpryJsScrollSpyOptions) {
 
     const defaults = {
-		selector: '.scrollspy [href^="#"]',
+		selector: '.scroll-spy [href*="#"]',
+		dataAttribute: 'data-scroll-spy',
         classActive: 'active',
+        threshold: 100,
 	};
 
 	const options = { ...defaults, ...userOptions };
 
     let resizeTimer: Timer | null = null;
 
+    const selectors = [options.selector, '['+options.dataAttribute+']'];
+
     const getScrollSpyAnchors = function() {
-        var scrollSpysLinks = document.querySelectorAll(options.selector);
-        var anchors: SpryJsScrollSpyAnchor[] = [];
+        const scrollSpyAnchors = document.querySelectorAll(selectors.join(','));
+        let anchors: SpryJsScrollSpyAnchor[] = [];
     
-        if (scrollSpysLinks.length) {
-            scrollSpysLinks.forEach(link => {
-                var href = (link as HTMLElement).getAttribute('href');
-                if (href) {
-                    var id = href.substring(1);
-                    document.querySelectorAll('[id="'+id+'"], a[name="'+id+'"]').forEach(anchor => {
+        if (scrollSpyAnchors.length) {
+            scrollSpyAnchors.forEach(anchor => {
+
+                // Data Selectors
+                const dataSelector = (anchor as HTMLElement).getAttribute(options.dataAttribute);
+                if (dataSelector) {
+                    document.querySelectorAll(dataSelector).forEach(anchor => {
                         var rect = anchor.getBoundingClientRect();
                         anchors.push({
-                            id: id,
-                            top: (rect.y + window.scrollY) - 100,
-                            link: link
+                            top: (rect.y + window.scrollY) - options.threshold,
+                            link: anchor
                         });
                     });
+                }
+
+                // Hash Selectors
+                const href = (anchor as HTMLElement).getAttribute('href');
+                if (href) {
+                    try {
+                        const url = new URL(href, window.location.href);
+                        if (url && url.hash) {
+                            const hash = url.hash.replace('#', '');
+                            if (hash) {
+                                document.querySelectorAll('[id="'+hash+'"], a[name="'+hash+'"]').forEach(section => {
+                                    const rect = section.getBoundingClientRect();
+                                    anchors.push({
+                                        top: (rect.y + window.scrollY) - options.threshold,
+                                        link: anchor
+                                    });
+                                });
+                            }
+                        }
+                    } catch (e) {
+                        console.log(['Invalid URL for Scroll Spy ('+href+')', e]);
+                    }
                 }
             });
         }
@@ -49,9 +74,8 @@ export function loadScrollSpy(userOptions?: SpryJsScrollSpyOptions) {
     const updateAnchors = function() {
         let y = window.scrollY;
 
-        anchors.forEach(anchor => {anchor.link.classList.remove(options.classActive);});
-        for (let a in anchors) {
-            var anchor = anchors[a];
+        anchors.forEach(anchor => {anchor.link.classList.remove(options.classActive)});
+        for (const anchor of anchors) {
             if (y > anchor.top) {
                 anchor.link.classList.add(options.classActive);
                 break;

@@ -2,9 +2,9 @@
  * Spry Docs Custom CSS
  */
 
-html:has(.code-content-container:target),
-html:has(#toggle-group:target, table:target) {
-	scroll-padding-top: 200px;
+/* html:has(.code-content-container:target), */
+html:has(:not(section):target) {
+	scroll-padding-top: 180px;
 }
 @keyframes blinkTarget {
 	0% {
