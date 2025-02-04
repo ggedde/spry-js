@@ -18,28 +18,14 @@ function runScrollEvents() {
     if (windowWidth >= options.minWidth) {
 
         parallaxBPElements.forEach(elem => {
-            var rect = elem.getBoundingClientRect();
-            var totalHeight = windowHeight + rect.height;
-            var pos = rect.top + rect.height;
+            const rect = elem.getBoundingClientRect();
+            const horizontal = elem.classList.contains('scroll-horizontal');
+            const totalHeight = windowHeight + rect.height;
+            const pos = rect.top + rect.height;
             if (pos > 0 && pos < totalHeight) {
-                elem.style.backgroundPosition = 'center ' + ((pos / totalHeight) * 100) + '%';
+                elem.style.backgroundPosition = horizontal ? ((pos / totalHeight) * 100) + '% center' : 'center ' + ((pos / totalHeight) * 100) + '%';
             }
         });
-
-        // parallaxElements.forEach(elem => {
-        //     if (elem) {
-        //         var rect = elem.getBoundingClientRect();
-        //         console.log(rect.height);
-                
-        //         var totalHeight = windowHeight + rect.height;
-        //         var pos = rect.top + rect.height;
-        //         if (pos > 0 && pos < totalHeight) {
-        //             elem.style.objectPosition = 'center ' + ((pos / totalHeight) * 100) + '%';
-        //             // var tot = ((pos / totalHeight) * 100) * -1;
-        //             // elem.style.top = (tot < 0 ? tot : 0) + '%';
-        //         }
-        //     }
-        // });
 
         parallaxElements.forEach(elem => {
             if (elem && elem.parentElement) {
@@ -61,7 +47,6 @@ function runScrollEvents() {
                     const t = elem.style.translate ? elem.style.translate.toString().split(' ') : ['0px', '0px'];
                     if (horizontal) {
                         elem.style.translate = '-' + p + '% ' + (t[1] ? t[1] : '0px');
-                        
                     } else {
                         elem.style.translate = t[0] + ' -' + p + '%';
                     }
@@ -120,6 +105,9 @@ export function loadScrollEvents(userOptions?: SpryJsScrollEventsOptions) {
 
     parallaxBPElements.forEach(parallaxElement => {
         parallaxElement.style.willChange = 'background-position';
+        if (options.parallaxDelay) {
+            parallaxElement.style.transition = 'background-position '+options.parallaxDelay+'ms cubic-bezier(0, 0, 0, 1)';
+        }
     });
 
     parallaxElements.forEach(parallaxElement => {

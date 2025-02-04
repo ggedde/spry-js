@@ -298,12 +298,10 @@ export function loadToggles(userOptions?: SpryJsToggleOptions) {
         };
 
         window.spryJsTogglers.push(togglerData);
-
+        toggler.setAttribute('data-toggle-loaded', '');
         toggler.addEventListener('click', (event: Event) => {
             toggle(toggler, 'toggle', event);
         });
-
-        toggler.setAttribute('data-toggle-loaded', '');
     });
 
     /**

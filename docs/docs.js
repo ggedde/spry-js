@@ -6,128 +6,131 @@
  * Github: https://github.com/ggedde/spry-css
  */
 
-let _currentPanel = null;
+const SpryJsDocs = {
 
-let _panelContents = [];
+    _currentPanel: null,
 
-function toggleTheme(element) {
-    element.classList.toggle('scheme-toggle');
-    if (element === document.documentElement) {
-        document.documentElement.querySelectorAll('.scheme-toggle').forEach(elem => {
-            elem.classList.remove('scheme-toggle');
+    _panelContents: [],
+
+    toggleTheme: function(element) {
+        element.classList.toggle('scheme-toggle');
+        if (element === document.documentElement) {
+            document.documentElement.querySelectorAll('.scheme-toggle').forEach(elem => {
+                elem.classList.remove('scheme-toggle');
+            });
+        }
+    },
+
+    cleanContent: function(html) {
+        html = html.replaceAll(' class="bg-faint r-1 p-2"', '');
+        html = html.replaceAll('bg-faint r-1 p-2 ', '');
+        html = html.replaceAll(' bg-faint r-1 p-2', '');
+        html = html.replaceAll('<div class="code-resize-handle"></div>', '');
+        var firsTag = html.indexOf('&lt');
+        if (firsTag === -1) {
+            firsTag = html.indexOf('<');
+        }
+        
+        var firstSpaces = html.slice(0, firsTag);
+        html = html.replaceAll(firstSpaces, "\n").trim();
+        var infoTxt = [
+            'col',
+            'fixed',
+            'auto',
+            'md-w-300',
+            'col A',
+            'col B',
+            'col C',
+            '.span-6',
+            '.span-3',
+            '.md-span-3',
+            '.md-span-4',
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitrsed diam nonumy.',
+            'Lorem ipsum dolor sit amet, consetetur sadipscing ut labore et dolore magna aliquyam erat.',
+            '.span-6 .md-span-3 .lg-span-3',
+            'auto fill with larger content'
+        ];
+
+        // infoTxt.forEach((item) => {
+        //     html = html.replaceAll("\n        " + item + "\n    ", '');
+        //     html = html.replaceAll("\n            " + item + "\n        ", '');
+        //     html = html.replaceAll("\n                " + item + "\n            ", '');
+        // });
+
+        html = html.replaceAll('data-loop=""', 'data-loop');
+        html = html.replaceAll('data-snap=""', 'data-snap');
+        html = html.replaceAll('data-over=""', 'data-over');
+        html = html.replaceAll('data-wait=""', 'data-wait');
+        html = html.replaceAll('data-toggle=""', 'data-toggle');
+        html = html.replaceAll('data-toggle-close=""', 'data-toggle-close');
+        html = html.replaceAll('data-scheme-dark=""', 'data-scheme-dark');
+        html = html.replaceAll('data-toggle-escapable=""', 'data-toggle-escapable');
+        html = html.replaceAll('data-toggle-dismissible=""', 'data-toggle-dismissible');
+        html = html.replaceAll('@click.stop=""', '@click.stop');
+        html = html.replaceAll(' data-v-app=""', '');
+        html = html.replaceAll('defer=""', 'defer');
+        html = html.replaceAll('popover=""', 'popover');
+        html = html.replaceAll(' data-enpassusermodified="yes"', '');
+
+        html = html.replaceAll('&ltdiv class="code-resize-handle"&gt&lt/div&gt', '###');
+        html = html.replace(/\&gt\n.*\#\#\#/, '&gt');
+        html = html.replace('<!-- AlpineJsScript -->', '&ltscript src="//unpkg.com/alpinejs" defer&gt&lt/script&gt');
+
+        return html.trim();
+    },
+
+    getContent: function(el) {
+        var elem = el.closest('.code-content-container');
+        var html = this._panelContents[elem.getAttribute('id')];
+        var languageSelector = elem.querySelector('.language-selector');
+        if (languageSelector && languageSelector.value) {
+            var html = document.createElement("div");
+            html.innerHTML = this._panelContents[elem.getAttribute('id')];
+            html = html.querySelector('.language-select[data-language='+languageSelector.value+']').innerHTML;
+        }
+        
+        html = this.cleanContent(html);
+
+        return html;
+    },
+
+    copyCode: function(event) {
+        var code = this.getContent(event.target);
+        code = code.replace('&ltscript src="//unpkg.com/alpinejs" defer&gt&lt/script&gt', '<script src="//unpkg.com/alpinejs" defer></script>');
+        navigator.clipboard.writeText(code).then(function() {
+            document.getElementById('copy-code-modal').classList.add('open');
+            setTimeout(() => {
+                document.getElementById('copy-code-modal').classList.remove('open');
+            }, 2000);
+        }, function(err) {
+            console.error('Async: Could not copy text: ', err);
         });
+    },
+
+    resizePanel: function(e){
+        e.preventDefault();
+        var rect = this._currentPanel.getBoundingClientRect();
+        const dx = (e.x - rect.x) + 3;
+        if (this._currentPanel && dx && dx > 0) {
+            this._currentPanel.style.width = parseInt(dx) + "px";
+        }
+    },
+
+    loadCodeContainer: function(el) {
+
+        var elem = el.closest('.code-content-container');
+        var codeDiv = elem.querySelector('.code-preview-container');
+
+        var html = this.getContent(el);
+        html = html.replaceAll('<', '&lt').replaceAll('>', '&gt');
+
+        var codeDivContents = '<code class="language-html block w auto bg-surface p-4 bb-1 border/5 sm'+(elem.classList.contains('with-wrap')?' pre-wrap':'')+'">' + html + '</code>';
+
+        codeDiv.innerHTML = codeDivContents;
+        Prism.highlightElement(codeDiv.querySelector('.language-html'));
+
+        elem.querySelector('.collapse').classList.toggle('open');
     }
-}
-
-function cleanContent(html) {
-    html = html.replaceAll(' class="bg-faint r-1 p-2"', '');
-    html = html.replaceAll('bg-faint r-1 p-2 ', '');
-    html = html.replaceAll(' bg-faint r-1 p-2', '');
-    html = html.replaceAll('<div class="code-resize-handle"></div>', '');
-    var firsTag = html.indexOf('&lt');
-    if (firsTag === -1) {
-        firsTag = html.indexOf('<');
-    }
-    
-    var firstSpaces = html.slice(0, firsTag);
-    html = html.replaceAll(firstSpaces, "\n").trim();
-    var infoTxt = [
-        'col',
-        'fixed',
-        'auto',
-        'md-w-300',
-        'col A',
-        'col B',
-        'col C',
-        '.span-6',
-        '.span-3',
-        '.md-span-3',
-        '.md-span-4',
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitrsed diam nonumy.',
-        'Lorem ipsum dolor sit amet, consetetur sadipscing ut labore et dolore magna aliquyam erat.',
-        '.span-6 .md-span-3 .lg-span-3',
-        'auto fill with larger content'
-    ];
-
-    infoTxt.forEach((item) => {
-        html = html.replaceAll("\n        " + item + "\n    ", '');
-        html = html.replaceAll("\n            " + item + "\n        ", '');
-        html = html.replaceAll("\n                " + item + "\n            ", '');
-    });
-
-    html = html.replaceAll('data-loop=""', 'data-loop');
-    html = html.replaceAll('data-snap=""', 'data-snap');
-    html = html.replaceAll('data-over=""', 'data-over');
-    html = html.replaceAll('data-wait=""', 'data-wait');
-    html = html.replaceAll('data-toggle=""', 'data-toggle');
-    html = html.replaceAll('data-toggle-close=""', 'data-toggle-close');
-    html = html.replaceAll('data-scheme-dark=""', 'data-scheme-dark');
-    html = html.replaceAll('data-toggle-escapable=""', 'data-toggle-escapable');
-    html = html.replaceAll('data-toggle-dismissible=""', 'data-toggle-dismissible');
-    html = html.replaceAll('@click.stop=""', '@click.stop');
-    html = html.replaceAll(' data-v-app=""', '');
-    html = html.replaceAll('defer=""', 'defer');
-    html = html.replaceAll('popover=""', 'popover');
-    html = html.replaceAll(' data-enpassusermodified="yes"', '');
-
-    html = html.replaceAll('&ltdiv class="code-resize-handle"&gt&lt/div&gt', '###');
-    html = html.replace(/\&gt\n.*\#\#\#/, '&gt');
-    html = html.replace('<!-- AlpineJsScript -->', '&ltscript src="//unpkg.com/alpinejs" defer&gt&lt/script&gt');
-
-    return html.trim();
-}
-
-function getContent(el) {
-    var elem = el.closest('.code-content-container');
-    var html = _panelContents[elem.getAttribute('id')];
-    var languageSelector = elem.querySelector('.language-selector');
-    if (languageSelector && languageSelector.value) {
-        var html = document.createElement("div");
-        html.innerHTML = _panelContents[elem.getAttribute('id')];
-        html = html.querySelector('.language-select[data-language='+languageSelector.value+']').innerHTML;
-    }
-    
-    html = cleanContent(html);
-
-    return html;
-}
-
-function copyCode(event) {
-    var code = getContent(event.target);
-    code = code.replace('&ltscript src="//unpkg.com/alpinejs" defer&gt&lt/script&gt', '<script src="//unpkg.com/alpinejs" defer></script>');
-    navigator.clipboard.writeText(code).then(function() {
-        document.getElementById('copy-code-modal').classList.add('open');
-        setTimeout(() => {
-            document.getElementById('copy-code-modal').classList.remove('open');
-        }, 2000);
-    }, function(err) {
-        console.error('Async: Could not copy text: ', err);
-    });
-}
-
-function resizePanel(e){
-    e.preventDefault();
-    var rect = _currentPanel.getBoundingClientRect();
-    const dx = (e.x - rect.x) + 3;
-    if (_currentPanel && dx && dx > 0) {
-        _currentPanel.style.width = parseInt(dx) + "px";
-    }
-}
-
-function loadCodeContainer(el) {
-
-    var elem = el.closest('.code-content-container');
-    var codeDiv = elem.querySelector('.code-preview-container');
-
-    var html = getContent(el);
-    html = html.replaceAll('<', '&lt').replaceAll('>', '&gt');
-
-    var codeDivContents = '<code class="language-html block w auto bg-surface p-4 bb-1 border/5 sm'+(elem.classList.contains('with-wrap')?' pre-wrap':'')+'">' + html + '</code>';
-
-    codeDiv.innerHTML = codeDivContents;
-    Prism.highlightElement(codeDiv.querySelector('.language-html'));
-
-    elem.querySelector('.collapse').classList.toggle('open');
 }
 
 document.querySelectorAll('.show-code').forEach((elem, index) => {
@@ -140,7 +143,7 @@ document.querySelectorAll('.show-code').forEach((elem, index) => {
     var codeDiv = '<div class="collapse"><div class="code-preview-container hidden"></div></div>';
 
     var innerContents = elem.innerHTML;
-    _panelContents['code-container-'+index] = innerContents+'';
+    SpryJsDocs._panelContents['code-container-'+index] = innerContents+'';
 
     var languages = elem.querySelectorAll('.language-select');
 
@@ -166,7 +169,7 @@ document.querySelectorAll('.show-code').forEach((elem, index) => {
     var languageFooterNote = '';
 
     if (languages && languages.length) {    
-        languageSelector += '<div class="items-center flex mr-1"><select class="language-selector dense pr-4 border/20" onchange="loadCodeContainer(this)">';
+        languageSelector += '<div class="items-center flex mr-1"><select class="language-selector dense pr-4 border/20" onchange="SpryJsDocs.loadCodeContainer(this)">';
         languages.forEach(language => {
             languageKey = language.getAttribute('data-language');
             languageSelector += '<option value="'+languageKey+'">'+languageNames[languageKey]+'</option>';
@@ -182,7 +185,7 @@ document.querySelectorAll('.show-code').forEach((elem, index) => {
 
     var innerContents = elem.innerHTML;
 
-    elem.outerHTML = '<article class="outline code-content-container bg-theme" id="code-container-'+index+'"><header class="block md:flex"><h4>'+elem.getAttribute('data-title')+' '+badge+tooltipWarning+'</h4><div class="flex content-end mt-2 md:mt-0">'+languageSelector+'<button class="shy icon link" title="Toggle Theme" onclick="toggleTheme(this.parentElement.parentElement.parentElement);"><svg viewBox="0 0 24 24"><path d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z" /></svg></button><button onclick="loadCodeContainer(this)" class="shy icon link" title="Show HTML code"><svg class="lg" viewBox="0 0 24 24"><path d="m14.6 16.6 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4m-5.2 0L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4z" /></svg></button><button class="shy icon link f:swap" title="Copy HTML to Clipboard" onclick="copyCode(event); setTimeout(() => {this.classList.remove(\'open\'); this.classList.remove(\'active\'); this.setAttribute(\'aria-pressed\', false)}, 2000)"><svg viewBox="0 0 24 24"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1z" /></svg><svg viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z" /></svg></button></div></header>'+headerNotes+'<div class="p-0 mt-0"><div id="code-'+toggleId+'" class="code-container">'+codeDiv+'</div></div><div class="code-content relative p-3 md:p-4">'+innerContents+'<div class="code-resize-handle"></div></div>'+footerNotes+'</article>';
+    elem.outerHTML = '<article class="outline code-content-container bg-theme" id="code-container-'+index+'"><header class="block md:flex"><h4>'+elem.getAttribute('data-title')+' '+badge+tooltipWarning+'</h4><div class="flex content-end mt-2 md:mt-0">'+languageSelector+'<button class="shy icon link" title="Toggle Theme" onclick="SpryJsDocs.toggleTheme(this.parentElement.parentElement.parentElement);"><svg viewBox="0 0 24 24"><path d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z" /></svg></button><button onclick="SpryJsDocs.loadCodeContainer(this)" class="shy icon link" title="Show HTML code"><svg class="lg" viewBox="0 0 24 24"><path d="m14.6 16.6 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4m-5.2 0L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4z" /></svg></button><button class="shy icon link f:swap" title="Copy HTML to Clipboard" onclick="SpryJsDocs.copyCode(event); setTimeout(() => {this.classList.remove(\'open\'); this.classList.remove(\'active\'); this.setAttribute(\'aria-pressed\', false)}, 2000)"><svg viewBox="0 0 24 24"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1z" /></svg><svg viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z" /></svg></button></div></header>'+headerNotes+'<div class="p-0 mt-0"><div id="code-'+toggleId+'" class="code-container">'+codeDiv+'</div></div><div class="code-content relative p-3 md:p-4">'+innerContents+'<div class="code-resize-handle"></div></div>'+footerNotes+'</article>';
 });
 
 document.querySelectorAll('.code-resize-handle').forEach((elem) => {
@@ -190,14 +193,14 @@ document.querySelectorAll('.code-resize-handle').forEach((elem) => {
         elem.classList.add('moving');
         document.body.style.cursor = 'ew-resize';
         e.preventDefault();
-        _currentPanel = elem.closest('.code-content-container');
-        document.addEventListener("mousemove", resizePanel, false);
+        SpryJsDocs._currentPanel = elem.closest('.code-content-container');
+        document.addEventListener("mousemove", SpryJsDocs.resizePanel, false);
     }, false);
 });
 
 document.addEventListener("mouseup", function(){
-    _currentPanel = null;
-    document.removeEventListener("mousemove", resizePanel, false);
+    SpryJsDocs._currentPanel = null;
+    document.removeEventListener("mousemove", SpryJsDocs.resizePanel, false);
     document.querySelectorAll('.code-resize-handle.moving').forEach((elem) => {
         elem.classList.remove('moving');
         document.body.style.cursor = 'default';

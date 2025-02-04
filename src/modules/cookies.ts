@@ -1,69 +1,53 @@
 //!
 //! SpryJs Cookies Module
-export function q(selector: string, callback?: Function) {
 
-    const elements = document.querySelectorAll(selector);
+export const cookie = {
+    /**
+     * Set a Cookie
+     *
+     * @param cookieName    string - The cookie name to set
+     * @param cookieValue   any    - The value
+     * @param expireSeconds number - Number in seconds to expire. 0 = Session expire.
+     * 
+     * @returns void
+     */
+    set: function (cookieName: string, cookieValue: any, expireSeconds?: number) {
+        let expires = '';
+        if (expireSeconds && expireSeconds !== 0) {
+            const expDate = new Date();
+            expDate.setTime(expDate.getTime() + expireSeconds * 1000);
+            expires = 'expires=' + expDate.toUTCString();
+        }
+        document.cookie = encodeURIComponent(cookieName) + "=" + encodeURIComponent(JSON.stringify(cookieValue)) + ';' + expires;
+    },
 
-    if (callback && elements.length) {
-        elements.forEach((elem: Element) => {
-            callback(elem);
-        })
-    }
+    /**
+     * Get a Cookie
+     *
+     * @param cookieName string - The name of the cookie to get
+     * 
+     * @returns string
+     */
+    get: function (cookieName: string) {
+        const cookieArr = document.cookie.split(";");
+        for (var i = 0; i < cookieArr.length; i++) {
+            const cookiePair = cookieArr[i].split("=");
 
-    return elements;
-};
-
-/**
- * Set a Cookie
- *
- * @param name The cookie name to set
- * @param value The value
- * @param expSeconds Number in seconds to expire
- * 
- * @returns void
- */
-export function setCookie(name: string, value: string, expSeconds: number) {
-    var expDate = new Date();
-    expDate.setTime(expDate.getTime() + expSeconds * 1000);
-    var c_value = escape(value) + ((expSeconds == null) ? '' : '; expires=' + expDate.toUTCString());
-    document.cookie = name + "=" + c_value + '; path=/';
-}
-
-/**
- * Get a Cookie
- *
- * @param name The name of the cookie to get
- * 
- * @returns string
- */
-export function getCookie(cname: string) {
-    var name = cname + '=';
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ')
-            {
-                c = c.substring(1);
+            if (cookieName === cookiePair[0].trim()) {
+                return JSON.parse(decodeURIComponent(cookiePair[1]));
             }
-            if (c.indexOf(name) == 0)
-            {
-                return c.substring(name.length, c.length);
-            }
+        }
+        return '';
+    },
+
+    /**
+     * Remove a Cookie
+     *
+     * @param cookieName string - The cookie name to remove
+     * 
+     * @returns void
+     */
+    remove: function (cookieName: string) {
+        this.set(cookieName, '', -1);
     }
-    return '';
 }
-
-
-/**
- * Remove a Cookie
- *
- * @param name The cookie name to set
- * 
- * @returns void
- */
-export function removeCookie(name: string) {
-    setCookie(name, '', -1);
-}
-
-

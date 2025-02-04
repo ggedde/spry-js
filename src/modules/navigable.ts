@@ -1,12 +1,14 @@
 //! SpryJs Navigable Module
 type SpryJsNavigableOptions = {
-    selector: string;
+    className: string;
+    itemsSelector: string
 };
 
 export function loadNavigable(userOptions?: SpryJsNavigableOptions) {
 
     const defaults = {
-        selector: ".navigable",
+        className: "navigable",
+        itemsSelector: 'a, button, input, [tabindex]',
     };
 
     const options = { ...defaults, ...userOptions };
@@ -27,13 +29,13 @@ export function loadNavigable(userOptions?: SpryJsNavigableOptions) {
             return;
         }
 
-        if (target.parentElement && target.parentElement.querySelector(options.selector) === target) {
+        if (target.parentElement && target.parentElement.querySelector('.'+options.className) === target) {
             navigableContainer = target;
             items = [navigableContainer];
         } else {
-            navigableContainer = target.closest(options.selector);
+            navigableContainer = target.closest('.'+options.className);
             if (navigableContainer) {
-                const queryItems = navigableContainer.querySelectorAll('a, button, input, [tabindex]');
+                const queryItems = navigableContainer.querySelectorAll(options.itemsSelector);
                 items = queryItems ? Array.from((queryItems as NodeListOf<HTMLElement>)) : [];
             }
         }
@@ -61,57 +63,9 @@ export function loadNavigable(userOptions?: SpryJsNavigableOptions) {
                 sibling.focus();
             }
         }
-        
-
-
-        // var selected = list.querySelector('li:focus-within');
-        // if (!selected) {
-        //     selected = list.querySelector(':focus');
-        // }
-        // if (selected) {
-        //     if (keyCode === 'Escape') {
-        //         target.blur();
-        //     } else if (['Space', 'Enter'].includes(keyCode) && ['LABEL', 'INPUT'].includes(target.tagName)) {
-        //         event.preventDefault();
-        //         target.click();
-        //     } else if (['Space'].includes(keyCode) && ['A'].includes(target.tagName)) {
-        //         event.preventDefault();
-        //         target.click();
-        //     } else if (['ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp'].includes(keyCode)) {
-        //         event.preventDefault();
-        //         var children = list.children[0].tagName === 'UL' ? Array.from(list.children[0].children) : Array.from(list.children);
-        //         var index = children.indexOf(selected);
-        //         if (index > -1) {
-        //             var newIndex = (['ArrowRight', 'ArrowDown'].includes(keyCode) ? index + 1 : index - 1);
-        //             var sibling = children[newIndex];
-        //             if (sibling && sibling.tagName === 'LI' && !sibling.querySelector('a, button, .button, input')) {
-        //                 // Skip if child has not selectable item
-        //                 var newIndex = (['ArrowRight', 'ArrowDown'].includes(keyCode) ? newIndex + 1 : newIndex - 1);
-        //                 var sibling = children[newIndex];
-        //             }
-        //             if (sibling && sibling.children && sibling.children[0]) {
-        //                 sibling = sibling.children[0];
-        //                 if (!['A', 'BUTTON', 'LABEL', 'INPUT'].includes(sibling.tagName)) {
-        //                     if (['ArrowRight', 'ArrowDown'].includes(keyCode)) {
-        //                         newIndex++;
-        //                     } else {
-        //                         newIndex--;
-        //                     }
-        //                     var sibling = children[newIndex];
-        //                     if (sibling && sibling.children && sibling.children[0]) {
-        //                         sibling = sibling.children[0];
-        //                     }
-        //                 }
-        //             }
-        //             if (sibling) {
-        //                 (sibling as HTMLElement).focus();
-        //             }
-        //         }
-        //     }
-        // }
     }
 
-    document.querySelectorAll(options.selector).forEach(list => {
+    document.querySelectorAll('.'+options.className).forEach(list => {
         list.removeEventListener('keydown', navigateItems);
         list.addEventListener('keydown', navigateItems);
     })

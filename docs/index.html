@@ -12,7 +12,23 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://sprycss.local.com/spry.min.css?v=3.0.0-rc.2">
     <link rel="stylesheet" href="docs.min.css?v=3.0.0-rc.2">
-    
+
+    <script defer src="prism.min.js?v=3.0.0-rc.2"></script>
+    <script defer src="https://buttons.github.io/buttons.js"></script>
+    <script defer src="//unpkg.com/alpinejs"></script>
+    <script defer src="docs.min.js"></script>
+    <script defer src="spry.js?load=true"></script>
+
+    <style>
+        .observe {
+            opacity: 0 !important;
+            transition: opacity .1s ease-in-out !important;
+        }
+
+        .observing {
+            opacity: 1 !important;
+        }
+    </style>
 </head>
 
 <body id="about">
@@ -43,8 +59,9 @@
                                 </li>
                                 <li><a href="#cookies">Cookies</a></li>
                                 <li><a href="#navigable">Navigable</a></li>
+                                <li><a href="#observer">Observer</a></li>
+                                <li><a href="#parallax">Parallax</a></li>
                                 <li><a href="#query">Query</a></li>
-                                <li><a href="#scrollevents">Scroll Events</a></li>
                                 <li><a href="#scrollspy">Scroll Spy</a></li>
                                 <li><a href="#sliders">Sliders</a></li>
                                 <li><a href="#toggles">Toggles</a></li>
@@ -59,7 +76,7 @@
                 <img src="https://img.shields.io/github/v/release/ggedde/spry-js?include_prereleases" alt="Release">
             </div>
             <div class="sm">
-                <button class="shy icon link circle" onclick="toggleTheme(document.documentElement);" title="Toggle Theme" aria-label="Toggle Theme">
+                <button class="shy icon link circle" onclick="SpryJsDocs.toggleTheme(document.documentElement);" title="Toggle Theme" aria-label="Toggle Theme">
                     <svg class="xl" viewBox="0 0 24 24"><path d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z" /></svg>
                 </button>
                 <a class="button shy icon link circle" href="https://github.com/ggedde/spry-js" title="SpryJS GitHub" aria-label="SpryJS GitHub">
@@ -130,20 +147,51 @@
                 <h3 class="scroll-watch">From CDN:</h3>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-    SpryJS.loadToggles();
-    SpryJS.loadSliders();
+    SpryJS.cookie.set(...);
+    SpryJS.cookie.get(...);
+    SpryJS.cookie.remove(...);
+
+    SpryJS.query(...).addClass(...);
+
+    SpryJS.load();
+    // or
     SpryJS.loadNavigable();
+    SpryJS.loadObserver();
+    SpryJS.loadParallax();
     SpryJS.loadScrollSpy();
+    SpryJS.loadSliders();
+    SpryJS.loadToggles();
 &lt;/script&gt;
                     </code>
 
                 <h3 class="scroll-watch">ESM from CDN:</h3>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { loadToggles, loadSliders, loadScrollSpy, loadNavigable, q } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
-    loadToggles();
-    loadSliders();
+    import {
+        cookie,
+        load,
+        loadNavigable,
+        loadObserver,
+        loadParallax,
+        loadScrollSpy,
+        loadSliders,
+        loadToggles,
+        query
+    } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+    
+    cookie.set(...);
+    cookie.get(...);
+    cookie.remove(...);
+
+    query(...).addClass(...);
+
+    load();
+    // or
     loadNavigable();
+    loadObserver();
+    loadParallax();
     loadScrollSpy();
+    loadSliders();
+    loadToggles();
 &lt;/script&gt;
                         </code>
     
@@ -191,6 +239,41 @@
                     <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9c0-.5-.04-1-.13-1.5C20.6 10 20 10 20 10h-2V9c0-1-1-1-1-1h-2V7c0-1-1-1-1-1h-1V4c0-1-1-1-1-1M9.5 6A1.5 1.5 0 0 1 11 7.5 1.5 1.5 0 0 1 9.5 9 1.5 1.5 0 0 1 8 7.5 1.5 1.5 0 0 1 9.5 6m-3 4A1.5 1.5 0 0 1 8 11.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 5 11.5 1.5 1.5 0 0 1 6.5 10m5 1a1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5m5 2a1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5M11 16a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 11 19a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 11 16z" /></svg>
                     Cookies
                 </h2>
+
+                <h4>Using Cookie</h4>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
+    import { cookie } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
+    
+    /**
+     * Set a Cookie
+     *
+     * @param cookieName    string - The cookie name to set
+     * @param cookieValue   any    - The value
+     * @param expireSeconds number - Number in seconds to expire. 0 = Session expire.
+     * 
+     * @returns void
+     */
+    cookie.set(cookieName: string, cookieValue: any, expireSeconds: number);
+
+    /**
+     * Get a Cookie
+     *
+     * @param cookieName string - The name of the cookie to get
+     * 
+     * @returns string
+     */
+    cookie.get(cookieName: string);
+
+    /**
+     * Remove a Cookie
+     *
+     * @param cookieName string - The cookie name to remove. This will reset the cookie to expire immediately.
+     * 
+     * @returns void
+     */
+    cookie.remove(cookieName: string);
+&lt;/script&gt;</code>                
+                
             </section>
 
             <!-- NAVIGABLE -->
@@ -199,6 +282,320 @@
                     <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M9.5,13.09L10.91,14.5L6.41,19H10V21H3V14H5V17.59L9.5,13.09M10.91,9.5L9.5,10.91L5,6.41V10H3V3H10V5H6.41L10.91,9.5M14.5,13.09L19,17.59V14H21V21H14V19H17.59L13.09,14.5L14.5,13.09M13.09,9.5L17.59,5H14V3H21V10H19V6.41L14.5,10.91L13.09,9.5Z" /></svg>
                     Navigable
                 </h2>
+
+                <h5>This allows <code class="color-primary">&lt;a&gt;</code> and <code class="color-primary">&lt;button&gt;</code> to be Navigable via the Keyboard Arrow keys and clickable via the Keyboard Space and Enter keys. It also adds ability to use the Escape key to ignore focus.</h5>
+
+                <h5>Loading Navigable</h5>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
+    import { loadNavigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
+    loadNavigable({options});
+&lt;/script&gt;</code>
+
+                <p class="note">* loadNavigable() can be called multiple times without creating duplicated event listeners and other side effects. It will ignore any pre-registered elements. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
+                
+                <h5 class="mt-3">Example:</h5>
+
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm mb-4">&lt;nav class="navigable"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Link 1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Link 2&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Link 3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code>
+
+                <table class="mb-3">
+                    <thead>
+                        <tr>
+                            <th width="190"><h4>Options</h4></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="color-primary">className</code></td>
+                            <td>
+                                Class Name for navigable items.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">navigable</code>
+                                <p>This will capture keyboard events within this element and navigate between </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">itemsSelector</code></td>
+                            <td>
+                                Selector for tracking navigable items within the navigable container.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">a, button, input, [tabindex]</code>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="show-code" data-title="Navigable Nav">
+                    <nav class="navigable">
+                        <ul class="column">
+                            <li><button>Button 1</button></li>
+                            <li><button>Button 2</button></li>
+                            <li><button>Button 3</button></li>
+                            <li><button onclick="alert('Button 4 Clicked')">Button 4 Click me with Space or Enter</button></li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+
+            <!-- OBSERVER -->
+            <section id="observer" class="bg-inherit py-0 pb-3">
+                <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
+                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z" /></svg>
+                    Observer
+                </h2>
+
+                <h5>Loading Observer</h5>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
+    import { loadObserver } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
+    loadObserver({options});
+&lt;/script&gt;</code>
+
+                <p class="note">* loadObserver() can be called multiple times without creating duplicated event listeners and other side effects. it will ignore any pre-registered elements. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
+                
+                <h5 class="mt-3">Example:</h5>
+
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;!-- Observe Element --&gt;
+&lt;div class="observe"&gt;
+    ...
+&lt;/div&gt;</code>
+
+                <table class="mb-3">
+                    <thead>
+                        <tr>
+                            <th width="190"><h4>Options</h4></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="color-primary">classObserve</code></td>
+                            <td>
+                                Class Name for elements to be observed.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">observe</code>
+                                <p>The observer will watch for these elements to be visible in the viewport.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">classObserving</code></td>
+                            <td>
+                                Class that gets toggled when elements are visible within the viewport.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">observing</code>
+                                <p>The observer will add this class for these elements that are currently visible in the viewport.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">classObserved</code></td>
+                            <td>
+                                Class that gets added when elements become visible within the viewport.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">observed</code>
+                                <p>This class gets added when the element becomes visible within the viewport. This class does not get removed.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">rootMargin</code></td>
+                            <td>
+                                Bounding box before computing intersections. Negative values will shrink the bounding box. Each side value is required.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">0px 0px 0px 0px</code>
+                                <br><a class="mt-3 button primary hazy link sm" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#rootmargin">Learn more about rootMargin</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">threshold</code></td>
+                            <td>
+                                Either a single number from 0 - 1 or an array of numbers which indicate at what percentage of the target's visibility the observer's callback should be executed.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">0</code>
+                                <br><a class="mt-3 button primary hazy link sm" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#threshold">Learn more about Threshold</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">delay</code></td>
+                            <td>
+                                Delay in milliseconds before the Observer acknowledges the observed element.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">100</code>
+                                <p>If multiple elements are observed at the same time then the delay will be stacked by the element index</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="show-code" data-title="Observe">
+                    <div class="row columns-3">
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                    </div>
+                </div>
+                
+                <div class="show-code" data-title="Parallax Horizontal" data-footer-note="Photo by &lt;a href='https://unsplash.com/@kitera?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Kitera Dent&lt;/a&gt;">
+                    <div class="hidden">
+                        <img class="parallax parallax-horizontal cover" style="min-width: 150vw;" src="img-wide.webp">
+                    </div>
+                </div>
+
+                <div class="show-code" data-title="Parallax Div Contents">
+                    <div class="max-h-100 hidden">
+                        <div class="parallax">
+                            <p>1111111</p>
+                            <p>2222222</p>
+                            <p>3333333</p>
+                            <p>4444444</p>
+                            <p>5555555</p>
+                            <p>6666666</p>
+                            <p>7777777</p>
+                            <p>8888888</p>
+                            <p>9999999</p>
+                            <p>0000000</p>
+                        </div>
+                    </div>
+                </div>
+      
+                <div class="show-code" data-title="Parallax Background Image" data-footer-note="Photo by &lt;a href='https://unsplash.com/@janbehnisch?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Jan Behnisch&lt;/a&gt;">
+                    <div class="parallax-background cover p-4" style="background-image: url('img2.webp');">
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                        <p>Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- PARALLAX -->
+            <section id="parallax" class="bg-inherit py-0 pb-3">
+                <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
+                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M13,9V15H16L12,19L8,15H11V9H8L12,5L16,9H13M4,2H20V4H4V2M4,20H20V22H4V20Z" /></svg>
+                    Parallax
+                </h2>
+
+                <h5>Loading Parallax</h5>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
+    import { loadParallax } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
+    loadParallax({options});
+&lt;/script&gt;</code>
+
+                <p class="note">* loadParallax() can be called multiple times without creating duplicated event listeners and other side effects. loadParallax() will ignore any pre-registered elements. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
+                
+                <h5 class="mt-3">Example:</h5>
+
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;!-- Parallax Container --&gt;
+&lt;div style="max-height: 200px; overflow: hidden;"&gt;
+    &lt;!-- Parallax Element --&gt;
+    &lt;div&gt;&lt;!-- Large Content Here --&gt;&lt;/div&gt;
+&lt;/div&gt;</code>
+
+                <table class="mb-3">
+                    <thead>
+                        <tr>
+                            <th width="190"><h4>Options</h4></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="color-primary">classParallax</code></td>
+                            <td>
+                                Class Name for main parallax items.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">parallax</code>
+                                <p>This will parallax the elements <code class="color-primary">translate</code> property. However, hiding the overflow and all other styles will need to be applied separately. A parallax element must be contained in a parent element that is smaller than the parallax element.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">classParallaxBackground</code></td>
+                            <td>
+                                Class Name for background position parallax items.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">parallax-background</code>
+                                <p>This will parallax the elements <code class="color-primary">background-position</code> property. However, all other styles will need to be applied separately. Background image must be larger than the element to work properly.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">classParallaxHorizontal</code></td>
+                            <td>
+                                Class Name for changing the parallax direction to Horizontal.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">parallax-horizontal</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">minWidth</code></td>
+                            <td>
+                                Minimum width in pixels of the window to apply effects. Useful if you do not what to apply parallax for smaller devices.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">0</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">delay</code></td>
+                            <td>
+                                Number in milliseconds to apply easing delay. This allows for a smoother animation on non-smooth scrolling devices and might need adjustment based on your needs. Set to 0 to disable.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">300</code>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="show-code" data-title="Parallax" data-footer-note="Photo by &lt;a href='https://unsplash.com/@joelfilip?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Joel Filipe&lt;/a&gt;">
+                    <div class="max-h-200 md:max-h-400 hidden">
+                        <img class="parallax cover" src="img.webp">
+                    </div>
+                </div>
+                
+                <div class="show-code" data-title="Parallax Horizontal" data-footer-note="Photo by &lt;a href='https://unsplash.com/@kitera?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Kitera Dent&lt;/a&gt;">
+                    <div class="hidden">
+                        <img class="parallax parallax-horizontal cover" style="min-width: 150vw;" src="img-wide.webp">
+                    </div>
+                </div>
+
+                <div class="show-code" data-title="Parallax Div Contents">
+                    <div class="max-h-100 hidden">
+                        <div class="parallax">
+                            <p>1111111</p>
+                            <p>2222222</p>
+                            <p>3333333</p>
+                            <p>4444444</p>
+                            <p>5555555</p>
+                            <p>6666666</p>
+                            <p>7777777</p>
+                            <p>8888888</p>
+                            <p>9999999</p>
+                            <p>0000000</p>
+                        </div>
+                    </div>
+                </div>
+      
+                <div class="show-code" data-title="Parallax Background Image" data-footer-note="Photo by &lt;a href='https://unsplash.com/@janbehnisch?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Jan Behnisch&lt;/a&gt;">
+                    <div class="parallax-background cover p-4" style="background-image: url('img2.webp');">
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                        <p>Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </div>
+
             </section>
 
             <!-- QUERY -->
@@ -207,41 +604,171 @@
                     <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
                     Query
                 </h2>
-            </section>
 
-            <!-- SCROLLEVENTS -->
-            <section id="scrollevents" class="bg-inherit py-0 pb-3">
-                <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
-                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M13,9V15H16L12,19L8,15H11V9H8L12,5L16,9H13M4,2H20V4H4V2M4,20H20V22H4V20Z" /></svg>
-                    Scroll Events
-                </h2>
+                <h5>The query object is a simple lightweight tool to help you with some basic dom manipulations.<br>Query is only intended for collections and not single items.</h5>
 
-                <div class="b-3 max-h-200 md:max-h-400 hidden">
-                    <img class="scroll-parallax w cover" src="img.webp">
-                </div>
-                <p class="mt-2 mb-5 note">Photo by <a href="https://unsplash.com/@joelfilip?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Joel Filipe</a> on <a href="https://unsplash.com/photos/multicolored-abstract-painting-QwoNAhbmLLo?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></p>
-                
-                
-                <div class="b-3 max-h-200 md:max-h-400 hidden">
-                    <img class="scroll-parallax scroll-horizontal min-w-1200 cover" style="min-width: 150vw;" src="img-wide.webp">
-                </div>
-                <p class="mt-2 mb-5 note">Photo by <a href="https://unsplash.com/@kitera?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Kitera Dent</a> on <a href="https://unsplash.com/photos/person-in-white-shirt-walking-on-brown-field-during-daytime-3iJ2LaOGu3s?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></p>
+                <h4>Using Query</h4>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
+    import { query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
+    
+    // Add Class and Attribute to Elements
+    query('.selector').addClass('stuff').attr('data-stuff', 'things');
 
-                <br><br>
-                <div class="b-3 max-h-200 md:max-h-200 hidden">
-                    <div class="scroll-parallax cover" data-parallax="object">
-                        <p>1111111</p>
-                        <p>2222222</p>
-                        <p>3333333</p>
-                        <p>4444444</p>
-                        <p>5555555</p>
-                        <p>6666666</p>
-                        <p>7777777</p>
-                        <p>8888888</p>
-                        <p>9999999</p>
-                        <p>0000000</p>
-                    </div>
-                </div>
+    // Loop Elements
+    query('.selector').each((el, index) => {
+        console.log(index, el);
+    });
+
+    // Add Click Events
+    query('.selector').on('click', (el, index, event) => {
+        console.log(index, el, event);
+    });
+
+    // Get Elements
+    var q = query('.selector');
+    console.log(q.elements);
+
+&lt;/script&gt;</code>
+
+                <h4>Return Values</h4>
+
+                <code class="language-js block w auto bg-surface b-1 r-2 p-3 sm">// Collection
+{
+    elements,
+    ...methods
+}</code>
+
+                <p class="note">* Methods can be chained as the response always returns the updated collection.</p>
+                <table class="mb-3 mt-3 border-faint md:responsive">
+                    <thead>
+                        <tr>
+                            <th width="210"><h4>Query Methods</h4></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <code class="color-primary">nth(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">n?</code>: number</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>
+                                Returns a new collection with only the matching element.<br>
+                                <code class="color-primary">{n}</code> Can be negative for reverse lookup
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">first()</code><br>
+                            </td>
+                            <td>Returns a new collection with only the first element.<br>Is alias of <code class="color-primary">nth(1)</code></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">last()</code><br>
+                            </td>
+                            <td>Returns a new collection with only the last element.<br>Is alias of <code class="color-primary">nth(-1)</code></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">slice(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">start</code>: number</span>,<br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">end?</code>: number</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>
+                                Returns a new collection from the start and end.<br>
+                                <code class="color-primary">start</code> and <code class="color-primary">end</code> can be negative for reverse lookup
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">each(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">callback</code>: Callable</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Loops through each element found in the collection and runs the callback.<br>The callback will provide the (element, index) of each item in the collection.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">toggleClass(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">className</code>: string</span>,<br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">force?</code>: boolean</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Toggles the class of each element found in the collection.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">addClass(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">className</code>: string</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Adds the class to each element found in the collection.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">removeClass(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">className</code>: string</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Removes the class from each element found in the collection.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">toggleAttr(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">attributeName</code>: string</span>,<br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">force?</code>: boolean</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Toggles the attribute of each element found in the collection.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">attr(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">attributeName</code>: string</span>,<br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">attributeValue</code>: string</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Sets the attribute of each element found in the collection.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">removeAttr(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">attributeName</code>: string</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Removes the attribute from each element found in the collection.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">on(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">action</code>: string</span>,<br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">callback</code>: Callable <code class="color-primary">(</code><br>
+                                    <span class="color-gray ml-5"><code class="color-primary">element?</code>: Element</span>,<br>
+                                    <span class="color-gray ml-5"><code class="color-primary">index?</code>: number</span>,<br>
+                                    <span class="color-gray ml-5"><code class="color-primary">event?</code>: Event</span>
+                                    <br><code class="color-primary ml-4">)</code>
+                                </span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Adds an event listener to each element found in the collection.<br>
+                                The <code class="color-primary">action</code> must be a compatible event type with <span class="color-gray">addEventlistener</span>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">off(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">action</code>: string</span><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">listener</code>: Callable</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Removes an event listener on each element found in the collection.<br>
+                            The <code class="color-primary">action</code> must be a compatible event type with <span class="color-gray">addEventlistener</span>.<br>
+                            The <code class="color-primary">listener</code> must be a compatible with <span class="color-gray">EventListenerOrEventListenerObject</span>.</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             </section>
 
@@ -818,19 +1345,6 @@
     <footer class="bg-faint color-gray p-2 text-right sm">
         &copy; 2023 - SpryJS
     </footer>
-
-    <script defer src="prism.min.js?v=3.0.0-rc.2"></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="//unpkg.com/alpinejs" defer></script>
-    <script src="docs.min.js" defer></script>
-    <script type="module">
-        import { loadToggles, loadSliders, loadScrollSpy, loadScrollEvents, loadNavigable, q } from './spry.mjs';
-        loadToggles();
-        loadSliders();
-        loadNavigable();
-        loadScrollSpy();
-        loadScrollEvents();
-    </script>
 </body>
 
 </html>

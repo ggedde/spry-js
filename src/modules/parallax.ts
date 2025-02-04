@@ -1,79 +1,115 @@
 //!
-//! SpryJs ScrollSpy Module
-type SpryJsScrollSpyOptions = {
-	selector: string;
-	classActive: string;
-};
+//! SpryJs Parallax Module
 
-type SpryJsScrollSpyAnchor = {
-    id: string;
-    top: number;
-    link: Element;
+type SpryJsParallaxOptions = {
+    classParallax: string;
+    classParallaxing: string; // cspell:disable-line.
+    classParallaxBackground: string;
+    classParallaxHorizontal: string;
+    minWidth: number;
+    delay: number;
 }
 
-export function loadScrollSpy(userOptions?: SpryJsScrollSpyOptions) {
+export function loadParallax(userOptions?: SpryJsParallaxOptions) {
 
     const defaults = {
-		selector: '.scrollspy [href^="#"]',
-        classActive: 'active',
-	};
+        classParallax: 'parallax',
+        classParallaxing: 'parallaxing', // cspell:disable-line.
+        classParallaxBackground: 'parallax-background',
+        classParallaxHorizontal: 'parallax-horizontal',
+        minWidth: 0,
+        delay: 300,
+    }
 
-	const options = { ...defaults, ...userOptions };
+    let options: SpryJsParallaxOptions = defaults;
+    let windowHeight: number = 0;
+    let windowWidth: number = 0;
+    let parallaxBPElements: HTMLElement[] = [];
+    let parallaxElements: HTMLElement[] = [];
 
-    let resizeTimer: Timer | null = null;
+    options = { ...defaults, ...userOptions };
 
-    const getScrollSpyAnchors = function() {
-        var scrollSpysLinks = document.querySelectorAll(options.selector);
-        var anchors: SpryJsScrollSpyAnchor[] = [];
-    
-        if (scrollSpysLinks.length) {
-            scrollSpysLinks.forEach(link => {
-                var href = (link as HTMLElement).getAttribute('href');
-                if (href) {
-                    var id = href.substring(1);
-                    document.querySelectorAll('[id="'+id+'"], a[name="'+id+'"]').forEach(anchor => {
-                        var rect = anchor.getBoundingClientRect();
-                        anchors.push({
-                            id: id,
-                            top: (rect.y + window.scrollY) - 100,
-                            link: link
-                        });
-                    });
+    windowHeight = window.innerHeight;
+    windowWidth = window.innerWidth;
+    parallaxElements = Array.from(document.querySelectorAll('.' + options.classParallax) as NodeListOf<HTMLElement>);
+    parallaxBPElements = Array.from(document.querySelectorAll('.' + options.classParallaxBackground) as NodeListOf<HTMLElement>);
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            entry.target.classList.toggle(options.classParallaxing, entry.isIntersecting); // cspell:disable-line.
+        });
+    });
+
+    parallaxBPElements.forEach(parallaxElement => {
+        parallaxElement.style.willChange = 'background-position';
+        if (options.delay) {
+            parallaxElement.style.transition = 'background-position ' + options.delay + 'ms cubic-bezier(0, 0, 0, 1)';
+        }
+        observer.observe(parallaxElement);
+    });
+
+    parallaxElements.forEach(parallaxElement => {
+        parallaxElement.style.willChange = 'translate';
+        if (options.delay) {
+            parallaxElement.style.transition = 'translate ' + options.delay + 'ms cubic-bezier(0, 0, 0, 1)';
+        }
+        observer.observe(parallaxElement);
+    });
+
+    const updateWindowSize = function () {
+        windowHeight = window.innerHeight;
+        windowWidth = window.innerWidth;
+    }
+
+    const runScrollEvents = function () {
+
+        if (windowWidth >= options.minWidth) {
+
+            parallaxBPElements.forEach(elem => {
+                if (elem && elem.classList.contains(options.classParallaxing)) { // cspell:disable-line.
+                    const rect = elem.getBoundingClientRect();
+                    const horizontal = elem.classList.contains(options.classParallaxHorizontal);
+                    const totalHeight = windowHeight + rect.height;
+                    const pos = rect.top + rect.height;
+                    if (pos > 0 && pos < totalHeight) {
+                        elem.style.backgroundPosition = horizontal ? ((pos / totalHeight) * 100) + '% center' : 'center ' + ((pos / totalHeight) * 100) + '%';
+                    }
+                }
+            });
+
+            parallaxElements.forEach(elem => {
+                if (elem && elem.classList.contains(options.classParallaxing) && elem.parentElement) { // cspell:disable-line.
+                    const rect = elem.getBoundingClientRect();
+                    const rectParent = elem.parentElement.getBoundingClientRect();
+                    const horizontal = elem.classList.contains(options.classParallaxHorizontal);
+                    const dist = horizontal ? rect.width - rectParent.width : rect.height - rectParent.height;
+                    const offset = 1 - (horizontal ? (rectParent.width / rect.width) : (rectParent.height / rect.height));
+
+                    if (dist < 0) {
+                        elem.style.translate = '0';
+                        return;
+                    }
+
+                    var totalSize = windowHeight + rectParent.height;
+                    var pos = rectParent.top + rectParent.height;
+                    if (pos > 0 && pos < totalSize) {
+                        const p = Math.round((((pos / totalSize) * 100) * offset) * 100) / 100;
+                        const t = elem.style.translate ? elem.style.translate.toString().split(' ') : ['0px', '0px'];
+                        if (horizontal) {
+                            elem.style.translate = '-' + p + '% ' + (t[1] ? t[1] : '0px');
+                        } else {
+                            elem.style.translate = t[0] + ' -' + p + '%';
+                        }
+                    }
                 }
             });
         }
-        
-        return anchors.reverse();
     }
 
-    const updateAnchors = function() {
-        let y = window.scrollY;
-
-        anchors.forEach(anchor => {anchor.link.classList.remove(options.classActive);});
-        for (let a in anchors) {
-            var anchor = anchors[a];
-            if (y > anchor.top) {
-                anchor.link.classList.add(options.classActive);
-                break;
-            }
-        };
+    if (parallaxBPElements.length || parallaxElements.length) {
+        window.addEventListener('scroll', runScrollEvents);
+        window.addEventListener('resize', runScrollEvents);
+        window.addEventListener('resize', updateWindowSize);
+        runScrollEvents();
     }
-
-    var anchors = getScrollSpyAnchors();
-    if (anchors.length) {
-        window.addEventListener('scroll', () => {
-            updateAnchors();
-        });
-
-        window.addEventListener('resize', () => {
-            if (resizeTimer) {
-                clearTimeout(resizeTimer);
-            }
-            resizeTimer = setTimeout(() => {
-                anchors = getScrollSpyAnchors();
-            }, 100);
-        });
-    }
-
-    updateAnchors();
 }
