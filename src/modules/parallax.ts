@@ -6,6 +6,7 @@ type SpryJsParallaxOptions = {
     classParallaxing: string; // cspell:disable-line.
     classParallaxBackground: string;
     classParallaxHorizontal: string;
+    threshold: number;
     minWidth: number;
     delay: number;
 }
@@ -17,6 +18,7 @@ export function loadParallax(userOptions?: SpryJsParallaxOptions) {
         classParallaxing: 'parallaxing', // cspell:disable-line.
         classParallaxBackground: 'parallax-background',
         classParallaxHorizontal: 'parallax-horizontal',
+        threshold: -300,
         minWidth: 0,
         delay: 300,
     }
@@ -38,6 +40,8 @@ export function loadParallax(userOptions?: SpryJsParallaxOptions) {
         entries.forEach(entry => {
             entry.target.classList.toggle(options.classParallaxing, entry.isIntersecting); // cspell:disable-line.
         });
+    }, {
+        rootMargin: (options.threshold * -1).toString() + 'px'
     });
 
     parallaxBPElements.forEach(parallaxElement => {
@@ -71,7 +75,7 @@ export function loadParallax(userOptions?: SpryJsParallaxOptions) {
                     const horizontal = elem.classList.contains(options.classParallaxHorizontal);
                     const totalHeight = windowHeight + rect.height;
                     const pos = rect.top + rect.height;
-                    if (pos > 0 && pos < totalHeight) {
+                    if (pos > options.threshold && pos < (totalHeight + (options.threshold * -1))) {
                         elem.style.backgroundPosition = horizontal ? ((pos / totalHeight) * 100) + '% center' : 'center ' + ((pos / totalHeight) * 100) + '%';
                     }
                 }
@@ -90,10 +94,11 @@ export function loadParallax(userOptions?: SpryJsParallaxOptions) {
                         return;
                     }
 
-                    var totalSize = windowHeight + rectParent.height;
+                    var totalHeight = windowHeight + rectParent.height;
                     var pos = rectParent.top + rectParent.height;
-                    if (pos > 0 && pos < totalSize) {
-                        const p = Math.round((((pos / totalSize) * 100) * offset) * 100) / 100;
+
+                    if (pos > options.threshold && pos < (totalHeight + (options.threshold * -1))) {
+                        const p = Math.round((((pos / totalHeight) * 100) * offset) * 100) / 100;
                         const t = elem.style.translate ? elem.style.translate.toString().split(' ') : ['0px', '0px'];
                         if (horizontal) {
                             elem.style.translate = '-' + p + '% ' + (t[1] ? t[1] : '0px');

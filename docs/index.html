@@ -18,17 +18,6 @@
     <script defer src="//unpkg.com/alpinejs"></script>
     <script defer src="docs.min.js"></script>
     <script defer src="spry.js?load=true"></script>
-
-    <style>
-        .observe {
-            opacity: 0 !important;
-            transition: opacity .1s ease-in-out !important;
-        }
-
-        .observing {
-            opacity: 1 !important;
-        }
-    </style>
 </head>
 
 <body id="about">
@@ -38,7 +27,7 @@
                 <div class="navigable">
                     <button id="header-nav-mobile-button"class="open:pointer-none button link icon menu open:close md:none" data-toggle="next" data-toggle-dismissible></button>
                     <div class="collapse md:open f:open from-left">
-                        <nav id="header-nav" class="list absolute left max-w-200 outer-bottom bg-theme border-alpha-30 vh auto py-3 px-3 pb-6 sm br-1 bt-1 shadow md:shadow-none scroll-spy">
+                        <nav id="header-nav" class="list absolute left max-w-200 outer-bottom bg-theme border-alpha-30 vh auto py-3 px-3 pb-6 sm br-1 bt-1 shadow md:shadow-none scrollspy">
                             <ul>
                                 <li>
                                     <h5 class="pl-2">
@@ -423,68 +412,46 @@
                 </table>
 
                 <div class="show-code" data-title="Observe">
-                    <div class="row columns-3">
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
-                        <div class="observe b-1 bg-primary bg/2 square"></div>
+                    <div class="row observe-example columns-3">
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
                     </div>
-                </div>
-                
-                <div class="show-code" data-title="Parallax Horizontal" data-footer-note="Photo by &lt;a href='https://unsplash.com/@kitera?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Kitera Dent&lt;/a&gt;">
-                    <div class="hidden">
-                        <img class="parallax parallax-horizontal cover" style="min-width: 150vw;" src="img-wide.webp">
-                    </div>
-                </div>
 
-                <div class="show-code" data-title="Parallax Div Contents">
-                    <div class="max-h-100 hidden">
-                        <div class="parallax">
-                            <p>1111111</p>
-                            <p>2222222</p>
-                            <p>3333333</p>
-                            <p>4444444</p>
-                            <p>5555555</p>
-                            <p>6666666</p>
-                            <p>7777777</p>
-                            <p>8888888</p>
-                            <p>9999999</p>
-                            <p>0000000</p>
-                        </div>
-                    </div>
-                </div>
-      
-                <div class="show-code" data-title="Parallax Background Image" data-footer-note="Photo by &lt;a href='https://unsplash.com/@janbehnisch?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Jan Behnisch&lt;/a&gt;">
-                    <div class="parallax-background cover p-4" style="background-image: url('img2.webp');">
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-                        <p>Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-                    </div>
+                    <script type="module">
+                        import { loadObserver } from './spry.mjs';
+                        SpryJS.loadObserver({
+                            selector: '.observe-example > *',
+                            classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
+                        });
+                    </script>
                 </div>
 
             </section>
@@ -548,6 +515,13 @@
                             <td>
                                 Minimum width in pixels of the window to apply effects. Useful if you do not what to apply parallax for smaller devices.<br>
                                 <code class="color-gray">default:</code> <code class="color-primary">0</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">threshold</code></td>
+                            <td>
+                                The threshold is the buffer in pixels before the parallax element starts to animate before it reaches the viewport. This helps reduce flickering when the element animates from baseline position. You can use a positive number to prevent animation while partially in viewport.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">-300</code>
                             </td>
                         </tr>
                         <tr>
@@ -778,6 +752,189 @@
                     <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C16.86,4.5 21.22,7.5 23,12C20.61,18.08 13.75,21.06 7.67,18.67C4.62,17.47 2.2,15.06 1,12C2.78,7.5 7.14,4.5 12,4.5M3.18,12C5.56,16.87 11.45,18.89 16.32,16.5C18.28,15.54 19.86,13.96 20.82,12C18.44,7.13 12.55,5.11 7.68,7.5C5.72,8.46 4.14,10.04 3.18,12M9,22H7V24H9V22M13,22H11V24H13V22M17,22H15V24H17V22Z" /></svg>
                     Scroll Spy
                 </h2>
+
+                <h5>Loading Scroll Spy</h5>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
+    import { loadScrollSpy } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
+    loadScrollSpy({options});
+&lt;/script&gt;</code>
+
+                <p class="note">* loadScrollSpy() can be called multiple times without creating duplicated event listeners and other side effects. This will ignore any pre-registered elements. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
+                
+                <h5 class="mt-3">Example:</h5>
+
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;!-- ScrollSpy Container --&gt;
+&lt;div class="scrollspy"&gt;
+    &lt;!-- ScrollSpy Anchors --&gt;
+    &lt;a href="#scrollspy-section-1"&gt;Section 1 Anchor&lt;/a&gt;
+    &lt;a href="#scrollspy-section-2"&gt;Section 2 Anchor&lt;/a&gt;
+    &lt;a href="#scrollspy-section-3"&gt;Section 3 Anchor&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;!-- ScrollSpy Sections --&gt;
+&lt;div id="scrollspy-section-1"&gt;Section 1 Content&lt;/div&gt;
+&lt;div id="scrollspy-section-2"&gt;Section 2 Content&lt;/div&gt;
+&lt;div id="scrollspy-section-3"&gt;Section 3 Content&lt;/div&gt;
+</code>
+
+                <table class="mb-3">
+                    <thead>
+                        <tr>
+                            <th width="190"><h4>Options</h4></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="color-primary">containerSelector</code></td>
+                            <td>Selector for the Scroll Spy Containers.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">.scrollspy</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">anchorHashSelector</code></td>
+                            <td>Selector for the Scroll Spy Anchors with Hashes within the Containers.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">[href*="#"]</code>
+                                <p>Any anchors found will then calculate the hash value from the href url. The url must be a valid url or relative path with a valid window.location.href. If this is not possible then you might need to use the <code class="color-primary">anchorDataAttribute</code> instead.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">anchorDataAttribute</code></td>
+                            <td>This is an alternative method instead of using the <code class="color-primary">anchorHashSelector</code>. This will allow you to use data attributes to specify your own selectors for the anchors within the containers. Uses a selector as its value.
+                                <br><code class="color-gray">default:</code> <code class="color-primary">data-scrollspy</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">classActive</code></td>
+                            <td>
+                                The class that gets applied to the active anchor.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">active</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">threshold</code></td>
+                            <td>
+                                The threshold is the buffer in pixels before the anchor is considered active within the viewport.<br>
+                                <code class="color-gray">default:</code> <code class="color-primary">200</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">progress</code></td>
+                            <td>
+                                Type of action to use when activating and deactivated anchors.<br>
+                                <div class="mt-2 color-gray">Options: </div>
+                                <ul>
+                                    <li>
+                                        <code class="color-primary">active</code> <code class="color-gray sm ml-2">(default)</code>
+                                        <p class="mt-0">This will activate only one anchor at a time.</p>
+                                    </li>
+                                    <li>
+                                        <code class="color-primary">linear</code>
+                                        <p class="mt-0">This will progress each anchor based on the position of the scroll. Essentially keeping all previous anchors active while you move forward and removing active anchors as you go back.</p>
+                                    </li>
+                                    <li>
+                                        <code class="color-primary">seen</code>
+                                        <p class="mt-0">This will activate each anchor as it is seen, but does not remove any active anchors.</p>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="show-code" data-title="Basic Scroll Spy">
+                    <div class="row columns-2">
+                        <div class="max-w-200">
+                            <nav id="my-scroll-spy-nav" class="sticky list bg-theme p-3 b-1" style="top:180px;">
+                                <ul>
+                                    <li><a class="active" href="#scroll-spy-section-1">Section 1</a></li>
+                                    <li><a href="#scroll-spy-section-2">Section 2</a></li>
+                                    <li><a href="#scroll-spy-section-3">Section 3</a></li>
+                                    <li><a href="#scroll-spy-section-4">Section 4</a></li>
+                                    <li><a href="#scroll-spy-section-5">Section 5</a></li>
+                                    <li><a href="#scroll-spy-section-6">Section 6</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div>
+                            <div>    
+                                <h4 id="scroll-spy-section-1">Section 1</h4>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                
+                                <h4 id="scroll-spy-section-2">Section 2</h4>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                
+                                <h4 id="scroll-spy-section-3">Section 3</h4>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                
+                                <h4 id="scroll-spy-section-4">Section 4</h4>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                
+                                <h4 id="scroll-spy-section-5">Section 5</h4>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                
+                                <h4 id="scroll-spy-section-6">Section 6</h4>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <script type="module">
+                        import { loadScrollSpy } from './spry.mjs';
+                        SpryJS.loadScrollSpy({
+                            containerSelector: '#my-scroll-spy-nav',
+                            classActive: 'active'
+                        });
+                    </script>
+                </div>
+
+                <div class="show-code" data-title="Linear Scroll Spy">
+                    <div class="row columns-2">
+                        <div class="max-w-200">
+                            <nav id="my-scrollspy-nav2" class="sticky list bg-theme p-3 b-1" style="top:180px;">
+                                <div class="relative p-2">
+                                    <span class="absolute top left bl-3 border-primary h-0 transition" data-scrollspy=".scrollspy-custom-section h4:nth-of-type(1)"></span>
+                                    Section A
+                                </div>
+                                <div class="relative p-2">
+                                    <span class="absolute top left bl-3 border-primary h-0 transition" data-scrollspy=".scrollspy-custom-section h4:nth-of-type(2)"></span>
+                                    Section B
+                                </div>
+                                <div class="relative p-2">
+                                    <span class="absolute top left bl-3 border-primary h-0 transition" data-scrollspy=".scrollspy-custom-section h4:nth-of-type(3)"></span>
+                                    Section C
+                                </div>
+                            </nav>
+                        </div>
+                        <div>
+                            <div class="scrollspy-custom-section">
+                                <h4>Section A</h4>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                
+                                <h4>Section B</h4>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                
+                                <h4>Section C</h4>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script type="module">
+                        import { loadScrollSpy } from './spry.mjs';
+                        SpryJS.loadScrollSpy({
+                            containerSelector: '#my-scrollspy-nav2',
+                            classActive: 'h',
+                            threshold: 400,
+                            progress: 'linear',
+                        });
+                    </script>
+                </div>
+                
             </section>
             
             <!-- SLIDERS -->

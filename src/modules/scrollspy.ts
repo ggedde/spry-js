@@ -1,8 +1,12 @@
 //!
 //! SpryJs ScrollSpy Module
 type SpryJsScrollSpyOptions = {
-	selector: string;
-	classActive: string;
+	containerSelector: string;
+    anchorHashSelector: string;
+    anchorDataAttribute: string;
+	classActive: string | string[];
+    threshold: number;
+    progress: 'active' | 'linear' | 'seen';
 };
 
 type SpryJsScrollSpyAnchor = {
@@ -13,77 +17,105 @@ type SpryJsScrollSpyAnchor = {
 export function loadScrollSpy(userOptions?: SpryJsScrollSpyOptions) {
 
     const defaults = {
-		selector: '.scroll-spy [href*="#"]',
-		dataAttribute: 'data-scroll-spy',
+		containerSelector: '.scrollspy',
+		anchorHashSelector: '[href*="#"]',
+		anchorDataAttribute: 'data-scrollspy',
         classActive: 'active',
-        threshold: 100,
+        threshold: 200,
+        progress: 'active',
 	};
 
 	const options = { ...defaults, ...userOptions };
+    const containers = document.querySelectorAll(options.containerSelector);
+    const selectors = [options.anchorHashSelector, '['+options.anchorDataAttribute+']'];
+
+    if (typeof options.classActive === 'string') {
+        options.classActive = options.classActive.split(' ');
+    }
 
     let resizeTimer: Timer | null = null;
 
-    const selectors = [options.selector, '['+options.dataAttribute+']'];
+    const getScrollSpyAnchors = function(): SpryJsScrollSpyAnchor[] {
 
-    const getScrollSpyAnchors = function() {
-        const scrollSpyAnchors = document.querySelectorAll(selectors.join(','));
         let anchors: SpryJsScrollSpyAnchor[] = [];
-    
-        if (scrollSpyAnchors.length) {
-            scrollSpyAnchors.forEach(anchor => {
+        const scrollPosition = window.scrollY;
 
-                // Data Selectors
-                const dataSelector = (anchor as HTMLElement).getAttribute(options.dataAttribute);
-                if (dataSelector) {
-                    document.querySelectorAll(dataSelector).forEach(anchor => {
-                        var rect = anchor.getBoundingClientRect();
-                        anchors.push({
-                            top: (rect.y + window.scrollY) - options.threshold,
-                            link: anchor
-                        });
-                    });
-                }
+        containers.forEach(container => {
+            container.querySelectorAll(selectors.join(',')).forEach(anchor => {
 
-                // Hash Selectors
+                let section = null;
+
+                // Try Hash Selectors
                 const href = (anchor as HTMLElement).getAttribute('href');
                 if (href) {
                     try {
                         const url = new URL(href, window.location.href);
                         if (url && url.hash) {
-                            const hash = url.hash.replace('#', '');
+                            const hash = url.hash.replace('#', '').trim();
                             if (hash) {
-                                document.querySelectorAll('[id="'+hash+'"], a[name="'+hash+'"]').forEach(section => {
-                                    const rect = section.getBoundingClientRect();
-                                    anchors.push({
-                                        top: (rect.y + window.scrollY) - options.threshold,
-                                        link: anchor
-                                    });
-                                });
+                                section = document.querySelector('[id="'+hash+'"], a[name="'+hash+'"]');
                             }
                         }
                     } catch (e) {
-                        console.log(['Invalid URL for Scroll Spy ('+href+')', e]);
+                        console.log('Invalid URL for ScrollSpy ('+href+')', e);
                     }
                 }
+
+                // Try Data Selectors if no Section found
+                if (!section) {
+                    const dataSelector = (anchor as HTMLElement).getAttribute(options.anchorDataAttribute);
+                    if (dataSelector) {
+                        section = document.querySelector(dataSelector);
+                    }
+                }
+
+                // Add Anchors if found Section
+                if (section) {
+                    const sectionRect = section.getBoundingClientRect();
+                    anchors.push({
+                        top: (sectionRect.y + scrollPosition) - options.threshold,
+                        link: anchor
+                    });
+                }
             });
-        }
+        });
         
         return anchors.reverse();
     }
 
+    let anchors = getScrollSpyAnchors();
+
     const updateAnchors = function() {
         let y = window.scrollY;
+        const l = anchors.length;
+        for (let i = 0; i < l; i++) {
+            
+            // Active
+            if (options.progress === 'active') {
+                if (y > anchors[i].top) {
+                    for (let a = 0; a < l; a++) {
+                        anchors[a].link.classList.remove(...options.classActive);
+                    }
+                    anchors[i].link.classList.add(...options.classActive);
+                    return;
+                }
+            }
 
-        anchors.forEach(anchor => {anchor.link.classList.remove(options.classActive)});
-        for (const anchor of anchors) {
-            if (y > anchor.top) {
-                anchor.link.classList.add(options.classActive);
-                break;
+            // Linear || Seen
+            if (['linear', 'seen'].includes(options.progress)) {
+                if (y > anchors[i].top) {
+                    anchors[i].link.classList.add(...options.classActive);
+                    if (options.progress === 'seen') return; // If Seen then return
+                    for (let a = 0; a < l; a++) {
+                        if (y <= anchors[a].top) {
+                            anchors[a].link.classList.remove(...options.classActive);
+                        }
+                    }
+                }
             }
         };
     }
 
-    var anchors = getScrollSpyAnchors();
     if (anchors.length) {
         window.addEventListener('scroll', () => {
             updateAnchors();

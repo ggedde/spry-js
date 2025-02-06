@@ -1,3 +1,4 @@
+//!
 //! SpryJs Navigable Module
 type SpryJsNavigableOptions = {
     className: string;
