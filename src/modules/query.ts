@@ -1,7 +1,7 @@
 //!
 //! SpryJs Query Module
 
-type SpryJsQueryCollection = {
+export type SpryJsQueryCollection = {
     elements: Element[];
     each(callback: Function): SpryJsQueryCollection;
     toggleClass(className: string, force?: boolean): SpryJsQueryCollection;
@@ -47,27 +47,35 @@ export function query(selector: string): SpryJsQueryCollection {
             return this;
         },
 
-        toggleClass: function (className: string, force?: boolean): SpryJsQueryCollection {
+        toggleClass: function (className: string | string[], force?: boolean): SpryJsQueryCollection {
             return this.each((elem: Element) => {
-                elem.classList.toggle(className, force);
+                if (typeof className === 'string') className = className.split(' ');
+                for (let i = 0; i < className.length; i++) {
+                    elem.classList.toggle(className[i], force);
+                }
             });
         },
 
-        addClass: function (className: string): SpryJsQueryCollection {
+        addClass: function (className: string | string[]): SpryJsQueryCollection {
             return this.each((elem: Element) => {
-                elem.classList.add(className);
+                if (typeof className === 'string') className = className.split(' ');
+                elem.classList.add(...className);
             });
         },
 
-        removeClass: function (className: string): SpryJsQueryCollection {
+        removeClass: function (className: string | string[]): SpryJsQueryCollection {
             return this.each((elem: Element) => {
-                elem.classList.remove(className);
+                if (typeof className === 'string') className = className.split(' ');
+                elem.classList.remove(...className);
             });
         },
 
-        toggleAttr: function (attributeName: string, force?: boolean): SpryJsQueryCollection {
+        toggleAttr: function (attributeName: string | string[], force?: boolean): SpryJsQueryCollection {
             return this.each((elem: Element) => {
-                elem.toggleAttribute(attributeName, force);
+                if (typeof attributeName === 'string') attributeName = attributeName.split(' ');
+                for (let i = 0; i < attributeName.length; i++) {
+                    elem.toggleAttribute(attributeName[i], force);
+                }
             });
         },
 
@@ -77,9 +85,12 @@ export function query(selector: string): SpryJsQueryCollection {
             });
         },
 
-        removeAttr: function (attributeName: string): SpryJsQueryCollection {
+        removeAttr: function (attributeName: string | string[]): SpryJsQueryCollection {
             return this.each((elem: Element) => {
-                elem.removeAttribute(attributeName);
+                if (typeof attributeName === 'string') attributeName = attributeName.split(' ');
+                for (let i = 0; i < attributeName.length; i++) {
+                    elem.removeAttribute(attributeName[i]);
+                }
             });
         },
 

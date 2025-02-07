@@ -1,45 +1,47 @@
 //!
 //! SpryJs Sliders Module
-type SpryJsSliderOptions = {
-	selector: string;
-	classActive: string;
+export type SpryJsSliderOptions = {
+	items?: Element[] | string,
+	selector?: string;
+	slides?: string;
+	next?: string;
+	prev?: string;
+	pagination?: string;
 };
 
-export function loadSliders(userOptions?: SpryJsSliderOptions) {
-	const defaults = {
-		selector: ".slider",
-		slides: ".slider-slides",
-		next: ".slider-next",
-		prev: ".slider-prev",
-		pagination: ".slider-pagination",
-	};
+export const SpryJsSliderDefaults: SpryJsSliderOptions = {
+	items: ".slider",
+	slides: ".slider-slides",
+	next: ".slider-next",
+	prev: ".slider-prev",
+	pagination: ".slider-pagination",
+};
 
-	const options = { ...defaults, ...userOptions };
+export function slider(userOptions?: SpryJsSliderOptions) {
+	
+	const options = { ...SpryJsSliderDefaults, ...userOptions };
+	const elements = typeof options.items === 'object' ? options.items : options.items ? document.querySelectorAll(options.items) : [];
 
-	document.querySelectorAll(options.selector).forEach(slider => {
+    if (!elements) return;
+
+	elements.forEach(slider => {
 		if (slider.hasAttribute('data-loaded')) return;
 
 		var play = parseInt((slider.getAttribute("data-play") || 0).toString());
 		var loop = slider.hasAttribute("data-loop");
 		var stop = slider.getAttribute("data-stop");
-		var slides = slider.querySelector(options.slides);
-		var slideCount = slides ? slides.childElementCount : 0;
-		var next = slider.querySelector(options.next);
-		var prev = slider.querySelector(options.prev);
-		var pagination = slider.querySelector(options.pagination);
+		var slides = options.slides ? slider.querySelector(options.slides) : null;
+		var slideCount = slides && slides.childElementCount ? slides.childElementCount : 0;
+		var next = options.next ? slider.querySelector(options.next) : null;
+		var prev = options.prev ? slider.querySelector(options.prev) : null;
+		var pagination = options.pagination ? slider.querySelector(options.pagination) : null;
 		var slidesWidth = slides ? slides.scrollWidth : 0;
 		var block = slides ? slides.innerHTML : "";
 		var scrollTimer: Timer | null = null;
 		var playTimer: Timer | null = null;
 		var isSelecting = false;
 
-		if (!next && !prev && !loop && !stop && !play) {
-			return;
-		}
-
-		if (!document.body.contains(slider) || !slides) {
-			return;
-		}
+		if (!document.body.contains(slider) || !slides || (!next && !prev && !loop && !stop && !play)) return;
 
 		var isVisible = () => {
 			var rect = slider.getBoundingClientRect();

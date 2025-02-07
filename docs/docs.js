@@ -157,6 +157,7 @@ document.querySelectorAll('.show-code').forEach((elem, index) => {
     var languageNames = {
         html: 'HTML',
         js: 'JS',
+        esm: 'ESM',
         spryJs: 'SpryJS', 
         petiteVue: 'Petite Vue',
         vueJs: 'Vue.js',

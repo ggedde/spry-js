@@ -144,8 +144,8 @@
 
     SpryJS.load();
     // or
-    SpryJS.loadNavigable();
-    SpryJS.loadObserver();
+    SpryJS.navigable();
+    SpryJS.observer();
     SpryJS.loadParallax();
     SpryJS.loadScrollSpy();
     SpryJS.loadSliders();
@@ -158,8 +158,8 @@
     import {
         cookie,
         load,
-        loadNavigable,
-        loadObserver,
+        navigable,
+        observer,
         loadParallax,
         loadScrollSpy,
         loadSliders,
@@ -175,8 +175,8 @@
 
     load();
     // or
-    loadNavigable();
-    loadObserver();
+    navigable();
+    observer();
     loadParallax();
     loadScrollSpy();
     loadSliders();
@@ -274,13 +274,28 @@
 
                 <h5>This allows <code class="color-primary">&lt;a&gt;</code> and <code class="color-primary">&lt;button&gt;</code> to be Navigable via the Keyboard Arrow keys and clickable via the Keyboard Space and Enter keys. It also adds ability to use the Escape key to ignore focus.</h5>
 
-                <h5>Loading Navigable</h5>
+                <article class="show-code" data-title="Loading Navigable">
+                    <div class="language-select" data-language="js"><code class="language-html">
+&lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+</code>
+                    </div>
+                    <div class="language-select" data-language="esm">
+                        &lt;script type="module"&gt;
+import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
+&lt;/script&gt;
+                    </div>
+                </article>
+
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { loadNavigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
-    loadNavigable({options});
+    import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
+    navigable();
+    // or
+    navigable('.navigable', {
+        anchorSelector: 'a, button, input, [tabindex]'
+    });
 &lt;/script&gt;</code>
 
-                <p class="note">* loadNavigable() can be called multiple times without creating duplicated event listeners and other side effects. It will ignore any pre-registered elements. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
+                <p class="note">* navigable() can be called multiple times without creating duplicated event listeners and other side effects. It will ignore any pre-registered elements. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
                 
                 <h5 class="mt-3">Example:</h5>
 
@@ -292,34 +307,57 @@
     &lt;/ul&gt;
 &lt;/nav&gt;</code>
 
-                <table class="mb-3">
+                <table class="mb-3 md:responsive">
                     <thead>
                         <tr>
-                            <th width="190"><h4>Options</h4></th>
+                            <th width="190"><h4>Arguments</h4></th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code class="color-primary">className</code></td>
+                            <td><code class="color-primary">selector</code><code class="color-gray">?: string</code></td>
                             <td>
                                 Class Name for navigable items.<br>
-                                <code class="color-gray">default:</code> <code class="color-primary">navigable</code>
-                                <p>This will capture keyboard events within this element and navigate between </p>
+                                <code class="color-gray">default:</code> <code class="color-primary">".navigable"</code>
+                                <p>This will capture keyboard events within this element and navigate between the anchors</p>
                             </td>
                         </tr>
                         <tr>
-                            <td><code class="color-primary">itemsSelector</code></td>
+                            <td><code class="color-primary">options</code><code class="color-gray">?: object</code></td>
                             <td>
-                                Selector for tracking navigable items within the navigable container.<br>
-                                <code class="color-gray">default:</code> <code class="color-primary">a, button, input, [tabindex]</code>
+                                <ul>
+                                    <li>
+                                        <code class="color-primary">anchorSelector</code><code class="color-gray">?: string</code><br>
+                                        <p>Selector for tracking navigable items within the container.</p>
+                                        <code class="color-gray">default:</code> <code class="color-primary">"a, button, input, [tabindex]"</code>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="mb-3">
+                    <thead>
+                        <tr>
+                            <th width="190"><h4>Data Attributes</h4></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="color-primary">data-navigable-anchors</code></td>
+                            <td>
+                                <p>Selector for tracking navigable items within the navigable container.</p>
+                                <p>This will override the default options.</p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
                 <div class="show-code" data-title="Navigable Nav">
-                    <nav class="navigable">
+                    <nav class="hamm">
                         <ul class="column">
                             <li><button>Button 1</button></li>
                             <li><button>Button 2</button></li>
@@ -327,6 +365,13 @@
                             <li><button onclick="alert('Button 4 Clicked')">Button 4 Click me with Space or Enter</button></li>
                         </ul>
                     </nav>
+
+                    <script type="module">
+                        import SpryJS from './spry.mjs';
+
+                        console.log(SpryJS('.hamm button').nth(2));
+                        SpryJS('.hamm button').slice(-2).navigable().toggleClass('bg-primary h:bg-primary');
+                    </script>   
                 </div>
             </section>
 
@@ -339,11 +384,11 @@
 
                 <h5>Loading Observer</h5>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { loadObserver } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
-    loadObserver({options});
+    import { observer } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
+    observer({options});
 &lt;/script&gt;</code>
 
-                <p class="note">* loadObserver() can be called multiple times without creating duplicated event listeners and other side effects. it will ignore any pre-registered elements. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
+                <p class="note">* observer() can be called multiple times without creating duplicated event listeners and other side effects. it will ignore any pre-registered elements. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
                 
                 <h5 class="mt-3">Example:</h5>
 
@@ -389,7 +434,11 @@
                             <td>
                                 Bounding box before computing intersections. Negative values will shrink the bounding box. Each side value is required.<br>
                                 <code class="color-gray">default:</code> <code class="color-primary">0px 0px 0px 0px</code>
-                                <br><a class="mt-3 button primary hazy link sm" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#rootmargin">Learn more about rootMargin</a>
+                                <br>
+                                <a class="mt-3 ml-n3 button primary link sm" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#rootmargin">
+                                    Learn more about rootMargin
+                                    <svg class="icon" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z" /></svg>
+                                </a>
                             </td>
                         </tr>
                         <tr>
@@ -397,7 +446,11 @@
                             <td>
                                 Either a single number from 0 - 1 or an array of numbers which indicate at what percentage of the target's visibility the observer's callback should be executed.<br>
                                 <code class="color-gray">default:</code> <code class="color-primary">0</code>
-                                <br><a class="mt-3 button primary hazy link sm" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#threshold">Learn more about Threshold</a>
+                                <br>
+                                <a class="mt-3 ml-n3 button primary link sm" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#threshold">
+                                    Learn more about threshold
+                                    <svg class="icon" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z" /></svg>
+                                </a>
                             </td>
                         </tr>
                         <tr>
@@ -446,9 +499,9 @@
                     </div>
 
                     <script type="module">
-                        import { loadObserver } from './spry.mjs';
-                        SpryJS.loadObserver({
-                            selector: '.observe-example > *',
+                        import { observe } from './spry.mjs';
+                        observe({
+                            items: '.observe-example > *',
                             classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
                         });
                     </script>
@@ -540,15 +593,15 @@
                     </div>
                 </div>
                 
-                <div class="show-code" data-title="Parallax Horizontal" data-footer-note="Photo by &lt;a href='https://unsplash.com/@kitera?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Kitera Dent&lt;/a&gt;">
+                <div class="show-code" data-title="Parallax Horizontal and Inverted Direction" data-footer-note="Photo by &lt;a href='https://unsplash.com/@kitera?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Kitera Dent&lt;/a&gt;">
                     <div class="hidden">
-                        <img class="parallax parallax-horizontal cover" style="min-width: 150vw;" src="img-wide.webp">
+                        <img class="parallax cover" data-parallax-horizontal data-parallax-invert style="min-width: 150vw;" src="img-wide.webp">
                     </div>
                 </div>
 
                 <div class="show-code" data-title="Parallax Div Contents">
                     <div class="max-h-100 hidden">
-                        <div class="parallax">
+                        <div class="parallax" data-parallax-invert>
                             <p>1111111</p>
                             <p>2222222</p>
                             <p>3333333</p>
@@ -564,7 +617,7 @@
                 </div>
       
                 <div class="show-code" data-title="Parallax Background Image" data-footer-note="Photo by &lt;a href='https://unsplash.com/@janbehnisch?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Jan Behnisch&lt;/a&gt;">
-                    <div class="parallax-background cover p-4" style="background-image: url('img2.webp');">
+                    <div class="parallax cover p-4" data-parallax-background style="background-image: url('img2.webp');">
                         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
                         <p>Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
                     </div>
@@ -881,9 +934,9 @@
                     </div>
 
                     <script type="module">
-                        import { loadScrollSpy } from './spry.mjs';
-                        SpryJS.loadScrollSpy({
-                            containerSelector: '#my-scroll-spy-nav',
+                        import { scrollspy } from './spry.mjs';
+                        scrollspy({
+                            items: '#my-scroll-spy-nav',
                             classActive: 'active'
                         });
                     </script>
@@ -925,9 +978,9 @@
                     </div>
 
                     <script type="module">
-                        import { loadScrollSpy } from './spry.mjs';
-                        SpryJS.loadScrollSpy({
-                            containerSelector: '#my-scrollspy-nav2',
+                        import { scrollspy } from './spry.mjs';
+                        scrollspy({
+                            items: '#my-scrollspy-nav2',
                             classActive: 'h',
                             threshold: 400,
                             progress: 'linear',

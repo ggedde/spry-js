@@ -26,6 +26,7 @@
   "scripts": {
     "build-esm": "bun build ./src/spry.mts --outdir ./dist --entry-naming spry.mjs --minify --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'; cp ./dist/spry.mjs ./docs/spry.mjs",
     "build-js": "bun build ./src/spry.ts --outdir ./dist --entry-naming spry.js --minify --format iife --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'; cp ./dist/spry.js ./docs/spry.js",
+    "build-bits": "bun build ./src/bits.mts --outdir ./docs --entry-naming bits.mjs --minify --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
     "watch-esm": "bun build ./src/spry.mts --outdir ./dist --entry-naming spry.mjs --minify --watch --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
     "watch-js": "bun build ./src/spry.ts --outdir ./dist --entry-naming spry.js --minify --watch --format iife --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
     "build": "bun run build-esm; bun run build-js",

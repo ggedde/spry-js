@@ -18,9 +18,9 @@ if (document.currentScript) {
         const load = urlParams.searchParams.get('load');
         if (load) {
             if (!defer || (defer && (document.readyState === 'complete' || document.readyState === 'interactive'))) {
-                window.SpryJS().load();
+                window.SpryJS.load();
             } else if (defer) {
-                document.addEventListener('DOMContentLoaded', window.SpryJS().load);
+                document.addEventListener('DOMContentLoaded', window.SpryJS.load);
             }
         }
     }

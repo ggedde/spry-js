@@ -11,9 +11,16 @@ type SpryJsToggler = {
     timer: Timer | null;
 }
 
-type SpryJsToggleOptions = {
-    classOpen: string;
-    classActive: string;
+export type SpryJsToggleOptions = {
+    items: Element[] | string;
+    classOpen?: string;
+    classActive?: string;
+}
+
+export const SpryJsToggleDefaults: SpryJsToggleOptions = {
+    items: '.toggle',
+    classOpen: 'open',
+    classActive: 'active'
 }
 
 declare global {
@@ -25,14 +32,11 @@ declare global {
 
 window.spryJsTogglers = [];
 
-export function loadToggles(userOptions?: SpryJsToggleOptions) {
+export function toggle(userOptions?: SpryJsToggleOptions) {
 
-    const defaults = {
-        classOpen: 'open',
-        classActive: 'active'
-    }
+    const options = {...SpryJsToggleDefaults, ...userOptions};
 
-    const options = {...defaults, ...userOptions};
+    if (!options.classOpen) return;
 
     /**
      * Get the Element
@@ -107,7 +111,7 @@ export function loadToggles(userOptions?: SpryJsToggleOptions) {
      * 
      * @returns void
      */
-    const toggle = function(elem: Element, forceAction?: string, event?: Event) {
+    const toggleItem = function(elem: Element, forceAction?: string, event?: Event) {
 
         let opened = false;
         let elementData: Element[] = [];
@@ -120,10 +124,10 @@ export function loadToggles(userOptions?: SpryJsToggleOptions) {
                     clearTimeout(togglerObject.timer);
                 }
 
-                if (togglerObject.closeSelector === '') {
+                if (togglerObject.closeSelector === '' && options.classOpen) {
                     if (togglerObject.el.classList.contains(options.classOpen)) {
                         if (event && event.target === togglerObject.el) {
-                            togglerObject.el.classList.remove(options.classOpen);
+                            if (options.classOpen) togglerObject.el.classList.remove(options.classOpen);
                             togglerObject.el.setAttribute('aria-expanded', 'false');
                             elementData.push(togglerObject.el);
                             opened = false;
@@ -131,7 +135,7 @@ export function loadToggles(userOptions?: SpryJsToggleOptions) {
                     } else {
                         var closestOpen = togglerObject.el.closest('.'+options.classOpen);
                         if (closestOpen) {
-                            closestOpen.classList.remove(options.classOpen);
+                            if (options.classOpen) closestOpen.classList.remove(options.classOpen);
                             closestOpen.setAttribute('aria-expanded', 'false');
                             elementData.push(closestOpen);
                             opened = false;
@@ -141,7 +145,7 @@ export function loadToggles(userOptions?: SpryJsToggleOptions) {
 
                 if (togglerObject.closeSelector) {
                     getElements(togglerObject.closeSelector, elem).forEach(closeElement => {
-                        closeElement.classList.remove(options.classOpen);
+                        if (options.classOpen) closeElement.classList.remove(options.classOpen);
                         closeElement.setAttribute('aria-expanded', 'false');
                         elementData.push(closeElement);
                         opened = false;
@@ -150,8 +154,8 @@ export function loadToggles(userOptions?: SpryJsToggleOptions) {
 
                 if (togglerObject.toggleSelector && (!forceAction || forceAction === 'toggle')) {
                     getElements(togglerObject.toggleSelector, elem).forEach(toggleElement => {
-                        toggleElement.classList.toggle(options.classOpen);
-                        opened = toggleElement.classList.contains(options.classOpen) ? true : false;
+                        if (options.classOpen) toggleElement.classList.toggle(options.classOpen);
+                        opened = options.classOpen && toggleElement.classList.contains(options.classOpen) ? true : false;
                         if (opened) {
                             toggleElement.setAttribute('aria-expanded', 'true');
                         } else {
@@ -164,7 +168,7 @@ export function loadToggles(userOptions?: SpryJsToggleOptions) {
 
                 if (togglerObject.openSelector && (!forceAction || forceAction === 'open')) {
                     getElements(togglerObject.openSelector, elem).forEach(openElement => {
-                        openElement.classList.add(options.classOpen);
+                        if (options.classOpen) openElement.classList.add(options.classOpen);
                         openElement.setAttribute('aria-expanded', 'true');
                         elementData.push(openElement);
                         opened = true;
@@ -172,12 +176,12 @@ export function loadToggles(userOptions?: SpryJsToggleOptions) {
                 }
 
                 togglerObject.el.toggleAttribute('aria-pressed', opened);
-                togglerObject.el.classList.toggle(options.classActive, opened);
+                if (options.classActive) togglerObject.el.classList.toggle(options.classActive, opened);
 
                 if (opened && togglerObject.timeout && togglerObject.timeout > 0) {
                     togglerObject.timer = setTimeout(() => {
                         if (togglerObject.toggleSelector) {
-                            toggle(togglerObject.el);
+                            toggleItem(togglerObject.el);
                         }
                     }, togglerObject.timeout);
                 }
@@ -191,7 +195,7 @@ export function loadToggles(userOptions?: SpryJsToggleOptions) {
                     elementData.forEach(element => {
                         if (element === closeElement) {
                             togglerObject.el.toggleAttribute('aria-pressed', false);
-                            togglerObject.el.classList.toggle(options.classActive, false);
+                            if (options.classActive) togglerObject.el.classList.toggle(options.classActive, false);
                         }
                     });
                 });
@@ -201,9 +205,9 @@ export function loadToggles(userOptions?: SpryJsToggleOptions) {
                 getElements(togglerObject.toggleSelector, togglerObject.el).forEach(toggleElement => {
                     elementData.forEach(element => {
                         if (element === toggleElement) {
-                            opened = toggleElement.classList.contains(options.classOpen) ? true : false;
+                            opened = options.classOpen && toggleElement.classList.contains(options.classOpen) ? true : false;
                             togglerObject.el.toggleAttribute('aria-pressed', opened);
-                            togglerObject.el.classList.toggle(options.classActive, opened);
+                            if (options.classActive) togglerObject.el.classList.toggle(options.classActive, opened);
                         }
                     });
                 });
@@ -214,7 +218,7 @@ export function loadToggles(userOptions?: SpryJsToggleOptions) {
                     elementData.forEach(element => {
                         if (element === openElement) {
                             togglerObject.el.toggleAttribute('aria-pressed', true);
-                            togglerObject.el.classList.toggle(options.classActive, true);
+                            if (options.classActive) togglerObject.el.classList.toggle(options.classActive, true);
                         }
                     });
                 });
@@ -263,8 +267,8 @@ export function loadToggles(userOptions?: SpryJsToggleOptions) {
                                 }
                             }
 
-                            if (toggleElement.classList.contains(options.classOpen)) {
-                                toggle(togglerObject.el);
+                            if (options.classOpen && toggleElement.classList.contains(options.classOpen)) {
+                                toggleItem(togglerObject.el);
                             }
                         }, 20);
                     });
@@ -300,7 +304,7 @@ export function loadToggles(userOptions?: SpryJsToggleOptions) {
         window.spryJsTogglers.push(togglerData);
         toggler.setAttribute('data-toggle-loaded', '');
         toggler.addEventListener('click', (event: Event) => {
-            toggle(toggler, 'toggle', event);
+            toggleItem(toggler, 'toggle', event);
         });
     });
 

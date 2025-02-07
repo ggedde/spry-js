@@ -1,12 +1,21 @@
 //!
 //! SpryJs ScrollSpy Module
-type SpryJsScrollSpyOptions = {
-	containerSelector: string;
-    anchorHashSelector: string;
-    anchorDataAttribute: string;
-	classActive: string | string[];
-    threshold: number;
-    progress: 'active' | 'linear' | 'seen';
+export type SpryJsScrollSpyOptions = {
+    items?: Element[] | string,
+    anchorHashSelector?: string;
+    anchorDataAttribute?: string;
+	classActive?: string | string[];
+    threshold?: number;
+    progress?: 'active' | 'linear' | 'seen';
+};
+
+export const SpryJsScrollSpyDefaults: SpryJsScrollSpyOptions = {
+    items: '.scrollspy',
+    anchorHashSelector: '[href*="#"]',
+    anchorDataAttribute: 'data-scrollspy',
+    classActive: 'active',
+    threshold: 200,
+    progress: 'active',
 };
 
 type SpryJsScrollSpyAnchor = {
@@ -14,20 +23,13 @@ type SpryJsScrollSpyAnchor = {
     link: Element;
 }
 
-export function loadScrollSpy(userOptions?: SpryJsScrollSpyOptions) {
+export function scrollspy(userOptions?: SpryJsScrollSpyOptions) {
 
-    const defaults = {
-		containerSelector: '.scrollspy',
-		anchorHashSelector: '[href*="#"]',
-		anchorDataAttribute: 'data-scrollspy',
-        classActive: 'active',
-        threshold: 200,
-        progress: 'active',
-	};
-
-	const options = { ...defaults, ...userOptions };
-    const containers = document.querySelectorAll(options.containerSelector);
+	const options = { ...SpryJsScrollSpyDefaults, ...userOptions };
     const selectors = [options.anchorHashSelector, '['+options.anchorDataAttribute+']'];
+    const elements = typeof options.items === 'object' ? options.items : options.items ? document.querySelectorAll(options.items) : [];
+
+    if (!elements) return;
 
     if (typeof options.classActive === 'string') {
         options.classActive = options.classActive.split(' ');
@@ -40,8 +42,8 @@ export function loadScrollSpy(userOptions?: SpryJsScrollSpyOptions) {
         let anchors: SpryJsScrollSpyAnchor[] = [];
         const scrollPosition = window.scrollY;
 
-        containers.forEach(container => {
-            container.querySelectorAll(selectors.join(',')).forEach(anchor => {
+        elements.forEach(element => {
+            element.querySelectorAll(selectors.join(',')).forEach(anchor => {
 
                 let section = null;
 
@@ -62,7 +64,7 @@ export function loadScrollSpy(userOptions?: SpryJsScrollSpyOptions) {
                 }
 
                 // Try Data Selectors if no Section found
-                if (!section) {
+                if (!section && options.anchorDataAttribute) {
                     const dataSelector = (anchor as HTMLElement).getAttribute(options.anchorDataAttribute);
                     if (dataSelector) {
                         section = document.querySelector(dataSelector);
@@ -73,7 +75,7 @@ export function loadScrollSpy(userOptions?: SpryJsScrollSpyOptions) {
                 if (section) {
                     const sectionRect = section.getBoundingClientRect();
                     anchors.push({
-                        top: (sectionRect.y + scrollPosition) - options.threshold,
+                        top: (sectionRect.y + scrollPosition) - (options.threshold ?? 0),
                         link: anchor
                     });
                 }
@@ -91,7 +93,7 @@ export function loadScrollSpy(userOptions?: SpryJsScrollSpyOptions) {
         for (let i = 0; i < l; i++) {
             
             // Active
-            if (options.progress === 'active') {
+            if (options.progress === 'active' && options.classActive) {
                 if (y > anchors[i].top) {
                     for (let a = 0; a < l; a++) {
                         anchors[a].link.classList.remove(...options.classActive);
@@ -102,7 +104,7 @@ export function loadScrollSpy(userOptions?: SpryJsScrollSpyOptions) {
             }
 
             // Linear || Seen
-            if (['linear', 'seen'].includes(options.progress)) {
+            if (options.classActive && options.progress && ['linear', 'seen'].includes(options.progress)) {
                 if (y > anchors[i].top) {
                     anchors[i].link.classList.add(...options.classActive);
                     if (options.progress === 'seen') return; // If Seen then return
