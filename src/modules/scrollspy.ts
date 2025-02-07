@@ -1,5 +1,11 @@
 //!
 //! SpryJs ScrollSpy Module
+
+type SpryJsScrollSpyAnchor = {
+    top: number;
+    link: Element;
+}
+
 export type SpryJsScrollSpyOptions = {
     items?: Element[] | string,
     anchorHashSelector?: string;
@@ -9,30 +15,22 @@ export type SpryJsScrollSpyOptions = {
     progress?: 'active' | 'linear' | 'seen';
 };
 
-export const SpryJsScrollSpyDefaults: SpryJsScrollSpyOptions = {
-    items: '.scrollspy',
-    anchorHashSelector: '[href*="#"]',
-    anchorDataAttribute: 'data-scrollspy',
-    classActive: 'active',
-    threshold: 200,
-    progress: 'active',
-};
+export function scrollspy({
+    items = '.scrollspy',
+    anchorHashSelector = '[href*="#"]',
+    anchorDataAttribute = 'data-scrollspy',
+    classActive = 'active',
+    threshold = 200,
+    progress = 'active',
+}: SpryJsScrollSpyOptions = {}) {
 
-type SpryJsScrollSpyAnchor = {
-    top: number;
-    link: Element;
-}
-
-export function scrollspy(userOptions?: SpryJsScrollSpyOptions) {
-
-	const options = { ...SpryJsScrollSpyDefaults, ...userOptions };
-    const selectors = [options.anchorHashSelector, '['+options.anchorDataAttribute+']'];
-    const elements = typeof options.items === 'object' ? options.items : options.items ? document.querySelectorAll(options.items) : [];
+    const selectors = [anchorHashSelector, '['+anchorDataAttribute+']'];
+    const elements = typeof items === 'object' ? items : document.querySelectorAll(items);
 
     if (!elements) return;
 
-    if (typeof options.classActive === 'string') {
-        options.classActive = options.classActive.split(' ');
+    if (typeof classActive === 'string') {
+        classActive = classActive.split(' ');
     }
 
     let resizeTimer: Timer | null = null;
@@ -64,8 +62,8 @@ export function scrollspy(userOptions?: SpryJsScrollSpyOptions) {
                 }
 
                 // Try Data Selectors if no Section found
-                if (!section && options.anchorDataAttribute) {
-                    const dataSelector = (anchor as HTMLElement).getAttribute(options.anchorDataAttribute);
+                if (!section) {
+                    const dataSelector = (anchor as HTMLElement).getAttribute(anchorDataAttribute);
                     if (dataSelector) {
                         section = document.querySelector(dataSelector);
                     }
@@ -75,7 +73,7 @@ export function scrollspy(userOptions?: SpryJsScrollSpyOptions) {
                 if (section) {
                     const sectionRect = section.getBoundingClientRect();
                     anchors.push({
-                        top: (sectionRect.y + scrollPosition) - (options.threshold ?? 0),
+                        top: (sectionRect.y + scrollPosition) - threshold,
                         link: anchor
                     });
                 }
@@ -93,24 +91,24 @@ export function scrollspy(userOptions?: SpryJsScrollSpyOptions) {
         for (let i = 0; i < l; i++) {
             
             // Active
-            if (options.progress === 'active' && options.classActive) {
+            if (progress === 'active') {
                 if (y > anchors[i].top) {
                     for (let a = 0; a < l; a++) {
-                        anchors[a].link.classList.remove(...options.classActive);
+                        anchors[a].link.classList.remove(...classActive);
                     }
-                    anchors[i].link.classList.add(...options.classActive);
+                    anchors[i].link.classList.add(...classActive);
                     return;
                 }
             }
 
             // Linear || Seen
-            if (options.classActive && options.progress && ['linear', 'seen'].includes(options.progress)) {
+            if (['linear', 'seen'].includes(progress)) {
                 if (y > anchors[i].top) {
-                    anchors[i].link.classList.add(...options.classActive);
-                    if (options.progress === 'seen') return; // If Seen then return
+                    anchors[i].link.classList.add(...classActive);
+                    if (progress === 'seen') return; // If Seen then return
                     for (let a = 0; a < l; a++) {
                         if (y <= anchors[a].top) {
-                            anchors[a].link.classList.remove(...options.classActive);
+                            anchors[a].link.classList.remove(...classActive);
                         }
                     }
                 }

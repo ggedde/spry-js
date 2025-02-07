@@ -1,14 +1,5 @@
 //!
 //! SpryJs Navigable Module
-export type SpryJsNavigableOptions = {
-    items?: Element[] | string;
-    anchorSelector?: string;
-};
-
-export const SpryJsNavigableDefaults: SpryJsNavigableOptions = {
-    items: '.navigable',
-    anchorSelector: 'a, button, input, [tabindex]',
-};
 
 declare global {
     interface Element {
@@ -16,12 +7,19 @@ declare global {
     }
 }
 
-export function navigable(userOptions?: SpryJsNavigableOptions) {
-    const options = { ...SpryJsNavigableDefaults, ...userOptions };
+export type SpryJsNavigableOptions = {
+    items?: Element[] | string;
+    anchorSelector?: string;
+    anchorDataAttribute?: string;
+};
 
-    if (!options.items) return;
+export function navigable({
+    items = '.navigable',
+    anchorSelector = 'a, button, input, [tabindex]',
+    anchorDataAttribute = 'data-navigable-anchors',
+}: SpryJsNavigableOptions = {}) {
 
-    (typeof options.items === 'object' ? options.items : document.querySelectorAll(options.items)).forEach(list => {
+    (typeof items === 'object' ? items : document.querySelectorAll(items)).forEach(list => {
         if (!list.spryJsNavigableLoaded) {
             list.spryJsNavigableLoaded = true;
              list.addEventListener('keydown', (event: Event) => {
@@ -29,32 +27,32 @@ export function navigable(userOptions?: SpryJsNavigableOptions) {
                     return;
                 }
 
-                const dataAnchorSelector = list.getAttribute('data-navigable-anchors');
-                const anchorSelector = dataAnchorSelector ? dataAnchorSelector : options.anchorSelector;
-        
+                const dataAnchorSelector = list.getAttribute(anchorDataAttribute);
                 const target: HTMLElement | null = event.target ? (event.target as HTMLElement) : null;
                 const keyCode: string = (event as KeyboardEvent).code;
                 const selected: HTMLElement | null = document.activeElement ? (document.activeElement as HTMLElement) : null;
-                let items: HTMLElement[] = [];
+                let anchorItems: HTMLElement[] = [];
         
                 if (!target || !selected || !keyCode || !['Space', 'Enter', 'Escape', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp'].includes(keyCode)) {
                     return;
                 }
+
+                anchorSelector = dataAnchorSelector ? dataAnchorSelector : anchorSelector;
         
                 if (list === target) {
-                    items = [target];
+                    anchorItems = [target];
                 } else {
                     if (list && anchorSelector) {
                         const queryItems = list.querySelectorAll(anchorSelector);
-                        items = queryItems ? Array.from((queryItems as NodeListOf<HTMLElement>)) : [];
+                        anchorItems = queryItems ? Array.from((queryItems as NodeListOf<HTMLElement>)) : [];
                     }
                 }
         
-                if (!items) {
+                if (!anchorItems) {
                     return;
                 }
         
-                var selectedIndex = Array.from(items).indexOf(selected);
+                var selectedIndex = Array.from(anchorItems).indexOf(selected);
         
                 if (selectedIndex === -1) {
                     return;
@@ -68,7 +66,7 @@ export function navigable(userOptions?: SpryJsNavigableOptions) {
                 } else if (['ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp'].includes(keyCode)) {
                     event.preventDefault();
                     var newIndex = (['ArrowRight', 'ArrowDown'].includes(keyCode) ? selectedIndex + 1 : selectedIndex - 1);
-                    var sibling = items[newIndex];
+                    var sibling = anchorItems[newIndex];
                     if (sibling) {
                         sibling.focus();
                     }

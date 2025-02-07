@@ -2,53 +2,46 @@
 //! SpryJs Sliders Module
 export type SpryJsSliderOptions = {
 	items?: Element[] | string,
-	selector?: string;
-	slides?: string;
-	next?: string;
-	prev?: string;
-	pagination?: string;
+	classSlides?: string;
+	classNext?: string;
+	classPrev?: string;
+	classPagination?: string;
 };
 
-export const SpryJsSliderDefaults: SpryJsSliderOptions = {
-	items: ".slider",
-	slides: ".slider-slides",
-	next: ".slider-next",
-	prev: ".slider-prev",
-	pagination: ".slider-pagination",
-};
+export function slider({
+	items = ".slider",
+	classSlides = ".slider-slides",
+	classNext = ".slider-next",
+	classPrev = ".slider-prev",
+	classPagination = ".slider-pagination",
+}: SpryJsSliderOptions = {}) {
 
-export function slider(userOptions?: SpryJsSliderOptions) {
-	
-	const options = { ...SpryJsSliderDefaults, ...userOptions };
-	const elements = typeof options.items === 'object' ? options.items : options.items ? document.querySelectorAll(options.items) : [];
+	(typeof items === 'object' ? items : document.querySelectorAll(items)).forEach(slider => {
+		if (slider.hasAttribute('data-slider-loaded')) return;
 
-    if (!elements) return;
+		const play = parseInt((slider.getAttribute("data-play") || 0).toString());
+		const loop = slider.hasAttribute("data-loop");
+		const stop = slider.getAttribute("data-stop");
+		const next = slider.querySelector(classNext);
+		const prev = slider.querySelector(classPrev);
+		const pagination = slider.querySelector(classPagination);
+		const slides = slider.querySelector(classSlides);
+		const slideCount = slides ? slides.childElementCount : 0;
+		const slidesWidth = slides ? slides.scrollWidth : 0;
+		const block = slides ? slides.innerHTML : "";
 
-	elements.forEach(slider => {
-		if (slider.hasAttribute('data-loaded')) return;
-
-		var play = parseInt((slider.getAttribute("data-play") || 0).toString());
-		var loop = slider.hasAttribute("data-loop");
-		var stop = slider.getAttribute("data-stop");
-		var slides = options.slides ? slider.querySelector(options.slides) : null;
-		var slideCount = slides && slides.childElementCount ? slides.childElementCount : 0;
-		var next = options.next ? slider.querySelector(options.next) : null;
-		var prev = options.prev ? slider.querySelector(options.prev) : null;
-		var pagination = options.pagination ? slider.querySelector(options.pagination) : null;
-		var slidesWidth = slides ? slides.scrollWidth : 0;
-		var block = slides ? slides.innerHTML : "";
-		var scrollTimer: Timer | null = null;
-		var playTimer: Timer | null = null;
-		var isSelecting = false;
+		let scrollTimer: Timer | null = null;
+		let playTimer: Timer | null = null;
+		let isSelecting = false;
 
 		if (!document.body.contains(slider) || !slides || (!next && !prev && !loop && !stop && !play)) return;
 
-		var isVisible = () => {
+		const isVisible = () => {
 			var rect = slider.getBoundingClientRect();
 			return (rect.bottom >= 0 && rect.top <= (window.innerHeight || document.documentElement.clientHeight));
 		}
 
-		var goTo = (to: number | string, instant?: boolean) => {
+		const goTo = (to: number | string, instant?: boolean) => {
 			var offsetSlides = loop ? slideCount : 0;
 			if (!slides) return;
 			if (to === 'next') {
@@ -60,7 +53,7 @@ export function slider(userOptions?: SpryJsSliderOptions) {
 			}
 		};
 
-		var resetPlay = () => {
+		const resetPlay = () => {
 			if (playTimer) {
 				clearInterval(playTimer);
 				playTimer = null;
@@ -182,6 +175,7 @@ export function slider(userOptions?: SpryJsSliderOptions) {
 				}
 			}, 100);
 		});
+
 		if (loop) {
 			slides.innerHTML += block + block;
 			slides.scrollTo({ left: slidesWidth, behavior: 'instant' });
@@ -189,9 +183,10 @@ export function slider(userOptions?: SpryJsSliderOptions) {
 			slides.dispatchEvent(new CustomEvent('scroll'));
 			slider.setAttribute('data-position', 'start');
 		}
+
 		resetPlay();
 
-		var selectionChange = () => {
+		const selectionChange = () => {
 			if (!document.body.contains(slider)) {
 				document.removeEventListener('selectionchange', selectionChange);
 				return;
@@ -235,6 +230,7 @@ export function slider(userOptions?: SpryJsSliderOptions) {
 				});
 			}
 		}
-		slider.setAttribute('data-loaded', '');
+
+		slider.setAttribute('data-slider-loaded', '');
 	});
 }

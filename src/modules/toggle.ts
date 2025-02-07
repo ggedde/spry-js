@@ -1,5 +1,16 @@
 //!
 //! SpryJs Toggles Module
+
+declare global {
+    interface Window {
+        spryJsTogglers: SpryJsToggler[];
+        spryJsToggleDocListener: boolean;
+    }
+    interface Element {
+        spryJsToggleLoaded: boolean;
+    }
+}
+
 type SpryJsToggler = {
     el: Element;
     toggleSelector: string | null;
@@ -12,31 +23,28 @@ type SpryJsToggler = {
 }
 
 export type SpryJsToggleOptions = {
-    items: Element[] | string;
+    items?: Element[] | string;
     classOpen?: string;
     classActive?: string;
+    dataToggleAttribute?: string;
+    dataToggleCloseAttribute?: string;
+    dataToggleOpenAttribute?: string;
+    dataToggleEscapableAttribute?: string;
+    dataToggleDismissibleAttribute?: string;
+    dataToggleTimeoutAttribute?: string;
 }
 
-export const SpryJsToggleDefaults: SpryJsToggleOptions = {
-    items: '.toggle',
-    classOpen: 'open',
-    classActive: 'active'
-}
-
-declare global {
-    interface Window {
-        spryJsTogglers: SpryJsToggler[];
-        spryJsToggleDocListener: boolean;
-    }
-}
-
-window.spryJsTogglers = [];
-
-export function toggle(userOptions?: SpryJsToggleOptions) {
-
-    const options = {...SpryJsToggleDefaults, ...userOptions};
-
-    if (!options.classOpen) return;
+export function toggle({
+    items = '[data-toggle], [data-toggle-close]',
+    classOpen = 'open',
+    classActive = 'active',
+    dataToggleAttribute = 'data-toggle',
+    dataToggleCloseAttribute = 'data-toggle-close',
+    dataToggleOpenAttribute = 'data-toggle-open',
+    dataToggleEscapableAttribute = 'data-toggle-escapable',
+    dataToggleDismissibleAttribute = 'data-toggle-dismissible',
+    dataToggleTimeoutAttribute = 'data-toggle-timeout',
+}: SpryJsToggleOptions = {}) {
 
     /**
      * Get the Element
@@ -115,27 +123,28 @@ export function toggle(userOptions?: SpryJsToggleOptions) {
 
         let opened = false;
         let elementData: Element[] = [];
+        const togglersCount = window.spryJsTogglers.length;
 
         // Update all Event Togglers and Toggle Elements
-        for (const togglerObject of window.spryJsTogglers) {
-            if (togglerObject.el && elem === togglerObject.el) {
+        for (let i = 0; i < togglersCount; i++) {
+            if (window.spryJsTogglers[i].el && elem === window.spryJsTogglers[i].el) {
 
-                if (togglerObject.timer) {
-                    clearTimeout(togglerObject.timer);
+                if (window.spryJsTogglers[i].timer) {
+                    clearTimeout((window.spryJsTogglers[i].timer as Timer));
                 }
 
-                if (togglerObject.closeSelector === '' && options.classOpen) {
-                    if (togglerObject.el.classList.contains(options.classOpen)) {
-                        if (event && event.target === togglerObject.el) {
-                            if (options.classOpen) togglerObject.el.classList.remove(options.classOpen);
-                            togglerObject.el.setAttribute('aria-expanded', 'false');
-                            elementData.push(togglerObject.el);
+                if (window.spryJsTogglers[i].closeSelector === '') {
+                    if (window.spryJsTogglers[i].el.classList.contains(classOpen)) {
+                        if (event && event.target === window.spryJsTogglers[i].el) {
+                            window.spryJsTogglers[i].el.classList.remove(classOpen);
+                            window.spryJsTogglers[i].el.setAttribute('aria-expanded', 'false');
+                            elementData.push(window.spryJsTogglers[i].el);
                             opened = false;
                         }
                     } else {
-                        var closestOpen = togglerObject.el.closest('.'+options.classOpen);
+                        var closestOpen = window.spryJsTogglers[i].el.closest('.'+classOpen);
                         if (closestOpen) {
-                            if (options.classOpen) closestOpen.classList.remove(options.classOpen);
+                            closestOpen.classList.remove(classOpen);
                             closestOpen.setAttribute('aria-expanded', 'false');
                             elementData.push(closestOpen);
                             opened = false;
@@ -143,19 +152,19 @@ export function toggle(userOptions?: SpryJsToggleOptions) {
                     }
                 }
 
-                if (togglerObject.closeSelector) {
-                    getElements(togglerObject.closeSelector, elem).forEach(closeElement => {
-                        if (options.classOpen) closeElement.classList.remove(options.classOpen);
+                if (window.spryJsTogglers[i].closeSelector) {
+                    getElements((window.spryJsTogglers[i].closeSelector as string), elem).forEach(closeElement => {
+                        closeElement.classList.remove(classOpen);
                         closeElement.setAttribute('aria-expanded', 'false');
                         elementData.push(closeElement);
                         opened = false;
                     });
                 }
 
-                if (togglerObject.toggleSelector && (!forceAction || forceAction === 'toggle')) {
-                    getElements(togglerObject.toggleSelector, elem).forEach(toggleElement => {
-                        if (options.classOpen) toggleElement.classList.toggle(options.classOpen);
-                        opened = options.classOpen && toggleElement.classList.contains(options.classOpen) ? true : false;
+                if (window.spryJsTogglers[i].toggleSelector && (!forceAction || forceAction === 'toggle')) {
+                    getElements((window.spryJsTogglers[i].toggleSelector as string), elem).forEach(toggleElement => {
+                        toggleElement.classList.toggle(classOpen);
+                        opened = toggleElement.classList.contains(classOpen) ? true : false;
                         if (opened) {
                             toggleElement.setAttribute('aria-expanded', 'true');
                         } else {
@@ -166,64 +175,64 @@ export function toggle(userOptions?: SpryJsToggleOptions) {
                     });
                 }
 
-                if (togglerObject.openSelector && (!forceAction || forceAction === 'open')) {
-                    getElements(togglerObject.openSelector, elem).forEach(openElement => {
-                        if (options.classOpen) openElement.classList.add(options.classOpen);
+                if (window.spryJsTogglers[i].openSelector && (!forceAction || forceAction === 'open')) {
+                    getElements((window.spryJsTogglers[i].openSelector as string), elem).forEach(openElement => {
+                        openElement.classList.add(classOpen);
                         openElement.setAttribute('aria-expanded', 'true');
                         elementData.push(openElement);
                         opened = true;
                     });
                 }
 
-                togglerObject.el.toggleAttribute('aria-pressed', opened);
-                if (options.classActive) togglerObject.el.classList.toggle(options.classActive, opened);
+                window.spryJsTogglers[i].el.toggleAttribute('aria-pressed', opened);
+                window.spryJsTogglers[i].el.classList.toggle(classActive, opened);
 
-                if (opened && togglerObject.timeout && togglerObject.timeout > 0) {
-                    togglerObject.timer = setTimeout(() => {
-                        if (togglerObject.toggleSelector) {
-                            toggleItem(togglerObject.el);
+                if (opened && window.spryJsTogglers[i].timeout && window.spryJsTogglers[i].timeout > 0) {
+                    window.spryJsTogglers[i].timer = setTimeout(() => {
+                        if (window.spryJsTogglers[i].toggleSelector) {
+                            toggleItem(window.spryJsTogglers[i].el);
                         }
-                    }, togglerObject.timeout);
+                    }, window.spryJsTogglers[i].timeout);
                 }
             }
         }
 
         // Update all corresponding Togglers
-        window.spryJsTogglers.forEach(togglerObject => {
-            if (togglerObject.closeSelector) {
-                getElements(togglerObject.closeSelector, togglerObject.el).forEach(closeElement => {
+        for (let i = 0; i < togglersCount; i++) {
+            if (window.spryJsTogglers[i].closeSelector) {
+                getElements((window.spryJsTogglers[i].closeSelector as string), window.spryJsTogglers[i].el).forEach(closeElement => {
                     elementData.forEach(element => {
                         if (element === closeElement) {
-                            togglerObject.el.toggleAttribute('aria-pressed', false);
-                            if (options.classActive) togglerObject.el.classList.toggle(options.classActive, false);
+                            window.spryJsTogglers[i].el.toggleAttribute('aria-pressed', false);
+                            window.spryJsTogglers[i].el.classList.toggle(classActive, false);
                         }
                     });
                 });
             }
 
-            if (togglerObject.toggleSelector) {
-                getElements(togglerObject.toggleSelector, togglerObject.el).forEach(toggleElement => {
+            if (window.spryJsTogglers[i].toggleSelector) {
+                getElements((window.spryJsTogglers[i].toggleSelector as string), window.spryJsTogglers[i].el).forEach(toggleElement => {
                     elementData.forEach(element => {
                         if (element === toggleElement) {
-                            opened = options.classOpen && toggleElement.classList.contains(options.classOpen) ? true : false;
-                            togglerObject.el.toggleAttribute('aria-pressed', opened);
-                            if (options.classActive) togglerObject.el.classList.toggle(options.classActive, opened);
+                            opened = toggleElement.classList.contains(classOpen) ? true : false;
+                            window.spryJsTogglers[i].el.toggleAttribute('aria-pressed', opened);
+                            window.spryJsTogglers[i].el.classList.toggle(classActive, opened);
                         }
                     });
                 });
             }
 
-            if (togglerObject.openSelector) {
-                getElements(togglerObject.openSelector, togglerObject.el).forEach(openElement => {
+            if (window.spryJsTogglers[i].openSelector) {
+                getElements((window.spryJsTogglers[i].openSelector as string), window.spryJsTogglers[i].el).forEach(openElement => {
                     elementData.forEach(element => {
                         if (element === openElement) {
-                            togglerObject.el.toggleAttribute('aria-pressed', true);
-                            if (options.classActive) togglerObject.el.classList.toggle(options.classActive, true);
+                            window.spryJsTogglers[i].el.toggleAttribute('aria-pressed', true);
+                            window.spryJsTogglers[i].el.classList.toggle(classActive, true);
                         }
                     });
                 });
             }
-        });
+        }
     }
 
     /**
@@ -267,7 +276,7 @@ export function toggle(userOptions?: SpryJsToggleOptions) {
                                 }
                             }
 
-                            if (options.classOpen && toggleElement.classList.contains(options.classOpen)) {
+                            if (toggleElement.classList.contains(classOpen)) {
                                 toggleItem(togglerObject.el);
                             }
                         }, 20);
@@ -277,18 +286,24 @@ export function toggle(userOptions?: SpryJsToggleOptions) {
         }
     }
 
-    document.querySelectorAll('[data-toggle], [data-toggle-close]').forEach((toggler: Element) => {
+    const elements = typeof items === 'object' ? items : document.querySelectorAll(items);
 
-        if (toggler.hasAttribute('data-toggle-loaded')) {
+    if (!elements) return;
+
+    if (!window.spryJsTogglers) window.spryJsTogglers = [];
+
+    elements.forEach((toggler: Element) => {
+
+        if (toggler.spryJsToggleLoaded) {
             return;
         }
 
-        const toggleSelector     = toggler.getAttribute('data-toggle');
-        const openSelector       = toggler.getAttribute('data-toggle-open');
-        const closeSelector      = toggler.getAttribute('data-toggle-close');
-        const dismissible        = toggler.hasAttribute('data-toggle-dismissible');
-        const escapable          = toggler.hasAttribute('data-toggle-escapable');
-        const timeout            = toggler.getAttribute('data-toggle-timeout');
+        const toggleSelector = toggler.getAttribute(dataToggleAttribute);
+        const openSelector   = toggler.getAttribute(dataToggleOpenAttribute);
+        const closeSelector  = toggler.getAttribute(dataToggleCloseAttribute);
+        const dismissible    = toggler.hasAttribute(dataToggleDismissibleAttribute);
+        const escapable      = toggler.hasAttribute(dataToggleEscapableAttribute);
+        const timeout        = toggler.getAttribute(dataToggleTimeoutAttribute);
 
         const togglerData = {
             el: toggler,
@@ -302,7 +317,7 @@ export function toggle(userOptions?: SpryJsToggleOptions) {
         };
 
         window.spryJsTogglers.push(togglerData);
-        toggler.setAttribute('data-toggle-loaded', '');
+        toggler.spryJsToggleLoaded = true;
         toggler.addEventListener('click', (event: Event) => {
             toggleItem(toggler, 'toggle', event);
         });

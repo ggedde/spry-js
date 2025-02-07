@@ -11,7 +11,7 @@ import { query,     type SpryJsQueryCollection   } from './modules/query.ts';
 import { cookie                                  } from './modules/cookie.ts';
 
 type SpryJsComponentCollection = {
-    options(options: any): any;
+    // options(options: any): any;
     navigable(): SpryJsCollection;
     observe(): SpryJsCollection;
     parallax(): SpryJsCollection;
@@ -48,9 +48,9 @@ const SpryJS = function(selector: string): SpryJsCollection {
 
     return {
         ...query(selector),
-        options: function(options: any) {
-            return {...{selector: selector, items: this.elements}, ...options};
-        },
+        // options: function(options: any) {
+        //     return {...{selector: selector, items: this.elements}, ...options};
+        // },
         navigable: function(options?: SpryJsNavigableOptions): SpryJsCollection {
             navigable({...{items: this.elements}, ...options});
             return this;
