@@ -1,12 +1,6 @@
 //!
 //! SpryJs Navigable Module
 
-declare global {
-    interface Element {
-        spryJsNavigableLoaded: boolean;
-    }
-}
-
 type SpryJsNavigableListEvent = {
     list: Element;
     listener: EventListener;
@@ -25,13 +19,11 @@ export function navigable({
     anchorDataAttribute = 'data-navigable-anchors',
 }: SpryJsNavigableOptions = {}): {destroy: Function, update: Function} {
 
+    let controller: AbortController | null = null;
     let elements: Element[] | NodeListOf<Element> | null = null;
     let listeners: SpryJsNavigableListEvent[] = [];
 
     function navigate(this: Element, event: Event) {
-
-        console.log('Navyy');
-        
 
         if (!event.target) {
             return;
@@ -90,19 +82,7 @@ export function navigable({
     }
 
     function update() {
-        let hasElements = false;
-        if (listeners) {
-            for (let l = 0; l < listeners.length; l++) {
-                if (listeners[l].list && document.body.contains(listeners[l].list)) {
-                    hasElements = true;
-                }
-            }
-        }
-
-        if (!hasElements) {
-            destroy();
-        }
-
+        destroy();
         elements = typeof items === 'object' ? items : document.querySelectorAll(items);
         if (elements) {
             for (let e = 0; e < elements.length; e++) {
@@ -110,22 +90,22 @@ export function navigable({
             }
         }
 
+        if (!controller) {
+			controller = new AbortController();
+		}
+
         for (let l = 0; l < listeners.length; l++) {
-            if (listeners[l].list && !listeners[l].list.spryJsNavigableLoaded) {
-                listeners[l].list.addEventListener('keydown', listeners[l].listener);
-                listeners[l].list.spryJsNavigableLoaded = true;
+            if (listeners[l].list && controller) {
+                listeners[l].list.addEventListener('keydown', listeners[l].listener, {signal: controller.signal});
             }
         };
     }
 
     function destroy() {
-        for (let l = 0; l < listeners.length; l++) {
-            if (listeners[l].list && listeners[l].list.spryJsNavigableLoaded) {
-                listeners[l].list.removeEventListener('keydown', listeners[l].listener);
-                listeners[l].list.spryJsNavigableLoaded = false;
-            }
-        };
-
+        if (controller) {
+            controller.abort();
+            controller = null;
+        }
         listeners = [];
     };
 

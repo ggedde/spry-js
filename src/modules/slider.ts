@@ -3,7 +3,7 @@
 
 declare global {
     interface Element {
-        spryJsSliderLoaded: boolean;
+        spryJsSliderCount: number;
     }
 }
 
@@ -27,7 +27,7 @@ export function slider({
 	classPagination = ".slider-pagination",
 }: SpryJsSliderOptions = {}): {destroy: Function, update: Function} {
 
-	let elements: Element[] | NodeListOf<Element> | null = null;
+	let controller: AbortController | null = null;
 	let isSelecting = false;
 	let sliders: SpryJsSliderObject[] = [];
 
@@ -40,12 +40,12 @@ export function slider({
 		const prev = slider.querySelector(classPrev);
 		const pagination = slider.querySelector(classPagination);
 		const slides = slider.querySelector(classSlides);
-		const slideCount = slides ? slides.childElementCount : 0;
 		const slidesWidth = slides ? slides.scrollWidth : 0;
 		const block = slides ? slides.innerHTML : "";
 
 		let scrollTimer: Timer | null = null;
 		let playTimer: Timer | null = null;
+		let isPaused = false;
 
 		if (!document.body.contains(slider) || !slides || (!next && !prev && !loop && !stop && !play)) return null;
 
@@ -56,7 +56,7 @@ export function slider({
 		}
 
 		function goTo(to: number | string, instant?: boolean) {
-			var offsetSlides = loop ? slideCount : 0;
+			var offsetSlides = loop ? slider.spryJsSliderCount : 0;
 			if (!slides) return;
 			if (to === 'next') {
 				slides.scrollBy((slider as HTMLElement).offsetWidth, 0);
@@ -67,22 +67,27 @@ export function slider({
 			}
 		}
 
+		function playPause() {
+			isPaused = true;
+		}
+
+		function playResume() {
+			isPaused = false;
+		}
+
 		function playStop() {
 			if (playTimer) {
 				clearInterval(playTimer);
 				playTimer = null;
+				playPause();
 			}
 		}
 
 		function playStart() {
-			if (play && document.body.contains(slider)) {
+			if (play && !isPaused && document.body.contains(slider)) {
 				playTimer = setTimeout(() => {
-					if (isVisible()) {
-						var hasAction = stop === 'action' && (slider.querySelector('a:hover') || slider.querySelector('button:hover'));
-						var hasHover = stop === 'hover' && slider.matches(':hover');
-						if (!hasAction && !hasHover) {
-							goTo('next');
-						}
+					if (isVisible() && !isPaused) {
+						goTo('next');
 					}
 					resetPlay();
 				}, play);
@@ -91,6 +96,7 @@ export function slider({
 
 		function resetPlay() {
 			playStop();
+			playResume();
 			playStart();
 		}
 		
@@ -142,9 +148,9 @@ export function slider({
 						});
 						var childIndex = Array.from(slides.children).indexOf(showing[0]);
 						if (loop) {
-							childIndex = (childIndex === slideCount * 2) ? 0 : (childIndex - slideCount);
+							childIndex = (childIndex === slider.spryJsSliderCount * 2) ? 0 : (childIndex - slider.spryJsSliderCount);
 						}
-						if (childIndex !== undefined) {
+						if (childIndex !== undefined && pagination.children[childIndex]) {
 							pagination.children[childIndex].classList.add('active');
 						}
 					}
@@ -178,10 +184,6 @@ export function slider({
 		}
 
 		function sliderSelectionChange() {
-			if (!document.body.contains(slider)) {
-				document.removeEventListener('selectionchange', sliderSelectionChange);
-				return;
-			}
 			if (isVisible()) {
 				var selection: Selection | null | string = document.getSelection();
 				if (selection) {
@@ -213,45 +215,59 @@ export function slider({
 		}
 
 		function sliderAddEvents() {
-			if (slides) slides.addEventListener('scroll', sliderScroll);
-			if (next) next.addEventListener('click', goToNext);
-			if (prev) prev.addEventListener('click', goToPrev);
-			if (play) {
-				if (stop === 'hover') {
-					slider.addEventListener('mouseover', sliderHover);
-					slider.addEventListener('mouseout', sliderMouseOut);
-				}
-				if (stop === 'action') {
-					document.addEventListener('selectionchange', sliderSelectionChange);
-					slider.addEventListener('selectstart', sliderSelectStart);
-					slider.addEventListener('mouseup', sliderSelectEnd);
-				}
-			}
-		}
-
-		if (pagination && !pagination.childNodes.length && slides && slideCount) {
-			for (let index = 0; index < slideCount; index++) {
-				let btn = document.createElement("button");
-				if (index === 0) btn.classList.add('active');
-				btn.onclick = () => {
-					goTo(index);
-					if (pagination && pagination.children) {
-						Array.from(pagination.children).forEach(paginate => {
-							paginate.classList.remove('active');
-						});
+            if (controller) {
+				if (slides) slides.addEventListener('scroll', sliderScroll, {signal: controller.signal});
+				if (next) next.addEventListener('click', goToNext, {signal: controller.signal});
+				if (prev) prev.addEventListener('click', goToPrev, {signal: controller.signal});
+				if (play) {
+					if (stop === 'hover') {
+						slider.addEventListener('mouseover', sliderHover, {signal: controller.signal});
+						slider.addEventListener('mouseout', sliderMouseOut, {signal: controller.signal});
 					}
-					btn.classList.add('active');
+					if (stop === 'action') {
+						document.addEventListener('selectionchange', sliderSelectionChange, {signal: controller.signal});
+						slider.addEventListener('selectstart', sliderSelectStart, {signal: controller.signal});
+						slider.addEventListener('mouseup', sliderSelectEnd, {signal: controller.signal});
+						const buttons = slider.querySelectorAll('a, button');
+						if (buttons) {
+							for (let b = 0; b < buttons.length; b++) {
+								buttons[b].addEventListener('mouseover', sliderHover, {signal: controller.signal});
+								buttons[b].addEventListener('mouseout', sliderMouseOut, {signal: controller.signal});
+							};
+						}
+					}
 				}
-				pagination.append(btn);
+				if (slides && slider.spryJsSliderCount && pagination && pagination.childNodes.length) {
+					for (let index = 0; index < pagination.childNodes.length; index++) {
+						pagination.childNodes[index].addEventListener('click', () => {
+							goTo(index);
+							Array.from(pagination.children).forEach(paginate => {
+								paginate.classList.remove('active');
+							});
+							(pagination.childNodes[index] as HTMLElement).classList.add('active');
+						}, {signal: controller.signal});
+					}
+				}
 			}
 		}
 
-		if (loop) {
-			slides.innerHTML += block + block;
-			slides.scrollTo({ left: slidesWidth, behavior: 'instant' });
-		} else {
-			slides.dispatchEvent(new CustomEvent('scroll'));
-			slider.setAttribute('data-position', 'start');
+		if (!slider.spryJsSliderCount) {
+			if (!slider.spryJsSliderCount) slider.spryJsSliderCount = slides ? slides.childElementCount : 0;
+			if (pagination && !pagination.childNodes.length && slides && slider.spryJsSliderCount) {
+				for (let index = 0; index < slider.spryJsSliderCount; index++) {
+					let btn = document.createElement("button");
+					if (index === 0) btn.classList.add('active');
+					pagination.append(btn);
+				}
+			}
+
+			if (loop) {
+				slides.innerHTML += block + block;
+				slides.scrollTo({ left: slidesWidth, behavior: 'instant' });
+			} else {
+				slides.dispatchEvent(new CustomEvent('scroll'));
+				slider.setAttribute('data-position', 'start');
+			}
 		}
 
 		resetPlay();
@@ -260,28 +276,18 @@ export function slider({
 		return {
 			destroy: function() {
 				playStop();
-				if (slides) slides.removeEventListener('scroll', sliderScroll);
-				if (next) next.removeEventListener('click', goToNext);
-				if (prev) prev.removeEventListener('click', goToPrev);
-				if (play) {
-					if (stop === 'hover') {
-						slider.removeEventListener('mouseover', sliderHover);
-						slider.removeEventListener('mouseout', sliderMouseOut);
-					}
-					if (stop === 'action') {
-						document.removeEventListener('selectionchange', sliderSelectionChange);
-						slider.removeEventListener('selectstart', sliderSelectStart);
-						slider.removeEventListener('mouseup', sliderSelectEnd);
-					}
-				}
 			}
 		}
 	}
 	
 	function update() {
 		destroy();
-		sliders = [];
-		elements = typeof items === 'object' ? items : document.querySelectorAll(items);
+
+		if (!controller) {
+			controller = new AbortController();
+		}
+		
+		const elements = typeof items === 'object' ? items : document.querySelectorAll(items);
         if (elements) {
 			for (let e = 0; e < elements.length; e++) {
 				const sliderObject = createSliderObject(elements[e]);
@@ -293,11 +299,16 @@ export function slider({
     };
 
 	function destroy() {
+		if (controller) {
+            controller.abort();
+            controller = null;
+        }
 		if (sliders) {
 			for (let s = 0; s < sliders.length; s++) {
 				sliders[s].destroy();
 			}
 		}
+		sliders = [];
     };
 
 	update();

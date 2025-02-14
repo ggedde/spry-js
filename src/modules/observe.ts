@@ -17,7 +17,7 @@ export function observe({
     rootMargin = '0px 0px 0px 0px',
     threshold = 0,
     delay = 50,
-}: SpryJsObserveOptions = {}): {destroy: Function, update: Function} {
+}: SpryJsObserveOptions = {}): {update: Function, destroy: Function} {
 
     let elements: Element[] | NodeListOf<Element> | null = null;
     let observer: IntersectionObserver | null = null;
@@ -49,27 +49,8 @@ export function observe({
         });
     }
 
-    function destroy() {
-        if (observer) observer.disconnect();
-        observer = null;
-    };
-
     function update() {
-        let hasElements = false;
-        if (elements) {
-            for (let e = 0; e < elements.length; e++) {
-                if (!document.body.contains(elements[e]) && observer) {
-                    observer.unobserve(elements[e]);
-                } else {
-                    hasElements = true;
-                }
-            }
-        }
-
-        if (!hasElements) {
-            destroy();
-        }
-
+        destroy();
         elements = typeof items === 'object' ? items : document.querySelectorAll(items);
         if (elements) {
             if (!observer) {
@@ -83,10 +64,17 @@ export function observe({
         }
     };
 
+    function destroy() {
+        if (observer) {
+            observer.disconnect();
+            observer = null;
+        }
+    };
+
     update();
 
     return {
-        destroy: destroy,
-        update: update
+        update: update,
+        destroy: destroy
     }
 }

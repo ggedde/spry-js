@@ -25,6 +25,7 @@ export function scrollspy({
 }: SpryJsScrollSpyOptions = {}): {destroy: Function, update: Function} {
 
     const selectors = [anchorHashSelector, '['+anchorDataAttribute+']'];
+    let controller: AbortController | null = null;
     let elements: Element[] | NodeListOf<Element> | null = null;
     let anchors: SpryJsScrollSpyAnchor[] = [];
     let resizeTimer: Timer | null = null;
@@ -125,18 +126,24 @@ export function scrollspy({
             anchors = anchors.reverse();
         }
 
+        if (!controller) {
+			controller = new AbortController();
+		}
+
         if (!anchors) {
             destroy();
-        } else {
-            window.addEventListener('scroll', runScrollEvents);
-            window.addEventListener('resize', runResizeEvents);
+        } else if (controller) {
+            window.addEventListener('scroll', runScrollEvents, {signal: controller.signal});
+            window.addEventListener('resize', runResizeEvents, {signal: controller.signal});
             runScrollEvents();
         }
     };
 
     function destroy() {
-        window.removeEventListener('scroll', runScrollEvents);
-        window.removeEventListener('resize', runResizeEvents);
+        if (controller) {
+            controller.abort();
+            controller = null;
+        }
         anchors = [];
     };
 

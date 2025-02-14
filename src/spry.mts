@@ -109,7 +109,7 @@ const SpryJS = function(selector: string): SpryJsCollection {
         },
 
         observe: function(options?: SpryJsObserveOptions): SpryJsCollection {
-            this.observeObj = observe({...{items: this.elements}, ...options});
+            this.observeObj.push(observe({...{items: this.elements}, ...options}));
             return this;
         },
 
@@ -132,7 +132,7 @@ const SpryJS = function(selector: string): SpryJsCollection {
         },
 
         parallax: function(options?: SpryJsParallaxOptions): SpryJsCollection {
-            this.parallaxObj = parallax({...{items: this.elements}, ...options});
+            this.parallaxObj.push(parallax({...{items: this.elements}, ...options}));
             return this;
         },
         
@@ -155,7 +155,7 @@ const SpryJS = function(selector: string): SpryJsCollection {
         },
 
         scrollspy: function(options?: SpryJsScrollSpyOptions): SpryJsCollection {
-            this.scrollspyObj = scrollspy({...{items: this.elements}, ...options});
+            this.scrollspyObj.push(scrollspy({...{items: this.elements}, ...options}));
             return this;
         },
 
@@ -178,7 +178,7 @@ const SpryJS = function(selector: string): SpryJsCollection {
         },
 
         slider: function(options?: SpryJsSliderOptions): SpryJsCollection {
-            this.sliderObj = slider({...{items: this.elements}, ...options});
+            this.sliderObj.push(slider({...{items: this.elements}, ...options}));
             return this;
         },
 
@@ -201,7 +201,7 @@ const SpryJS = function(selector: string): SpryJsCollection {
         },
 
         toggle: function(options?: SpryJsToggleOptions): SpryJsCollection {
-            this.toggleObj = toggle({...{items: this.elements}, ...options});
+            this.toggleObj.push(toggle({...{items: this.elements}, ...options}));
             return this;
         },
 

@@ -22,13 +22,13 @@ export function parallax({
     threshold = -300,
     minWidth = 0,
     delay = 300,
-}: SpryJsParallaxOptions = {}): {destroy: Function, update: Function} {
+}: SpryJsParallaxOptions = {}): {update: Function, destroy: Function} {
 
     let windowHeight: number = window.innerHeight;
     let windowWidth: number = window.innerWidth;
     let elements: Element[] | NodeListOf<Element> | null = null;
     let observer: IntersectionObserver | null = null;
-    let eventsLoaded = false;
+    let controller: AbortController | null = null;
 
     function createObserver() {
         observer = new IntersectionObserver(entries => {
@@ -88,39 +88,8 @@ export function parallax({
         }
     }
 
-    function destroy() {
-        if (eventsLoaded) {
-            window.removeEventListener('scroll', runScrollEvents);
-            window.removeEventListener('resize', runScrollEvents);
-            window.removeEventListener('resize', updateWindowSize);
-            eventsLoaded = false;
-        }
-
-        if (elements) {
-            for (let e = 0; e < elements.length; e++) {
-                elements[e].classList.remove(classParallaxing); // cspell:disable-line.
-                if (observer) observer.unobserve(elements[e]);
-            };
-        }
-
-        if (observer) observer.disconnect();
-    };
-
     function update() {
-        if (elements) {
-            let hasElements = false;
-            for (let e = 0; e < elements.length; e++) {
-                if (!document.body.contains(elements[e]) && observer) {
-                    observer.unobserve(elements[e]);
-                } else {
-                    hasElements = true;
-                }
-            }
-            if (!hasElements) {
-                destroy();
-            }
-        }
-
+        destroy();
         elements = typeof items === 'object' ? items : document.querySelectorAll(items);
         if (elements) {
             if (!observer) {
@@ -135,21 +104,42 @@ export function parallax({
                     }
                     if (observer) observer.observe(elements[e]);
                 };
+
+                if (!controller) {
+                    controller = new AbortController();
+                }
                 
-                if (!eventsLoaded) {
-                    window.addEventListener('scroll', runScrollEvents);
-                    window.addEventListener('resize', runScrollEvents);
-                    window.addEventListener('resize', updateWindowSize);
-                    eventsLoaded = true;
+                if (controller) {
+                    window.addEventListener('scroll', runScrollEvents, {signal: controller.signal});
+                    window.addEventListener('resize', runScrollEvents, {signal: controller.signal});
+                    window.addEventListener('resize', updateWindowSize, {signal: controller.signal});
                 }
             }
+        }
+    };
+
+    function destroy() {
+        if (controller) {
+            controller.abort();
+            controller = null;
+        }
+
+        if (elements) {
+            for (let e = 0; e < elements.length; e++) {
+                elements[e].classList.remove(classParallaxing); // cspell:disable-line.
+            };
+        }
+
+        if (observer) {
+            observer.disconnect();
+            observer = null;
         }
     };
 
     update();
 
     return {
-        destroy: destroy,
-        update: update
+        update: update,
+        destroy: destroy
     }
 }

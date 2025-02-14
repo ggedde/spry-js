@@ -1,16 +1,6 @@
 //!
 //! SpryJs Toggles Module
 
-declare global {
-    interface Window {
-        spryJsTogglers: SpryJsToggler[];
-        spryJsToggleWindowListener: boolean;
-    }
-    interface Element {
-        spryJsToggleLoaded: boolean;
-    }
-}
-
 type SpryJsToggler = {
     el: Element;
     toggleSelector: string | null;
@@ -44,7 +34,10 @@ export function toggle({
     dataToggleEscapableAttribute = 'data-toggle-escapable',
     dataToggleDismissibleAttribute = 'data-toggle-dismissible',
     dataToggleTimeoutAttribute = 'data-toggle-timeout',
-}: SpryJsToggleOptions = {}) {
+}: SpryJsToggleOptions = {}): {update: Function, destroy: Function} {
+
+    let controller: AbortController | null = null;
+    let togglers: SpryJsToggler[] = [];
 
     /**
      * Get the Element
@@ -54,7 +47,7 @@ export function toggle({
      * 
      * @returns void
      */
-    const getElements = function(item: Element | KeyboardEvent | Event | string, fromElement?: Element): Element[] {
+    function getElements(item: Element | KeyboardEvent | Event | string, fromElement?: Element): Element[] {
 
         let from: Element | null = null;
         let fromSetId = false;
@@ -119,30 +112,29 @@ export function toggle({
      * 
      * @returns void
      */
-    const toggleItem = function(elem: Element, forceAction?: string, event?: Event) {
-
+    function toggleItem(elem: Element, forceAction?: string, event?: Event) {
         let opened = false;
         let elementData: Element[] = [];
-        const togglersCount = window.spryJsTogglers.length;
+        const togglersCount = togglers.length;
 
         // Update all Event Togglers and Toggle Elements
         for (let i = 0; i < togglersCount; i++) {
-            if (window.spryJsTogglers[i].el && elem === window.spryJsTogglers[i].el) {
+            if (togglers[i].el && elem === togglers[i].el) {
 
-                if (window.spryJsTogglers[i].timer) {
-                    clearTimeout((window.spryJsTogglers[i].timer as Timer));
+                if (togglers[i].timer) {
+                    clearTimeout((togglers[i].timer as Timer));
                 }
 
-                if (window.spryJsTogglers[i].closeSelector === '') {
-                    if (window.spryJsTogglers[i].el.classList.contains(classOpen)) {
-                        if (event && event.target === window.spryJsTogglers[i].el) {
-                            window.spryJsTogglers[i].el.classList.remove(classOpen);
-                            window.spryJsTogglers[i].el.setAttribute('aria-expanded', 'false');
-                            elementData.push(window.spryJsTogglers[i].el);
+                if (togglers[i].closeSelector === '') {
+                    if (togglers[i].el.classList.contains(classOpen)) {
+                        if (event && event.target === togglers[i].el) {
+                            togglers[i].el.classList.remove(classOpen);
+                            togglers[i].el.setAttribute('aria-expanded', 'false');
+                            elementData.push(togglers[i].el);
                             opened = false;
                         }
                     } else {
-                        var closestOpen = window.spryJsTogglers[i].el.closest('.'+classOpen);
+                        var closestOpen = togglers[i].el.closest('.'+classOpen);
                         if (closestOpen) {
                             closestOpen.classList.remove(classOpen);
                             closestOpen.setAttribute('aria-expanded', 'false');
@@ -152,8 +144,8 @@ export function toggle({
                     }
                 }
 
-                if (window.spryJsTogglers[i].closeSelector) {
-                    getElements((window.spryJsTogglers[i].closeSelector as string), elem).forEach(closeElement => {
+                if (togglers[i].closeSelector) {
+                    getElements((togglers[i].closeSelector as string), elem).forEach(closeElement => {
                         closeElement.classList.remove(classOpen);
                         closeElement.setAttribute('aria-expanded', 'false');
                         elementData.push(closeElement);
@@ -161,8 +153,8 @@ export function toggle({
                     });
                 }
 
-                if (window.spryJsTogglers[i].toggleSelector && (!forceAction || forceAction === 'toggle')) {
-                    getElements((window.spryJsTogglers[i].toggleSelector as string), elem).forEach(toggleElement => {
+                if (togglers[i].toggleSelector && (!forceAction || forceAction === 'toggle')) {
+                    getElements((togglers[i].toggleSelector as string), elem).forEach(toggleElement => {
                         toggleElement.classList.toggle(classOpen);
                         opened = toggleElement.classList.contains(classOpen) ? true : false;
                         if (opened) {
@@ -175,8 +167,8 @@ export function toggle({
                     });
                 }
 
-                if (window.spryJsTogglers[i].openSelector && (!forceAction || forceAction === 'open')) {
-                    getElements((window.spryJsTogglers[i].openSelector as string), elem).forEach(openElement => {
+                if (togglers[i].openSelector && (!forceAction || forceAction === 'open')) {
+                    getElements((togglers[i].openSelector as string), elem).forEach(openElement => {
                         openElement.classList.add(classOpen);
                         openElement.setAttribute('aria-expanded', 'true');
                         elementData.push(openElement);
@@ -184,50 +176,50 @@ export function toggle({
                     });
                 }
 
-                window.spryJsTogglers[i].el.toggleAttribute('aria-pressed', opened);
-                window.spryJsTogglers[i].el.classList.toggle(classActive, opened);
+                togglers[i].el.toggleAttribute('aria-pressed', opened);
+                togglers[i].el.classList.toggle(classActive, opened);
 
-                if (opened && window.spryJsTogglers[i].timeout && window.spryJsTogglers[i].timeout > 0) {
-                    window.spryJsTogglers[i].timer = setTimeout(() => {
-                        if (window.spryJsTogglers[i].toggleSelector) {
-                            toggleItem(window.spryJsTogglers[i].el);
+                if (opened && togglers[i].timeout && togglers[i].timeout > 0) {
+                    togglers[i].timer = setTimeout(() => {
+                        if (togglers[i].toggleSelector) {
+                            toggleItem(togglers[i].el);
                         }
-                    }, window.spryJsTogglers[i].timeout);
+                    }, togglers[i].timeout);
                 }
             }
         }
 
         // Update all corresponding Togglers
         for (let i = 0; i < togglersCount; i++) {
-            if (window.spryJsTogglers[i].closeSelector) {
-                getElements((window.spryJsTogglers[i].closeSelector as string), window.spryJsTogglers[i].el).forEach(closeElement => {
+            if (togglers[i].closeSelector) {
+                getElements((togglers[i].closeSelector as string), togglers[i].el).forEach(closeElement => {
                     elementData.forEach(element => {
                         if (element === closeElement) {
-                            window.spryJsTogglers[i].el.toggleAttribute('aria-pressed', false);
-                            window.spryJsTogglers[i].el.classList.toggle(classActive, false);
+                            togglers[i].el.toggleAttribute('aria-pressed', false);
+                            togglers[i].el.classList.toggle(classActive, false);
                         }
                     });
                 });
             }
 
-            if (window.spryJsTogglers[i].toggleSelector) {
-                getElements((window.spryJsTogglers[i].toggleSelector as string), window.spryJsTogglers[i].el).forEach(toggleElement => {
+            if (togglers[i].toggleSelector) {
+                getElements((togglers[i].toggleSelector as string), togglers[i].el).forEach(toggleElement => {
                     elementData.forEach(element => {
                         if (element === toggleElement) {
                             opened = toggleElement.classList.contains(classOpen) ? true : false;
-                            window.spryJsTogglers[i].el.toggleAttribute('aria-pressed', opened);
-                            window.spryJsTogglers[i].el.classList.toggle(classActive, opened);
+                            togglers[i].el.toggleAttribute('aria-pressed', opened);
+                            togglers[i].el.classList.toggle(classActive, opened);
                         }
                     });
                 });
             }
 
-            if (window.spryJsTogglers[i].openSelector) {
-                getElements((window.spryJsTogglers[i].openSelector as string), window.spryJsTogglers[i].el).forEach(openElement => {
+            if (togglers[i].openSelector) {
+                getElements((togglers[i].openSelector as string), togglers[i].el).forEach(openElement => {
                     elementData.forEach(element => {
                         if (element === openElement) {
-                            window.spryJsTogglers[i].el.toggleAttribute('aria-pressed', true);
-                            window.spryJsTogglers[i].el.classList.toggle(classActive, true);
+                            togglers[i].el.toggleAttribute('aria-pressed', true);
+                            togglers[i].el.classList.toggle(classActive, true);
                         }
                     });
                 });
@@ -241,7 +233,7 @@ export function toggle({
      * 
      * @returns void
      */
-    const closeAllToggles = function(event: Event | KeyboardEvent) {
+    function closeAllToggles(event: Event | KeyboardEvent) {
         var eventTarget: HTMLElement | null = event && event.target instanceof HTMLElement ? event.target : null;
         var targetTag: string | null = eventTarget && eventTarget.tagName ? eventTarget.tagName : null;
         var docTarget: HTMLElement | null = eventTarget && event.type === 'click' ? eventTarget : null;
@@ -249,14 +241,14 @@ export function toggle({
 
         if (!event || docTarget || escPressed) {
 
-            window.spryJsTogglers.forEach(togglerObject => {
+            togglers.forEach(togglerObject => {
                 if (((togglerObject.dismissible) || togglerObject.escapable && escPressed) && togglerObject.el && togglerObject.el !== docTarget && !togglerObject.el.contains(docTarget) && togglerObject.toggleSelector) {
                     getElements(togglerObject.toggleSelector, togglerObject.el).forEach(toggleElement => {
                         setTimeout(() => {
 
                             if (toggleElement === docTarget || (toggleElement.contains(docTarget) && (!targetTag || targetTag && !['A','BUTTON'].includes(targetTag)))) return;
 
-                            for (const innerTogglerObject of window.spryJsTogglers) {
+                            for (const innerTogglerObject of togglers) {
                                 if (innerTogglerObject.el !== togglerObject.el && (innerTogglerObject.el === docTarget || innerTogglerObject.el.contains(docTarget))) {
                                     if (innerTogglerObject.closeSelector) {
                                         for(const innerCloseElement of getElements(innerTogglerObject.closeSelector, innerTogglerObject.el)) {
@@ -286,88 +278,69 @@ export function toggle({
         }
     }
 
-    const elements = typeof items === 'object' ? items : document.querySelectorAll(items);
+    function toggleClick(event: Event) {
+        const toggler = event && event.target ? (event.target as HTMLElement) : null;
+        if (toggler) toggleItem(toggler, 'toggle', event);
+    }
 
-    if (!elements) return;
+    function addEventListeners() {
+        if (togglers) {
 
-    if (!window.spryJsTogglers) window.spryJsTogglers = [];
+            if (!controller) {
+                controller = new AbortController();
+            }
 
-    elements.forEach((toggler: Element) => {
+            if (controller) {
+                for (let t = 0; t < togglers.length; t++) {
+                    if (togglers[t] && togglers[t].el && controller) {
+                        togglers[t].el.addEventListener('click', toggleClick, {signal: controller.signal});
+                    }
+                }
+                // Listen for all Document Clicks and Close Toggles if needed
+                document.addEventListener('click', closeAllToggles, {signal: controller.signal});
+                document.addEventListener('keyup', closeAllToggles, {signal: controller.signal});
+            }
+        }
+    }
 
-        if (toggler.spryJsToggleLoaded) {
-            return;
+    function update() {
+        let toggleSelector, openSelector, closeSelector, timeout;
+        destroy();
+        const elements = typeof items === 'object' ? items : document.querySelectorAll(items);
+        if (elements) {
+            for (let e = 0; e < elements.length; e++) {
+                toggleSelector = elements[e].getAttribute(dataToggleAttribute);
+                openSelector   = elements[e].getAttribute(dataToggleOpenAttribute);
+                closeSelector  = elements[e].getAttribute(dataToggleCloseAttribute);
+                timeout        = elements[e].getAttribute(dataToggleTimeoutAttribute);
+                togglers.push({
+                    el: elements[e],
+                    toggleSelector: toggleSelector ? toggleSelector : null,
+                    openSelector: openSelector ? openSelector : null,
+                    closeSelector: closeSelector || closeSelector === '' ? closeSelector : null,
+                    dismissible: elements[e].hasAttribute(dataToggleDismissibleAttribute),
+                    escapable: elements[e].hasAttribute(dataToggleEscapableAttribute),
+                    timeout: timeout ? parseInt(timeout) : 0,
+                    timer: null
+                });
+            }
         }
 
-        const toggleSelector = toggler.getAttribute(dataToggleAttribute);
-        const openSelector   = toggler.getAttribute(dataToggleOpenAttribute);
-        const closeSelector  = toggler.getAttribute(dataToggleCloseAttribute);
-        const dismissible    = toggler.hasAttribute(dataToggleDismissibleAttribute);
-        const escapable      = toggler.hasAttribute(dataToggleEscapableAttribute);
-        const timeout        = toggler.getAttribute(dataToggleTimeoutAttribute);
-
-        const togglerData = {
-            el: toggler,
-            toggleSelector: toggleSelector ? toggleSelector : null,
-            openSelector: openSelector ? openSelector : null,
-            closeSelector: closeSelector || closeSelector === '' ? closeSelector : null,
-            dismissible: dismissible,
-            escapable: escapable,
-            timeout: timeout ? parseInt(timeout) : 0,
-            timer: null
-        };
-
-        window.spryJsTogglers.push(togglerData);
-        toggler.spryJsToggleLoaded = true;
-        toggler.addEventListener('click', (event: Event) => {
-            toggleItem(toggler, 'toggle', event);
-        });
-    });
-
-    /**
-     * Listen for all Document Clicks and Close Toggles if needed.
-     */
-    if (!window.spryJsToggleWindowListener) {
-        document.addEventListener('click', closeAllToggles);
-        document.addEventListener('keyup', closeAllToggles);
-        window.spryJsToggleWindowListener = true;
+        addEventListeners();
     }
 
     function destroy() {
-        if (window.spryJsToggleWindowListener) {
-            document.removeEventListener('click', closeAllToggles);
-            document.removeEventListener('keyup', closeAllToggles);
-            window.spryJsToggleWindowListener = true;
+        if (controller) {
+            controller.abort();
+            controller = null;
         }
+        togglers = [];
+    }
 
-        elements.forEach((toggler: Element) => {
+    update();
 
-            if (!toggler.spryJsToggleLoaded) {
-                return;
-            }
-    
-            // const toggleSelector = toggler.getAttribute(dataToggleAttribute);
-            // const openSelector   = toggler.getAttribute(dataToggleOpenAttribute);
-            // const closeSelector  = toggler.getAttribute(dataToggleCloseAttribute);
-            // const dismissible    = toggler.hasAttribute(dataToggleDismissibleAttribute);
-            // const escapable      = toggler.hasAttribute(dataToggleEscapableAttribute);
-            // const timeout        = toggler.getAttribute(dataToggleTimeoutAttribute);
-    
-            // const togglerData = {
-            //     el: toggler,
-            //     toggleSelector: toggleSelector ? toggleSelector : null,
-            //     openSelector: openSelector ? openSelector : null,
-            //     closeSelector: closeSelector || closeSelector === '' ? closeSelector : null,
-            //     dismissible: dismissible,
-            //     escapable: escapable,
-            //     timeout: timeout ? parseInt(timeout) : 0,
-            //     timer: null
-            // };
-    
-            // window.spryJsTogglers.push(togglerData);
-            // toggler.spryJsToggleLoaded = true;
-            toggler.removeEventListener('click', (event: Event) => {
-                toggleItem(toggler, 'toggle', event);
-            });
-        });
+    return {
+        update: update,
+        destroy: destroy
     }
 }

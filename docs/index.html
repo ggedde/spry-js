@@ -678,126 +678,6 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
                         <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
                         <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
                     </div>
-
-
-
-                    
-                    <script>
-                        // import { observe } from './spry.mjs';
-                        console.log('Staring...');
-
-                        function bbb() {
-                            SpryJS.query('button').addClass('error');
-                        }
-
-                        // var gg = null;
-
-                        // setTimeout(() => {
-                        //     SpryJS.load();
-                        // }, 2000);
-
-                        // setTimeout(() => {
-                        //     SpryJS.destroy();
-                        // }, 5000);
-                        
-                    //     setTimeout(() => {
-                    //         // gg = SpryJS('.observe-example > *').observe({
-                    //         //     classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
-                    //         // });
-
-                    //         // bb = SpryJS('.code-content .navigable').navigable().addClass('bg-error');
-
-                    //         // gg = SpryJS('#header-nav').removeClass('bg-theme').addClass('bg-primary').navigable();
-
-                    //         // SpryJS.update();
-                    //         // SpryJS.update();
-                    //         // SpryJS.update();
-                    //         // SpryJS.update();
-                    //         // SpryJS.update();
-                    //         // SpryJS.update();
-                    //         // SpryJS.update();
-
-                    //         gg = SpryJS.parallax();
-
-                    //         gg.update();
-                    //         gg.update();
-                    //         gg.update();
-                    //         gg.update();
-                    //         gg.update();
-                    //         gg.update();
-                    //         gg.update();
-
-                    //         // SpryJS.navigable().query('button').addClass('error');
-
-                    //     }, 1000);
-
-                    //     setTimeout(() => {
-
-                    //     //     // console.log(SpryJS);
-                            
-                    //     //     // gg = observe({
-                    //     //     //     items: '.observe-example > *',
-                    //     //     //     classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
-                    //     //     // });
-
-                    //         gg.destroy();
-                    //     //     // gg.destroy();
-                    //     //     // console.log('DD');
-                    //     }, 3000);
-
-
-                    //     setTimeout(() => {
-                    //     // //     // gg = observe({
-                    //     // //     //     items: '.observe-example > *',
-                    //     // //     //     classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
-                    //     // //     // });
-
-                    //         gg.update();
-                    //         gg.update();
-                    //         gg.update();
-                    //         gg.update();
-                    //         gg.update();
-                    //         gg.update();
-
-                    //         var vv = document.querySelector('.bbbb').cloneNode(true);
-                    //         document.querySelector('.bbbb').parentElement.appendChild(vv);
-
-
-                    //         gg.update();
-                    //         gg.update();
-                    //         gg.update();
-
-                    //     // //     SpryJS.update();
-                    //     // //     SpryJS.update();
-
-                    //     // //     SpryJS.update();
-                    //     // //     SpryJS.update();
-                    //     // //     SpryJS.update();
-                    //     // //     console.log('Updated xxxxx');
-                    //     }, 5000);
-
-                    //     // gg = observe({
-                    //     //     items: '.observe-example > *',
-                    //     //     classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
-                    //     // });
-
-                    //     // gg = observe({
-                    //     //     items: '.observe-example > *',
-                    //     //     classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
-                    //     // });
-
-                    //     // gg = observe({
-                    //     //     items: '.observe-example > *',
-                    //     //     classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
-                    //     // });
-                    // // }, 1000);
-
-                    //     setTimeout(() => {
-                    //         gg.destroy();
-                    //     }, 10000);
-                        
-                    </script>
-                   
                 </div>
 
             </section>
@@ -1225,14 +1105,6 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
                             </div>
                         </div>
                     </div>
-
-                    <script type="module">
-                        import { scrollspy } from './spry.mjs';
-                        scrollspy({
-                            items: '#my-scroll-spy-nav',
-                            classActive: 'active'
-                        });
-                    </script>
                 </div>
 
                 <div class="show-code" data-title="Linear Scroll Spy">
@@ -1269,16 +1141,6 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
                             </div>
                         </div>
                     </div>
-
-                    <script type="module">
-                        import { scrollspy } from './spry.mjs';
-                        scrollspy({
-                            items: '#my-scrollspy-nav2',
-                            classActive: 'h',
-                            threshold: 400,
-                            progress: 'linear',
-                        });
-                    </script>
                 </div>
                 
             </section>
@@ -1849,79 +1711,74 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
         &copy; 2023 - SpryJS
     </footer>
 
-    <script defer src="spry.js?load=true"></script>
+    <script defer src="spry.js?load=true&run=spryLoaded"></script>
 
     <script>
 
+        function spryLoaded() {
+            SpryJS.observe({
+                items: '.observe-example > *',
+                classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
+            });
+
+            SpryJS.scrollspy({
+                items: '#my-scrollspy-nav2',
+                classActive: 'h',
+                threshold: 400,
+                progress: 'linear',
+            });
+
+            SpryJS.scrollspy({
+                items: '#my-scroll-spy-nav',
+                classActive: 'active'
+            });
+
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+        }
+
+
+        setTimeout(() => {
+            SpryJS.destroy();
+        }, 9000);
+
         setTimeout(() => {
             SpryJS.update();
             SpryJS.update();
             SpryJS.update();
             SpryJS.update();
-        }, 3000);
-
-
-        setTimeout(() => {
             SpryJS.update();
             SpryJS.update();
-        }, 10000);
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
 
-        // SpryJS().load();
-        // import { observe } from './spry.mjs';
+        }, 20000);
 
-        // var sp1 = null;
-        // var sp2 = null;
-
-        // setTimeout(() => {
-        //     sp1 = SpryJS('img.parallax').parallax();
-        //     sp1 = SpryJS('img.parallax').parallax();
-        //     sp1 = SpryJS('img.parallax').parallax();
-        //     sp1 = SpryJS('img.parallax').parallax();
-        //     sp1 = SpryJS('img.parallax').parallax();
-        //     sp1 = SpryJS('img.parallax').parallax();
-        //     console.log('SP1 Loaded', sp1);
-            
-        // },1000);
-
-
-        // setTimeout(() => {
-        //     sp2 = SpryJS('div.parallax').parallax();
-        //     console.log('SP2 Loaded');
-        // },5000);
-
-
-
-        // setTimeout(() => {
-        //     sp1.parallaxDestroy();
-        //     console.log('SP1 Destroyed');
-        // },8000);
-
-        // // SpryJS.hash('egegegegegegege', 'SHA-512').then(r => console.log(r));
-
-        // console.log(SpryJS.hash.sha256('abc'));
         
-        
-
-        // var ob = null;
-        // setTimeout(() => {
-        //     console.log('Connecting...');
-        //     ob = SpryJS('.observe-example > *').observe({classObserving: 'opacity scale'});
-
-        //     ob2 = SpryJS('article > header').observe({classObserving: 'opacity/3 scale/2'});
-        // }, 5000);
-
-        // setTimeout(() => {
-        //     sp.destroy();
-        // }, 4000);
-
-        // setTimeout(() => {
-        //     sp = SpryJS().load();
-        //     console.log('Loaded Again');
-        // }, 7000);
-
-        // setTimeout(() => {
-        //     ob2.observeDestroy();
-        // }, 20000);
     </script>
 </body>
 
