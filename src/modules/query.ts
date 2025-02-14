@@ -39,7 +39,7 @@ export type SpryJsQueryCollection = {
 export function query(selector: string): SpryJsQueryCollection {
 
     return {
-        elements: Array.from(document.querySelectorAll(selector)),
+        elements: selector ? Array.from(document.querySelectorAll(selector)) : [],
         each: function (callback: Function): SpryJsQueryCollection {
             this.elements.forEach((elem: Element, index: number) => {
                 callback(elem, index);

@@ -1,5 +1,12 @@
 //!
 //! SpryJs Sliders Module
+
+declare global {
+    interface Element {
+        spryJsSliderLoaded: boolean;
+    }
+}
+
 export type SpryJsSliderOptions = {
 	items?: Element[] | string,
 	classSlides?: string;
@@ -8,16 +15,23 @@ export type SpryJsSliderOptions = {
 	classPagination?: string;
 };
 
+type SpryJsSliderObject = {
+	destroy: Function;
+};
+
 export function slider({
 	items = ".slider",
 	classSlides = ".slider-slides",
 	classNext = ".slider-next",
 	classPrev = ".slider-prev",
 	classPagination = ".slider-pagination",
-}: SpryJsSliderOptions = {}) {
+}: SpryJsSliderOptions = {}): {destroy: Function, update: Function} {
 
-	(typeof items === 'object' ? items : document.querySelectorAll(items)).forEach(slider => {
-		if (slider.hasAttribute('data-slider-loaded')) return;
+	let elements: Element[] | NodeListOf<Element> | null = null;
+	let isSelecting = false;
+	let sliders: SpryJsSliderObject[] = [];
+
+	function createSliderObject(slider: Element): SpryJsSliderObject | null {
 
 		const play = parseInt((slider.getAttribute("data-play") || 0).toString());
 		const loop = slider.hasAttribute("data-loop");
@@ -32,16 +46,16 @@ export function slider({
 
 		let scrollTimer: Timer | null = null;
 		let playTimer: Timer | null = null;
-		let isSelecting = false;
 
-		if (!document.body.contains(slider) || !slides || (!next && !prev && !loop && !stop && !play)) return;
+		if (!document.body.contains(slider) || !slides || (!next && !prev && !loop && !stop && !play)) return null;
 
-		const isVisible = () => {
+		function isVisible(): boolean {
+			if (!slider || !document.body.contains(slider)) return false;
 			var rect = slider.getBoundingClientRect();
 			return (rect.bottom >= 0 && rect.top <= (window.innerHeight || document.documentElement.clientHeight));
 		}
 
-		const goTo = (to: number | string, instant?: boolean) => {
+		function goTo(to: number | string, instant?: boolean) {
 			var offsetSlides = loop ? slideCount : 0;
 			if (!slides) return;
 			if (to === 'next') {
@@ -51,13 +65,16 @@ export function slider({
 			} else {
 				slides.scrollTo({ left: (slides.children[(parseFloat(to.toString()) + offsetSlides)] as HTMLElement).offsetLeft, behavior: instant ? 'instant' : 'smooth' });
 			}
-		};
+		}
 
-		const resetPlay = () => {
+		function playStop() {
 			if (playTimer) {
 				clearInterval(playTimer);
 				playTimer = null;
 			}
+		}
+
+		function playStart() {
 			if (play && document.body.contains(slider)) {
 				playTimer = setTimeout(() => {
 					if (isVisible()) {
@@ -71,41 +88,25 @@ export function slider({
 				}, play);
 			}
 		}
-		if (next) {
-			next.addEventListener('click', () => {
-				goTo('next');
-			});
+
+		function resetPlay() {
+			playStop();
+			playStart();
 		}
-		if (prev) {
-			prev.addEventListener('click', () => {
-				goTo('prev');
-			});
-		}
-		if (pagination && !pagination.childNodes.length && slides && slideCount) {
-			for (let index = 0; index < slideCount; index++) {
-				let btn = document.createElement("button");
-				if (index === 0) btn.classList.add('active');
-				btn.onclick = () => {
-					goTo(index);
-					if (pagination && pagination.children) {
-						Array.from(pagination.children).forEach(paginate => {
-							paginate.classList.remove('active');
-						});
-					}
-					btn.classList.add('active');
-				}
-				pagination.append(btn);
-			}
+		
+		function goToNext() {
+			goTo('next');
 		}
 
-		slides.addEventListener('scroll', () => {
+		function goToPrev() {
+			goTo('prev');
+		}
+
+		function sliderScroll() {
 			slider.setAttribute('data-sliding', '');
 			slider.removeAttribute('data-position');
 			if (scrollTimer) clearTimeout(scrollTimer);
-			if (playTimer) {
-				clearInterval(playTimer);
-				playTimer = null;
-			}
+			playStop();
 			scrollTimer = setTimeout(function () {
 				slider.removeAttribute('data-sliding');
 				resetPlay();
@@ -174,7 +175,76 @@ export function slider({
 					preLoadImages(slider.querySelector('[data-last]'), 'prev', showing.length);
 				}
 			}, 100);
-		});
+		}
+
+		function sliderSelectionChange() {
+			if (!document.body.contains(slider)) {
+				document.removeEventListener('selectionchange', sliderSelectionChange);
+				return;
+			}
+			if (isVisible()) {
+				var selection: Selection | null | string = document.getSelection();
+				if (selection) {
+					selection = selection.toString();
+				}
+				if (isSelecting && selection) {
+					playStop();
+				}
+				if (!isSelecting && !selection && !playTimer) {
+					resetPlay();
+				}
+			}
+		}
+
+		function sliderSelectStart() {
+			isSelecting = true;
+		}
+
+		function sliderSelectEnd() {
+			isSelecting = false;
+		}
+
+		function sliderHover() {
+			playStop();
+		}
+
+		function sliderMouseOut() {
+			resetPlay();
+		}
+
+		function sliderAddEvents() {
+			if (slides) slides.addEventListener('scroll', sliderScroll);
+			if (next) next.addEventListener('click', goToNext);
+			if (prev) prev.addEventListener('click', goToPrev);
+			if (play) {
+				if (stop === 'hover') {
+					slider.addEventListener('mouseover', sliderHover);
+					slider.addEventListener('mouseout', sliderMouseOut);
+				}
+				if (stop === 'action') {
+					document.addEventListener('selectionchange', sliderSelectionChange);
+					slider.addEventListener('selectstart', sliderSelectStart);
+					slider.addEventListener('mouseup', sliderSelectEnd);
+				}
+			}
+		}
+
+		if (pagination && !pagination.childNodes.length && slides && slideCount) {
+			for (let index = 0; index < slideCount; index++) {
+				let btn = document.createElement("button");
+				if (index === 0) btn.classList.add('active');
+				btn.onclick = () => {
+					goTo(index);
+					if (pagination && pagination.children) {
+						Array.from(pagination.children).forEach(paginate => {
+							paginate.classList.remove('active');
+						});
+					}
+					btn.classList.add('active');
+				}
+				pagination.append(btn);
+			}
+		}
 
 		if (loop) {
 			slides.innerHTML += block + block;
@@ -185,52 +255,55 @@ export function slider({
 		}
 
 		resetPlay();
+		sliderAddEvents();
 
-		const selectionChange = () => {
-			if (!document.body.contains(slider)) {
-				document.removeEventListener('selectionchange', selectionChange);
-				return;
-			}
-			if (isVisible()) {
-				var selection: Selection | null | string = document.getSelection();
-				if (selection) {
-					selection = selection.toString();
-				}
-				if (isSelecting && selection) {
-					if (playTimer) {
-						clearInterval(playTimer);
-						playTimer = null;
+		return {
+			destroy: function() {
+				playStop();
+				if (slides) slides.removeEventListener('scroll', sliderScroll);
+				if (next) next.removeEventListener('click', goToNext);
+				if (prev) prev.removeEventListener('click', goToPrev);
+				if (play) {
+					if (stop === 'hover') {
+						slider.removeEventListener('mouseover', sliderHover);
+						slider.removeEventListener('mouseout', sliderMouseOut);
 					}
-				}
-				if (!isSelecting && !selection && !playTimer && document.body.contains(slider)) {
-					resetPlay();
+					if (stop === 'action') {
+						document.removeEventListener('selectionchange', sliderSelectionChange);
+						slider.removeEventListener('selectstart', sliderSelectStart);
+						slider.removeEventListener('mouseup', sliderSelectEnd);
+					}
 				}
 			}
 		}
+	}
+	
+	function update() {
+		destroy();
+		sliders = [];
+		elements = typeof items === 'object' ? items : document.querySelectorAll(items);
+        if (elements) {
+			for (let e = 0; e < elements.length; e++) {
+				const sliderObject = createSliderObject(elements[e]);
+				if (sliderObject) {
+					sliders.push(sliderObject);
+				}
+			};
+		}
+    };
 
-		if (play) {
-			if (stop === 'hover') {
-				slider.addEventListener('mouseout', () => {
-					resetPlay();
-				});
-				slider.addEventListener('mouseover', () => {
-					if (playTimer) {
-						clearInterval(playTimer);
-						playTimer = null;
-					}
-				});
-			}
-			if (stop === 'action') {
-				document.addEventListener('selectionchange', selectionChange);
-				slider.addEventListener('selectstart', () => {
-					isSelecting = true;
-				});
-				slider.addEventListener('mouseup', () => {
-					isSelecting = false;
-				});
+	function destroy() {
+		if (sliders) {
+			for (let s = 0; s < sliders.length; s++) {
+				sliders[s].destroy();
 			}
 		}
+    };
 
-		slider.setAttribute('data-slider-loaded', '');
-	});
+	update();
+
+    return {
+        destroy: destroy,
+        update: update
+    }
 }

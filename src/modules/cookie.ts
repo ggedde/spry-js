@@ -1,7 +1,13 @@
 //!
 //! SpryJs Cookies Module
 
-export const cookie = {
+export type SpryJsCookie = {
+    set(cookieName: string, cookieValue: any, expireSeconds?: number): void;
+    get(cookieName: string): any;
+    remove(cookieName: string): void;
+};
+
+const cookie: SpryJsCookie = {
     /**
      * Set a Cookie
      *
@@ -11,7 +17,7 @@ export const cookie = {
      * 
      * @returns void
      */
-    set: function (cookieName: string, cookieValue: any, expireSeconds?: number) {
+    set: function (cookieName: string, cookieValue: any, expireSeconds?: number): void {
         let expires = '';
         if (expireSeconds && expireSeconds !== 0) {
             const expDate = new Date();
@@ -26,9 +32,9 @@ export const cookie = {
      *
      * @param cookieName string - The name of the cookie to get
      * 
-     * @returns string
+     * @returns string | number | object | boolean
      */
-    get: function (cookieName: string) {
+    get: function (cookieName: string): any {
         const cookieArr = document.cookie.split(";");
         for (var i = 0; i < cookieArr.length; i++) {
             const cookiePair = cookieArr[i].split("=");
@@ -47,7 +53,9 @@ export const cookie = {
      * 
      * @returns void
      */
-    remove: function (cookieName: string) {
+    remove: function (cookieName: string): void {
         this.set(cookieName, '', -1);
     }
 }
+
+export default cookie;

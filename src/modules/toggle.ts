@@ -4,7 +4,7 @@
 declare global {
     interface Window {
         spryJsTogglers: SpryJsToggler[];
-        spryJsToggleDocListener: boolean;
+        spryJsToggleWindowListener: boolean;
     }
     interface Element {
         spryJsToggleLoaded: boolean;
@@ -326,9 +326,48 @@ export function toggle({
     /**
      * Listen for all Document Clicks and Close Toggles if needed.
      */
-    if (!window.spryJsToggleDocListener) {
+    if (!window.spryJsToggleWindowListener) {
         document.addEventListener('click', closeAllToggles);
         document.addEventListener('keyup', closeAllToggles);
-        window.spryJsToggleDocListener = true;
+        window.spryJsToggleWindowListener = true;
+    }
+
+    function destroy() {
+        if (window.spryJsToggleWindowListener) {
+            document.removeEventListener('click', closeAllToggles);
+            document.removeEventListener('keyup', closeAllToggles);
+            window.spryJsToggleWindowListener = true;
+        }
+
+        elements.forEach((toggler: Element) => {
+
+            if (!toggler.spryJsToggleLoaded) {
+                return;
+            }
+    
+            // const toggleSelector = toggler.getAttribute(dataToggleAttribute);
+            // const openSelector   = toggler.getAttribute(dataToggleOpenAttribute);
+            // const closeSelector  = toggler.getAttribute(dataToggleCloseAttribute);
+            // const dismissible    = toggler.hasAttribute(dataToggleDismissibleAttribute);
+            // const escapable      = toggler.hasAttribute(dataToggleEscapableAttribute);
+            // const timeout        = toggler.getAttribute(dataToggleTimeoutAttribute);
+    
+            // const togglerData = {
+            //     el: toggler,
+            //     toggleSelector: toggleSelector ? toggleSelector : null,
+            //     openSelector: openSelector ? openSelector : null,
+            //     closeSelector: closeSelector || closeSelector === '' ? closeSelector : null,
+            //     dismissible: dismissible,
+            //     escapable: escapable,
+            //     timeout: timeout ? parseInt(timeout) : 0,
+            //     timer: null
+            // };
+    
+            // window.spryJsTogglers.push(togglerData);
+            // toggler.spryJsToggleLoaded = true;
+            toggler.removeEventListener('click', (event: Event) => {
+                toggleItem(toggler, 'toggle', event);
+            });
+        });
     }
 }

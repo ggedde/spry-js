@@ -14,10 +14,11 @@
     <link rel="stylesheet" href="docs.min.css?v=3.0.0-rc.2">
 
     <script defer src="prism.min.js?v=3.0.0-rc.2"></script>
-    <script defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- <script defer src="https://buttons.github.io/buttons.js"></script> -->
     <script defer src="//unpkg.com/alpinejs"></script>
     <script defer src="docs.min.js"></script>
-    <script defer src="spry.js?load=true"></script>
+
+
 </head>
 
 <body id="about">
@@ -47,6 +48,7 @@
                                     <hr class="m-2">
                                 </li>
                                 <li><a href="#cookie">Cookie</a></li>
+                                <li><a href="#hash">Hash</a></li>
                                 <li><a href="#navigable">Navigable</a></li>
                                 <li><a href="#observer">Observer</a></li>
                                 <li><a href="#parallax">Parallax</a></li>
@@ -98,7 +100,7 @@
                 </h2>
                 <p>You can report issues or make feature requests on the <a target="_blank" href="https://github.com/ggedde/spry-js/issues">GitHub Issues</a> page.</p>
                 <p>If you like to help us grow, then please add a star on the <a target="_blank" href="https://github.com/ggedde/spry-js">SpryJS GitHub Repository</a> or by sharing us on social media.</p>
-                <div class="row columns-auto pt-3 g-3 relative mb-5">
+                <div class="row columns-auto pt-3 g-3 relative mb-4">
                     <a class="button circle icon contrast hazy" title="Facebook" aria-label="Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'facebookShare','width=626,height=436');return false;" onkeypress="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'facebookShare','width=626,height=436');return false;">
                         <svg class="xl" viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02z" /></svg>
                     </a>
@@ -122,8 +124,6 @@
                     </span>
                 </div>
 
-                <h4>Compatibility</h4>
-                <p>SpryJS uses modern css properties and native css nesting which is supported by all major browsers since April 2024</p>
             </section>
 
             <!-- INSTALLATION -->
@@ -133,56 +133,206 @@
                     Installation
                 </h2>
 
-                <h3 class="scroll-watch">From CDN:</h3>
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-    SpryJS.cookie.set(...);
-    SpryJS.cookie.get(...);
-    SpryJS.cookie.remove(...);
+                <h3 class="scroll-watch">CDN Default ESM:</h3>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
+    import Spry from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+    
+    // Cookie
+    Spry.cookie.set(...);
+    Spry.cookie.get(...);
+    Spry.cookie.remove(...);
 
-    SpryJS.query(...).addClass(...);
+    // Hash
+    Spry.hash.md5(...);
+    Spry.hash.sha256(...);
 
-    SpryJS.load();
-    // or
-    SpryJS.navigable();
-    SpryJS.observer();
-    SpryJS.loadParallax();
-    SpryJS.loadScrollSpy();
-    SpryJS.loadSliders();
-    SpryJS.loadToggles();
+    // Query
+    Spry.query(...).addClass(...);
+
+    // Load Single Components
+    Spry.navigable(...);
+    Spry.observer(...);
+    Spry.parallax(...);
+    Spry.scrollspy(...);
+    Spry.slider(...);
+    Spry.toggle(...);
+
+    // Update Single Components
+    Spry.navigableUpdate();
+    Spry.observerUpdate();
+    Spry.parallaxUpdate();
+    Spry.scrollspyUpdate();
+    Spry.sliderUpdate();
+    Spry.toggleUpdate();
+
+    // Destroy Single Components
+    Spry.navigableDestroy();
+    Spry.observerDestroy();
+    Spry.parallaxDestroy();
+    Spry.scrollspyDestroy();
+    Spry.sliderDestroy();
+    Spry.toggleDestroy();
+
+    // Load all Components
+    Spry.load();
+
+    // Update all Components
+    Spry.update();
+
+    // Destroy all Components
+    Spry.destroy();
 &lt;/script&gt;
-                    </code>
+                        </code>
 
-                <h3 class="scroll-watch">ESM from CDN:</h3>
+                <h3 class="scroll-watch">CDN Modules ESM:</h3>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
     import {
         cookie,
-        load,
+        hash,
+        query,
         navigable,
-        observer,
-        loadParallax,
-        loadScrollSpy,
-        loadSliders,
-        loadToggles,
-        query
+        observe,
+        parallax,
+        scrollspy,
+        slider,
+        toggle,
     } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
     
+    // Cookie
     cookie.set(...);
     cookie.get(...);
     cookie.remove(...);
 
+    // Hash
+    hash.md5(...);
+    hash.sha256(...);
+
+    // Query
     query(...).addClass(...);
 
-    load();
-    // or
-    navigable();
-    observer();
-    loadParallax();
-    loadScrollSpy();
-    loadSliders();
-    loadToggles();
+    // Load Components
+    navigable(...);
+    observer(...);
+    parallax(...);
+    scrollspy(...);
+    slider(...);
+    toggle(...);
+
+    // Update Components
+    const nav = navigable(...);
+    nav.update();
+
+    // Destroy Components
+    const nav = navigable(...);
+    nav.destroy();
 &lt;/script&gt;
                         </code>
+
+                <h3 class="scroll-watch">CDN Global:</h3>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+
+    // Ad Hoc
+    SpryJS('.selector-A').addClass('some-class-A');
+    SpryJS('.selector-B').addClass('some-class-B');
+    SpryJS.cookie.set(...);
+    SpryJS.hash.md5(...);
+
+    // Chainable
+    SpryJS('.selector-C').addClass('some-class-C').query('.selector-D').addClass('some-class-D').query('.parallax').parallax();
+
+    ///////////////////////////////
+    // Or Construct new SpryJS Object
+    const Spry = SpryJS('.selector').addClass('some-class');
+    
+    // Cookie
+    Spry.cookie.set(...);
+    Spry.cookie.get(...);
+    Spry.cookie.remove(...);
+
+    // Hash
+    Spry.hash.md5(...);
+    Spry.hash.sha256(...);
+
+    // Query
+    Spry.query(...).addClass(...);
+
+    // Load Single Components
+    Spry.navigable(...);
+    Spry.observer(...);
+    Spry.parallax(...);
+    Spry.scrollspy(...);
+    Spry.slider(...);
+    Spry.toggle(...);
+
+    // Update Single Components
+    Spry.navigableUpdate();
+    Spry.observerUpdate();
+    Spry.parallaxUpdate();
+    Spry.scrollspyUpdate();
+    Spry.sliderUpdate();
+    Spry.toggleUpdate();
+
+    // Destroy Single Components
+    Spry.navigableDestroy();
+    Spry.observerDestroy();
+    Spry.parallaxDestroy();
+    Spry.scrollspyDestroy();
+    Spry.sliderDestroy();
+    Spry.toggleDestroy();
+
+    // Load all Components
+    Spry.load();
+
+    // Update all Components
+    Spry.update();
+
+    // Destroy all Components
+    Spry.destroy();
+    
+&lt;/script&gt;
+                </code>
+
+                <h5 class="scroll-watch">CDN Global Variable Automatically Loaded:</h5>
+                Append <code class="color-primary">?load=true</code> on the script src
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=true"&gt;&lt;/script&gt;
+&lt;script&gt;
+    // SpryJS is automatically loaded.
+    
+    SpryJS.query(...).addClass(...);
+    ...
+    
+&lt;/script&gt;
+                </code>
+
+                <h5 class="scroll-watch">CDN Global Run Function:</h5>
+                Append <code class="color-primary">?run=myFunction</code> on the script src
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script&gt;
+function myFunction() {
+    SpryJS.query(...).addClass(...);
+}
+&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?run=myFunction"&gt;&lt;/script&gt;
+                </code>
+
+                <h5 class="scroll-watch">CDN Global Defer:</h5>
+                Append <code class="color-primary">defer</code> on the script tag
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+function myFunction() {
+    SpryJS.query(...).addClass(...);
+}
+&lt;/script&gt;
+                </code>
+
+                <h5 class="scroll-watch">CDN Global Load & Defer:</h5>
+                Append <code class="color-primary">defer</code> on the script tag and <code class="color-primary">?load=true</code> on the script src
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=true"&gt;&lt;/script&gt;
+...
+&lt;div&gt;
+    &lt;img src="..." class="parallax"&gt;
+&lt;/div&gt;
+                </code>
     
                 <h3 class="scroll-watch">Using a package manager:</h3>
                 <div class="row columns-auto items-center mt-3 ml-3">
@@ -231,7 +381,7 @@
 
                 <h4>Using Cookie</h4>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { cookie } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
+    import { cookie } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
     
     /**
      * Set a Cookie
@@ -265,6 +415,42 @@
                 
             </section>
 
+            <!-- HASH -->
+            <section id="hash" class="bg-inherit py-0 pb-3">
+                <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
+                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="m5.41 21 .71-4h-4l.35-2h4l1.06-6h-4l.35-2h4l.71-4h2l-.71 4h6l.71-4h2l-.71 4h4l-.35 2h-4l-1.06 6h4l-.35 2h-4l-.71 4h-2l.71-4h-6l-.71 4h-2M9.53 9l-1.06 6h6l1.06-6h-6z" /></svg>
+                    Hash
+                </h2>
+
+                <div class="alert warning link mb-2 pl-0">
+                    <svg class="icon ml-n1" viewBox="0 0 24 24"><path d="M11 4h2v11h-2V4zm2 14v2h-2v-2h2z" /></svg> SpryJS Hash is not for encryption or secured data. If you need to ensure data safety or a stronger digest then you may want to look at <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto">SubtleCrypto</a> 
+                </div>
+                <h5>SpryJS Hash is for basic hashing and requires unicode safe characters. Objects will be converted to JSON strings before they are hashed.</h5>
+                <h4>Using Hash</h4>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
+    import { hash } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+    
+    /**
+     * Get an MD5 hash
+     *
+     * @param inputString: string | number | object - The value to hash. Objects will be converted to JSON strings before they are hashed.
+     * 
+     * @returns string
+     */
+    const myHash = hash.md5(inputString: string | number | object);
+
+    /**
+     * Get an SHA-256 hash
+     *
+     * @param inputString: string | number | object - The value to hash. Objects will be converted to JSON strings before they are hashed.
+     * 
+     * @returns string
+     */
+     const myHash = hash.sha256(inputString: string | number | object);
+&lt;/script&gt;</code>                
+                
+            </section>
+
             <!-- NAVIGABLE -->
             <section id="navigable" class="bg-inherit py-0 pb-3">
                 <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
@@ -275,19 +461,19 @@
                 <h5>This allows <code class="color-primary">&lt;a&gt;</code> and <code class="color-primary">&lt;button&gt;</code> to be Navigable via the Keyboard Arrow keys and clickable via the Keyboard Space and Enter keys. It also adds ability to use the Escape key to ignore focus.</h5>
 
                 <article class="show-code" data-title="Loading Navigable">
-                    <div class="language-select" data-language="js"><code class="language-html">
+                    <div class="language-select" data-language="jsGlobal"><code class="language-html">
 &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
 </code>
                     </div>
-                    <div class="language-select" data-language="esm">
+                    <div class="language-select" data-language="jsEsm">
                         &lt;script type="module"&gt;
-import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
+import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
 &lt;/script&gt;
                     </div>
                 </article>
 
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
+    import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
     navigable();
     // or
     navigable('.navigable', {
@@ -357,7 +543,7 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
                 </table>
 
                 <div class="show-code" data-title="Navigable Nav">
-                    <nav class="hamm">
+                    <nav class="navigable">
                         <ul class="column">
                             <li><button>Button 1</button></li>
                             <li><button>Button 2</button></li>
@@ -379,7 +565,7 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
 
                 <h5>Loading Observer</h5>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { observer } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
+    import { observer } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
     observer({options});
 &lt;/script&gt;</code>
 
@@ -493,13 +679,125 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
                         <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
                     </div>
 
-                    <script type="module">
-                        import { observe } from './spry.mjs';
-                        observe({
-                            items: '.observe-example > *',
-                            classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
-                        });
+
+
+                    
+                    <script>
+                        // import { observe } from './spry.mjs';
+                        console.log('Staring...');
+
+                        function bbb() {
+                            SpryJS.query('button').addClass('error');
+                        }
+
+                        // var gg = null;
+
+                        // setTimeout(() => {
+                        //     SpryJS.load();
+                        // }, 2000);
+
+                        // setTimeout(() => {
+                        //     SpryJS.destroy();
+                        // }, 5000);
+                        
+                    //     setTimeout(() => {
+                    //         // gg = SpryJS('.observe-example > *').observe({
+                    //         //     classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
+                    //         // });
+
+                    //         // bb = SpryJS('.code-content .navigable').navigable().addClass('bg-error');
+
+                    //         // gg = SpryJS('#header-nav').removeClass('bg-theme').addClass('bg-primary').navigable();
+
+                    //         // SpryJS.update();
+                    //         // SpryJS.update();
+                    //         // SpryJS.update();
+                    //         // SpryJS.update();
+                    //         // SpryJS.update();
+                    //         // SpryJS.update();
+                    //         // SpryJS.update();
+
+                    //         gg = SpryJS.parallax();
+
+                    //         gg.update();
+                    //         gg.update();
+                    //         gg.update();
+                    //         gg.update();
+                    //         gg.update();
+                    //         gg.update();
+                    //         gg.update();
+
+                    //         // SpryJS.navigable().query('button').addClass('error');
+
+                    //     }, 1000);
+
+                    //     setTimeout(() => {
+
+                    //     //     // console.log(SpryJS);
+                            
+                    //     //     // gg = observe({
+                    //     //     //     items: '.observe-example > *',
+                    //     //     //     classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
+                    //     //     // });
+
+                    //         gg.destroy();
+                    //     //     // gg.destroy();
+                    //     //     // console.log('DD');
+                    //     }, 3000);
+
+
+                    //     setTimeout(() => {
+                    //     // //     // gg = observe({
+                    //     // //     //     items: '.observe-example > *',
+                    //     // //     //     classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
+                    //     // //     // });
+
+                    //         gg.update();
+                    //         gg.update();
+                    //         gg.update();
+                    //         gg.update();
+                    //         gg.update();
+                    //         gg.update();
+
+                    //         var vv = document.querySelector('.bbbb').cloneNode(true);
+                    //         document.querySelector('.bbbb').parentElement.appendChild(vv);
+
+
+                    //         gg.update();
+                    //         gg.update();
+                    //         gg.update();
+
+                    //     // //     SpryJS.update();
+                    //     // //     SpryJS.update();
+
+                    //     // //     SpryJS.update();
+                    //     // //     SpryJS.update();
+                    //     // //     SpryJS.update();
+                    //     // //     console.log('Updated xxxxx');
+                    //     }, 5000);
+
+                    //     // gg = observe({
+                    //     //     items: '.observe-example > *',
+                    //     //     classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
+                    //     // });
+
+                    //     // gg = observe({
+                    //     //     items: '.observe-example > *',
+                    //     //     classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
+                    //     // });
+
+                    //     // gg = observe({
+                    //     //     items: '.observe-example > *',
+                    //     //     classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
+                    //     // });
+                    // // }, 1000);
+
+                    //     setTimeout(() => {
+                    //         gg.destroy();
+                    //     }, 10000);
+                        
                     </script>
+                   
                 </div>
 
             </section>
@@ -513,11 +811,11 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
 
                 <h5>Loading Parallax</h5>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { loadParallax } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
-    loadParallax({options});
+    import { parallax } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+    parallax({options});
 &lt;/script&gt;</code>
 
-                <p class="note">* loadParallax() can be called multiple times without creating duplicated event listeners and other side effects. loadParallax() will ignore any pre-registered elements. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
+                <p class="note">* parallax() can be called multiple times without creating duplicated event listeners and other side effects. parallax() will ignore any pre-registered elements. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
                 
                 <h5 class="mt-3">Example:</h5>
 
@@ -583,7 +881,7 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
                 </table>
 
                 <div class="show-code" data-title="Parallax" data-footer-note="Photo by &lt;a href='https://unsplash.com/@joelfilip?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Joel Filipe&lt;/a&gt;">
-                    <div class="max-h-200 md:max-h-400 hidden">
+                    <div class="max-h-200 md:max-h-400 hidden  bbbb">
                         <img class="parallax cover" src="img.webp">
                     </div>
                 </div>
@@ -631,7 +929,7 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
 
                 <h4>Using Query</h4>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
+    import { query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
     
     // Add Class and Attribute to Elements
     query('.selector').addClass('stuff').attr('data-stuff', 'things');
@@ -803,11 +1101,11 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
 
                 <h5>Loading Scroll Spy</h5>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { loadScrollSpy } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
-    loadScrollSpy({options});
+    import { scrollspy } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+    scrollspy({options});
 &lt;/script&gt;</code>
 
-                <p class="note">* loadScrollSpy() can be called multiple times without creating duplicated event listeners and other side effects. This will ignore any pre-registered elements. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
+                <p class="note">* scrollspy() can be called multiple times without creating duplicated event listeners and other side effects. This will ignore any pre-registered elements. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
                 
                 <h5 class="mt-3">Example:</h5>
 
@@ -1328,11 +1626,11 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
 
                 <h5>Loading Toggles</h5>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { loadToggles } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js';
-    loadToggles({options});
+    import { toggle } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+    toggle({options});
 &lt;/script&gt;</code>
 
-                <p class="note">* loadToggles() can be called multiple times without creating duplicated event listeners and other side effects. loadToggles() will ignore any pre-registered toggles. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
+                <p class="note">* toggle() can be called multiple times without creating duplicated event listeners and other side effects. toggle() will ignore any pre-registered toggles. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
                 
                 <h5 class="mt-3">Toggle Example.</h5>
 
@@ -1550,6 +1848,81 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
     <footer class="bg-faint color-gray p-2 text-right sm">
         &copy; 2023 - SpryJS
     </footer>
+
+    <script defer src="spry.js?load=true"></script>
+
+    <script>
+
+        setTimeout(() => {
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+            SpryJS.update();
+        }, 3000);
+
+
+        setTimeout(() => {
+            SpryJS.update();
+            SpryJS.update();
+        }, 10000);
+
+        // SpryJS().load();
+        // import { observe } from './spry.mjs';
+
+        // var sp1 = null;
+        // var sp2 = null;
+
+        // setTimeout(() => {
+        //     sp1 = SpryJS('img.parallax').parallax();
+        //     sp1 = SpryJS('img.parallax').parallax();
+        //     sp1 = SpryJS('img.parallax').parallax();
+        //     sp1 = SpryJS('img.parallax').parallax();
+        //     sp1 = SpryJS('img.parallax').parallax();
+        //     sp1 = SpryJS('img.parallax').parallax();
+        //     console.log('SP1 Loaded', sp1);
+            
+        // },1000);
+
+
+        // setTimeout(() => {
+        //     sp2 = SpryJS('div.parallax').parallax();
+        //     console.log('SP2 Loaded');
+        // },5000);
+
+
+
+        // setTimeout(() => {
+        //     sp1.parallaxDestroy();
+        //     console.log('SP1 Destroyed');
+        // },8000);
+
+        // // SpryJS.hash('egegegegegegege', 'SHA-512').then(r => console.log(r));
+
+        // console.log(SpryJS.hash.sha256('abc'));
+        
+        
+
+        // var ob = null;
+        // setTimeout(() => {
+        //     console.log('Connecting...');
+        //     ob = SpryJS('.observe-example > *').observe({classObserving: 'opacity scale'});
+
+        //     ob2 = SpryJS('article > header').observe({classObserving: 'opacity/3 scale/2'});
+        // }, 5000);
+
+        // setTimeout(() => {
+        //     sp.destroy();
+        // }, 4000);
+
+        // setTimeout(() => {
+        //     sp = SpryJS().load();
+        //     console.log('Loaded Again');
+        // }, 7000);
+
+        // setTimeout(() => {
+        //     ob2.observeDestroy();
+        // }, 20000);
+    </script>
 </body>
 
 </html>
