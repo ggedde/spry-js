@@ -3,6 +3,7 @@
 
 export type SpryJsQueryCollection = {
     elements: Element[];
+    el: Element | null;
     each(callback: Function): SpryJsQueryCollection;
     toggleClass(className: string, force?: boolean): SpryJsQueryCollection;
     addClass(className: string): SpryJsQueryCollection;
@@ -23,7 +24,8 @@ export type SpryJsQueryCollection = {
  *
  * @param selector string   - Selector String.
  *
- * @var elements array - Queried elements.
+ * @var elements Elements[] - Queried elements.
+ * @var el Element          - First Queried element.
  *
  * @method each function(callback: Function)                            - Loops through each element found in query
  * @method toggleClass function(className: string, force?: boolean)     - Toggles Class of each element in query
@@ -38,8 +40,12 @@ export type SpryJsQueryCollection = {
  */
 export function query(selector: string): SpryJsQueryCollection {
 
+    const els = selector ? Array.from(document.querySelectorAll(selector)) : [];
+    const el = els ? els[0] : null;
+
     return {
-        elements: selector ? Array.from(document.querySelectorAll(selector)) : [],
+        elements: els,
+        el: el,
         each: function (callback: Function): SpryJsQueryCollection {
             this.elements.forEach((elem: Element, index: number) => {
                 callback(elem, index);

@@ -11,16 +11,16 @@ import { query, type SpryJsQueryCollection } from './modules/query.ts';
 import cookie, { type SpryJsCookie } from './modules/cookie.ts';
 import hash, { type SpryJsHash } from './modules/hash.ts';
 
-type SpryJsComponentCollection = {
-    query: any;
+export type SpryJsComponentCollection = {
     cookie: SpryJsCookie;
     hash: SpryJsHash;
-    navigableObj: any;
-    observeObj: any;
-    parallaxObj: any;
-    scrollspyObj: any;
-    sliderObj: any;
-    toggleObj: any;
+    navigableObj: sprPbj[];
+    observeObj: sprPbj[];
+    parallaxObj: sprPbj[];
+    scrollspyObj: sprPbj[];
+    sliderObj: sprPbj[];
+    toggleObj: sprPbj[];
+    query(selector: any): SpryJsCollection;
     load(): SpryJsCollection;
     update(): SpryJsCollection;
     destroy(): SpryJsCollection;
@@ -44,26 +44,12 @@ type SpryJsComponentCollection = {
     toggleDestroy(): SpryJsCollection;
 }
 
-type SpryJsCollection = SpryJsQueryCollection & SpryJsComponentCollection;
+export type SpryJsCollection =  SpryJsComponentCollection & SpryJsQueryCollection;
 
-/**
- * Query Elements
- *
- * @param selector string   - Selector String.
- *
- * @var elements array - Queried elements.
- *
- * @method each function(callback: Function)                            - Loops through each element found in query
- * @method toggleClass function(className: string, force?: boolean)     - Toggles Class of each element in query
- * @method addClass function(className: string)                         - Adds Class to each element in query
- * @method removeClass function(className: string)                      - Removes Class of each element in query
- * @method toggleAttr function(attributeName: string, force?: boolean)  - Toggles Attribute of each element in query
- * @method attr function(attributeName: string, attributeValue: string) - Sets Attribute to each element in query
- * @method removeAttr function(attributeName: string)                   - Removes Attribute of each element in query
- * @method on function(action: string, callback: Function)              - Adds Event Listener to each element in query
- *
- * @returns object
- */
+type sprPbj = {
+    destroy: Function,
+    update: Function
+}
 
 //!
 //! SpryJS Collection Component
@@ -82,6 +68,7 @@ const SpryJS = function(selector: string): SpryJsCollection {
         
         query: function(selector: any): SpryJsCollection {
             this.elements = query(selector).elements;
+            this.el = this.elements[0] ? this.elements[0] : null;
             return this;
         },
 

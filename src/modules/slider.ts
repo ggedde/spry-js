@@ -3,28 +3,31 @@
 
 declare global {
     interface Element {
+        sliderGoTo?: Function;
+        sliderIndex?: number;
         spryJsSliderCount: number;
     }
 }
 
 export type SpryJsSliderOptions = {
 	items?: Element[] | string,
-	classSlides?: string;
-	classNext?: string;
-	classPrev?: string;
-	classPagination?: string;
+	selectorSlides?: string;
+	selectorNext?: string;
+	selectorPrev?: string;
+	selectorPagination?: string;
 };
 
 type SpryJsSliderObject = {
+	update: Function;
 	destroy: Function;
 };
 
 export function slider({
 	items = ".slider",
-	classSlides = ".slider-slides",
-	classNext = ".slider-next",
-	classPrev = ".slider-prev",
-	classPagination = ".slider-pagination",
+	selectorSlides = ".slides",
+	selectorNext = ".next",
+	selectorPrev = ".prev",
+	selectorPagination = ".pagination",
 }: SpryJsSliderOptions = {}): {destroy: Function, update: Function} {
 
 	let controller: AbortController | null = null;
@@ -32,17 +35,17 @@ export function slider({
 	let sliders: SpryJsSliderObject[] = [];
 
 	function createSliderObject(slider: Element): SpryJsSliderObject | null {
-
+		
 		const play = parseInt((slider.getAttribute("data-play") || 0).toString());
 		const loop = slider.hasAttribute("data-loop");
+		const snap = slider.hasAttribute("data-snap");
 		const stop = slider.getAttribute("data-stop");
-		const next = slider.querySelector(classNext);
-		const prev = slider.querySelector(classPrev);
-		const pagination = slider.querySelector(classPagination);
-		const slides = slider.querySelector(classSlides);
-		const slidesWidth = slides ? slides.scrollWidth : 0;
-		const block = slides ? slides.innerHTML : "";
-
+		const next = slider.querySelector(selectorNext);
+		const prev = slider.querySelector(selectorPrev);
+		const pagination = slider.querySelector(selectorPagination);
+		const slides = slider.querySelector(selectorSlides);
+		
+		let currentIndex: number;
 		let scrollTimer: Timer | null = null;
 		let playTimer: Timer | null = null;
 		let isPaused = false;
@@ -56,15 +59,28 @@ export function slider({
 		}
 
 		function goTo(to: number | string, instant?: boolean) {
-			var offsetSlides = loop ? slider.spryJsSliderCount : 0;
+			
 			if (!slides) return;
-			if (to === 'next') {
-				slides.scrollBy((slider as HTMLElement).offsetWidth, 0);
-			} else if (to === 'prev') {
-				slides.scrollBy(-((slides as HTMLElement).offsetWidth), 0);
-			} else {
-				slides.scrollTo({ left: (slides.children[(parseFloat(to.toString()) + offsetSlides)] as HTMLElement).offsetLeft, behavior: instant ? 'instant' : 'smooth' });
+			var scrollPosition = 0, offsetSlides = loop ? slider.spryJsSliderCount : 0, width = (slides as HTMLElement).offsetWidth;
+			if (snap) {
+				var firstChild = slider.querySelector(selectorSlides+' > :first-child');
+				if (firstChild) width = (firstChild as HTMLElement).offsetWidth;
 			}
+
+			if (to === 'next') {
+				scrollPosition = (slides.scrollLeft + width);
+			} else if (to === 'prev') {
+				scrollPosition = (slides.scrollLeft - width);
+			} else {
+				var child = slides.children[(parseFloat(to.toString()) + offsetSlides)];
+				if (child) {
+					scrollPosition = (child as HTMLElement).offsetLeft;
+				}
+			}
+
+			playStop();
+			
+			slides.scrollTo({ left: scrollPosition, behavior: instant ? 'instant' : 'smooth' });
 		}
 
 		function playPause() {
@@ -77,7 +93,7 @@ export function slider({
 
 		function playStop() {
 			if (playTimer) {
-				clearInterval(playTimer);
+				clearTimeout(playTimer);
 				playTimer = null;
 				playPause();
 			}
@@ -85,6 +101,10 @@ export function slider({
 
 		function playStart() {
 			if (play && !isPaused && document.body.contains(slider)) {
+				if (playTimer) {
+					clearTimeout(playTimer);
+					playTimer = null;
+				}
 				playTimer = setTimeout(() => {
 					if (isVisible() && !isPaused) {
 						goTo('next');
@@ -108,12 +128,27 @@ export function slider({
 			goTo('prev');
 		}
 
+		function getIndex(): number {
+			if (slides) {
+				const sliderLeft = slider.getBoundingClientRect().left;
+				for (let c = 0; c < slides.children.length; c++) {
+					var left = Math.round((slides.children[c] as HTMLElement).getBoundingClientRect().left - sliderLeft);
+					if (left >= -50 && left < slides.clientWidth) {
+						return (loop && slider && slider.spryJsSliderCount) ? ((c === slider.spryJsSliderCount * 2) ? 0 : c - slider.spryJsSliderCount) : c;
+					}
+				}
+			}
+			
+			return 0;
+		}
+
 		function sliderScroll() {
 			slider.setAttribute('data-sliding', '');
 			slider.removeAttribute('data-position');
 			if (scrollTimer) clearTimeout(scrollTimer);
 			playStop();
 			scrollTimer = setTimeout(function () {
+				if (!slider.spryJsSliderCount) return;
 				slider.removeAttribute('data-sliding');
 				resetPlay();
 				if (loop && slides) {
@@ -134,24 +169,26 @@ export function slider({
 						slider.setAttribute('data-position', 'end');
 					}
 				}
-				slider.querySelectorAll('.slider-slides > *').forEach(element => {
-					element.removeAttribute('data-first');
-					element.removeAttribute('data-last');
-					var left = Math.round(element.getBoundingClientRect().left - slider.getBoundingClientRect().left);
-					element.toggleAttribute('data-showing', (left >= 0 && left < slider.clientWidth));
-				});
+
+				const sliderLeft = slider.getBoundingClientRect().left;
+				if (slides) {
+					for (let c = 0; c < slides.children.length; c++) {
+						slides.children[c].removeAttribute('data-first');
+						slides.children[c].removeAttribute('data-last');
+						var left = Math.round(slides.children[c].getBoundingClientRect().left - sliderLeft);						
+						slides.children[c].toggleAttribute('data-showing', (left >= -50 && left < slides.clientWidth));
+					};
+				}
+
+				currentIndex = getIndex();
 				var showing = slider.querySelectorAll('[data-showing]');
-				if (showing.length) {
+				if (showing.length && currentIndex !== undefined) {
 					if (pagination && slides) {
 						pagination.querySelectorAll('.active').forEach(active => {
 							active.classList.remove('active');
 						});
-						var childIndex = Array.from(slides.children).indexOf(showing[0]);
-						if (loop) {
-							childIndex = (childIndex === slider.spryJsSliderCount * 2) ? 0 : (childIndex - slider.spryJsSliderCount);
-						}
-						if (childIndex !== undefined && pagination.children[childIndex]) {
-							pagination.children[childIndex].classList.add('active');
+						if (pagination.children[currentIndex]) {
+							pagination.children[currentIndex].classList.add('active');
 						}
 					}
 					showing[0].setAttribute('data-first', '');
@@ -214,9 +251,19 @@ export function slider({
 			resetPlay();
 		}
 
+		function removeLoop() {
+			sliderDestroy();
+		}
+
 		function sliderAddEvents() {
             if (controller) {
-				if (slides) slides.addEventListener('scroll', sliderScroll, {signal: controller.signal});
+				if (slides) {
+					slides.addEventListener('scroll', sliderScroll, {signal: controller.signal});
+					if (loop) {
+						// Needed for Fire Fox Reload
+						window.addEventListener('beforeunload', removeLoop, {signal: controller.signal});
+					}
+				}
 				if (next) next.addEventListener('click', goToNext, {signal: controller.signal});
 				if (prev) prev.addEventListener('click', goToPrev, {signal: controller.signal});
 				if (play) {
@@ -251,32 +298,73 @@ export function slider({
 			}
 		}
 
-		if (!slider.spryJsSliderCount) {
-			if (!slider.spryJsSliderCount) slider.spryJsSliderCount = slides ? slides.childElementCount : 0;
-			if (pagination && !pagination.childNodes.length && slides && slider.spryJsSliderCount) {
-				for (let index = 0; index < slider.spryJsSliderCount; index++) {
-					let btn = document.createElement("button");
-					if (index === 0) btn.classList.add('active');
-					pagination.append(btn);
+		function sliderUpdate() {
+
+			if (!slider.spryJsSliderCount) {
+				currentIndex = getIndex();
+				slider.spryJsSliderCount = slides ? slides.childElementCount : 0;
+				if (pagination && slider.spryJsSliderCount && pagination.childNodes.length !== slider.spryJsSliderCount) {
+					for (let index = 0; index < slider.spryJsSliderCount; index++) {
+						let btn = document.createElement("button");
+						if (index === currentIndex) btn.classList.add('active');
+						pagination.append(btn);
+					}
+				}
+				if (loop && slides) {
+					var block = slides.innerHTML.trim();
+					if (block) {						
+						slides.innerHTML += block + block;
+						goTo(currentIndex, true);
+					}
+				} else if (slides) {
+					slides.dispatchEvent(new CustomEvent('scroll'));
+					slider.setAttribute('data-position', 'start');
 				}
 			}
 
-			if (loop) {
-				slides.innerHTML += block + block;
-				slides.scrollTo({ left: slidesWidth, behavior: 'instant' });
-			} else {
-				slides.dispatchEvent(new CustomEvent('scroll'));
-				slider.setAttribute('data-position', 'start');
+			if (!slider.sliderGoTo) {
+				slider.sliderGoTo = goTo;
+			}
+
+			if (!slider.sliderIndex) {
+				slider.sliderIndex = currentIndex ? currentIndex : 0;
+			}
+
+			resetPlay();
+			sliderAddEvents();
+		}
+
+		function sliderDestroy() {
+			playStop();
+			if (loop && slider.spryJsSliderCount && slides && selectorSlides && slides.childElementCount > slider.spryJsSliderCount) {
+				slider.querySelectorAll(selectorSlides + '> :nth-child(-n+'+slider.spryJsSliderCount+'), '+selectorSlides + '> :nth-child(n+'+((slider.spryJsSliderCount*2)+1)+')').forEach(slide => {
+					slide.remove();
+				});
+			}
+			slider.spryJsSliderCount = 0;
+
+			if (pagination) {
+				pagination.innerHTML = '';
+			}
+
+			if (loop && slides) {
+				goTo(currentIndex ? currentIndex : 0, true);
+			}
+
+			if (slider.sliderGoTo) {
+				delete slider.sliderGoTo;
+			}
+
+			if (typeof slider.sliderIndex !== 'undefined') {
+				delete slider.sliderIndex;
 			}
 		}
 
-		resetPlay();
-		sliderAddEvents();
+		sliderUpdate();
 
 		return {
-			destroy: function() {
-				playStop();
-			}
+			update: sliderUpdate,
+			destroy: sliderDestroy,
 		}
 	}
 	
@@ -310,7 +398,7 @@ export function slider({
 		}
 		sliders = [];
     };
-
+	
 	update();
 
     return {
