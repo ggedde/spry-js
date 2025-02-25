@@ -8,27 +8,18 @@ html:has(:not(section):target) {
 }
 @keyframes blinkTarget {
 	0% {
-		box-shadow: 0 0 8px 4px rgba(20, 148, 223, 1);
+		box-shadow: 0 0 1px 1px rgba(20, 148, 223, 1);
 	}
-
-	1% {
-		box-shadow: 0 0 8px 4px rgba(20, 148, 223, .5);
-	}
-
-	2% {
-		box-shadow: 0 0 8px 4px rgba(20, 148, 223, 1);
-	}
-
-	99% {
-		box-shadow: 0 0 8px 4px rgba(20, 148, 223, 0);
+	30% {
+		box-shadow: 0 0 1px 1px rgba(20, 148, 223, 1);
 	}
 	100% {
-		box-shadow: none;
+		box-shadow: 0 0 1px 1px rgba(20, 148, 223, 0);
 	}
 }
 .code-content-container:target {
 	animation-name    : blinkTarget;
-	animation-duration: 30s;
+	animation-duration: 5s;
 }
 
 .code-content-container {
@@ -37,32 +28,62 @@ html:has(:not(section):target) {
 	gap: 0;
 }
 
-.code-content-container .copy-button {
+.code-content-container footer {
+	min-height: 47px;
+}
+
+.code-content-container:not([data-code-only]) .copy-button {
 	display: none;
 }
 
-.language-select, .note[class*="language-"] {
+.code-content-container .language-select,
+footer[class*="language-"],
+.note[class*="language-"] {
 	display: none;
 }
 
 .code-content-container:has(option[value=html]:checked) .language-select[data-language=html],
-.code-content-container:has(option[value=html]:checked) .note.language-html,
+.code-content-container:has(option[value=html]:checked) .language-html,
+.code-content-container:has(option[value=node]:checked) .language-select[data-language=node],
+.code-content-container:has(option[value=node]:checked) .language-node,
+.code-content-container:has(option[value=npm]:checked) .language-select[data-language=npm],
+.code-content-container:has(option[value=npm]:checked) .language-npm,
+.code-content-container:has(option[value=pnpm]:checked) .language-select[data-language=pnpm],
+.code-content-container:has(option[value=pnpm]:checked) .language-pnpm,
+.code-content-container:has(option[value=yarn]:checked) .language-select[data-language=yarn],
+.code-content-container:has(option[value=yarn]:checked) .language-yarn,
+.code-content-container:has(option[value=bun]:checked) .language-select[data-language=bun],
+.code-content-container:has(option[value=bun]:checked) .language-bun,
+.code-content-container:has(option[value=cdn]:checked) .language-select[data-language=cdn],
+.code-content-container:has(option[value=cdn]:checked) .language-cdn,
+.code-content-container:has(option[value=cdnLoad]:checked) .language-select[data-language=cdnLoad],
+.code-content-container:has(option[value=cdnLoad]:checked) .language-cdnLoad,
+.code-content-container:has(option[value=cdnEsm]:checked) .language-select[data-language=cdnEsm],
+.code-content-container:has(option[value=cdnEsm]:checked) .language-cdnEsm,
+.code-content-container:has(option[value=jsGlobal]:checked) .language-select[data-language=jsGlobal],
+.code-content-container:has(option[value=jsGlobal]:checked) .language-jsGlobal,
+.code-content-container:has(option[value=jsEsm]:checked) .language-select[data-language=jsEsm],
+.code-content-container:has(option[value=jsEsm]:checked) .language-jsEsm,
 .code-content-container:has(option[value=js]:checked) .language-select[data-language=js],
-.code-content-container:has(option[value=js]:checked) .note.language-js,
+.code-content-container:has(option[value=js]:checked) .language-js,
 .code-content-container:has(option[value=spryJs]:checked) .language-select[data-language=spryJs],
-.code-content-container:has(option[value=spryJs]:checked) .note.language-spryJs,
+.code-content-container:has(option[value=spryJs]:checked) .language-spryJs,
 .code-content-container:has(option[value=petiteVue]:checked) .language-select[data-language=petiteVue],
-.code-content-container:has(option[value=petiteVue]:checked) .note.language-petiteVue,
+.code-content-container:has(option[value=petiteVue]:checked) .language-petiteVue,
 .code-content-container:has(option[value=vueJs]:checked) .language-select[data-language=vueJs],
-.code-content-container:has(option[value=vueJs]:checked) .note.language-vueJs,
+.code-content-container:has(option[value=vueJs]:checked) .language-vueJs,
 .code-content-container:has(option[value=alpineJs]:checked) .language-select[data-language=alpineJs],
-.code-content-container:has(option[value=alpineJs]:checked) .note.language-alpineJs {
+.code-content-container:has(option[value=alpineJs]:checked) .language-alpineJs {
 	display: block;
+}
+
+[data-code-only] .language-select {
+	display: none !important;
 }
 
 .code-resize-handle {
     position: absolute;
-    inset: auto -3px -3px auto;
+    inset: auto -10px -3px auto;
     width: 18px;
     height: 18px;
 	margin: 0;

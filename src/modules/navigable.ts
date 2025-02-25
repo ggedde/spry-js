@@ -45,13 +45,13 @@ export function navigable({
             return;
         }
 
-        anchorSelector = dataAnchorSelector ? dataAnchorSelector : anchorSelector;
+        var listAnchorSelector = dataAnchorSelector ? dataAnchorSelector : anchorSelector;
 
         if (list === target) {
             anchorItems = [target];
         } else {
-            if (list && anchorSelector) {
-                const queryItems = list.querySelectorAll(anchorSelector);
+            if (list && listAnchorSelector) {
+                const queryItems = list.querySelectorAll(listAnchorSelector);
                 anchorItems = queryItems ? Array.from((queryItems as NodeListOf<HTMLElement>)) : [];
             }
         }
@@ -86,7 +86,14 @@ export function navigable({
         elements = typeof items === 'object' ? items : document.querySelectorAll(items);
         if (elements) {
             for (let e = 0; e < elements.length; e++) {
-                listeners.push({list: elements[e], listener: navigate.bind(elements[e])});  
+                listeners.push({list: elements[e], listener: navigate.bind(elements[e])});
+                const dataAnchorSelector = elements[e].getAttribute(anchorDataAttribute);
+                var listAnchorSelector = dataAnchorSelector ? dataAnchorSelector : anchorSelector;
+                elements[e].querySelectorAll(listAnchorSelector).forEach(anchor => {
+                    if (!['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT', 'DETAILS'].includes(anchor.tagName) && !anchor.hasAttribute('tabindex')) {
+                        anchor.setAttribute('tabindex', '0');
+                    }
+                });
             }
         }
 

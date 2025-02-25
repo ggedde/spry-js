@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="https://sprycss.local.com/spry.min.css?v=3.0.0-rc.2">
     <link rel="stylesheet" href="docs.min.css?v=3.0.0-rc.2">
 
-    <script defer src="prism.min.js?v=3.0.0-rc.2"></script>
     <!-- <script defer src="https://buttons.github.io/buttons.js"></script> -->
     <script defer src="//unpkg.com/alpinejs"></script>
     <script defer src="docs.min.js"></script>
-
+    <script defer src="prism.min.js?v=3.0.0-rc.2"></script>
+    <script defer src="spry.js?load=spryJs"></script>
 
 </head>
 
@@ -47,15 +47,40 @@
                                     </h5>
                                     <hr class="m-2">
                                 </li>
-                                <li><a href="#cookie">Cookie</a></li>
-                                <li><a href="#hash">Hash</a></li>
                                 <li><a href="#navigable">Navigable</a></li>
-                                <li><a href="#observer">Observer</a></li>
+                                <li><a href="#observe">Observe</a></li>
                                 <li><a href="#parallax">Parallax</a></li>
-                                <li><a href="#query">Query</a></li>
                                 <li><a href="#scrollspy">Scroll Spy</a></li>
-                                <li><a href="#sliders">Sliders</a></li>
-                                <li><a href="#toggles">Toggles</a></li>
+                                <li><a href="#slider">Slider</a></li>
+                                <li><a href="#toggle">Toggle</a></li>
+                                <li class="pt-3">
+                                    <a href="#cookie" class="h5 pl-2 g-2">
+                                        <svg class="icon sm mr-2" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9c0-.5-.04-1-.13-1.5C20.6 10 20 10 20 10h-2V9c0-1-1-1-1-1h-2V7c0-1-1-1-1-1h-1V4c0-1-1-1-1-1M9.5 6A1.5 1.5 0 0 1 11 7.5 1.5 1.5 0 0 1 9.5 9 1.5 1.5 0 0 1 8 7.5 1.5 1.5 0 0 1 9.5 6m-3 4A1.5 1.5 0 0 1 8 11.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 5 11.5 1.5 1.5 0 0 1 6.5 10m5 1a1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5m5 2a1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5M11 16a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 11 19a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 11 16z" /></svg>
+                                        Cookie
+                                    </a>
+                                    <hr class="m-2">
+                                </li>
+                                <li><a class="ml-2" href="#cookie.get"><code>get()</code></a></li>
+                                <li><a class="ml-2" href="#cookie.set"><code>set()</code></a></li>
+                                <li><a class="ml-2" href="#cookie.remove"><code>remove()</code></a></li>
+                                <li class="pt-3">
+                                    <a href="#hash" class="h5 pl-2 g-2">
+                                        <svg class="icon sm mr-2" viewBox="0 0 24 24"><path d="m5.41 21 .71-4h-4l.35-2h4l1.06-6h-4l.35-2h4l.71-4h2l-.71 4h6l.71-4h2l-.71 4h4l-.35 2h-4l-1.06 6h4l-.35 2h-4l-.71 4h-2l.71-4h-6l-.71 4h-2M9.53 9l-1.06 6h6l1.06-6h-6z" /></svg>
+                                        Hash
+                                    </a>
+                                    <hr class="m-2">
+                                </li>
+                                <li><a class="ml-2" href="#hash"><code>md5()</code></a></li>
+                                <li><a class="ml-2" href="#hash"><code>sha256()</code></a></li>
+                                <li class="pt-3">
+                                    <a href="#query" class="h5 pl-2 g-2">
+                                        <svg class="icon sm mr-0" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+                                        Query
+                                    </a>
+                                    <hr class="m-2">
+                                </li>
+                                <li><a class="ml-2" href="#query"><code>addClass()</code></a></li>
+                                <li><a class="ml-2" href="#query"><code>attr()</code></a></li>
                             </ul>
                         </nav>
                     </div>
@@ -133,416 +158,317 @@
                     Installation
                 </h2>
 
-                <h3 class="scroll-watch">CDN Default ESM:</h3>
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import Spry from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
-    
-    // Cookie
-    Spry.cookie.set(...);
-    Spry.cookie.get(...);
-    Spry.cookie.remove(...);
-
-    // Hash
-    Spry.hash.md5(...);
-    Spry.hash.sha256(...);
-
-    // Query
-    Spry.query(...).addClass(...);
-
-    // Load Single Components
-    Spry.navigable(...);
-    Spry.observer(...);
-    Spry.parallax(...);
-    Spry.scrollspy(...);
-    Spry.slider(...);
-    Spry.toggle(...);
-
-    // Update Single Components
-    Spry.navigableUpdate();
-    Spry.observerUpdate();
-    Spry.parallaxUpdate();
-    Spry.scrollspyUpdate();
-    Spry.sliderUpdate();
-    Spry.toggleUpdate();
-
-    // Destroy Single Components
-    Spry.navigableDestroy();
-    Spry.observerDestroy();
-    Spry.parallaxDestroy();
-    Spry.scrollspyDestroy();
-    Spry.sliderDestroy();
-    Spry.toggleDestroy();
-
-    // Load all Components
-    Spry.load();
-
-    // Update all Components
-    Spry.update();
-
-    // Destroy all Components
-    Spry.destroy();
-&lt;/script&gt;
-                        </code>
-
-                <h3 class="scroll-watch">CDN Modules ESM:</h3>
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import {
-        cookie,
-        hash,
-        query,
-        navigable,
-        observe,
-        parallax,
-        scrollspy,
-        slider,
-        toggle,
-    } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
-    
-    // Cookie
-    cookie.set(...);
-    cookie.get(...);
-    cookie.remove(...);
-
-    // Hash
-    hash.md5(...);
-    hash.sha256(...);
-
-    // Query
-    query(...).addClass(...);
-
-    // Load Components
-    navigable(...);
-    observer(...);
-    parallax(...);
-    scrollspy(...);
-    slider(...);
-    toggle(...);
-
-    // Update Components
-    const nav = navigable(...);
-    nav.update();
-
-    // Destroy Components
-    const nav = navigable(...);
-    nav.destroy();
-&lt;/script&gt;
-                        </code>
-
-                <h3 class="scroll-watch">CDN Global:</h3>
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-
-    // Ad Hoc
-    SpryJS('.selector-A').addClass('some-class-A');
-    SpryJS('.selector-B').addClass('some-class-B');
-    SpryJS.cookie.set(...);
-    SpryJS.hash.md5(...);
-
-    // Chainable
-    SpryJS('.selector-C').addClass('some-class-C').query('.selector-D').addClass('some-class-D').query('.parallax').parallax();
-
-    ///////////////////////////////
-    // Or Construct new SpryJS Object
-    const Spry = SpryJS('.selector').addClass('some-class');
-    
-    // Cookie
-    Spry.cookie.set(...);
-    Spry.cookie.get(...);
-    Spry.cookie.remove(...);
-
-    // Hash
-    Spry.hash.md5(...);
-    Spry.hash.sha256(...);
-
-    // Query
-    Spry.query(...).addClass(...);
-
-    // Load Single Components
-    Spry.navigable(...);
-    Spry.observer(...);
-    Spry.parallax(...);
-    Spry.scrollspy(...);
-    Spry.slider(...);
-    Spry.toggle(...);
-
-    // Update Single Components
-    Spry.navigableUpdate();
-    Spry.observerUpdate();
-    Spry.parallaxUpdate();
-    Spry.scrollspyUpdate();
-    Spry.sliderUpdate();
-    Spry.toggleUpdate();
-
-    // Destroy Single Components
-    Spry.navigableDestroy();
-    Spry.observerDestroy();
-    Spry.parallaxDestroy();
-    Spry.scrollspyDestroy();
-    Spry.sliderDestroy();
-    Spry.toggleDestroy();
-
-    // Load all Components
-    Spry.load();
-
-    // Update all Components
-    Spry.update();
-
-    // Destroy all Components
-    Spry.destroy();
-    
-&lt;/script&gt;
-                </code>
-
-                <h5 class="scroll-watch">CDN Global Variable Automatically Loaded:</h5>
-                Append <code class="color-primary">?load=true</code> on the script src
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=true"&gt;&lt;/script&gt;
-&lt;script&gt;
-    // SpryJS is automatically loaded.
-    
-    SpryJS.query(...).addClass(...);
-    ...
-    
-&lt;/script&gt;
-                </code>
-
-                <h5 class="scroll-watch">CDN Global Run Function:</h5>
-                Append <code class="color-primary">?run=myFunction</code> on the script src
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script&gt;
-function myFunction() {
-    SpryJS.query(...).addClass(...);
-}
-&lt;/script&gt;
-&lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?run=myFunction"&gt;&lt;/script&gt;
-                </code>
-
-                <h5 class="scroll-watch">CDN Global Defer:</h5>
-                Append <code class="color-primary">defer</code> on the script tag
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-function myFunction() {
-    SpryJS.query(...).addClass(...);
-}
-&lt;/script&gt;
-                </code>
-
-                <h5 class="scroll-watch">CDN Global Load & Defer:</h5>
-                Append <code class="color-primary">defer</code> on the script tag and <code class="color-primary">?load=true</code> on the script src
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=true"&gt;&lt;/script&gt;
-...
-&lt;div&gt;
-    &lt;img src="..." class="parallax"&gt;
-&lt;/div&gt;
-                </code>
-    
                 <h3 class="scroll-watch">Using a package manager:</h3>
                 <div class="row columns-auto items-center mt-3 ml-3">
                     <div style="width: 30px">npm</div>
                     <div class="relative span-fill">
-                        <div class="bg-surface b-1 pl-3 r-2">
-                            <code class="language-bash w block pl-3 py-3 auto sm">npm install @ggedde/spry-js</code>
-                        </div>
-                        <div class="absolute top left ml-2 pointer-none h content-center color-gray">
-                            <svg class="icon block color-gray" viewBox="0 0 24 24"><path d="M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z" /></svg>
-                        </div>
+                        <svg class="icon block color-gray absolute inset my-auto ml-3 index-1" viewBox="0 0 24 24"><path d="M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z" /></svg>
+                        <code class="language-bash w block bg-surface b-1 p-3 pl-5 r-2 auto sm">
+                            npm install @ggedde/spry-js
+                        </code>
                     </div>
                 </div>
 
                 <div class="row columns-auto items-center mt-3 ml-3">
-                    <div style="width: 30px">Yarn</div>
+                    <div style="width: 30px">yarn</div>
                     <div class="relative span-fill">
-                        <div class="bg-surface b-1 pl-3 r-2">
-                            <code class="language-bash w block pl-3 py-3 auto sm">yarn add @ggedde/spry-js</code>
-                        </div>
-                        <div class="absolute top left ml-2 pointer-none h content-center color-gray">
-                            <svg class="icon block color-gray" viewBox="0 0 24 24"><path d="M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z" /></svg>
-                        </div>
+                        <svg class="icon block color-gray absolute inset my-auto ml-3 index-1" viewBox="0 0 24 24"><path d="M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z" /></svg>
+                        <code class="language-bash w block bg-surface b-1 p-3 pl-5 r-2 auto sm">
+                            yarn add @ggedde/spry-js
+                        </code>
+                    </div>
+                </div>
+
+                <div class="row columns-auto items-center mt-3 ml-3">
+                    <div style="width: 30px">Bun</div>
+                    <div class="relative span-fill">
+                        <svg class="icon block color-gray absolute inset my-auto ml-3 index-1" viewBox="0 0 24 24"><path d="M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z" /></svg>
+                        <code class="language-bash w block bg-surface b-1 p-3 pl-5 r-2 auto sm">
+                            bun add @ggedde/spry-js
+                        </code>
                     </div>
                 </div>
 
                 <div class="row columns-auto items-center mt-3 mb-4 ml-3">
-                    <div style="width: 30px">Bun</div>
+                    <div style="width: 30px">pnpm</div>
                     <div class="relative span-fill">
-                        <div class="bg-surface b-1 pl-3 r-2">
-                            <code class="language-bash w block pl-3 py-3 auto sm">bun install @ggedde/spry-js</code>
-                        </div>
-                        <div class="absolute top left ml-2 pointer-none h content-center color-gray">
-                            <svg class="icon block color-gray" viewBox="0 0 24 24"><path d="M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z" /></svg>
-                        </div>
+                        <svg class="icon block color-gray absolute inset my-auto ml-3 index-1" viewBox="0 0 24 24"><path d="M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z" /></svg>
+                        <code class="language-bash w block bg-surface b-1 p-3 pl-5 r-2 auto sm">
+                            pnpm add @ggedde/spry-js
+                        </code>
                     </div>
                 </div>
-            </section>
 
-            <!-- COOKIE -->
-            <section id="cookie" class="bg-inherit py-0 pb-3">
-                <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
-                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9c0-.5-.04-1-.13-1.5C20.6 10 20 10 20 10h-2V9c0-1-1-1-1-1h-2V7c0-1-1-1-1-1h-1V4c0-1-1-1-1-1M9.5 6A1.5 1.5 0 0 1 11 7.5 1.5 1.5 0 0 1 9.5 9 1.5 1.5 0 0 1 8 7.5 1.5 1.5 0 0 1 9.5 6m-3 4A1.5 1.5 0 0 1 8 11.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 5 11.5 1.5 1.5 0 0 1 6.5 10m5 1a1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5m5 2a1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5M11 16a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 11 19a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 11 16z" /></svg>
-                    Cookie
-                </h2>
 
-                <h4>Using Cookie</h4>
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { cookie } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
-    
-    /**
-     * Set a Cookie
-     *
-     * @param cookieName    string - The cookie name to set
-     * @param cookieValue   any    - The value
-     * @param expireSeconds number - Number in seconds to expire. 0 = Session expire.
-     * 
-     * @returns void
-     */
-    cookie.set(cookieName: string, cookieValue: any, expireSeconds: number);
-
-    /**
-     * Get a Cookie
-     *
-     * @param cookieName string - The name of the cookie to get
-     * 
-     * @returns string
-     */
-    cookie.get(cookieName: string);
-
-    /**
-     * Remove a Cookie
-     *
-     * @param cookieName string - The cookie name to remove. This will reset the cookie to expire immediately.
-     * 
-     * @returns void
-     */
-    cookie.remove(cookieName: string);
-&lt;/script&gt;</code>                
-                
-            </section>
-
-            <!-- HASH -->
-            <section id="hash" class="bg-inherit py-0 pb-3">
-                <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
-                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="m5.41 21 .71-4h-4l.35-2h4l1.06-6h-4l.35-2h4l.71-4h2l-.71 4h6l.71-4h2l-.71 4h4l-.35 2h-4l-1.06 6h4l-.35 2h-4l-.71 4h-2l.71-4h-6l-.71 4h-2M9.53 9l-1.06 6h6l1.06-6h-6z" /></svg>
-                    Hash
-                </h2>
-
-                <div class="alert warning link mb-2 pl-0">
-                    <svg class="icon ml-n1" viewBox="0 0 24 24"><path d="M11 4h2v11h-2V4zm2 14v2h-2v-2h2z" /></svg> SpryJS Hash is not for encryption or secured data. If you need to ensure data safety or a stronger digest then you may want to look at <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto">SubtleCrypto</a> 
+                <!-- Using a Package Manager -->
+                <h3 id="observe.api" class="flex mt-4 mb-2">
+                    <a id="observe.api" href="#observe.api" class="color-inherit">Using a Package Manager</a>
+                    <div class="items-center inline-flex ml-3 xs">
+                        <div class="bg-primary bg-to-success r-1">
+                            <div class="b-1 r-1 border/0">
+                                <select class="language-selector sm bg-theme b-0 pr-4 pl-3 py-1 border/10 border-success" onchange="SpryJsDocs.loadSingleCodeContainers(null, this.value)">
+                                    <option value="npm">npm</option>
+                                    <option value="yarn">yarn</option>
+                                    <option value="pnpm">pnpm</option>
+                                    <option value="bun">Bun</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </h3>
+                <div class="installer-select" data-language="npm">
+                    <div class="relative span-fill">
+                        <svg class="icon block color-gray absolute inset my-auto ml-3 index-1" viewBox="0 0 24 24"><path d="M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z" /></svg>
+                        <code class="language-bash w block bg-surface b-1 p-3 pl-5 r-2 auto sm">
+                            npm install @ggedde/spry-js
+                        </code>
+                    </div>
                 </div>
-                <h5>SpryJS Hash is for basic hashing and requires unicode safe characters. Objects will be converted to JSON strings before they are hashed.</h5>
-                <h4>Using Hash</h4>
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { hash } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
-    
-    /**
-     * Get an MD5 hash
-     *
-     * @param inputString: string | number | object - The value to hash. Objects will be converted to JSON strings before they are hashed.
-     * 
-     * @returns string
-     */
-    const myHash = hash.md5(inputString: string | number | object);
+                <div class="installer-select" data-language="yarn">
+                    <div class="relative span-fill">
+                        <svg class="icon block color-gray absolute inset my-auto ml-3 index-1" viewBox="0 0 24 24"><path d="M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z" /></svg>
+                        <code class="language-bash w block bg-surface b-1 p-3 pl-5 r-2 auto sm">
+                            yarn add @ggedde/spry-js
+                        </code>
+                    </div>
+                </div>
+                <div class="installer-select" data-language="pnpm">
+                    <div class="relative span-fill">
+                        <svg class="icon block color-gray absolute inset my-auto ml-3 index-1" viewBox="0 0 24 24"><path d="M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z" /></svg>
+                        <code class="language-bash w block bg-surface b-1 p-3 pl-5 r-2 auto sm">
+                            pnpm add @ggedde/spry-js
+                        </code>
+                    </div>
+                </div>
+                <div class="installer-select" data-language="bun">
+                    <div class="relative span-fill">
+                        <svg class="icon block color-gray absolute inset my-auto ml-3 index-1" viewBox="0 0 24 24"><path d="M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z" /></svg>
+                        <code class="language-bash w block bg-surface b-1 p-3 pl-5 r-2 auto sm">
+                            bun add @ggedde/spry-js
+                        </code>
+                    </div>
+                </div>
 
-    /**
-     * Get an SHA-256 hash
-     *
-     * @param inputString: string | number | object - The value to hash. Objects will be converted to JSON strings before they are hashed.
-     * 
-     * @returns string
-     */
-     const myHash = hash.sha256(inputString: string | number | object);
-&lt;/script&gt;</code>                
-                
+
+                <!-- Using the CDN ES Module Build -->
+                <h3 id="observe.api" class="flex mt-4 mb-2">
+                    <a id="observe.api" href="#observe.api" class="color-inherit">Using the CDN ES Module Build</a>
+                </h3>
+                <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm">
+                    &lt;script type="module"&gt;
+                        import SpryJS from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                    &lt;/script&gt;
+                </code>
+
+                <!-- Using the CDN ES Module Build -->
+                <h3 id="observe.api" class="flex mt-4 mb-2">
+                    <a id="observe.api" href="#observe.api" class="color-inherit">Using the CDN Global Build</a>
+                </h3>
+                <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm">
+                    &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                </code>
+
+                <h4 class="mt-3 mb-1"><a id="navigable.update" href="#navigable.update" class="color-inherit">Global Build Query Param Options</a></h4>
+                <h4 class="color-primary mt-3 mb-1"><a id="navigable.update" href="#navigable.update">load</a></h4>
+                <p class="note mt-1 mb-2">Add <code class="color-primary">load={yourVariableName}</code> to the script src to automatically load SpryJS to a variable and initialize components with default options.</p>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">
+                    &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                    &lt;button onclick="spryJs.query('.something').toggleClass('open')"&gt;
+                        Click Me
+                    &lt;/button&gt;
+                </code>
+
+                <h4 class="color-primary mt-3 mb-1"><a id="navigable.update" href="#navigable.update">run</a></h4>
+                <p class="note mt-1 mb-2">Add <code class="color-primary">run={yourFunctionName}</code> to the script src to automatically load SpryJS to a variable and initialize components with default options.</p>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm mb-5">
+                    &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?run=myFunction"&gt;&lt;/script&gt;
+                    &lt;script&gt;
+                    function myFunction() {
+                        SpryJS('.something').addClass('open');
+                    }
+                    &lt;/script&gt;
+                </code>
+    
             </section>
 
             <!-- NAVIGABLE -->
             <section id="navigable" class="bg-inherit py-0 pb-3">
                 <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
-                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M9.5,13.09L10.91,14.5L6.41,19H10V21H3V14H5V17.59L9.5,13.09M10.91,9.5L9.5,10.91L5,6.41V10H3V3H10V5H6.41L10.91,9.5M14.5,13.09L19,17.59V14H21V21H14V19H17.59L13.09,14.5L14.5,13.09M13.09,9.5L17.59,5H14V3H21V10H19V6.41L14.5,10.91L13.09,9.5Z" /></svg>
-                    Navigable
+                    <a href="#navigable" class="color-inherit flex items-center">
+                        <svg class="icon mr-2" viewBox="0 0 24 24"><path d="M9.5,13.09L10.91,14.5L6.41,19H10V21H3V14H5V17.59L9.5,13.09M10.91,9.5L9.5,10.91L5,6.41V10H3V3H10V5H6.41L10.91,9.5M14.5,13.09L19,17.59V14H21V21H14V19H17.59L13.09,14.5L14.5,13.09M13.09,9.5L17.59,5H14V3H21V10H19V6.41L14.5,10.91L13.09,9.5Z" /></svg>
+                        Navigable
+                    </a>
                 </h2>
 
-                <h5>This allows <code class="color-primary">&lt;a&gt;</code> and <code class="color-primary">&lt;button&gt;</code> to be Navigable via the Keyboard Arrow keys and clickable via the Keyboard Space and Enter keys. It also adds ability to use the Escape key to ignore focus.</h5>
+                <h5>Navigable allows <code class="color-primary">&lt;a&gt;</code> and <code class="color-primary">&lt;button&gt;</code> to be navigable via the keyboard arrow keys and clickable via the keyboard space and enter keys. It also adds ability to use the escape key to ignore focus.</h5>
 
-                <article class="show-code" data-title="Loading Navigable">
-                    <div class="language-select" data-language="jsGlobal"><code class="language-html">
-&lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
-</code>
+                <!-- Usage -->
+                <h3 class="mt-4"><a id="navigable.usage" href="#navigable.usage" class="color-inherit">Usage</a></h3>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm mb-4">
+                    &lt;nav class="navigable"&gt;
+                        &lt;ul&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Link 1&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Link 2&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Link 3&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/nav&gt;
+                </code>
+
+                <h3 id="navigable.api" class="flex mt-4">
+                    <a id="navigable.api" href="#navigable.api" class="color-inherit">API</a>
+                    <div class="items-center inline-flex ml-3 xs">
+                        <div class="bg-primary bg-to-success r-1">
+                            <div class="b-1 r-1 border/0">
+                                <select class="language-selector sm bg-theme b-0 pr-4 pl-3 py-1 border/10 border-success" onchange="SpryJsDocs.loadCodeContainer(this, true)">
+                                    <option value="cdnLoad">CDN Auto Loaded</option>
+                                    <option value="cdn">CDN Custom</option>
+                                    <option value="cdnEsm">CDN ESM</option>
+                                    <option value="node">Node</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="language-select" data-language="jsEsm">
+                </h3>
+
+                <!-- Initiate -->
+                <h4 class="color-primary mb-1"><a id="navigable.initiate" href="#navigable.initiate">Initiate</a></h4>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-html block w auto bg-surface b-1 rt-2 p-3 sm">
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                    </code>
+                    <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/5">
+                        <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
+                    </div>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script&gt;
+                            var spryObj = SpryJS('.navigable').navigable();
+                        &lt;/script&gt;
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">
                         &lt;script type="module"&gt;
-import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
-&lt;/script&gt;
-                    </div>
-                </article>
+                            import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                            const obj = navigable();
+                        &lt;/script&gt;
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        import { navigable } from 'spry-js';
+                        const obj = navigable();
+                    </code>
+                </div>
 
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
-    navigable();
-    // or
-    navigable('.navigable', {
-        anchorSelector: 'a, button, input, [tabindex]'
-    });
-&lt;/script&gt;</code>
+                <!-- Update -->
+                <h4 class="color-primary mt-3 mb-1"><a id="navigable.update" href="#navigable.update">Update</a></h4>
+                <p class="note mt-1 mb-2">This allows you to update the objects after Dom changes have been made without duplicating the event listeners. Useful with page builders and other dynamic Dom loading applications.</p>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        // Update Objects
+                        spryJs.navigableUpdate();
 
-                <p class="note">* navigable() can be called multiple times without creating duplicated event listeners and other side effects. It will ignore any pre-registered elements. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
-                
-                <h5 class="mt-3">Example:</h5>
+                        // OR Update All Components
+                        spryJs.update();
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        // Update Objects
+                        spryObj.navigableUpdate();
 
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm mb-4">&lt;nav class="navigable"&gt;
-    &lt;ul&gt;
-        &lt;li&gt;&lt;a href="#"&gt;Link 1&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#"&gt;Link 2&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#"&gt;Link 3&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/nav&gt;</code>
+                        // OR Update All Components
+                        spryObj.update();
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        obj.update();
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        obj.update();
+                    </code>
+                </div>
 
+                <!-- Destroy -->
+                <h4 class="color-primary mt-3 mb-1"><a id="navigable.destroy" href="#navigable.destroy">Destroy</a></h4>
+                <p class="note mt-1 mb-2">This allows you to remove all event listeners and added functionality for the objects.</p>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        // Destroy Objects
+                        spryJs.navigableDestroy();
+
+                        // OR Destroy All Components
+                        spryJs.destroy();
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        // Destroy Objects
+                        spryObj.navigableDestroy();
+
+                        // OR Destroy All Components
+                        spryObj.destroy();
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        obj.destroy();
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        obj.destroy();
+                    </code>
+                </div>
+
+                <!-- Options -->
+                <h3 id="navigable.options" class="mt-4"><a id="navigable.options" href="#navigable.options" class="color-inherit">Options</a></h3>
                 <table class="mb-3 md:responsive">
-                    <thead>
-                        <tr>
-                            <th width="190"><h4>Arguments</h4></th>
-                            <th></th>
-                        </tr>
-                    </thead>
                     <tbody>
                         <tr>
-                            <td><code class="color-primary">selector</code><code class="color-gray">?: string</code></td>
-                            <td>
-                                Class Name for navigable items.<br>
-                                <code class="color-gray">default:</code> <code class="color-primary">".navigable"</code>
-                                <p>This will capture keyboard events within this element and navigate between the anchors</p>
+                            <td colspan="2" class="px-0 b-0 pt-0">
+                                <code class="language-js block w auto bg-surface b-1 r-2 p-3 sm my-3 mt-0">
+                                    navigable({
+                                        items: '.navigable',
+                                        anchorSelector: 'a, button, input, [tabindex]',
+                                        anchorDataAttribute: 'data-navigable-anchors',
+                                    });
+                                </code>
                             </td>
                         </tr>
                         <tr>
-                            <td><code class="color-primary">options</code><code class="color-gray">?: object</code></td>
+                            <td class="bt-0"><code class="color-primary">items</code><code class="color-gray">?: string | Element[]</code></td>
+                            <td class="bt-0">
+                                <p>Selector or array of Elements for navigable containers. This will capture keyboard events within this element and navigate between the anchors.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">".navigable"</code></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">anchorSelector</code><code class="color-gray">?: string</code></td>
                             <td>
-                                <ul>
-                                    <li>
-                                        <code class="color-primary">anchorSelector</code><code class="color-gray">?: string</code><br>
-                                        <p>Selector for tracking navigable items within the container.</p>
-                                        <code class="color-gray">default:</code> <code class="color-primary">"a, button, input, [tabindex]"</code>
-                                    </li>
-                                </ul>
+                                <p>Selector Name for anchor items within the Navigable container. Which items within the Navigable container you wont to be able to navigate through.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"a, button, input, [tabindex]"</code></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">anchorDataAttribute</code><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>Data attribute for custom anchor selector. This will allow overriding the <code class="color-primary">anchorSelector</code> for this container.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-navigable-anchors"</code></p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
-                <table class="mb-3">
-                    <thead>
-                        <tr>
-                            <th width="190"><h4>Data Attributes</h4></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code class="color-primary">data-navigable-anchors</code></td>
-                            <td>
-                                <p>Selector for tracking navigable items within the navigable container.</p>
-                                <p>This will override the default options.</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="show-code" data-title="Navigable Nav">
+                <!-- Examples -->
+                <h3 class="mt-4"><a id="navigable.examples" href="#navigable.examples" class="color-inherit">Examples</a></h3>
+                <article class="show-code" data-object="navigable.example" data-title="Basic Navigable Nav">
                     <nav class="navigable">
                         <ul class="column">
                             <li><button>Button 1</button></li>
@@ -551,71 +477,193 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
                             <li><button onclick="alert('Button 4 Clicked')">Button 4 Click me with Space or Enter</button></li>
                         </ul>
                     </nav>
+                </article>
 
-                    
-                </div>
+                <article class="show-code mb-5" data-object="navigable.example" data-title="Custom Navigable Anchors">
+                    <nav class="navigable" data-navigable-anchors=".my-item">
+                        <ul class="column">
+                            <li class="my-item p-2">Item 1</li>
+                            <li class="my-item p-2">Item 2</li>
+                            <li class="my-item p-2">Item 3</li>
+                            <li class="my-item p-2" onclick="alert('Item 4 Clicked')">Item 4</li>
+                        </ul>
+                    </nav>
+                </article>
+
             </section>
 
-            <!-- OBSERVER -->
-            <section id="observer" class="bg-inherit py-0 pb-3">
+            <!-- OBSERVE -->
+            <section id="observe" class="bg-inherit py-0 pb-3">
                 <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
-                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z" /></svg>
-                    Observer
+                    <a href="#observe" class="color-inherit flex items-center">
+                        <svg class="icon mr-2" viewBox="0 0 24 24"><path d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z" /></svg>
+                        Observe
+                    </a>
                 </h2>
 
-                <h5>Loading Observer</h5>
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { observer } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
-    observer({options});
-&lt;/script&gt;</code>
+                <!-- Usage -->
+                <h3 class="mt-4"><a id="observe.usage" href="#observe.usage" class="color-inherit">Usage</a></h3>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm mb-4">
+                    &lt;div class="observe"&gt;&lt;/div&gt;
+                </code>
 
-                <p class="note">* observer() can be called multiple times without creating duplicated event listeners and other side effects. it will ignore any pre-registered elements. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
-                
-                <h5 class="mt-3">Example:</h5>
+                <h3 id="observe.api" class="flex mt-4">
+                    <a id="observe.api" href="#observe.api" class="color-inherit">API</a>
+                    <div class="items-center inline-flex ml-3 xs">
+                        <div class="bg-primary bg-to-success r-1">
+                            <div class="b-1 r-1 border/0">
+                                <select class="language-selector sm bg-theme b-0 pr-4 pl-3 py-1 border/10 border-success" onchange="SpryJsDocs.loadCodeContainer(this, true)">
+                                    <option value="cdnLoad">CDN Auto Loaded</option>
+                                    <option value="cdn">CDN Custom</option>
+                                    <option value="cdnEsm">CDN ESM</option>
+                                    <option value="node">Node</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </h3>
 
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;!-- Observe Element --&gt;
-&lt;div class="observe"&gt;
-    ...
-&lt;/div&gt;</code>
+                <!-- Initiate -->
+                <h4 class="color-primary mb-1"><a id="observe.initiate" href="#observe.initiate">Initiate</a></h4>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-html block w auto bg-surface b-1 rt-2 p-3 sm">
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                    </code>
+                    <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/5">
+                        <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
+                    </div>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script&gt;
+                            var spryObj = SpryJS('.observe').observe();
+                        &lt;/script&gt;
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">
+                        &lt;script type="module"&gt;
+                            import { observe } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                            const obj = observe();
+                        &lt;/script&gt;
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        import { observe } from 'spry-js';
+                        const obj = observe();
+                    </code>
+                </div>
 
-                <table class="mb-3">
-                    <thead>
-                        <tr>
-                            <th width="190"><h4>Options</h4></th>
-                            <th></th>
-                        </tr>
-                    </thead>
+                <!-- Update -->
+                <h4 class="color-primary mt-3 mb-1"><a id="observe.update" href="#observe.update">Update</a></h4>
+                <p class="note mt-1 mb-2">This allows you to update the objects after Dom changes have been made without duplicating the event listeners. Useful with page builders and other dynamic Dom loading applications.</p>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        // Update Objects
+                        spryJs.observeUpdate();
+
+                        // OR Update All Components
+                        spryJs.update();
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        // Update Objects
+                        spryObj.observeUpdate();
+
+                        // OR Update All Components
+                        spryObj.update();
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        obj.update();
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        obj.update();
+                    </code>
+                </div>
+
+                <!-- Destroy -->
+                <h4 class="color-primary mt-3 mb-1"><a id="observe.destroy" href="#observe.destroy">Destroy</a></h4>
+                <p class="note mt-1 mb-2">This allows you to remove all event listeners and added functionality for the objects.</p>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        // Destroy Objects
+                        spryJs.observeDestroy();
+
+                        // OR Destroy All Components
+                        spryJs.destroy();
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        // Destroy Objects
+                        spryObj.observeDestroy();
+
+                        // OR Destroy All Components
+                        spryObj.destroy();
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        obj.destroy();
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        obj.destroy();
+                    </code>
+                </div>
+
+                <!-- Options -->
+                <h3 id="observe.options" class="mt-4"><a id="observe.options" href="#observe.options" class="color-inherit">Options</a></h3>
+                <table class="mb-3 md:responsive">
                     <tbody>
                         <tr>
-                            <td><code class="color-primary">classObserve</code></td>
-                            <td>
-                                Class Name for elements to be observed.<br>
-                                <code class="color-gray">default:</code> <code class="color-primary">observe</code>
-                                <p>The observer will watch for these elements to be visible in the viewport.</p>
+                            <td colspan="2" class="px-0 b-0 pt-0">
+                                <code class="language-js block w auto bg-surface b-1 r-2 p-3 sm my-3 mt-0">
+                                    observe({
+                                        items: '.observe',
+                                        classObserving: 'observing',
+                                        classObserved: 'observed',
+                                        rootMargin: '0px 0px 0px 0px',
+                                        threshold: 0,
+                                        delay: 100,
+                                    });
+                                </code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="bt-0"><code class="color-primary">items</code><code class="color-gray">?: string | Element[]</code></td>
+                            <td class="bt-0">
+                                <p>Selector or array of Elements to watch in the observer.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">".observe"</code></p>
                             </td>
                         </tr>
                         <tr>
                             <td><code class="color-primary">classObserving</code></td>
                             <td>
-                                Class that gets toggled when elements are visible within the viewport.<br>
-                                <code class="color-gray">default:</code> <code class="color-primary">observing</code>
-                                <p>The observer will add this class for these elements that are currently visible in the viewport.</p>
+                                <p>Class that gets toggled when elements are visible within the viewport.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">observing</code></p>
                             </td>
                         </tr>
                         <tr>
                             <td><code class="color-primary">classObserved</code></td>
                             <td>
-                                Class that gets added when elements become visible within the viewport.<br>
-                                <code class="color-gray">default:</code> <code class="color-primary">observed</code>
-                                <p>This class gets added when the element becomes visible within the viewport. This class does not get removed.</p>
+                                <p>Class that gets added when elements become visible within the viewport, but does not get removed.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">observed</code></p>
                             </td>
                         </tr>
                         <tr>
                             <td><code class="color-primary">rootMargin</code></td>
                             <td>
-                                Bounding box before computing intersections. Negative values will shrink the bounding box. Each side value is required.<br>
-                                <code class="color-gray">default:</code> <code class="color-primary">0px 0px 0px 0px</code>
-                                <br>
+                                <p>Bounding box before computing intersections. Negative values will shrink the bounding box.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">0px 0px 0px 0px</code></p>
                                 <a class="mt-3 ml-n3 button primary link sm" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#rootmargin">
                                     Learn more about rootMargin
                                     <svg class="icon" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z" /></svg>
@@ -625,9 +673,8 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
                         <tr>
                             <td><code class="color-primary">threshold</code></td>
                             <td>
-                                Either a single number from 0 - 1 or an array of numbers which indicate at what percentage of the target's visibility the observer's callback should be executed.<br>
-                                <code class="color-gray">default:</code> <code class="color-primary">0</code>
-                                <br>
+                                <p>Either a single number from 0 - 1 or an array of numbers which indicate at what percentage of the target's visibility the observer's callback should be executed.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">0</code></p>
                                 <a class="mt-3 ml-n3 button primary link sm" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#threshold">
                                     Learn more about threshold
                                     <svg class="icon" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z" /></svg>
@@ -637,48 +684,38 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
                         <tr>
                             <td><code class="color-primary">delay</code></td>
                             <td>
-                                Delay in milliseconds before the Observer acknowledges the observed element.<br>
-                                <code class="color-gray">default:</code> <code class="color-primary">100</code>
-                                <p>If multiple elements are observed at the same time then the delay will be stacked by the element index</p>
+                                <p>Delay in milliseconds before the Observer acknowledges the observed element.
+                                If multiple elements are observed at the same time then the delay will be stacked by the element index.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">100</code></p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
-                <div class="show-code" data-title="Observe">
-                    <div class="row observe-example columns-3">
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
-                        <div class="opacity/0 scale/5 transition b-1 bg-primary bg/2 square"></div>
+                <!-- Examples -->
+                <h3 class="mt-4"><a id="observe.examples" href="#observe.examples" class="color-inherit">Examples</a></h3>
+                <article class="show-code" id="observe.example.1" data-title="Observing Items">
+                    <style>
+                        .observing {
+                            opacity: 1;
+                            scale: 1;
+                        }
+                    </style>
+                    <div class="row columns-3">
+                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
                     </div>
-                </div>
+                </article>
 
             </section>
 
@@ -761,19 +798,19 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
                 </table>
 
                 <!-- cspell:disable-next-line -->
-                <div class="show-code" data-title="Parallax" data-footer-note="Photo by &lt;a href='https://unsplash.com/@joelfilip?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Joel Filipe&lt;/a&gt;">
+                <article class="show-code" data-title="Parallax" data-footer-note="Photo by &lt;a href='https://unsplash.com/@joelfilip?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Joel Filipe&lt;/a&gt;">
                     <div class="max-h-200 md:max-h-400 hidden  bbbb">
                         <img class="parallax cover" src="img.webp">
                     </div>
-                </div>
+                </article>
                 
-                <div class="show-code" data-title="Parallax Horizontal and Inverted Direction" data-footer-note="Photo by &lt;a href='https://unsplash.com/@kitera?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Kitera Dent&lt;/a&gt;">
+                <article class="show-code" data-title="Parallax Horizontal and Inverted Direction" data-footer-note="Photo by &lt;a href='https://unsplash.com/@kitera?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Kitera Dent&lt;/a&gt;">
                     <div class="hidden">
                         <img class="parallax cover" data-parallax-horizontal data-parallax-invert style="min-width: 150vw;" src="img-wide.webp">
                     </div>
-                </div>
+                </article>
 
-                <div class="show-code" data-title="Parallax Div Contents">
+                <article class="show-code" data-title="Parallax Div Contents">
                     <div class="max-h-100 hidden">
                         <div class="parallax" data-parallax-invert>
                             <p>1111111</p>
@@ -788,190 +825,16 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
                             <p>0000000</p>
                         </div>
                     </div>
-                </div>
+                </article>
                 <!-- cspell:disable-next-line -->
-                <div class="show-code" data-title="Parallax Background Image" data-footer-note="Photo by &lt;a href='https://unsplash.com/@janbehnisch?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Jan Behnisch&lt;/a&gt;">
+                <article class="show-code" data-title="Parallax Background Image" data-footer-note="Photo by &lt;a href='https://unsplash.com/@janbehnisch?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Jan Behnisch&lt;/a&gt;">
                     <div class="parallax cover p-4" data-parallax-background style="background-image: url('img2.webp');">
                         <!-- cspell:disable-next-line -->
                         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
                         <!-- cspell:disable-next-line -->
                         <p>Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
                     </div>
-                </div>
-
-            </section>
-
-            <!-- QUERY -->
-            <section id="query" class="bg-inherit py-0 pb-3">
-                <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
-                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
-                    Query
-                </h2>
-
-                <h5>The query object is a simple lightweight tool to help you with some basic dom manipulations.<br>Query is only intended for collections and not single items.</h5>
-
-                <h4>Using Query</h4>
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
-    
-    // Add Class and Attribute to Elements
-    query('.selector').addClass('stuff').attr('data-stuff', 'things');
-
-    // Loop Elements
-    query('.selector').each((el, index) => {
-        console.log(index, el);
-    });
-
-    // Add Click Events
-    query('.selector').on('click', (el, index, event) => {
-        console.log(index, el, event);
-    });
-
-    // Get Elements
-    var q = query('.selector');
-    console.log(q.elements);
-
-&lt;/script&gt;</code>
-
-                <h4>Return Values</h4>
-
-                <code class="language-js block w auto bg-surface b-1 r-2 p-3 sm">// Collection
-{
-    elements,
-    ...methods
-}</code>
-
-                <p class="note">* Methods can be chained as the response always returns the updated collection.</p>
-                <table class="mb-3 mt-3 border-faint md:responsive">
-                    <thead>
-                        <tr>
-                            <th width="210"><h4>Query Methods</h4></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <code class="color-primary">nth(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">n?</code>: number</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>
-                                Returns a new collection with only the matching element.<br>
-                                <code class="color-primary">{n}</code> Can be negative for reverse lookup
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">first()</code><br>
-                            </td>
-                            <td>Returns a new collection with only the first element.<br>Is alias of <code class="color-primary">nth(1)</code></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">last()</code><br>
-                            </td>
-                            <td>Returns a new collection with only the last element.<br>Is alias of <code class="color-primary">nth(-1)</code></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">slice(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">start</code>: number</span>,<br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">end?</code>: number</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>
-                                Returns a new collection from the start and end.<br>
-                                <code class="color-primary">start</code> and <code class="color-primary">end</code> can be negative for reverse lookup
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code class="color-primary">each(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">callback</code>: Callable</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Loops through each element found in the collection and runs the callback.<br>The callback will provide the (element, index) of each item in the collection.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">toggleClass(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">className</code>: string</span>,<br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">force?</code>: boolean</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Toggles the class of each element found in the collection.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">addClass(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">className</code>: string</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Adds the class to each element found in the collection.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">removeClass(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">className</code>: string</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Removes the class from each element found in the collection.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">toggleAttr(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">attributeName</code>: string</span>,<br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">force?</code>: boolean</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Toggles the attribute of each element found in the collection.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">attr(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">attributeName</code>: string</span>,<br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">attributeValue</code>: string</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Sets the attribute of each element found in the collection.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">removeAttr(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">attributeName</code>: string</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Removes the attribute from each element found in the collection.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">on(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">action</code>: string</span>,<br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">callback</code>: Callable <code class="color-primary">(</code><br>
-                                    <span class="color-gray ml-5"><code class="color-primary">element?</code>: Element</span>,<br>
-                                    <span class="color-gray ml-5"><code class="color-primary">index?</code>: number</span>,<br>
-                                    <span class="color-gray ml-5"><code class="color-primary">event?</code>: Event</span>
-                                    <br><code class="color-primary ml-4">)</code>
-                                </span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Adds an event listener to each element found in the collection.<br>
-                                The <code class="color-primary">action</code> must be a compatible event type with <span class="color-gray">addEventlistener</span>.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">off(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">action</code>: string</span><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">listener</code>: Callable</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Removes an event listener on each element found in the collection.<br>
-                            The <code class="color-primary">action</code> must be a compatible event type with <span class="color-gray">addEventlistener</span>.<br>
-                            The <code class="color-primary">listener</code> must be a compatible with <span class="color-gray">EventListenerOrEventListenerObject</span>.</td>
-                        </tr>
-                    </tbody>
-                </table>
+                </article>
 
             </section>
 
@@ -1160,15 +1023,15 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
                 
             </section>
             
-            <!-- SLIDERS -->
-            <section id="sliders" class="bg-inherit py-0 pb-3 mt-4">
+            <!-- SLIDER -->
+            <section id="slider" class="bg-inherit py-0 pb-3 mt-4">
                 <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
                     <i class="icon mr-1">
                         <svg viewBox="0 0 24 24"><path d="M9,11H15V8L19,12L15,16V13H9V16L5,12L9,8V11M2,20V4H4V20H2M20,20V4H22V20H20Z" /></svg>
                     </i>
-                    Sliders
+                    Slider
                 </h2>
-                <h5>These are basic lightweight sliders. If you are looking for something more robust, you might want to check out <a
+                <h5>These are basic lightweight slider. If you are looking for something more robust, you might want to check out <a
                         target="_blank" href="https://swiperjs.com">Swiper</a> or <a target="_blank" href="https://glidejs.com">Glide</a>
                 </h5>
                 
@@ -1373,18 +1236,18 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
                 </div>
             </section>
             
-            <!-- TOGGLES -->
-            <section id="toggles" class="bg-inherit py-0 pb-6">
+            <!-- TOGGLE -->
+            <section id="toggle" class="bg-inherit py-0 pb-6">
                 <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
                     <i class="icon mr-1">
                         <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M7,10L12,15L17,10H7Z" /></svg>
                     </i>
-                    Toggles
+                    Toggle
                 </h2>
 
-                <h5>Toggles are a way to toggle an element <b>ON</b> or <b>OFF</b></h5>
+                <h5>Toggle are a way to toggle an element <b>ON</b> or <b>OFF</b></h5>
 
-                <h5>Loading Toggles</h5>
+                <h5>Loading Toggle</h5>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
     import { toggle } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
     toggle({options});
@@ -1591,6 +1454,378 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
                 </div>
             </section>
 
+            <!-- COOKIE -->
+            <section class="bg-inherit py-0 pb-3">
+                <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
+                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9c0-.5-.04-1-.13-1.5C20.6 10 20 10 20 10h-2V9c0-1-1-1-1-1h-2V7c0-1-1-1-1-1h-1V4c0-1-1-1-1-1M9.5 6A1.5 1.5 0 0 1 11 7.5 1.5 1.5 0 0 1 9.5 9 1.5 1.5 0 0 1 8 7.5 1.5 1.5 0 0 1 9.5 6m-3 4A1.5 1.5 0 0 1 8 11.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 5 11.5 1.5 1.5 0 0 1 6.5 10m5 1a1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5m5 2a1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5M11 16a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 11 19a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 11 16z" /></svg>
+                    Cookie
+                </h2>
+
+                <article id="cookie" class="show-code" data-code-only data-title="Using Cookie" data-language-sync>
+                    <div class="language-select" data-language="cdnLoad">
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                    </div>
+                    <div class="language-select" data-language="cdn">
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                    </div>
+                    <div class="language-select" data-language="cdnEsm">
+                        &lt;script type="module"&gt;
+                            import { cookie } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                        &lt;/script&gt;
+                    </div>
+                    <div class="language-select" data-language="node">
+                        import { cookie } from 'spry-js';
+                    </div>
+                </article>
+
+                <article id="cookie.get" class="show-code" data-code-only data-title="get()">
+                    <div class="language-select" data-language="cdnLoad">
+                        /**
+                         * Get a Cookie
+                         *
+                         * @param cookieName string - The name of the cookie to get
+                         * 
+                         * @returns string
+                         */
+                        spryJs.cookie.get(cookieName: string);
+                    </div>
+                    <div class="language-select" data-language="cdn">
+                        /**
+                         * Get a Cookie
+                         *
+                         * @param cookieName string - The name of the cookie to get
+                         * 
+                         * @returns string
+                         */
+                        SpryJS.cookie.get(cookieName: string);
+                    </div>
+                    <div class="language-select" data-language="cdnEsm">
+                        /**
+                         * Get a Cookie
+                         *
+                         * @param cookieName string - The name of the cookie to get
+                         * 
+                         * @returns string
+                         */
+                        cookie.get(cookieName: string);
+                    </div>
+                    <div class="language-select" data-language="node">
+                        /**
+                         * Get a Cookie
+                         *
+                         * @param cookieName string - The name of the cookie to get
+                         * 
+                         * @returns string
+                         */
+                        cookie.get(cookieName: string);
+                    </div>
+                </article>
+
+                <article id="cookie.set" class="show-code" data-code-only data-title="set()">
+                    <div class="language-select" data-language="cdnLoad">
+                        /**
+                         * Set a Cookie
+                         *
+                         * @param cookieName    string - The cookie name to set
+                         * @param cookieValue   any    - The value
+                         * @param expireSeconds number - Number in seconds to expire. 0 = Session expire.
+                         * 
+                         * @returns void
+                         */
+                        spryJs.cookie.set(cookieName: string, cookieValue: any, expireSeconds: number);
+                    </div>
+                    <div class="language-select" data-language="cdn">
+                        /**
+                         * Set a Cookie
+                         *
+                         * @param cookieName    string - The cookie name to set
+                         * @param cookieValue   any    - The value
+                         * @param expireSeconds number - Number in seconds to expire. 0 = Session expire.
+                         * 
+                         * @returns void
+                         */
+                        SpryJS.cookie.set(cookieName: string, cookieValue: any, expireSeconds: number);
+                    </div>
+                    <div class="language-select" data-language="cdnEsm">
+                        /**
+                         * Set a Cookie
+                         *
+                         * @param cookieName    string - The cookie name to set
+                         * @param cookieValue   any    - The value
+                         * @param expireSeconds number - Number in seconds to expire. 0 = Session expire.
+                         * 
+                         * @returns void
+                         */
+                        cookie.set(cookieName: string, cookieValue: any, expireSeconds: number);
+                    </div>
+                    <div class="language-select" data-language="node">
+                        /**
+                         * Set a Cookie
+                         *
+                         * @param cookieName    string - The cookie name to set
+                         * @param cookieValue   any    - The value
+                         * @param expireSeconds number - Number in seconds to expire. 0 = Session expire.
+                         * 
+                         * @returns void
+                         */
+                        cookie.set(cookieName: string, cookieValue: any, expireSeconds: number);
+                    </div>
+                </article>
+
+                <article id="cookie.remove" class="show-code" data-code-only data-title="remove()">
+                    <div class="language-select" data-language="cdnLoad">
+                        /**
+                         * Remove a Cookie
+                         *
+                         * @param cookieName string - The cookie name to remove. This will reset the cookie to expire immediately.
+                         * 
+                         * @returns void
+                         */
+                        spryJs.cookie.remove(cookieName: string);
+                    </div>
+                    <div class="language-select" data-language="cdn">
+                        /**
+                         * Remove a Cookie
+                         *
+                         * @param cookieName string - The cookie name to remove. This will reset the cookie to expire immediately.
+                         * 
+                         * @returns void
+                         */
+                        SpryJS.cookie.remove(cookieName: string);
+                    </div>
+                    <div class="language-select" data-language="cdnEsm">
+                        /**
+                         * Remove a Cookie
+                         *
+                         * @param cookieName string - The cookie name to remove. This will reset the cookie to expire immediately.
+                         * 
+                         * @returns void
+                         */
+                        cookie.remove(cookieName: string);
+                    </div>
+                    <div class="language-select" data-language="node">
+                        /**
+                         * Remove a Cookie
+                         *
+                         * @param cookieName string - The cookie name to remove. This will reset the cookie to expire immediately.
+                         * 
+                         * @returns void
+                         */
+                        cookie.remove(cookieName: string);
+                    </div>
+                </article>
+            </section>
+
+            <!-- HASH -->
+            <section id="hash" class="bg-inherit py-0 pb-3">
+                <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
+                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="m5.41 21 .71-4h-4l.35-2h4l1.06-6h-4l.35-2h4l.71-4h2l-.71 4h6l.71-4h2l-.71 4h4l-.35 2h-4l-1.06 6h4l-.35 2h-4l-.71 4h-2l.71-4h-6l-.71 4h-2M9.53 9l-1.06 6h6l1.06-6h-6z" /></svg>
+                    Hash
+                </h2>
+
+                <div class="alert warning link mb-2 pl-0">
+                    <svg class="icon ml-n1" viewBox="0 0 24 24"><path d="M11 4h2v11h-2V4zm2 14v2h-2v-2h2z" /></svg> SpryJS Hash is not for encryption or secured data. If you need to ensure data safety or a stronger digest then you may want to look at <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto">SubtleCrypto</a> 
+                </div>
+                <h5>SpryJS Hash is for basic hashing and requires unicode safe characters. Objects will be converted to JSON strings before they are hashed.</h5>
+                <h4>Using Hash</h4>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
+    import { hash } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+    
+    /**
+     * Get an MD5 hash
+     *
+     * @param inputString: string | number | object - The value to hash. Objects will be converted to JSON strings before they are hashed.
+     * 
+     * @returns string
+     */
+    const myHash = hash.md5(inputString: string | number | object);
+
+    /**
+     * Get an SHA-256 hash
+     *
+     * @param inputString: string | number | object - The value to hash. Objects will be converted to JSON strings before they are hashed.
+     * 
+     * @returns string
+     */
+     const myHash = hash.sha256(inputString: string | number | object);
+&lt;/script&gt;</code>                
+                
+            </section>
+
+            <!-- QUERY -->
+            <section id="query" class="bg-inherit py-0 pb-3">
+                <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
+                    <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+                    Query
+                </h2>
+
+                <h5>The query object is a simple lightweight tool to help you with some basic dom manipulations.<br>Query is only intended for collections and not single items.</h5>
+
+                <h4>Using Query</h4>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
+    import { query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+    
+    // Add Class and Attribute to Elements
+    query('.selector').addClass('stuff').attr('data-stuff', 'things');
+
+    // Loop Elements
+    query('.selector').each((el, index) => {
+        console.log(index, el);
+    });
+
+    // Add Click Events
+    query('.selector').on('click', (el, index, event) => {
+        console.log(index, el, event);
+    });
+
+    // Get Elements
+    var q = query('.selector');
+    console.log(q.elements);
+
+&lt;/script&gt;</code>
+
+                <h4>Return Values</h4>
+
+                <code class="language-js block w auto bg-surface b-1 r-2 p-3 sm">// Collection
+{
+    elements,
+    ...methods
+}</code>
+
+                <p class="note">* Methods can be chained as the response always returns the updated collection.</p>
+                <table class="mb-3 mt-3 border-faint md:responsive">
+                    <thead>
+                        <tr>
+                            <th width="210"><h4>Query Methods</h4></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <code class="color-primary">nth(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">n?</code>: number</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>
+                                Returns a new collection with only the matching element.<br>
+                                <code class="color-primary">{n}</code> Can be negative for reverse lookup
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">first()</code><br>
+                            </td>
+                            <td>Returns a new collection with only the first element.<br>Is alias of <code class="color-primary">nth(1)</code></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">last()</code><br>
+                            </td>
+                            <td>Returns a new collection with only the last element.<br>Is alias of <code class="color-primary">nth(-1)</code></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">slice(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">start</code>: number</span>,<br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">end?</code>: number</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>
+                                Returns a new collection from the start and end.<br>
+                                <code class="color-primary">start</code> and <code class="color-primary">end</code> can be negative for reverse lookup
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code class="color-primary">each(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">callback</code>: Callable</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Loops through each element found in the collection and runs the callback.<br>The callback will provide the (element, index) of each item in the collection.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">toggleClass(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">className</code>: string</span>,<br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">force?</code>: boolean</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Toggles the class of each element found in the collection.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">addClass(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">className</code>: string</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Adds the class to each element found in the collection.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">removeClass(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">className</code>: string</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Removes the class from each element found in the collection.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">toggleAttr(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">attributeName</code>: string</span>,<br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">force?</code>: boolean</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Toggles the attribute of each element found in the collection.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">attr(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">attributeName</code>: string</span>,<br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">attributeValue</code>: string</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Sets the attribute of each element found in the collection.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">removeAttr(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">attributeName</code>: string</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Removes the attribute from each element found in the collection.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">on(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">action</code>: string</span>,<br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">callback</code>: Callable <code class="color-primary">(</code><br>
+                                    <span class="color-gray ml-5"><code class="color-primary">element?</code>: Element</span>,<br>
+                                    <span class="color-gray ml-5"><code class="color-primary">index?</code>: number</span>,<br>
+                                    <span class="color-gray ml-5"><code class="color-primary">event?</code>: Event</span>
+                                    <br><code class="color-primary ml-4">)</code>
+                                </span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Adds an event listener to each element found in the collection.<br>
+                                The <code class="color-primary">action</code> must be a compatible event type with <span class="color-gray">addEventlistener</span>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="color-primary">off(</code><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">action</code>: string</span><br>
+                                <span class="color-gray ml-4 sm"><code class="color-primary">listener</code>: Callable</span>
+                                <br><code class="color-primary">)</code>
+                            </td>
+                            <td>Removes an event listener on each element found in the collection.<br>
+                            The <code class="color-primary">action</code> must be a compatible event type with <span class="color-gray">addEventlistener</span>.<br>
+                            The <code class="color-primary">listener</code> must be a compatible with <span class="color-gray">EventListenerOrEventListenerObject</span>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </section>
+
         </main>
     </div>
     <div id="copy-code-modal" class="modal bg-none">
@@ -1615,15 +1850,15 @@ import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist
         &copy; 2023 - SpryJS
     </footer>
 
-    <script defer src="spry.js?load=spryJs&run=spryJsLoaded"></script>
+    
 
     <script>
 
         function spryJsLoaded() {
-            spryJs.observe({
-                items: '.observe-example > *',
-                classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
-            });
+            // spryJs.observe({
+            //     items: '.observe-example > *',
+            //     classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
+            // });
 
             spryJs.scrollspy({
                 items: '#my-scrollspy-nav2',

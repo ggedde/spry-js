@@ -38,13 +38,7 @@ if (document.currentScript) {
                 }
             }
         }
-        const defer = document.currentScript.hasAttribute('defer');
-        if (!defer || (defer && (document.readyState === 'complete' || document.readyState === 'interactive'))) {
-            loadAndRun();
-        } else if (defer) {
-            document.addEventListener('DOMContentLoaded', () => {
-                loadAndRun();
-            });
-        }
+
+        loadAndRun();
     }
 }

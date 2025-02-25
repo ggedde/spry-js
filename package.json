@@ -32,7 +32,7 @@
     "build": "bun run build-esm; bun run build-js",
     "build-docs-css": "node_modules/.bin/postcss ./docs/docs.css --map false -o ./docs/docs.min.css; wc -c ./docs/docs.min.css | awk '{ total = int( ($1 / 1024) * 10) / 10; print total \" KB\"}' && gzip -c4 ./docs/docs.min.css | wc -c | awk '{ total = int( ($1 / 1024) * 10) / 10; print total \" KB\" }'",
     "build-docs-js2": "node_modules/.bin/terser ./docs/docs.js --config-file .terser -o ./docs/docs.min.js; wc -c ./docs/docs.min.js | awk '{ total = int( ($1 / 1024) * 10) / 10; print total \" KB\"}' && gzip -c4 ./docs/docs.min.js | wc -c | awk '{ total = int( ($1 / 1024) * 10) / 10; print total \" KB\" }'",
-    "build-docs-js": "bun build ./docs/docs.js --outdir ./docs --entry-naming docs.min.js --minify-whitespace --minify-syntax",
+    "build-docs-js": "bun build ./docs/docs.ts --outdir ./docs --entry-naming docs.min.js --minify-whitespace --minify-syntax",
     "build-docs": "npm run build-docs-css; npm run build-docs-js",
     "dev": "bun run watch-esm | bun run watch-js"
   },
