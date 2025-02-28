@@ -8,6 +8,7 @@ export type SpryJsParallaxOptions = {
     parallaxBackgroundAttribute?: string;
     parallaxHorizontalAttribute?: string;
     parallaxInvertAttribute?: string;
+    parallaxDelayAttribute?: string;
     threshold?: number;
     minWidth?: number;
     delay?: number;
@@ -19,6 +20,7 @@ export function parallax({
     parallaxBackgroundAttribute = 'data-parallax-background',
     parallaxHorizontalAttribute = 'data-parallax-horizontal',
     parallaxInvertAttribute = 'data-parallax-invert',
+    parallaxDelayAttribute = 'data-parallax-delay',
     threshold = -300,
     minWidth = 0,
     delay = 300,
@@ -98,9 +100,10 @@ export function parallax({
             if (observer) {
                 for (let e = 0; e < elements.length; e++) {
                     const style = elements[e].hasAttribute(parallaxBackgroundAttribute) ? 'background-position' : 'translate';
+                    const elementDelay = elements[e].hasAttribute(parallaxDelayAttribute) ? elements[e].getAttribute(parallaxDelayAttribute) : delay;
                     (elements[e] as HTMLElement).style.willChange = style;
-                    if (delay) {
-                        (elements[e] as HTMLElement).style.transition = style + ' ' + delay + 'ms cubic-bezier(0, 0, 0, 1)';
+                    if (elementDelay) {
+                        (elements[e] as HTMLElement).style.transition = style + ' ' + elementDelay + 'ms cubic-bezier(0, 0, 0, 1)';
                     }
                     if (observer) observer.observe(elements[e]);
                 };

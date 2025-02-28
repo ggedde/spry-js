@@ -147,8 +147,6 @@ const SpryJsDocs = {
     },
 
     loadSingleCodeContainers: function(api: string | null = null, installer: string | null = null) {
-
-        console.log(api, installer);
         
         if (api) {
             document.querySelectorAll('.language-select').forEach(langElement => {
