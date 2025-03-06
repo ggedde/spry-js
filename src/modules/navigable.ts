@@ -9,14 +9,14 @@ type SpryJsNavigableListEvent = {
 
 export type SpryJsNavigableOptions = {
     items?: Element[] | string;
-    anchorSelector?: string;
-    anchorDataAttribute?: string;
+    selectorAnchor?: string;
+    attributeAnchor?: string;
 };
 
 export function navigable({
     items = '.navigable',
-    anchorSelector = 'a, button, input, [tabindex]',
-    anchorDataAttribute = 'data-navigable-anchors',
+    selectorAnchor = 'a, button, input, [tabindex]',
+    attributeAnchor = 'data-navigable-anchors',
 }: SpryJsNavigableOptions = {}): {destroy: Function, update: Function} {
 
     let controller: AbortController | null = null;
@@ -35,7 +35,7 @@ export function navigable({
             return;
         }
 
-        const dataAnchorSelector = list.getAttribute(anchorDataAttribute);
+        const dataAnchorSelector = list.getAttribute(attributeAnchor);
         const target: HTMLElement | null = event.target ? (event.target as HTMLElement) : null;
         const keyCode: string = (event as KeyboardEvent).code;
         const selected: HTMLElement | null = document.activeElement ? (document.activeElement as HTMLElement) : null;
@@ -45,7 +45,7 @@ export function navigable({
             return;
         }
 
-        var listAnchorSelector = dataAnchorSelector ? dataAnchorSelector : anchorSelector;
+        var listAnchorSelector = dataAnchorSelector ? dataAnchorSelector : selectorAnchor;
 
         if (list === target) {
             anchorItems = [target];
@@ -87,8 +87,8 @@ export function navigable({
         if (elements) {
             for (let e = 0; e < elements.length; e++) {
                 listeners.push({list: elements[e], listener: navigate.bind(elements[e])});
-                const dataAnchorSelector = elements[e].getAttribute(anchorDataAttribute);
-                var listAnchorSelector = dataAnchorSelector ? dataAnchorSelector : anchorSelector;
+                const dataAnchorSelector = elements[e].getAttribute(attributeAnchor);
+                var listAnchorSelector = dataAnchorSelector ? dataAnchorSelector : selectorAnchor;
                 elements[e].querySelectorAll(listAnchorSelector).forEach(anchor => {
                     if (!['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT', 'DETAILS'].includes(anchor.tagName) && !anchor.hasAttribute('tabindex')) {
                         anchor.setAttribute('tabindex', '0');

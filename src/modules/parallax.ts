@@ -3,12 +3,11 @@
 
 export type SpryJsParallaxOptions = {
     items?: Element[] | string,
-    classParallax?: string;
-    classParallaxing?: string; // cspell:disable-line.
-    parallaxBackgroundAttribute?: string;
-    parallaxHorizontalAttribute?: string;
-    parallaxInvertAttribute?: string;
-    parallaxDelayAttribute?: string;
+    classActive?: string;
+    attributeBackground?: string;
+    attributeHorizontal?: string;
+    attributeInvert?: string;
+    attributeDelay?: string;
     threshold?: number;
     minWidth?: number;
     delay?: number;
@@ -16,11 +15,11 @@ export type SpryJsParallaxOptions = {
 
 export function parallax({
     items = '.parallax',
-    classParallaxing = 'parallaxing', // cspell:disable-line.
-    parallaxBackgroundAttribute = 'data-parallax-background',
-    parallaxHorizontalAttribute = 'data-parallax-horizontal',
-    parallaxInvertAttribute = 'data-parallax-invert',
-    parallaxDelayAttribute = 'data-parallax-delay',
+    classActive = 'parallaxing',
+    attributeBackground = 'data-parallax-background',
+    attributeHorizontal = 'data-parallax-horizontal',
+    attributeInvert = 'data-parallax-invert',
+    attributeDelay = 'data-parallax-delay',
     threshold = -300,
     minWidth = 0,
     delay = 300,
@@ -35,7 +34,7 @@ export function parallax({
     function createObserver() {
         observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                entry.target.classList.toggle(classParallaxing, entry.isIntersecting); // cspell:disable-line.
+                entry.target.classList.toggle(classActive, entry.isIntersecting);
             });
             runScrollEvents();
         }, {
@@ -51,11 +50,11 @@ export function parallax({
     function runScrollEvents() {
         if (elements && windowWidth >= minWidth) {
             for (let e = 0; e < elements.length; e++) {
-                if (elements[e] && elements[e].classList.contains(classParallaxing)) { // cspell:disable-line.
+                if (elements[e] && elements[e].classList.contains(classActive)) {
                     const rectElement = elements[e].getBoundingClientRect();
-                    const isBackground = elements[e].hasAttribute(parallaxBackgroundAttribute);
-                    const isHorizontal = elements[e].hasAttribute(parallaxHorizontalAttribute);
-                    const isInvert = elements[e].hasAttribute(parallaxInvertAttribute);
+                    const isBackground = elements[e].hasAttribute(attributeBackground);
+                    const isHorizontal = elements[e].hasAttribute(attributeHorizontal);
+                    const isInvert = elements[e].hasAttribute(attributeInvert);
                     const rectContainer = !isBackground && elements[e].parentElement ? (elements[e].parentElement as HTMLElement).getBoundingClientRect() : rectElement;
                     const totalHeight = windowHeight + rectContainer.height;
                     const position = rectContainer.top + rectContainer.height;
@@ -99,8 +98,8 @@ export function parallax({
             }
             if (observer) {
                 for (let e = 0; e < elements.length; e++) {
-                    const style = elements[e].hasAttribute(parallaxBackgroundAttribute) ? 'background-position' : 'translate';
-                    const elementDelay = elements[e].hasAttribute(parallaxDelayAttribute) ? elements[e].getAttribute(parallaxDelayAttribute) : delay;
+                    const style = elements[e].hasAttribute(attributeBackground) ? 'background-position' : 'translate';
+                    const elementDelay = elements[e].hasAttribute(attributeDelay) ? elements[e].getAttribute(attributeDelay) : delay;
                     (elements[e] as HTMLElement).style.willChange = style;
                     if (elementDelay) {
                         (elements[e] as HTMLElement).style.transition = style + ' ' + elementDelay + 'ms cubic-bezier(0, 0, 0, 1)';
@@ -129,7 +128,7 @@ export function parallax({
 
         if (elements) {
             for (let e = 0; e < elements.length; e++) {
-                elements[e].classList.remove(classParallaxing); // cspell:disable-line.
+                elements[e].classList.remove(classActive);
             };
         }
 

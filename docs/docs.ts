@@ -234,7 +234,7 @@ const SpryJsDocs = {
     }
 }
 
-SpryJsDocs.loadSingleCodeContainers('cdnLoad', 'npm');
+SpryJsDocs.loadSingleCodeContainers('cdnEsm', 'npm');
 
 document.querySelectorAll('code[class*=language-]').forEach(codeElement => {
     var html = codeElement.innerHTML;

@@ -145,7 +145,7 @@ footer[class*="language-"],
 .token.char,
 .token.builtin,
 .token.inserted {
-	color: #690;
+	color: #0a0;
 }
 
 .token.operator,
@@ -159,7 +159,7 @@ footer[class*="language-"],
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-	color: #09c;
+	color: #19d;
 }
 
 .token.function,
