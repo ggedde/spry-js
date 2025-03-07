@@ -70,8 +70,8 @@
                                     </a>
                                     <hr class="m-2">
                                 </li>
-                                <li><a class="ml-2" href="#hash"><code>md5()</code></a></li>
-                                <li><a class="ml-2" href="#hash"><code>sha256()</code></a></li>
+                                <li><a class="ml-2" href="#hash.md5"><code>md5()</code></a></li>
+                                <li><a class="ml-2" href="#hash.sha256"><code>sha256()</code></a></li>
                                 <li class="pt-3">
                                     <a href="#query" class="h5 pl-2 g-2">
                                         <svg class="icon sm mr-0" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
@@ -79,7 +79,7 @@
                                     </a>
                                     <hr class="m-2">
                                 </li>
-                                <li><a class="ml-2" href="#query"><code>addClass()</code></a></li>
+                                <li><a class="ml-2" href="#query.addclass"><code>addClass()</code></a></li>
                                 <li><a class="ml-2" href="#query"><code>attr()</code></a></li>
                             </ul>
                         </nav>
@@ -410,7 +410,8 @@
                     <tbody>
                         <tr>
                             <td colspan="2" class="px-0 b-0 pt-0">
-                                <code class="language-js block w auto bg-surface b-1 r-2 p-3 sm my-3 mt-0">
+                                <p class="note sm">Default Options</p>
+                                <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm my-3 mt-2">
                                     navigable({
                                         items: '.navigable',
                                         selectorAnchor: 'a, button, input, [tabindex]',
@@ -607,7 +608,8 @@
                     <tbody>
                         <tr>
                             <td colspan="2" class="px-0 b-0 pt-0">
-                                <code class="language-js block w auto bg-surface b-1 r-2 p-3 sm my-3 mt-0">
+                                <p class="note sm">Default Options</p>
+                                <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm my-3 mt-2">
                                     observe({
                                         items: '.observe',
                                         rootMargin: '0px 0px 0px 0px',
@@ -864,7 +866,8 @@
                     <tbody>
                         <tr>
                             <td colspan="2" class="px-0 b-0 pt-0">
-                                <code class="language-js block w auto bg-surface b-1 r-2 p-3 sm my-3 mt-0">
+                                <p class="note sm">Default Options</p>
+                                <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm my-3 mt-2">
                                     parallax({
                                         items: '.parallax',
                                         threshold: -300,
@@ -1144,7 +1147,8 @@
                     <tbody>
                         <tr>
                             <td colspan="2" class="px-0 b-0 pt-0">
-                                <code class="language-js block w auto bg-surface b-1 r-2 p-3 sm my-3 mt-0">
+                                <p class="note sm">Default Options</p>
+                                <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm my-3 mt-2">
                                     scrollspy({
                                         items: '.scrollspy',
                                         threshold: 200,
@@ -1952,38 +1956,122 @@
             </section>
 
             <!-- HASH -->
-            <section id="hash" class="bg-inherit py-0 pb-3">
+            <section id="hash" class="bg-inherit py-0 pb-4">
                 <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
                     <svg class="icon mr-1" viewBox="0 0 24 24"><path d="m5.41 21 .71-4h-4l.35-2h4l1.06-6h-4l.35-2h4l.71-4h2l-.71 4h6l.71-4h2l-.71 4h4l-.35 2h-4l-1.06 6h4l-.35 2h-4l-.71 4h-2l.71-4h-6l-.71 4h-2M9.53 9l-1.06 6h6l1.06-6h-6z" /></svg>
                     Hash
                 </h2>
 
-                <div class="alert warning link mb-2 pl-0">
-                    <svg class="icon ml-n1" viewBox="0 0 24 24"><path d="M11 4h2v11h-2V4zm2 14v2h-2v-2h2z" /></svg> SpryJS Hash is not for encryption or secured data. If you need to ensure data safety or a stronger digest then you may want to look at <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto">SubtleCrypto</a> 
-                </div>
                 <h5>SpryJS Hash is for basic hashing and requires unicode safe characters. Objects will be converted to JSON strings before they are hashed.</h5>
-                <h4>Using Hash</h4>
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { hash } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
-    
-    /**
-     * Get an MD5 hash
-     *
-     * @param inputString: string | number | object - The value to hash. Objects will be converted to JSON strings before they are hashed.
-     * 
-     * @returns string
-     */
-    const myHash = hash.md5(inputString: string | number | object);
 
-    /**
-     * Get an SHA-256 hash
-     *
-     * @param inputString: string | number | object - The value to hash. Objects will be converted to JSON strings before they are hashed.
-     * 
-     * @returns string
-     */
-     const myHash = hash.sha256(inputString: string | number | object);
-&lt;/script&gt;</code>                
+                <div class="alert warning outline r-2 mb-2 border/4">
+                    <svg class="icon ml-n1 mb-1" viewBox="0 0 24 24"><path d="M11 4h2v11h-2V4zm2 14v2h-2v-2h2z" /></svg> SpryJS Hash is not for encryption or secured data. If you need to ensure data safety or a stronger digest then you may want to look at <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto">SubtleCrypto</a> 
+                </div>
+
+                <h3 id="hash.api" class="flex mt-4 block-center">
+                    <a id="hash.api" href="#hash.api" class="color-inherit">API</a>
+                    <div class="items-center inline-flex ml-3 xs">
+                        <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1 sm md:md">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
+                                <option value="cdnEsm">CDN ES Module Build</option>
+                                <option value="cdn">CDN Global Build</option>
+                                <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
+                                <option value="node">Node</option>
+                            </select>
+                        </div>
+                    </div>
+                </h3>
+
+                <!-- Initiate -->
+                <h4 class="color-primary mb-1"><a id="hash.initiate" href="#hash.initiate">Initiate</a></h4>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-html block w auto bg-surface b-1 rt-2 p-3 sm">
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                    </code>
+                    <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/5">
+                        <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
+                    </div>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">
+                        &lt;script type="module"&gt;
+                            import { hash } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                        &lt;/script&gt;
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        import { hash } from 'spry-js';
+                    </code>
+                </div>
+
+                <!-- MD5 -->
+                <h4 class="color-primary mt-3 mb-1"><a id="hash.md5" href="#hash.md5">md5</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+* Get an MD5 hash
+*
+* <span class="color-primary">@param</span> <span class="color-contrast">inputString</span><span class="color-gray">:</span> <span class="color-success">string</span><span class="color-gray sm px-1 align-middle">|</span><span class="color-success">number</span><span class="color-gray sm px-1">|</span><span class="color-success">object</span>
+* The value to hash. Objects will be converted to JSON strings before they are hashed.
+* 
+* <span class="color-primary">@returns</span> <span class="color-success">string</span>
+*/</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        const hashValue = spryJs.hash.md5(inputString);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        const hashValue = SpryJS.hash.md5(inputString);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        const hashValue = hash.md5(inputString);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        const hashValue = hash.md5(inputString);
+                    </code>
+                </div>
+
+
+                <!-- SHA256 -->
+                <h4 class="color-primary mt-3 mb-1"><a id="hash.sha256" href="#hash.sha256">sha256</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+* Get an SHA256 hash
+*
+* <span class="color-primary">@param</span> <span class="color-contrast">inputString</span><span class="color-gray">:</span> <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">number</span><span class="color-gray sm px-1">|</span><span class="color-success">object</span>
+* The value to hash. Objects will be converted to JSON strings before they are hashed.
+* 
+* <span class="color-primary">@returns</span> <span class="color-success">string</span>
+*/</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        const hashValue = spryJs.hash.sha256(inputString);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        const hashValue = SpryJS.hash.sha256(inputString);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        const hashValue = hash.sha256(inputString);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        const hashValue = hash.sha256(inputString);
+                    </code>
+                </div>               
                 
             </section>
 
@@ -1994,38 +2082,155 @@
                     Query
                 </h2>
 
-                <h5>The query object is a simple lightweight tool to help you with some basic dom manipulations.<br>Query is only intended for collections and not single items.</h5>
+                <h5>The query object is a simple lightweight tool to help you with some basic dom manipulations.</h5>
 
-                <h4>Using Query</h4>
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
-    
-    // Add Class and Attribute to Elements
-    query('.selector').addClass('stuff').attr('data-stuff', 'things');
+                <h3 id="query.api" class="flex mt-4 block-center">
+                    <a id="query.api" href="#query.api" class="color-inherit">API</a>
+                    <div class="items-center inline-flex ml-3 xs">
+                        <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1 sm md:md">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
+                                <option value="cdnEsm">CDN ES Module Build</option>
+                                <option value="cdn">CDN Global Build</option>
+                                <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
+                                <option value="node">Node</option>
+                            </select>
+                        </div>
+                    </div>
+                </h3>
 
-    // Loop Elements
-    query('.selector').each((el, index) => {
-        console.log(index, el);
-    });
+                <!-- Initiate -->
+                <h4 class="color-primary mb-1"><a id="query.initiate" href="#query.initiate">Initiate</a></h4>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-html block w auto bg-surface b-1 rt-2 p-3 sm">
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                    </code>
+                    <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/5">
+                        <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
+                    </div>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">
+                        &lt;script type="module"&gt;
+                            import { query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                        &lt;/script&gt;
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        import { query } from 'spry-js';
+                    </code>
+                </div>
 
-    // Add Click Events
-    query('.selector').on('click', (el, index, event) => {
-        console.log(index, el, event);
-    });
+                <h5 class="mt-3">Returns <code class="color-gray sm ml-2">SpryJsQueryCollection</code></h5>
+                <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                    {
+                        elements,
+                        ...methods
+                    }
+                </code>
 
-    // Get Elements
-    var q = query('.selector');
-    console.log(q.elements);
+                <h5 class="mt-3 mb-2">Example Usage with chainable methods</h5>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        spryJs.query('.selector').addClass('stuff').attr('data-stuff', 'things');
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        SpryJS.query('.selector').addClass('stuff').attr('data-stuff', 'things');
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        query('.selector').addClass('stuff').attr('data-stuff', 'things');
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        query('.selector').addClass('stuff').attr('data-stuff', 'things');
+                    </code>
+                </div>
 
-&lt;/script&gt;</code>
+                <h3 class="flex mt-4 block-center">
+                    <a id="query.methods" href="#query.methods" class="color-inherit">Methods</a>
+                </h3>
 
-                <h4>Return Values</h4>
+                <!-- AddClass -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.addclass" href="#query.addclass">addClass</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+ * Add Class(s) to elements in Collection
+ *
+ * <span class="color-primary">@param</span> <span class="color-contrast">className</span><span class="color-gray">:</span> <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span> - The class(s) to add.
+ * 
+ * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ */</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                        
+                        spryJs.query('.selector').addClass(className: string | string[]);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        SpryJS.query('.selector').addClass(className: string | string[]);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').addClass(className: string | string[]);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').addClass(className: string | string[]);
+                    </code>
+                </div>
 
-                <code class="language-js block w auto bg-surface b-1 r-2 p-3 sm">// Collection
-{
-    elements,
-    ...methods
-}</code>
+                <!-- ToggleClass -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.toggleclass" href="#query.toggleclass">toggleClass</a></h4>
+
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+* Toggle Class(s) on elements in Collection
+*
+* <span class="color-primary">@param</span> <span class="color-contrast">className</span><span class="color-gray">:</span> <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span> - The class(s) to toggle.
+* <span class="color-primary">@param</span> <span class="color-contrast">force</span><span class="color-gray">?:</span> &nbsp; <span class="color-success">boolean</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span> - Force true to add class or false to remove class. Undefined will check to determine toggle state.
+* 
+* <span class="color-primary">@returns</span> SpryJsQueryCollection
+*/</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        spryJs.query('.selector').toggleClass(className: string | string[], force?: boolean);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        SpryJS.query('.selector').toggleClass(className: string | string[], force?: boolean);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        query('.selector').toggleClass(className: string | string[], force?: boolean);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        query('.selector').toggleClass(className: string | string[], force?: boolean);
+                    </code>
+                </div>
+
+
+
+
+
+
+
+
+
+                
 
                 <p class="note">* Methods can be chained as the response always returns the updated collection.</p>
                 <table class="mb-3 mt-3 border-faint md:responsive">

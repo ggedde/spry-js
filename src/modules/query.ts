@@ -53,6 +53,14 @@ export function query(selector: string): SpryJsQueryCollection {
             return this;
         },
 
+        /**
+         * Toggle Class(s) on elements in collection
+         *
+         * @param className string | string[] - Class names to toggle.
+         * @param force boolean               - Force true to add class or false to remove class. Undefined will check to determine toggle state.
+         * 
+         * @returns SpryJsQueryCollection
+         */
         toggleClass: function (className: string | string[], force?: boolean): SpryJsQueryCollection {
             return this.each((elem: Element) => {
                 if (typeof className === 'string') className = className.split(' ');
@@ -62,6 +70,13 @@ export function query(selector: string): SpryJsQueryCollection {
             });
         },
 
+        /**
+         * Add Class(s) on elements in collection
+         *
+         * @param className string | string[] - Class names to Add.
+         * 
+         * @returns SpryJsQueryCollection
+         */
         addClass: function (className: string | string[]): SpryJsQueryCollection {
             return this.each((elem: Element) => {
                 if (typeof className === 'string') className = className.split(' ');

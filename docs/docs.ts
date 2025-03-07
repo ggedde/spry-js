@@ -32,7 +32,7 @@ const SpryJsDocs = {
             firsTagIndex = html.indexOf('<');
         }
         if (firsTagIndex === -1) {
-            var match = html.match(/[a-zA-Z0-9\/]{1}/);
+            var match = html.match(/[a-zA-Z0-9\/\{]{1}/);
             if (match && match.index) {
                 firsTagIndex = match.index;
             }
@@ -149,11 +149,11 @@ const SpryJsDocs = {
     loadSingleCodeContainers: function(api: string | null = null, installer: string | null = null) {
         
         if (api) {
+            localStorage.setItem('SpryJSDocsApi', api);
             document.querySelectorAll('.language-select').forEach(langElement => {
                 var setLang = langElement.getAttribute('data-language');
                 langElement.classList.toggle('none', !setLang || setLang !== api);
             });
-
             document.querySelectorAll('.language-selector').forEach(selector => {
                 if (selector.querySelector('option[value="'+api+'"]')) {
                     (selector as HTMLSelectElement).value = api;
@@ -161,9 +161,15 @@ const SpryJsDocs = {
             });
         }
         if (installer) {
+            localStorage.setItem('SpryJSDocsInstaller', installer);
             document.querySelectorAll('.installer-select').forEach(installerElement => {
                 var setLang = installerElement.getAttribute('data-language');
                 installerElement.classList.toggle('none', !setLang || setLang !== installer);
+            });
+            document.querySelectorAll('.language-selector').forEach(selector => {
+                if (selector.querySelector('option[value="'+installer+'"]')) {
+                    (selector as HTMLSelectElement).value = installer;
+                }
             });
         }
     },
@@ -239,7 +245,10 @@ const SpryJsDocs = {
     }
 }
 
-SpryJsDocs.loadSingleCodeContainers('cdnEsm', 'npm');
+const api = localStorage.getItem('SpryJSDocsApi');
+const installer = localStorage.getItem('SpryJSDocsInstaller');
+
+SpryJsDocs.loadSingleCodeContainers(api ? api : 'cdnEsm', installer ? installer : 'npm');
 
 document.querySelectorAll('code[class*=language-]').forEach(codeElement => {
     var html = codeElement.innerHTML;
@@ -248,7 +257,7 @@ document.querySelectorAll('code[class*=language-]').forEach(codeElement => {
         firsTagIndex = html.indexOf('<');
     }
     if (firsTagIndex === -1) {
-        var match = html.match(/[a-zA-Z0-9\/]{1}/);
+        var match = html.match(/[a-zA-Z0-9\/\{]{1}/);
         if (match && match.index) {
             firsTagIndex = match.index;
         }
