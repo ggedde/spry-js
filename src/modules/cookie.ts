@@ -12,7 +12,7 @@ const cookie: SpryJsCookie = {
      * Set a Cookie
      *
      * @param cookieName    string - The cookie name to set
-     * @param cookieValue   any    - The value
+     * @param cookieValue   any    - The value. Value will be JSON parsed and URI encoded.
      * @param expireSeconds number - Number in seconds to expire. 0 = Session expire.
      * 
      * @returns void

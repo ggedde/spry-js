@@ -60,9 +60,9 @@
                                     </a>
                                     <hr class="m-2">
                                 </li>
-                                <li><a class="ml-2" href="#cookie.get"><code>get()</code></a></li>
-                                <li><a class="ml-2" href="#cookie.set"><code>set()</code></a></li>
-                                <li><a class="ml-2" href="#cookie.remove"><code>remove()</code></a></li>
+                                <li><a class="ml-2 sm" href="#cookie.get"><code>get</code></a></li>
+                                <li><a class="ml-2 sm" href="#cookie.set"><code>set</code></a></li>
+                                <li><a class="ml-2 sm" href="#cookie.remove"><code>remove</code></a></li>
                                 <li class="pt-3">
                                     <a href="#hash" class="h5 pl-2 g-2">
                                         <svg class="icon sm mr-2" viewBox="0 0 24 24"><path d="m5.41 21 .71-4h-4l.35-2h4l1.06-6h-4l.35-2h4l.71-4h2l-.71 4h6l.71-4h2l-.71 4h4l-.35 2h-4l-1.06 6h4l-.35 2h-4l-.71 4h-2l.71-4h-6l-.71 4h-2M9.53 9l-1.06 6h6l1.06-6h-6z" /></svg>
@@ -70,8 +70,8 @@
                                     </a>
                                     <hr class="m-2">
                                 </li>
-                                <li><a class="ml-2" href="#hash.md5"><code>md5()</code></a></li>
-                                <li><a class="ml-2" href="#hash.sha256"><code>sha256()</code></a></li>
+                                <li><a class="ml-2 sm" href="#hash.md5"><code>md5</code></a></li>
+                                <li><a class="ml-2 sm" href="#hash.sha256"><code>sha256</code></a></li>
                                 <li class="pt-3">
                                     <a href="#query" class="h5 pl-2 g-2">
                                         <svg class="icon sm mr-0" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
@@ -79,8 +79,21 @@
                                     </a>
                                     <hr class="m-2">
                                 </li>
-                                <li><a class="ml-2" href="#query.addclass"><code>addClass()</code></a></li>
-                                <li><a class="ml-2" href="#query"><code>attr()</code></a></li>
+                                <li><a class="ml-2 sm" href="#query.addclass"><code>addClass</code></a></li>
+                                <li><a class="ml-2 sm" href="#query.toggleclass"><code>toggleClass</code></a></li>
+                                <li><a class="ml-2 sm" href="#query.removeclass"><code>removeClass</code></a></li>
+                                <li><a class="ml-2 sm" href="#query.attr"><code>attr</code></a></li>
+                                <li><a class="ml-2 sm" href="#query.toggleattr"><code>toggleAttr</code></a></li>
+                                <li><a class="ml-2 sm" href="#query.removeattr"><code>removeAttr</code></a></li>
+                                <li><a class="ml-2 sm" href="#query.on"><code>on</code></a></li>
+                                <li><a class="ml-2 sm" href="#query.off"><code>off</code></a></li>
+                                <li><a class="ml-2 sm" href="#query.each"><code>each</code></a></li>
+                                <li><a class="ml-2 sm" href="#query.index"><code>index</code></a></li>
+                                <li><a class="ml-2 sm" href="#query.nth"><code>nth</code></a></li>
+                                <li><a class="ml-2 sm" href="#query.first"><code>first</code></a></li>
+                                <li><a class="ml-2 sm" href="#query.last"><code>last</code></a></li>
+                                <li><a class="ml-2 sm" href="#query.slice"><code>slice</code></a></li>
+                                <li><a class="ml-2 sm" href="#query.filter"><code>filter</code></a></li>
                             </ul>
                         </nav>
                     </div>
@@ -1794,165 +1807,155 @@
             </section>
 
             <!-- COOKIE -->
-            <section class="bg-inherit py-0 pb-3">
+            <section id="cookie" class="bg-inherit py-0 pb-3">
                 <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
                     <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9c0-.5-.04-1-.13-1.5C20.6 10 20 10 20 10h-2V9c0-1-1-1-1-1h-2V7c0-1-1-1-1-1h-1V4c0-1-1-1-1-1M9.5 6A1.5 1.5 0 0 1 11 7.5 1.5 1.5 0 0 1 9.5 9 1.5 1.5 0 0 1 8 7.5 1.5 1.5 0 0 1 9.5 6m-3 4A1.5 1.5 0 0 1 8 11.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 5 11.5 1.5 1.5 0 0 1 6.5 10m5 1a1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5m5 2a1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5M11 16a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 11 19a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 11 16z" /></svg>
                     Cookie
                 </h2>
 
-                <article id="cookie" class="show-code" data-code-only data-title="Using Cookie" data-language-sync>
-                    <div class="language-select" data-language="cdnLoad">
+                <h5>SpryJS Cookie is for basic cookie manipulation. Paths are automatically set by the Host domain and are HTTP enabled. If you need advanced functionality then you will need to look into other methods like Server Side cookie manipulation.</h5>
+
+                <h3 class="flex mt-4 block-center">
+                    <a id="cookie.api" href="#cookie.api" class="color-inherit">API</a>
+                    <div class="items-center inline-flex ml-3 xs">
+                        <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1 sm md:md">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
+                                <option value="cdnEsm">CDN ES Module Build</option>
+                                <option value="cdn">CDN Global Build</option>
+                                <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
+                                <option value="node">Node</option>
+                            </select>
+                        </div>
+                    </div>
+                </h3>
+
+                <!-- Initiate -->
+                <h4 class="color-primary mb-1"><a id="cookie.initiate" href="#cookie.initiate">Initiate</a></h4>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-html block w auto bg-surface b-1 rt-2 p-3 sm">
                         &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                    </code>
+                    <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/5">
+                        <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
                     </div>
-                    <div class="language-select" data-language="cdn">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
-                    </div>
-                    <div class="language-select" data-language="cdnEsm">
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">
                         &lt;script type="module"&gt;
                             import { cookie } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
                         &lt;/script&gt;
-                    </div>
-                    <div class="language-select" data-language="node">
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
                         import { cookie } from 'spry-js';
-                    </div>
-                </article>
+                    </code>
+                </div>
 
-                <article id="cookie.get" class="show-code" data-code-only data-title="get()">
-                    <div class="language-select" data-language="cdnLoad">
-                        /**
-                         * Get a Cookie
-                         *
-                         * @param cookieName string - The name of the cookie to get
-                         * 
-                         * @returns string
-                         */
-                        spryJs.cookie.get(cookieName: string);
-                    </div>
-                    <div class="language-select" data-language="cdn">
-                        /**
-                         * Get a Cookie
-                         *
-                         * @param cookieName string - The name of the cookie to get
-                         * 
-                         * @returns string
-                         */
-                        SpryJS.cookie.get(cookieName: string);
-                    </div>
-                    <div class="language-select" data-language="cdnEsm">
-                        /**
-                         * Get a Cookie
-                         *
-                         * @param cookieName string - The name of the cookie to get
-                         * 
-                         * @returns string
-                         */
-                        cookie.get(cookieName: string);
-                    </div>
-                    <div class="language-select" data-language="node">
-                        /**
-                         * Get a Cookie
-                         *
-                         * @param cookieName string - The name of the cookie to get
-                         * 
-                         * @returns string
-                         */
-                        cookie.get(cookieName: string);
-                    </div>
-                </article>
+                <!-- Cookie.Get -->
+                <h4 class="color-primary mt-3 mb-1"><a id="cookie.get" href="#cookie.get">get</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+* Get a Cookie
+*
+* <span class="color-primary">@param</span> <span class="color-contrast">cookieName</span><span class="color-gray">:</span> <span class="color-success">string</span>
+* The name of the cookie to get. Value will be URI and JSON decoded.
+* 
+* <span class="color-primary">@returns</span> <span class="color-success">string</span>
+*/</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        const value = spryJs.cookie.get(cookieName);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        const value = SpryJS.cookie.get(cookieName);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        const value = cookie.get(cookieName);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        const value = cookie.get(cookieName);
+                    </code>
+                </div>
 
-                <article id="cookie.set" class="show-code" data-code-only data-title="set()">
-                    <div class="language-select" data-language="cdnLoad">
-                        /**
-                         * Set a Cookie
-                         *
-                         * @param cookieName    string - The cookie name to set
-                         * @param cookieValue   any    - The value
-                         * @param expireSeconds number - Number in seconds to expire. 0 = Session expire.
-                         * 
-                         * @returns void
-                         */
-                        spryJs.cookie.set(cookieName: string, cookieValue: any, expireSeconds: number);
-                    </div>
-                    <div class="language-select" data-language="cdn">
-                        /**
-                         * Set a Cookie
-                         *
-                         * @param cookieName    string - The cookie name to set
-                         * @param cookieValue   any    - The value
-                         * @param expireSeconds number - Number in seconds to expire. 0 = Session expire.
-                         * 
-                         * @returns void
-                         */
-                        SpryJS.cookie.set(cookieName: string, cookieValue: any, expireSeconds: number);
-                    </div>
-                    <div class="language-select" data-language="cdnEsm">
-                        /**
-                         * Set a Cookie
-                         *
-                         * @param cookieName    string - The cookie name to set
-                         * @param cookieValue   any    - The value
-                         * @param expireSeconds number - Number in seconds to expire. 0 = Session expire.
-                         * 
-                         * @returns void
-                         */
-                        cookie.set(cookieName: string, cookieValue: any, expireSeconds: number);
-                    </div>
-                    <div class="language-select" data-language="node">
-                        /**
-                         * Set a Cookie
-                         *
-                         * @param cookieName    string - The cookie name to set
-                         * @param cookieValue   any    - The value
-                         * @param expireSeconds number - Number in seconds to expire. 0 = Session expire.
-                         * 
-                         * @returns void
-                         */
-                        cookie.set(cookieName: string, cookieValue: any, expireSeconds: number);
-                    </div>
-                </article>
+                <!-- Cookie.Set -->
+                <h4 class="color-primary mt-3 mb-1"><a id="cookie.set" href="#cookie.set">set</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+* Set a Cookie
+*
+* <span class="color-primary">@param</span> <span class="color-contrast">cookieName</span><span class="color-gray">:</span> <span class="color-success">string</span>
+* The cookie name to set.
+* 
+* <span class="color-primary">@param</span> <span class="color-contrast">cookieValue</span><span class="color-gray">:</span> <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">number</span><span class="color-gray sm px-1">|</span><span class="color-success">object</span>
+* The value to set. Value will be JSON and URI encoded.
+* 
+* <span class="color-primary">@param</span> <span class="color-contrast">expireSeconds</span><span class="color-gray">?:</span> <span class="color-success">number</span>
+* Number in seconds to expire. 0 or undefined = Session expire.
+* 
+* <span class="color-primary">@returns</span> <span class="color-success">void</span>
+*/</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        spryJs.cookie.set(cookieName, cookieValue, expireSeconds);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        SpryJS.cookie.set(cookieName, cookieValue, expireSeconds);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        cookie.set(cookieName, cookieValue, expireSeconds);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        cookie.set(cookieName, cookieValue, expireSeconds);
+                    </code>
+                </div>
 
-                <article id="cookie.remove" class="show-code" data-code-only data-title="remove()">
-                    <div class="language-select" data-language="cdnLoad">
-                        /**
-                         * Remove a Cookie
-                         *
-                         * @param cookieName string - The cookie name to remove. This will reset the cookie to expire immediately.
-                         * 
-                         * @returns void
-                         */
-                        spryJs.cookie.remove(cookieName: string);
-                    </div>
-                    <div class="language-select" data-language="cdn">
-                        /**
-                         * Remove a Cookie
-                         *
-                         * @param cookieName string - The cookie name to remove. This will reset the cookie to expire immediately.
-                         * 
-                         * @returns void
-                         */
-                        SpryJS.cookie.remove(cookieName: string);
-                    </div>
-                    <div class="language-select" data-language="cdnEsm">
-                        /**
-                         * Remove a Cookie
-                         *
-                         * @param cookieName string - The cookie name to remove. This will reset the cookie to expire immediately.
-                         * 
-                         * @returns void
-                         */
-                        cookie.remove(cookieName: string);
-                    </div>
-                    <div class="language-select" data-language="node">
-                        /**
-                         * Remove a Cookie
-                         *
-                         * @param cookieName string - The cookie name to remove. This will reset the cookie to expire immediately.
-                         * 
-                         * @returns void
-                         */
-                        cookie.remove(cookieName: string);
-                    </div>
-                </article>
+                <!-- Cookie.Remove -->
+                <h4 class="color-primary mt-3 mb-1"><a id="cookie.remove" href="#cookie.remove">remove</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+* Remove a Cookie
+*
+* <span class="color-primary">@param</span> <span class="color-contrast">cookieName</span><span class="color-gray">:</span> <span class="color-success">string</span>
+* The cookie name to remove. This will set the cookie value to empty and expire immediately.
+* 
+* <span class="color-primary">@returns</span> <span class="color-success">void</span>
+*/</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        spryJs.cookie.remove(cookieName);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        SpryJS.cookie.remove(cookieName);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        cookie.remove(cookieName);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        cookie.remove(cookieName);
+                    </code>
+                </div>
+
             </section>
 
             <!-- HASH -->
@@ -2022,22 +2025,22 @@
 */</code>
                 <div class="language-select" data-language="cdnLoad">
                     <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
-                        const hashValue = spryJs.hash.md5(inputString);
+                        const value = spryJs.hash.md5(inputString);
                     </code>
                 </div>
                 <div class="language-select" data-language="cdn">
                     <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
-                        const hashValue = SpryJS.hash.md5(inputString);
+                        const value = SpryJS.hash.md5(inputString);
                     </code>
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
-                        const hashValue = hash.md5(inputString);
+                        const value = hash.md5(inputString);
                     </code>
                 </div>
                 <div class="language-select" data-language="node">
                     <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
-                        const hashValue = hash.md5(inputString);
+                        const value = hash.md5(inputString);
                     </code>
                 </div>
 
@@ -2054,22 +2057,22 @@
 */</code>
                 <div class="language-select" data-language="cdnLoad">
                     <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
-                        const hashValue = spryJs.hash.sha256(inputString);
+                        const value = spryJs.hash.sha256(inputString);
                     </code>
                 </div>
                 <div class="language-select" data-language="cdn">
                     <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
-                        const hashValue = SpryJS.hash.sha256(inputString);
+                        const value = SpryJS.hash.sha256(inputString);
                     </code>
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
-                        const hashValue = hash.sha256(inputString);
+                        const value = hash.sha256(inputString);
                     </code>
                 </div>
                 <div class="language-select" data-language="node">
                     <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
-                        const hashValue = hash.sha256(inputString);
+                        const value = hash.sha256(inputString);
                     </code>
                 </div>               
                 
@@ -2157,6 +2160,64 @@
                 </div>
 
                 <h3 class="flex mt-4 block-center">
+                    <a id="query.items" href="#query.items" class="color-inherit">Items</a>
+                </h3>
+
+                <!-- elements -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.elements" href="#query.elements">elements</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+ * <span class="color-success">Element[]</span> - Array of Elements currently in Collection.
+ */</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                        
+                        spryJs.query('.selector').elements;
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        SpryJS.query('.selector').elements;
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').elements;
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').elements;
+                    </code>
+                </div>
+
+                <!-- el -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.el" href="#query.el">el</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+ * <span class="color-success">Element</span> - First Element currently in Collection.
+ * Alias of <a href="#query.elements"><span class="color-primary">elements[0]</span></a>
+ *
+ */</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                        
+                        spryJs.query('.selector').el;
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        SpryJS.query('.selector').el;
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').el;
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').el;
+                    </code>
+                </div>
+
+                <h3 class="flex mt-4 block-center">
                     <a id="query.methods" href="#query.methods" class="color-inherit">Methods</a>
                 </h3>
 
@@ -2171,22 +2232,22 @@
  */</code>
                 <div class="language-select" data-language="cdnLoad">
                     <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                        
-                        spryJs.query('.selector').addClass(className: string | string[]);
+                        spryJs.query('.selector').addClass(className);
                     </code>
                 </div>
                 <div class="language-select" data-language="cdn">
                     <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
-                        SpryJS.query('.selector').addClass(className: string | string[]);
+                        SpryJS.query('.selector').addClass(className);
                     </code>
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
-                        query('.selector').addClass(className: string | string[]);
+                        query('.selector').addClass(className);
                     </code>
                 </div>
                 <div class="language-select" data-language="node">
                     <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
-                        query('.selector').addClass(className: string | string[]);
+                        query('.selector').addClass(className);
                     </code>
                 </div>
 
@@ -2196,173 +2257,460 @@
                 <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
 * Toggle Class(s) on elements in Collection
 *
-* <span class="color-primary">@param</span> <span class="color-contrast">className</span><span class="color-gray">:</span> <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span> - The class(s) to toggle.
-* <span class="color-primary">@param</span> <span class="color-contrast">force</span><span class="color-gray">?:</span> &nbsp; <span class="color-success">boolean</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span> - Force true to add class or false to remove class. Undefined will check to determine toggle state.
+* <span class="color-primary">@param</span> <span class="color-contrast">className</span><span class="color-gray">:</span> <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span>
+* The class(s) to toggle.
+* 
+* <span class="color-primary">@param</span> <span class="color-contrast">force</span><span class="color-gray">?:</span> <span class="color-success">boolean</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span>
+* Force true to add class or false to remove class.
+* Undefined will check to determine toggle state.
 * 
 * <span class="color-primary">@returns</span> SpryJsQueryCollection
 */</code>
                 <div class="language-select" data-language="cdnLoad">
                     <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
-                        spryJs.query('.selector').toggleClass(className: string | string[], force?: boolean);
+                        spryJs.query('.selector').toggleClass(className, force);
                     </code>
                 </div>
                 <div class="language-select" data-language="cdn">
                     <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
-                        SpryJS.query('.selector').toggleClass(className: string | string[], force?: boolean);
+                        SpryJS.query('.selector').toggleClass(className, force);
                     </code>
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
-                        query('.selector').toggleClass(className: string | string[], force?: boolean);
+                        query('.selector').toggleClass(className, force);
                     </code>
                 </div>
                 <div class="language-select" data-language="node">
                     <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
-                        query('.selector').toggleClass(className: string | string[], force?: boolean);
+                        query('.selector').toggleClass(className, force);
                     </code>
                 </div>
 
+                <!-- RemoveClass -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.removeclass" href="#query.removeclass">removeClass</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+ * Remove Class(s) from elements in collection
+ *
+ * <span class="color-primary">@param</span> <span class="color-contrast">className</span><span class="color-gray">:</span> <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span> - The class(s) to remove.
+ * 
+ * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ */</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                        
+                        spryJs.query('.selector').removeClass(className);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        SpryJS.query('.selector').removeClass(className);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').removeClass(className);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').removeClass(className);
+                    </code>
+                </div>
 
+                <!-- Attr -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.attr" href="#query.attr">attr</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+ * Set the Attribute name and value on elements in collection
+ *
+ * <span class="color-primary">@param</span> <span class="color-contrast">attributeName</span><span class="color-gray">:</span>  <span class="color-success">string</span> - Attribute name to Set.
+ * <span class="color-primary">@param</span> <span class="color-contrast">attributeValue</span><span class="color-gray">:</span> <span class="color-success">string</span> - Attribute value to Set. If empty it will default to a blank string "".
+ * 
+ * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ */</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                        
+                        spryJs.query('.selector').attr(attributeName, attributeValue);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        SpryJS.query('.selector').attr(attributeName, attributeValue);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').attr(attributeName, attributeValue);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').attr(attributeName, attributeValue);
+                    </code>
+                </div>
 
+                <!-- ToggleAttr -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.toggleattr" href="#query.toggleattr">toggleAttr</a></h4>
 
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+* Toggle Attribute(s) on elements in collection
+*
+* <span class="color-primary">@param</span> <span class="color-contrast">attributeName</span><span class="color-gray">:</span> <span class="color-success">string</span><span class="color-gray sm px-2">|</span><span class="color-success">string[]</span>
+* Attribute names to toggle.
+*
+* <span class="color-primary">@param</span> <span class="color-contrast">force</span><span class="color-gray">?:</span> <span class="color-success">boolean</span>
+* Force true to add Attribute or false to remove Attribute.
+* Undefined will check to determine toggle state.
+* 
+* <span class="color-primary">@returns</span> SpryJsQueryCollection
+*/</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        spryJs.query('.selector').toggleAttr(attributeName, force);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        SpryJS.query('.selector').toggleAttr(attributeName, force);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        query('.selector').toggleAttr(attributeName, force);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">
+                        query('.selector').toggleAttr(attributeName, force);
+                    </code>
+                </div>
 
+                <!-- RemoveAttr -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.removeattr" href="#query.removeattr">removeAttr</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+ * Remove Attribute(s) from elements in collection
+ *
+ * <span class="color-primary">@param</span> <span class="color-contrast">attributeName</span><span class="color-gray">:</span> <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span> - The Attribute(s) to remove.
+ * 
+ * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ */</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                        
+                        spryJs.query('.selector').removeAttr(attributeName);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        SpryJS.query('.selector').removeAttr(attributeName);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').removeAttr(attributeName);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').removeAttr(attributeName);
+                    </code>
+                </div>
 
+                <!-- on -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.on" href="#query.on">on</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+ * Add an event listener to all elements within the collection
+ *
+ * <span class="color-primary">@param</span> <span class="color-contrast">type</span><span class="color-gray">:</span> <span class="color-success">string</span>
+ * Event Type to listen for.
+ *
+ * <span class="color-primary">@param</span> <span class="color-contrast">listener</span><span class="color-gray">:</span> <span class="color-success">EventListenerOrEventListenerObject</span>
+ * Callback Listener or Event Listener Object to apply on event.
+ * 
+ * <span class="color-primary">@param</span> <span class="color-contrast">options</span><span class="color-gray">?:</span> <span class="color-success">AddEventListenerOptions</span>
+ * Additional Event Listener Options.
+ * 
+ * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ * 
+ * For more details see: <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">MDN addEventListener</a>
+ */</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                        
+                        spryJs.query('.selector').on(type, listener, options);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        SpryJS.query('.selector').on(type, listener, options);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').on(type, listener, options);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').on(type, listener, options);
+                    </code>
+                </div>
 
+                <!-- off -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.off" href="#query.off">off</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+ * Remove an event listener on all elements within the collection
+ *
+ * <span class="color-primary">@param</span> <span class="color-contrast">type</span><span class="color-gray">:</span> <span class="color-success">string</span>
+ * Event Type to Remove.
+ *
+ * <span class="color-primary">@param</span> <span class="color-contrast">listener</span><span class="color-gray">:</span> <span class="color-success">EventListenerOrEventListenerObject</span>
+ * Callback Listener or Event Listener Object to remove.
+ * 
+ * <span class="color-primary">@param</span> <span class="color-contrast">options</span><span class="color-gray">?:</span> <span class="color-success">AddEventListenerOptions</span>
+ * Additional Event Listener Options.
+ * 
+ * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ * 
+ * For more details see: <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener">MDN removeEventListener</a>
+ */</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                        
+                        spryJs.query('.selector').off(type, listener, options);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        SpryJS.query('.selector').off(type, listener, options);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').off(type, listener, options);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').off(type, listener, options);
+                    </code>
+                </div>
 
+                <!-- each -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.each" href="#query.each">each</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+ * Loop through each element in the collection
+ *
+ * <span class="color-primary">@param</span> <span class="color-contrast">callbackFn</span><span class="color-gray">:</span> <span class="color-success">Function</span> - Callback function to apply to each element in the Collection.
+ * Callback provides <span class="color-warning">(</span><span class="color-contrast">el</span><span class="color-gray">:</span> <span class="color-success">Element</span>, <span class="color-contrast">index</span><span class="color-gray">:</span> <span class="color-success">number</span><span class="color-warning">)</span>
+ * 
+ * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ */</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                        
+                        spryJs.query('.selector').each(callbackFn);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        SpryJS.query('.selector').each(callbackFn);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').each(callbackFn);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').each(callbackFn);
+                    </code>
+                </div>
 
-                
+                <!-- index -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.index" href="#query.index">index</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+ * Resets the collection to a single element by index
+ *
+ * <span class="color-primary">@param</span> <span class="color-contrast">i</span><span class="color-gray">:</span> <span class="color-success">number</span> - Index of element. Does not allow for negative numbers.
+ * <span class="color-warning"># Warning - If index does not exit in the collection then elements in collection will be truncated.</span>
+ * 
+ * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ */</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                        
+                        spryJs.query('.selector').index(i);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        SpryJS.query('.selector').index(i);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').index(i);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').index(i);
+                    </code>
+                </div>
 
-                <p class="note">* Methods can be chained as the response always returns the updated collection.</p>
-                <table class="mb-3 mt-3 border-faint md:responsive">
-                    <thead>
-                        <tr>
-                            <th width="210"><h4>Query Methods</h4></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <code class="color-primary">nth(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">n?</code>: number</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>
-                                Returns a new collection with only the matching element.<br>
-                                <code class="color-primary">{n}</code> Can be negative for reverse lookup
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">first()</code><br>
-                            </td>
-                            <td>Returns a new collection with only the first element.<br>Is alias of <code class="color-primary">nth(1)</code></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">last()</code><br>
-                            </td>
-                            <td>Returns a new collection with only the last element.<br>Is alias of <code class="color-primary">nth(-1)</code></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">slice(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">start</code>: number</span>,<br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">end?</code>: number</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>
-                                Returns a new collection from the start and end.<br>
-                                <code class="color-primary">start</code> and <code class="color-primary">end</code> can be negative for reverse lookup
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code class="color-primary">each(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">callback</code>: Callable</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Loops through each element found in the collection and runs the callback.<br>The callback will provide the (element, index) of each item in the collection.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">toggleClass(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">className</code>: string</span>,<br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">force?</code>: boolean</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Toggles the class of each element found in the collection.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">addClass(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">className</code>: string</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Adds the class to each element found in the collection.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">removeClass(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">className</code>: string</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Removes the class from each element found in the collection.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">toggleAttr(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">attributeName</code>: string</span>,<br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">force?</code>: boolean</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Toggles the attribute of each element found in the collection.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">attr(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">attributeName</code>: string</span>,<br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">attributeValue</code>: string</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Sets the attribute of each element found in the collection.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">removeAttr(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">attributeName</code>: string</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Removes the attribute from each element found in the collection.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">on(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">action</code>: string</span>,<br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">callback</code>: Callable <code class="color-primary">(</code><br>
-                                    <span class="color-gray ml-5"><code class="color-primary">element?</code>: Element</span>,<br>
-                                    <span class="color-gray ml-5"><code class="color-primary">index?</code>: number</span>,<br>
-                                    <span class="color-gray ml-5"><code class="color-primary">event?</code>: Event</span>
-                                    <br><code class="color-primary ml-4">)</code>
-                                </span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Adds an event listener to each element found in the collection.<br>
-                                The <code class="color-primary">action</code> must be a compatible event type with <span class="color-gray">addEventlistener</span>.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="color-primary">off(</code><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">action</code>: string</span><br>
-                                <span class="color-gray ml-4 sm"><code class="color-primary">listener</code>: Callable</span>
-                                <br><code class="color-primary">)</code>
-                            </td>
-                            <td>Removes an event listener on each element found in the collection.<br>
-                            The <code class="color-primary">action</code> must be a compatible event type with <span class="color-gray">addEventlistener</span>.<br>
-                            The <code class="color-primary">listener</code> must be a compatible with <span class="color-gray">EventListenerOrEventListenerObject</span>.</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <!-- nth -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.nth" href="#query.nth">nth</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+ * Resets the collection to a single element by nth selector
+ *
+ * <span class="color-primary">@param</span> <span class="color-contrast">n</span><span class="color-gray">:</span> <span class="color-success">number</span> - Nth Selector. This is index + 1. So first item would be 1 not 0.
+ * Allows for inverse lookup with negative numbers. So -1 is the last item in the collection.
+ * <span class="color-warning"># Warning - If index does not exit in the collection then elements in collection will be truncated.</span>
+ * 
+ * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ */</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                        
+                        spryJs.query('.selector').nth(n);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        SpryJS.query('.selector').nth(n);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').nth(n);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').nth(n);
+                    </code>
+                </div>
+
+                <!-- first -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.first" href="#query.first">first</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+ * Resets the collection to the first element in Collection.
+ * Alias of <a href="#query.nth"><span class="color-primary">nth(1)</span></a>
+ *
+ * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ */</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                        
+                        spryJs.query('.selector').first();
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        SpryJS.query('.selector').first();
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').first();
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').first();
+                    </code>
+                </div>
+
+                <!-- last -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.last" href="#query.last">last</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+ * Resets the collection to the last element in Collection.
+ * Alias of <a href="#query.nth"><span class="color-primary">nth(-1)</span></a>
+ *
+ * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ */</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                        
+                        spryJs.query('.selector').last();
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        SpryJS.query('.selector').last();
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').last();
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').last();
+                    </code>
+                </div>
+
+                <!-- slice -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.slice" href="#query.slice">slice</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+ * Resets the collection to a range by index.
+ * Both parameters can use Negative numbers to indicate an offset from the end.
+ *
+ * <span class="color-primary">@param</span> <span class="color-contrast">start</span><span class="color-gray">:</span>  <span class="color-success">number</span> - Start index of Range.
+ * <span class="color-primary">@param</span> <span class="color-contrast">end</span><span class="color-gray">?:</span>   <span class="color-success">number</span> - End index of range.
+ *
+ * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ */</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                        
+                        spryJs.query('.selector').slice(start, end);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        SpryJS.query('.selector').slice(start, end);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').slice(start, end);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').slice(start, end);
+                    </code>
+                </div>
+
+                <!-- filter -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.filter" href="#query.filter">filter</a></h4>
+                <code class="block w auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+ * Resets the collection to a range by index.
+ * Both parameters can use Negative numbers to indicate an offset from the end.
+ *
+ * <span class="color-primary">@param</span> <span class="color-contrast">callbackFn</span><span class="color-gray">:</span> <span class="color-success">Function</span> - Callback Function to check collection against.
+ * callbackFn provides <span class="color-warning">(</span><span class="color-contrast">value: <span class="color-success">Element</span>, <span class="color-contrast">index:</span> <span class="color-success">number</span>, <span class="color-contrast">array:</span> <span class="color-success">Element[]</span><span class="color-warning">)</span> and must return <span class="color-success">boolean</span>
+ *
+ * <span class="color-primary">@param</span> <span class="color-contrast">thisArg</span><span class="color-gray">?:</span> <span class="color-success">object</span> - A value to use as this when executing callbackFn.
+ *
+ * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ *
+ * For more details see: <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">MDN Array.prototype.filter()</a>
+ */</code>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                        
+                        spryJs.query('.selector').filter(callbackFn);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        SpryJS.query('.selector').filter(callbackFn);
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').filter(callbackFn);
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 rb-2 p-3 sm">                       
+                        query('.selector').filter(callbackFn);
+                    </code>
+                </div>
 
             </section>
 
