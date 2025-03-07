@@ -3,45 +3,52 @@
 
 export type SpryJsObserveOptions = {
     items?: Element[] | string,
-    classObserving?: string | string[];
-    classObserved?: string | string[];
     rootMargin?: string;
     threshold?: number | number[];
     delay?: number;
+    attributeDelay?: string;
+    classObserving?: string | string[];
+    attributeClassObserving?: string;
+    classObserved?: string | string[];
+    attributeClassObserved?: string;
 }
 
 export function observe({
     items = '.observe',
-    classObserving = 'observing',
-    classObserved = 'observed',
     rootMargin = '0px 0px 0px 0px',
     threshold = 0,
     delay = 50,
-}: SpryJsObserveOptions = {}): {update: Function, destroy: Function} {
+    classObserved = 'observed',
+    classObserving = 'observing',
+    attributeClassObserved = 'data-observe-class-observed',
+    attributeClassObserving = 'data-observe-class-observing',
+    attributeDelay = 'data-observe-delay',
+}: SpryJsObserveOptions = {}): { update: Function, destroy: Function } {
 
     let elements: Element[] | NodeListOf<Element> | null = null;
     let observer: IntersectionObserver | null = null;
 
     function createObserver() {
 
-        if (typeof classObserving === 'string') {
-            classObserving = classObserving.split(' ');
-        }
-    
-        if (typeof classObserved === 'string') {
-            classObserved = classObserved.split(' ');
-        }
-
         observer = new IntersectionObserver(entries => {
             entries.forEach((entry, index) => {
-                setTimeout(() => {
-                    if (entry.isIntersecting) {
+
+                const elementClassObserving = attributeClassObserving ? entry.target.getAttribute(attributeClassObserving) : null;
+                classObserving = elementClassObserving ? elementClassObserving.split(' ') : (typeof classObserving === 'string' ? classObserving.split(' ') : classObserving);
+
+                const elementClassObserved = attributeClassObserved ? entry.target.getAttribute(attributeClassObserved) : null;
+                classObserved = elementClassObserved ? elementClassObserved.split(' ') : (typeof classObserved === 'string' ? classObserved.split(' ') : classObserved);
+
+                const elementDelay = attributeDelay ? entry.target.getAttribute(attributeDelay) : delay;
+
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
                         if (classObserving) entry.target.classList.add(...classObserving);
                         if (classObserved) entry.target.classList.add(...classObserved);
-                    } else {
-                        if (classObserving) entry.target.classList.remove(...classObserving);
-                    }
-                }, ((delay ? delay : 0) * index));
+                    }, ((elementDelay ? parseInt(elementDelay.toString()) : 0) * index));
+                } else {
+                    if (classObserving) entry.target.classList.remove(...classObserving);
+                }
             });
         }, {
             rootMargin: rootMargin,
@@ -58,7 +65,7 @@ export function observe({
             }
             if (observer) {
                 for (let e = 0; e < elements.length; e++) {
-                    observer.observe(elements[e]);   
+                    observer.observe(elements[e]);
                 }
             }
         }

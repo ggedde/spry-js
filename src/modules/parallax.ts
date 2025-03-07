@@ -3,26 +3,28 @@
 
 export type SpryJsParallaxOptions = {
     items?: Element[] | string,
+    threshold?: number;
+    minWidth?: number;
+    delay?: number;
     classActive?: string;
+    attributeClassActive?: string;
     attributeBackground?: string;
     attributeHorizontal?: string;
     attributeInvert?: string;
     attributeDelay?: string;
-    threshold?: number;
-    minWidth?: number;
-    delay?: number;
 }
 
 export function parallax({
     items = '.parallax',
+    threshold = -300,
+    minWidth = 0,
+    delay = 300,
     classActive = 'parallaxing',
+    attributeClassActive = 'data-parallax-class-active',
     attributeBackground = 'data-parallax-background',
     attributeHorizontal = 'data-parallax-horizontal',
     attributeInvert = 'data-parallax-invert',
     attributeDelay = 'data-parallax-delay',
-    threshold = -300,
-    minWidth = 0,
-    delay = 300,
 }: SpryJsParallaxOptions = {}): {update: Function, destroy: Function} {
 
     let windowHeight: number = window.innerHeight;
@@ -34,7 +36,8 @@ export function parallax({
     function createObserver() {
         observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                entry.target.classList.toggle(classActive, entry.isIntersecting);
+                const elementClassActive = entry.target.getAttribute(attributeClassActive);
+                entry.target.classList.toggle(elementClassActive ? elementClassActive : classActive, entry.isIntersecting);
             });
             runScrollEvents();
         }, {
@@ -50,7 +53,8 @@ export function parallax({
     function runScrollEvents() {
         if (elements && windowWidth >= minWidth) {
             for (let e = 0; e < elements.length; e++) {
-                if (elements[e] && elements[e].classList.contains(classActive)) {
+                const elementClassActive = elements[e].getAttribute(attributeClassActive);
+                if (elements[e] && elements[e].classList.contains(elementClassActive ? elementClassActive : classActive)) {
                     const rectElement = elements[e].getBoundingClientRect();
                     const isBackground = elements[e].hasAttribute(attributeBackground);
                     const isHorizontal = elements[e].hasAttribute(attributeHorizontal);
@@ -128,7 +132,8 @@ export function parallax({
 
         if (elements) {
             for (let e = 0; e < elements.length; e++) {
-                elements[e].classList.remove(classActive);
+                const elementClassActive = elements[e].getAttribute(attributeClassActive);
+                elements[e].classList.remove(elementClassActive ? elementClassActive : classActive);
             };
         }
 

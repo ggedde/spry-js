@@ -3,31 +3,45 @@
 
 type SpryJsScrollSpyAnchor = {
     top: number;
-    link: Element;
+    el: Element;
+}
+
+type SpryJsScrollSpyContainer = {
+    el: Element;
+    progress: string;
+    classActive: string | string[];
+    anchors: SpryJsScrollSpyAnchor[];
 }
 
 export type SpryJsScrollSpyOptions = {
     items?: Element[] | string,
-    anchorHashSelector?: string;
-    anchorDataAttribute?: string;
-	classActive?: string | string[];
     threshold?: number;
     progress?: 'active' | 'linear' | 'seen';
+	classActive?: string | string[];
+    selectorAnchors?: string;
+    attributeAnchors?: string;
+    attributeClassActive?: string;
+    attributeSection?: string;
+    attributeThreshold?: string;
+    attributeProgress?: string;
 };
 
 export function scrollspy({
     items = '.scrollspy',
-    anchorHashSelector = '[href*="#"]',
-    anchorDataAttribute = 'data-scrollspy',
-    classActive = 'active',
     threshold = 200,
     progress = 'active',
+    classActive = 'active',
+    selectorAnchors = '[href*="#"],[data-scrollspy-section]',
+    attributeAnchors = 'data-scrollspy-anchors',
+    attributeClassActive = 'data-scrollspy-class-active',
+    attributeSection = 'data-scrollspy-section',
+    attributeThreshold = 'data-scrollspy-threshold',
+    attributeProgress = 'data-scrollspy-progress'
 }: SpryJsScrollSpyOptions = {}): {destroy: Function, update: Function} {
 
-    const selectors = [anchorHashSelector, '['+anchorDataAttribute+']'];
     let controller: AbortController | null = null;
     let elements: Element[] | NodeListOf<Element> | null = null;
-    let anchors: SpryJsScrollSpyAnchor[] = [];
+    let containers: SpryJsScrollSpyContainer[] = [];
     let resizeTimer: Timer | null = null;
 
     if (typeof classActive === 'string') {
@@ -36,34 +50,29 @@ export function scrollspy({
 
     function runScrollEvents() {
 
-        let y = window.scrollY;
-        const l = anchors.length;
-        for (let i = 0; i < l; i++) {
-            
-            // Active
-            if (progress === 'active') {
-                if (y > anchors[i].top) {
-                    for (let a = 0; a < l; a++) {
-                        anchors[a].link.classList.remove(...classActive);
-                    }
-                    anchors[i].link.classList.add(...classActive);
-                    return;
+        const y = window.scrollY;
+
+        if (!containers) return;
+
+        containers.forEach(container => {
+
+            if (typeof container.classActive === 'string') {
+                container.classActive = container.classActive.split(' ');
+            }
+
+            for (let a = 0; a < container.anchors.length; a++) {
+                if (container.progress === 'active' || (container.progress === 'linear' && y <= container.anchors[a].top)) {
+                    container.anchors[a].el.classList.remove(...container.classActive);
                 }
             }
 
-            // Linear || Seen
-            if (['linear', 'seen'].includes(progress)) {
-                if (y > anchors[i].top) {
-                    anchors[i].link.classList.add(...classActive);
-                    if (progress === 'seen') return; // If Seen then return
-                    for (let a = 0; a < l; a++) {
-                        if (y <= anchors[a].top) {
-                            anchors[a].link.classList.remove(...classActive);
-                        }
-                    }
+            for (let a = 0; a < container.anchors.length; a++) {
+                if (y > container.anchors[a].top || (container.progress !== 'seen' && y <= container.anchors[a].top && a === (container.anchors.length - 1))) {
+                    container.anchors[a].el.classList.add(...container.classActive);
+                    if (container.progress === 'active') return;
                 }
             }
-        };
+        });
     }
 
     function runResizeEvents() {
@@ -71,66 +80,87 @@ export function scrollspy({
             clearTimeout(resizeTimer);
         }
         resizeTimer = setTimeout(() => {
+            update();
             runScrollEvents();
         }, 100);
     }
 
     function update() {
 
-        anchors = [];
+        containers = [];
         const scrollPosition = window.scrollY;
 
         elements = typeof items === 'object' ? items : document.querySelectorAll(items);
         if (elements) {
             for (let e = 0; e < elements.length; e++) {
                 if (document.body.contains(elements[e])) {
-                    elements[e].querySelectorAll(selectors.join(',')).forEach(anchor => {
+
+                    const containerProgress = elements[e].hasAttribute(attributeProgress) ? elements[e].getAttribute(attributeProgress) : progress;
+                    const containerClassActive = elements[e].hasAttribute(attributeClassActive) ? elements[e].getAttribute(attributeClassActive) : classActive;
+
+                    let container: SpryJsScrollSpyContainer = {
+                        el: elements[e],
+                        progress: containerProgress || '',
+                        classActive: containerClassActive || '',
+                        anchors: []
+                    };
+
+                    const elementThreshold = elements[e].hasAttribute(attributeThreshold) ? elements[e].getAttribute(attributeThreshold) : threshold;
+                    const containerSelectorAnchors = elements[e].hasAttribute(attributeAnchors) ? elements[e].getAttribute(attributeAnchors) : selectorAnchors;
+
+                    if (!containerSelectorAnchors) {
+                        console.error('SpryJS - Scrollspy has no selectors.')
+                        return;
+                    }
+
+                    elements[e].querySelectorAll(containerSelectorAnchors).forEach(anchor => {                        
 
                         let section = null;
 
-                        // Try Hash Selectors
-                        const href = (anchor as HTMLElement).getAttribute('href');
-                        if (href) {
-                            try {
-                                const url = new URL(href, window.location.href);
-                                if (url && url.hash) {
-                                    const hash = url.hash.replace('#', '').trim();
-                                    if (hash) {
-                                        section = document.querySelector('[id="'+hash+'"], a[name="'+hash+'"]');
-                                    }
-                                }
-                            } catch (e) {
-                                console.log('Invalid URL for ScrollSpy ('+href+')', e);
-                            }
+                        const dataSelector = (anchor as HTMLElement).getAttribute(attributeSection);
+                        if (dataSelector) {
+                            section = document.querySelector(dataSelector);
                         }
 
-                        // Try Data Selectors if no Section found
+                        // Try Hash Selectors if Section not detected
                         if (!section) {
-                            const dataSelector = (anchor as HTMLElement).getAttribute(anchorDataAttribute);
-                            if (dataSelector) {
-                                section = document.querySelector(dataSelector);
+                            const href = (anchor as HTMLElement).getAttribute('href');
+                            if (href) {
+                                try {
+                                    const url = new URL(href, window.location.href);
+                                    if (url && url.hash) {
+                                        const hash = url.hash.replace('#', '').trim();
+                                        if (hash) {
+                                            section = document.querySelector('[id="'+hash+'"], a[name="'+hash+'"]');
+                                        }
+                                    }
+                                } catch (e) {
+                                    console.error('SpryJS - Scrollspy has invalid URL ('+href+')', e);
+                                }
                             }
                         }
 
                         // Add Anchors if found Section
-                        if (section) {
+                        if (section && elements && elements[e]) {
                             const sectionRect = section.getBoundingClientRect();
-                            anchors.push({
-                                top: (sectionRect.y + scrollPosition) - threshold,
-                                link: anchor
+                            container.anchors.push({
+                                top: (sectionRect.y + scrollPosition) - ( elementThreshold ? parseInt( elementThreshold.toString() ) : 0 ),
+                                el: anchor,
                             });
                         }
                     });
+
+                    container.anchors = container.anchors.reverse();
+                    containers.push(container);
                 }
             }
-            anchors = anchors.reverse();
         }
 
         if (!controller) {
 			controller = new AbortController();
 		}
 
-        if (!anchors) {
+        if (!containers) {
             destroy();
         } else if (controller) {
             window.addEventListener('scroll', runScrollEvents, {signal: controller.signal});
@@ -144,7 +174,7 @@ export function scrollspy({
             controller.abort();
             controller = null;
         }
-        anchors = [];
+        containers = [];
     };
 
     update();

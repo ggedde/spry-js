@@ -86,8 +86,8 @@
                     </div>
                 </div>
                 <a class="flex mr-2 md:mr-3 ml-2" href="https://ggedde.github.io/spry-js">
-                    <svg class="icon circle outline mr-3 xs border-primary none md:inline p-1" viewBox="0 0 24 24"><path d="M12.89,3L14.85,3.4L11.11,21L9.15,20.6L12.89,3M19.59,12L16,8.41V5.58L22.42,12L16,18.41V15.58L19.59,12M1.58,12L8,5.58V8.41L4.41,12L8,15.58V18.41L1.58,12Z" /></svg>
-                    SpryJS
+                    <svg class="icon circle outline mr-3 xs color-gray border-gray none md:inline p-1" viewBox="0 0 24 24"><path d="M12.89,3L14.85,3.4L11.11,21L9.15,20.6L12.89,3M19.59,12L16,8.41V5.58L22.42,12L16,18.41V15.58L19.59,12M1.58,12L8,5.58V8.41L4.41,12L8,15.58V18.41L1.58,12Z" /></svg>
+                    <span class="color-gray color-to-primary">SpryJS</span>
                 </a>
                 <!-- <img src="https://img.shields.io/github/v/release/ggedde/spry-js?include_prereleases" alt="Release"> -->
             </div>
@@ -104,16 +104,15 @@
 
             <!-- ABOUT -->
             <section class="bg-inherit cover pb-3" style="background-image: url('bg.png');">
-                <h1 class="flex items-center mb-3 mt-0">
-                    <i class="icon circle outline mr-1 xs"><svg class="lg" viewBox="0 0 24 24"><path d="M12.89,3L14.85,3.4L11.11,21L9.15,20.6L12.89,3M19.59,12L16,8.41V5.58L22.42,12L16,18.41V15.58L19.59,12M1.58,12L8,5.58V8.41L4.41,12L8,15.58V18.41L1.58,12Z" /></svg></i>
-                    SpryJS
+                <h1 class="flex block-center mb-3 mt-0">
+                    <svg class="icon circle mr-2 color-gray" viewBox="0 0 24 24"><path d="M12.89,3L14.85,3.4L11.11,21L9.15,20.6L12.89,3M19.59,12L16,8.41V5.58L22.42,12L16,18.41V15.58L19.59,12M1.58,12L8,5.58V8.41L4.41,12L8,15.58V18.41L1.58,12Z" /></svg>
+                    <span class="lg color-gray color-to-primary bold">SpryJS</span>
                 </h1>
                 <div class="max-w-1100">
                     <h5>
-                        SpryJS is a simple and lightweight JS Toolkit that pairs nicely with <a target="_blank" href="https://ggedde.github.io/spry-css">SpryCSS</a>, but can be used all on its own. 
-                    </h5>
-                    <h5>
-                        The goal is to provide general functionality and utilities to speed up your development.
+                        SpryJS is a lightweight and straightforward JavaScript toolkit designed to complement
+                        <a target="_blank" href="https://ggedde.github.io/spry-css">SpryCSS</a>, though it can also be used independently.
+                        Its primary objective is to offer essential functionality and utilities that accelerate development.
                     </h5>
                 </div>
             
@@ -245,8 +244,8 @@
                 </code>
 
                 <h4 class="mt-3 mb-1"><a id="navigable.update" href="#navigable.update" class="color-inherit">Global Build Query Param Options</a></h4>
-                <h4 class="color-primary mt-3 mb-1"><a id="navigable.update" href="#navigable.update">load={yourVariableName}</a></h4>
-                <p class="note mt-1 mb-2">Automatically load SpryJS to a variable and initialize all components with default options.</p>
+                <h4 class="color-primary mt-3 mb-1"><a id="navigable.update" href="#navigable.update">load</a></h4>
+                <p class="note mt-1 mb-2">Automatically load SpryJS to a variable you specify and initialize all components with default options.</p>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">
                     &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                 </code>
@@ -257,8 +256,8 @@
                     &lt;/button&gt;
                 </code>
 
-                <h4 class="color-primary mt-3 mb-1"><a id="navigable.update" href="#navigable.update">run={yourFunctionName}</a></h4>
-                <p class="note mt-1 mb-2">Run a function when SpryJS is fully loaded.</p>
+                <h4 class="color-primary mt-3 mb-1"><a id="navigable.update" href="#navigable.update">run</a></h4>
+                <p class="note mt-1 mb-2">Run a function you specify when SpryJS is fully loaded.</p>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm mb-5">
                     &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?run=spryJsLoaded"&gt;&lt;/script&gt;
                     &lt;script&gt;
@@ -279,10 +278,11 @@
                     </a>
                 </h2>
 
-                <h5>Navigable allows <code class="color-primary">&lt;a&gt;</code> and <code class="color-primary">&lt;button&gt;</code> to be navigable via the keyboard arrow keys and clickable via the keyboard space and enter keys. It also adds ability to use the escape key to ignore focus.</h5>
+                <h5>Navigable enables keyboard navigation for specific elements using the arrow keys and triggerable via the spacebar and enter keys.
+                    Additionally, it provides the functionality to use the escape key to dismiss focus.</h5>
 
                 <!-- Usage -->
-                <h3 class="mt-4"><a id="navigable.usage" href="#navigable.usage" class="color-inherit">Usage</a></h3>
+                <h3 class="mt-3"><a id="navigable.usage" href="#navigable.usage" class="color-inherit">Usage</a></h3>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm mb-4">
                     &lt;nav class="navigable"&gt;
                         &lt;ul&gt;
@@ -296,8 +296,8 @@
                 <h3 id="navigable.api" class="flex mt-4 block-center">
                     <a id="navigable.api" href="#navigable.api" class="color-inherit">API</a>
                     <div class="items-center inline-flex ml-3 xs">
-                        <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1">
-                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadCodeContainer(this, true)">
+                        <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1 sm md:md">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
                                 <option value="cdnEsm">CDN ES Module Build</option>
                                 <option value="cdn">CDN Global Build</option>
                                 <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
@@ -420,24 +420,26 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="bt-0"><code class="color-primary">items</code><code class="color-gray">?: string | Element[]</code></td>
+                            <td class="bt-0"><a id="navigable.options.items" href="#navigable.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: string | Element[]</code></td>
                             <td class="bt-0">
                                 <p>Selector or array of Elements for navigable containers. This will capture keyboard events within this element and navigate between the anchors.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">".navigable"</code></p>
                             </td>
                         </tr>
-                        <tr id="navigable.selector.anchor">
-                            <td><code class="color-primary">selectorAnchor</code><code class="color-gray">?: string</code></td>
+                        <tr>
+                            <td><a id="navigable.options.selector.anchor" href="#navigable.options.selector.anchor"><code class="color-primary">selectorAnchor</code></a><code class="color-gray">?: string</code></td>
                             <td>
                                 <p>Selector Name for anchor items within the Navigable container. Which items within the Navigable container you wont to be able to navigate through.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"a, button, input, [tabindex]"</code></p>
+                                <p class="note sm mt-3">Override with <a href="#navigable.options.attribute.anchor"><code class="color-primary">attributeAnchor</code></a></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><code class="color-primary">attributeAnchor</code><code class="color-gray">?: string</code></td>
+                            <td><a id="navigable.options.attribute.anchor" href="#navigable.options.attribute.anchor"><code class="color-primary">attributeAnchor</code></a><code class="color-gray">?: string</code></td>
                             <td>
-                                <p>Data attribute for custom anchor selector. This will allow overriding the <a href="#navigable.selector.anchor"><code class="color-primary">selectorAnchor</code></a> for this container.</p>
+                                <p>Data attribute for custom anchor selector.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-navigable-anchors"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#navigable.options.selector.anchor"><code class="color-primary">selectorAnchor</code></a></p>
                             </td>
                         </tr>
                     </tbody>
@@ -478,8 +480,12 @@
                     </a>
                 </h2>
 
+                <h5>Observe enables the tracking of elements based on their position within the viewport.
+                    When an element becomes visible, two classes are applied. Upon exiting the viewport,
+                    the observing class is removed, while the observed class remains active.</h5>
+
                 <!-- Usage -->
-                <h3 class="mt-4"><a id="observe.usage" href="#observe.usage" class="color-inherit">Usage</a></h3>
+                <h3 class="mt-3"><a id="observe.usage" href="#observe.usage" class="color-inherit">Usage</a></h3>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm mb-4">
                     &lt;div class="observe"&gt;&lt;/div&gt;
                 </code>
@@ -488,7 +494,7 @@
                     <a id="observe.api" href="#observe.api" class="color-inherit">API</a>
                     <div class="items-center inline-flex ml-3 xs">
                         <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1">
-                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadCodeContainer(this, true)">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
                                 <option value="cdnEsm">CDN ES Module Build</option>
                                 <option value="cdn">CDN Global Build</option>
                                 <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
@@ -604,38 +610,27 @@
                                 <code class="language-js block w auto bg-surface b-1 r-2 p-3 sm my-3 mt-0">
                                     observe({
                                         items: '.observe',
-                                        classObserving: 'observing',
-                                        classObserved: 'observed',
                                         rootMargin: '0px 0px 0px 0px',
                                         threshold: 0,
-                                        delay: 100,
+                                        delay: 50,
+                                        classObserved: 'observed',
+                                        classObserving: 'observing',
+                                        attributeClassObserved: 'data-observe-class-observed',
+                                        attributeClassObserving: 'data-observe-class-observing',
+                                        attributeDelay: 'data-observe-delay'
                                     });
                                 </code>
                             </td>
                         </tr>
                         <tr>
-                            <td class="bt-0"><code class="color-primary">items</code><code class="color-gray">?: string | Element[]</code></td>
+                            <td class="bt-0"><a id="observe.options.items" href="#observe.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: string | Element[]</code></td>
                             <td class="bt-0">
                                 <p>Selector or array of Elements to watch in the observer.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">".observe"</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><code class="color-primary">classObserving</code><code class="color-gray">?: string</code></td>
-                            <td>
-                                <p>Class that gets toggled when elements are visible within the viewport.</p>
-                                <p><code class="color-gray">default:</code> <code class="color-primary">"observing"</code></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code class="color-primary">classObserved</code><code class="color-gray">?: string</code></td>
-                            <td>
-                                <p>Class that gets added when elements become visible within the viewport, but does not get removed.</p>
-                                <p><code class="color-gray">default:</code> <code class="color-primary">"observed"</code></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code class="color-primary">rootMargin</code><code class="color-gray">?: string</code></td>
+                            <td><a id="observe.options.rootmargin" href="#observe.options.rootmargin"><code class="color-primary">rootMargin</code></a><code class="color-gray">?: string</code></td>
                             <td>
                                 <p>Bounding box before computing intersections. Negative values will shrink the bounding box.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"0px 0px 0px 0px"</code></p>
@@ -646,7 +641,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><code class="color-primary">threshold</code><code class="color-gray">?: number</code></td>
+                            <td><a id="observe.options.threshold" href="#observe.options.threshold"><code class="color-primary">threshold</code></a><code class="color-gray">?: number</code></td>
                             <td>
                                 <p>Either a single number from 0 - 1 or an array of numbers which indicate at what percentage of the target's visibility the observer's callback should be executed.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">0</code></p>
@@ -657,11 +652,54 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><code class="color-primary">delay</code><code class="color-gray">?: number</code></td>
+                            <td><a id="observe.options.delay" href="#observe.options.delay"><code class="color-primary">delay</code></a><code class="color-gray">?: number</code></td>
                             <td>
-                                <p>Delay in milliseconds before the Observer acknowledges the observed element.
-                                If multiple elements are observed at the same time then the delay will be stacked by the element index.</p>
+                                <p>
+                                    Delay in milliseconds before the Observer acknowledges the observed element.
+                                    If multiple elements are observed at the same time then the delay will be stacked by the element index.
+                                </p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">100</code></p>
+                                <p class="note sm mt-3">Override with <a href="#observe.options.attribute.delay"><code class="color-primary">attributeDelay</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="observe.options.class.observed" href="#observe.options.class.observed"><code class="color-primary">classObserved</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>Class that gets added when elements become visible within the viewport, but does not get removed.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"observed"</code></p>
+                                <p class="note sm mt-3">Override with <a href="#observe.options.attribute.observed"><code class="color-primary">attributeClassObserved</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="observe.options.class.observing" href="#observe.options.class.observing"><code class="color-primary">classObserving</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>Class that gets toggled when elements are visible within the viewport.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"observing"</code></p>
+                                <p class="note sm mt-3">Override with <a href="#observe.options.attribute.observing"><code class="color-primary">attributeClassObserving</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="observe.options.attribute.delay" href="#observe.options.attribute.delay"><code class="color-primary">attributeDelay</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>Data attribute to specify the delay. This will override <a href="#observe.options.delay"><code class="color-primary">delay</code></a>.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-observe-delay"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#observe.options.delay"><code class="color-primary">delay</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="observe.options.attribute.observed" href="#observe.options.attribute.observed"><code class="color-primary">attributeClassObserved</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>Data attribute to specify the observed class. This will override <a href="#observe.options.class.observed"><code class="color-primary">classObserved</code></a>.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-observe-class-observed"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#observe.options.class.observed"><code class="color-primary">classObserved</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="observe.options.attribute.observing" href="#observe.options.attribute.observing"><code class="color-primary">attributeClassObserving</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>Data attribute to specify the observing class. This will override <a href="#observe.options.class.observing"><code class="color-primary">classObserving</code></a>.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-observe-class-observing"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#observe.options.class.observing"><code class="color-primary">classObserving</code></a></p>
                             </td>
                         </tr>
                     </tbody>
@@ -670,41 +708,37 @@
                 <!-- Examples -->
                 <h3 class="mt-4"><a id="observe.examples" href="#observe.examples" class="color-inherit">Examples</a></h3>
                 <article class="show-code" id="observe.example.1" data-title="Observing Items">
-                    <style>
-                        .observing {
-                            opacity: 1;
-                            scale: 1;
-                        }
-                    </style>
                     <div class="row columns-3">
-                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
-                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
-                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
-                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
-                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
-                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
-                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
-                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
-                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
-                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
-                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
-                        <div class="observe transition opacity/0 scale/5 bg-faint square"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square" data-observe-class-observing="opacity scale"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square" data-observe-class-observing="opacity scale"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square" data-observe-class-observing="opacity scale"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square" data-observe-class-observing="opacity scale"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square" data-observe-class-observing="opacity scale"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square" data-observe-class-observing="opacity scale"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square" data-observe-class-observing="opacity scale"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square" data-observe-class-observing="opacity scale"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square" data-observe-class-observing="opacity scale"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square" data-observe-class-observing="opacity scale"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square" data-observe-class-observing="opacity scale"></div>
+                        <div class="observe transition opacity/0 scale/5 bg-faint square" data-observe-class-observing="opacity scale"></div>
                     </div>
                 </article>
 
             </section>
 
             <!-- PARALLAX -->
-            <section id="parallax" class="bg-inherit py-0 pb-3">
+            <section id="parallax" class="bg-inherit py-0 pb-4">
                 <h2 class="sticky index-3 pt-4 bg-theme bg/7 bg-blur-lg bb-1 pb-2 mx-n3 px-3 mb-3 glow-theme glow-2 glow/10">
                     <svg class="icon mr-1" viewBox="0 0 24 24"><path d="M13,9V15H16L12,19L8,15H11V9H8L12,5L16,9H13M4,2H20V4H4V2M4,20H20V22H4V20Z" /></svg>
                     Parallax
                 </h2>
 
-                <h5>Navigable allows <code class="color-primary">&lt;a&gt;</code> and <code class="color-primary">&lt;button&gt;</code> to be navigable via the keyboard arrow keys and clickable via the keyboard space and enter keys. It also adds ability to use the escape key to ignore focus.</h5>
+                <h5>Parallax enables the movement of elements in relation to viewport scroll. By default, this effect is applied to the child element,
+                    though it can also be applied to the background position. To function correctly, Parallax requires the child element or background
+                    image to overflow the parent container. It is the user's responsibility to manage the visibility of any overflowing content.</h5>
 
                 <!-- Usage -->
-                <h3 class="mt-4"><a id="parallax.usage" href="#parallax.usage" class="color-inherit">Usage</a></h3>
+                <h3 class="mt-3"><a id="parallax.usage" href="#parallax.usage" class="color-inherit">Usage</a></h3>
                 <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">
                     &lt;!-- Parallax Container --&gt;
                     &lt;div style="max-height: 200px; overflow: hidden;"&gt;
@@ -717,7 +751,7 @@
                     <a id="parallax.api" href="#parallax.api" class="color-inherit">API</a>
                     <div class="items-center inline-flex ml-3 xs">
                         <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1">
-                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadCodeContainer(this, true)">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
                                 <option value="cdnEsm">CDN ES Module Build</option>
                                 <option value="cdn">CDN Global Build</option>
                                 <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
@@ -833,74 +867,91 @@
                                 <code class="language-js block w auto bg-surface b-1 r-2 p-3 sm my-3 mt-0">
                                     parallax({
                                         items: '.parallax',
-                                        anchorSelector: 'a, button, input, [tabindex]',
-                                        anchorDataAttribute: 'data-navigable-anchors',
+                                        threshold: -300,
+                                        minWidth: 0,
+                                        delay: 300,
+                                        classActive: 'parallaxing',
+                                        attributeClassActive: 'data-parallax-class-active',
+                                        attributeBackground: 'data-parallax-background',
+                                        attributeHorizontal: 'data-parallax-horizontal',
+                                        attributeInvert: 'data-parallax-invert',
+                                        attributeDelay: 'data-parallax-delay',
                                     });
                                 </code>
                             </td>
                         </tr>
                         <tr>
-                            <td class="bt-0"><code class="color-primary">items</code><code class="color-gray">?: string | Element[]</code></td>
+                            <td class="bt-0"><a id="parallax.options.items" href="#parallax.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: string | Element[]</code></td>
                             <td class="bt-0">
                                 <p>Selector or array of Elements to parallax.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">".parallax"</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><code class="color-primary">threshold</code><code class="color-gray">?: number</code></td>
+                            <td><a id="parallax.options.threshold" href="#parallax.options.threshold"><code class="color-primary">threshold</code></a><code class="color-gray">?: number</code></td>
                             <td>
                                 <p>The threshold is the buffer in pixels before the parallax element starts to animate before it reaches the viewport. This helps reduce flickering when the element animates from baseline position. You can use a positive number to prevent animation while partially in viewport.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">-300</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><code class="color-primary">minWidth</code><code class="color-gray">?: number</code></td>
+                            <td><a id="parallax.options.minwidth" href="#parallax.options.minwidth"><code class="color-primary">minWidth</code></a><code class="color-gray">?: number</code></td>
                             <td>
                                 <p>Minimum width in pixels of the window to apply effects. Useful if you do not what to apply parallax for smaller devices.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">0</code></p>
                             </td>
                         </tr>
-                        <tr id="parallax.delay">
-                            <td><code class="color-primary">delay</code><code class="color-gray">?: number</code></td>
+                        <tr>
+                            <td><a id="parallax.options.delay" href="#parallax.options.delay"><code class="color-primary">delay</code></a><code class="color-gray">?: number</code></td>
                             <td>
                                 <p>Number in milliseconds to apply easing delay. This allows for a smoother animation on non-smooth scrolling devices and might need adjustment based on your needs. Set to 0 to disable.</p>
-                                <p>This is overridable per element when using the <a href="#parallax.attribute.delay"><code class="color-primary">attributeDelay</code></a> on the element.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">0</code></p>
+                                <p class="note sm mt-3">Override with <a href="#parallax.options.attribute.delay"><code class="color-primary">attributeDelay</code></a></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><code class="color-primary">classActive</code><code class="color-gray">?: string</code></td>
+                            <td><a id="parallax.options.class.active" href="#parallax.options.class.active"><code class="color-primary">classActive</code></a><code class="color-gray">?: string</code></td>
                             <td>
                                 <p>Class added to element when being viewed by observer and active. Removed when out of view.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">".parallaxing"</code></p>
+                                <p class="note sm mt-3">Override with <a href="#parallax.options.attribute.active"><code class="color-primary">attributeClassActive</code></a></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><code class="color-primary">attributeBackground</code><code class="color-gray">?: string</code></td>
+                            <td><a id="parallax.options.attribute.active" href="#parallax.options.attribute.active"><code class="color-primary">attributeClassActive</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>Data attribute to set the active class when the element is being viewed by observer and active.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-parallax-class-active"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#parallax.options.class.active"><code class="color-primary">classActive</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="parallax.options.attribute.background" href="#parallax.options.attribute.background"><code class="color-primary">attributeBackground</code></a><code class="color-gray">?: string</code></td>
                             <td>
                                 <p>Data attribute to indicate that parallaxing should be done on the "background-position" style instead of the element.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-parallax-background"</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><code class="color-primary">attributeHorizontal</code><code class="color-gray">?: string</code></td>
+                            <td><a id="parallax.options.attribute.horizontal" href="#parallax.options.attribute.horizontal"><code class="color-primary">attributeHorizontal</code></a><code class="color-gray">?: string</code></td>
                             <td>
                                 <p>Data attribute to indicate that parallaxing should be done horizontally instead of vertically.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-parallax-horizontal"</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><code class="color-primary">attributeInvert</code><code class="color-gray">?: string</code></td>
+                            <td><a id="parallax.options.attribute.invert" href="#parallax.options.attribute.invert"><code class="color-primary">attributeInvert</code></a><code class="color-gray">?: string</code></td>
                             <td>
                                 <p>Data attribute to indicate that parallaxing should be done in the opposite direction.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-parallax-invert"</code></p>
                             </td>
                         </tr>
-                        <tr id="parallax.attribute.delay">
-                            <td><code class="color-primary">attributeDelay</code><code class="color-gray">?: string</code></td>
+                        <tr>
+                            <td><a id="parallax.options.attribute.delay" href="#parallax.options.attribute.delay"><code class="color-primary">attributeDelay</code></a><code class="color-gray">?: string</code></td>
                             <td>
-                                <p>Data attribute that sets the value of the delay time. This will override the <a href="#parallax.delay"><code class="color-primary">delay</code></a> option if present and allows for different values per element.</p>
+                                <p>Data attribute that sets the value of the delay time. This will override the <a href="#parallax.options.delay"><code class="color-primary">delay</code></a> option if present and allows for different values per element.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-parallax-delay"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#parallax.options.delay"><code class="color-primary">delay</code></a></p>
                             </td>
                         </tr>
                     </tbody>
@@ -910,7 +961,7 @@
                 <h3 id="parallax.examples" class="mt-4"><a id="parallax.examples" href="#parallax.examples" class="color-inherit">Examples</a></h3>
                 <!-- cspell:disable-next-line -->
                 <article class="show-code" data-title="Parallax" data-footer-note="Photo by &lt;a href='https://unsplash.com/@joelfilip?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'&gt;Joel Filipe&lt;/a&gt;">
-                    <div class="max-h-200 md:max-h-400 hidden  bbbb">
+                    <div class="max-h-200 md:max-h-400 hidden">
                         <img class="parallax cover" src="img.webp">
                     </div>
                 </article>
@@ -956,99 +1007,270 @@
                     Scroll Spy
                 </h2>
 
-                <h5>Loading Scroll Spy</h5>
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;script type="module"&gt;
-    import { scrollspy } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
-    scrollspy({options});
-&lt;/script&gt;</code>
+                <h5>Navigable enables keyboard navigation for specific elements using the arrow keys and triggerable via the spacebar and enter keys.
+                    Additionally, it provides the functionality to use the escape key to dismiss focus.</h5>
 
-                <p class="note">* scrollspy() can be called multiple times without creating duplicated event listeners and other side effects. This will ignore any pre-registered elements. This makes it compatible when using it with page builders or other dynamically created html blocks.</p>
-                
-                <h5 class="mt-3">Example:</h5>
+                <!-- Usage -->
+                <h3 class="mt-3"><a id="scrollspy.usage" href="#scrollspy.usage" class="color-inherit">Usage</a></h3>
+                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">
+                    &lt;!-- ScrollSpy Container --&gt;
+                    &lt;div class="scrollspy"&gt;
+                        &lt;!-- ScrollSpy Anchors --&gt;
+                        &lt;a href="#scrollspy-section-1"&gt;Section 1 Anchor&lt;/a&gt;
+                        &lt;a href="#scrollspy-section-2"&gt;Section 2 Anchor&lt;/a&gt;
+                        &lt;a href="#scrollspy-section-3"&gt;Section 3 Anchor&lt;/a&gt;
+                    &lt;/div&gt;
+                    
+                    &lt;!-- ScrollSpy Sections --&gt;
+                    &lt;div id="scrollspy-section-1"&gt;Section 1 Content&lt;/div&gt;
+                    &lt;div id="scrollspy-section-2"&gt;Section 2 Content&lt;/div&gt;
+                    &lt;div id="scrollspy-section-3"&gt;Section 3 Content&lt;/div&gt;
+                </code>
 
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;!-- ScrollSpy Container --&gt;
-&lt;div class="scrollspy"&gt;
-    &lt;!-- ScrollSpy Anchors --&gt;
-    &lt;a href="#scrollspy-section-1"&gt;Section 1 Anchor&lt;/a&gt;
-    &lt;a href="#scrollspy-section-2"&gt;Section 2 Anchor&lt;/a&gt;
-    &lt;a href="#scrollspy-section-3"&gt;Section 3 Anchor&lt;/a&gt;
-&lt;/div&gt;
+                <h3 id="scrollspy.api" class="flex mt-4 block-center">
+                    <a id="scrollspy.api" href="#scrollspy.api" class="color-inherit">API</a>
+                    <div class="items-center inline-flex ml-3 xs">
+                        <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1 sm md:md">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
+                                <option value="cdnEsm">CDN ES Module Build</option>
+                                <option value="cdn">CDN Global Build</option>
+                                <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
+                                <option value="node">Node</option>
+                            </select>
+                        </div>
+                    </div>
+                </h3>
 
-&lt;!-- ScrollSpy Sections --&gt;
-&lt;div id="scrollspy-section-1"&gt;Section 1 Content&lt;/div&gt;
-&lt;div id="scrollspy-section-2"&gt;Section 2 Content&lt;/div&gt;
-&lt;div id="scrollspy-section-3"&gt;Section 3 Content&lt;/div&gt;
-</code>
+                <!-- Initiate -->
+                <h4 class="color-primary mb-1"><a id="scrollspy.initiate" href="#scrollspy.initiate">Initiate</a></h4>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-html block w auto bg-surface b-1 rt-2 p-3 sm">
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                    </code>
+                    <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/5">
+                        <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
+                    </div>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script&gt;
+                            var spryObj = SpryJS('.scrollspy').scrollspy();
+                        &lt;/script&gt;
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">
+                        &lt;script type="module"&gt;
+                            import { scrollspy } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                            const obj = scrollspy();
+                        &lt;/script&gt;
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        import { scrollspy } from 'spry-js';
+                        const obj = scrollspy();
+                    </code>
+                </div>
 
-                <table class="mb-3">
-                    <thead>
-                        <tr>
-                            <th width="190"><h4>Options</h4></th>
-                            <th></th>
-                        </tr>
-                    </thead>
+                <!-- Update -->
+                <h4 class="color-primary mt-3 mb-1"><a id="scrollspy.update" href="#scrollspy.update">Update</a></h4>
+                <p class="note mt-1 mb-2">This allows you to update the objects after Dom changes have been made without duplicating the event listeners. Useful with page builders and other dynamic Dom loading applications.</p>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        // Update Objects
+                        spryJs.scrollspyUpdate();
+
+                        // OR Update All Components
+                        spryJs.update();
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        // Update Objects
+                        spryObj.scrollspyUpdate();
+
+                        // OR Update All Components
+                        spryObj.update();
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        obj.update();
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        obj.update();
+                    </code>
+                </div>
+
+                <!-- Destroy -->
+                <h4 class="color-primary mt-3 mb-1"><a id="scrollspy.destroy" href="#scrollspy.destroy">Destroy</a></h4>
+                <p class="note mt-1 mb-2">This allows you to remove all event listeners and added functionality for the objects.</p>
+                <div class="language-select" data-language="cdnLoad">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        // Destroy Objects
+                        spryJs.scrollspyDestroy();
+
+                        // OR Destroy All Components
+                        spryJs.destroy();
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        // Destroy Objects
+                        spryObj.scrollspyDestroy();
+
+                        // OR Destroy All Components
+                        spryObj.destroy();
+                    </code>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        obj.destroy();
+                    </code>
+                </div>
+                <div class="language-select" data-language="node">
+                    <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm">
+                        obj.destroy();
+                    </code>
+                </div>
+
+                <!-- Options -->
+                <h3 id="scrollspy.options" class="mt-4"><a id="scrollspy.options" href="#scrollspy.options" class="color-inherit">Options</a></h3>
+                <table class="mb-3 md:responsive">
                     <tbody>
                         <tr>
-                            <td><code class="color-primary">containerSelector</code></td>
-                            <td>Selector for the Scroll Spy Containers.<br>
-                                <code class="color-gray">default:</code> <code class="color-primary">.scrollspy</code>
+                            <td colspan="2" class="px-0 b-0 pt-0">
+                                <code class="language-js block w auto bg-surface b-1 r-2 p-3 sm my-3 mt-0">
+                                    scrollspy({
+                                        items: '.scrollspy',
+                                        threshold: 200,
+                                        progress: 'active',
+                                        classActive: 'active',
+                                        selectorAnchor: '[href*="#"],[data-scrollspy-section]',
+                                        attributeAnchor: 'data-scrollspy-anchors',
+                                        attributeClassActive: 'data-scrollspy-class-active',
+                                        attributeSection: 'data-scrollspy-section',
+                                        attributeThreshold: 'data-scrollspy-threshold',
+                                        attributeProgress: 'data-scrollspy-progress'
+                                    });
+                                </code>
                             </td>
                         </tr>
                         <tr>
-                            <td><code class="color-primary">anchorHashSelector</code></td>
-                            <td>Selector for the Scroll Spy Anchors with Hashes within the Containers.<br>
-                                <code class="color-gray">default:</code> <code class="color-primary">[href*="#"]</code>
-                                <p>Any anchors found will then calculate the hash value from the href url. The url must be a valid url or relative path with a valid window.location.href. If this is not possible then you might need to use the <code class="color-primary">anchorDataAttribute</code> instead.</p>
+                            <td class="bt-0"><a id="scrollspy.options.items" href="#scrollspy.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: string | Element[]</code></td>
+                            <td class="bt-0">
+                                <p>Selector or array of Elements for scrollspy containers. This will capture scroll events and activate anchors within the container when the section is visible within the viewport.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">".scrollspy"</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><code class="color-primary">anchorDataAttribute</code></td>
-                            <td>This is an alternative method instead of using the <code class="color-primary">anchorHashSelector</code>. This will allow you to use data attributes to specify your own selectors for the anchors within the containers. Uses a selector as its value.
-                                <br><code class="color-gray">default:</code> <code class="color-primary">data-scrollspy</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code class="color-primary">classActive</code></td>
+                            <td><a id="scrollspy.options.threshold" href="#scrollspy.options.threshold"><code class="color-primary">threshold</code></a><code class="color-gray">?: number</code></td>
                             <td>
-                                The class that gets applied to the active anchor.<br>
-                                <code class="color-gray">default:</code> <code class="color-primary">active</code>
+                                <p>The threshold is the buffer in pixels before the anchor is considered active within the viewport.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">200</code></p>
+                                <p class="note sm mt-3">Override with <a href="#scrollspy.options.attribute.threshold"><code class="color-primary">attributeThreshold</code></a></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><code class="color-primary">threshold</code></td>
+                            <td><a id="scrollspy.options.progress" href="#scrollspy.options.progress"><code class="color-primary">progress</code></a><code class="color-gray">?: string</code></td>
                             <td>
-                                The threshold is the buffer in pixels before the anchor is considered active within the viewport.<br>
-                                <code class="color-gray">default:</code> <code class="color-primary">200</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code class="color-primary">progress</code></td>
-                            <td>
-                                Type of action to use when activating and deactivated anchors.<br>
+                                <p>Type of action to use when activating and deactivated anchors.</p>
                                 <div class="mt-2 color-gray">Options: </div>
                                 <ul>
                                     <li>
-                                        <code class="color-primary">active</code> <code class="color-gray sm ml-2">(default)</code>
+                                        <code class="color-primary">"active"</code> <code class="color-gray sm ml-2">(default)</code>
                                         <p class="mt-0">This will activate only one anchor at a time.</p>
                                     </li>
                                     <li>
-                                        <code class="color-primary">linear</code>
+                                        <code class="color-primary">"linear"</code>
                                         <p class="mt-0">This will progress each anchor based on the position of the scroll. Essentially keeping all previous anchors active while you move forward and removing active anchors as you go back.</p>
                                     </li>
                                     <li>
-                                        <code class="color-primary">seen</code>
+                                        <code class="color-primary">"seen"</code>
                                         <p class="mt-0">This will activate each anchor as it is seen, but does not remove any active anchors.</p>
                                     </li>
                                 </ul>
+                                <p class="note sm mt-3">Override with <a href="#scrollspy.options.attribute.progress"><code class="color-primary">attributeProgress</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="scrollspy.options.class.active" href="#scrollspy.options.class.active"><code class="color-primary">classActive</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>The class that gets applied to the active anchor.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"active"</code></p>
+                                <p class="note sm mt-3">Override with <a href="#scrollspy.options.attribute.active"><code class="color-primary">attributeClassActive</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="scrollspy.options.selector.anchor" href="#scrollspy.options.selector.anchor"><code class="color-primary">selectorAnchor</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>
+                                    Selector for the Scroll Spy Anchors with Hashes within the Containers or attribute that matches
+                                    <a href="#scrollspy.options.attribute.section"><code class="color-primary">attributeSection</code></a>.
+                                </p>
+                                <p>
+                                    Any anchors found will then calculate the <a href="#scrollspy.options.attribute.section"><code class="color-primary">attributeSection</code></a>
+                                    first and if nothing is found then it will calculate the hash value from the href url. The url must be a valid url or relative path with a valid window.location.href.
+                                </p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">'[href*="#"],[data-scrollspy-section]'</code></p>
+                                <p class="note sm mt-3">Override with <a href="#scrollspy.options.attribute.anchor"><code class="color-primary">attributeAnchor</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="scrollspy.options.attribute.anchor" href="#scrollspy.options.attribute.anchor"><code class="color-primary">attributeAnchor</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>Allows you to use data attributes to specify your own selectors for the anchors within the containers. Uses a selector as its value.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-anchors"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#scrollspy.options.selector.anchor"><code class="color-primary">selectorAnchor</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="scrollspy.options.attribute.active" href="#scrollspy.options.attribute.active"><code class="color-primary">attributeClassActive</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>Data attribute to set the class that gets applied to the active anchor.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-class-active"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#scrollspy.options.class.active"><code class="color-primary">classActive</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="scrollspy.options.attribute.section" href="#scrollspy.options.attribute.section"><code class="color-primary">attributeSection</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>
+                                    This is an alternative to using <a href="#scrollspy.options.selector.anchor"><code class="color-primary">selectorAnchor</code></a> for your anchors.
+                                    When using this attribute you can specify a selector for the anchor to connect with instead of using a hash and a section id="".
+                                </p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-section"</code></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="scrollspy.options.attribute.threshold" href="#scrollspy.options.attribute.threshold"><code class="color-primary">attributeThreshold</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>Data attribute to set the Threshold for the anchors.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-threshold"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#scrollspy.options.threshold"><code class="color-primary">threshold</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="scrollspy.options.attribute.progress" href="#scrollspy.options.attribute.progress"><code class="color-primary">attributeProgress</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>Data attribute to set the Progress type for the anchors.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-progress"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#scrollspy.options.progress"><code class="color-primary">progress</code></a></p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
-                <div class="show-code" data-title="Basic Scroll Spy">
+                <!-- Examples -->
+                <h3 class="mt-4"><a id="scrollspy.examples" href="#scrollspy.examples" class="color-inherit">Examples</a></h3>
+                <article class="show-code" data-title="Basic Scroll Spy">
                     <div class="row columns-2">
                         <div class="max-w-200">
-                            <nav id="my-scroll-spy-nav" class="sticky list bg-theme p-3 b-1" style="top:180px;">
+                            <nav class="scrollspy sticky list bg-theme p-3 b-1" style="top:180px;">
                                 <ul>
                                     <li><a class="active" href="#scroll-spy-section-1">Section 1</a></li>
                                     <li><a href="#scroll-spy-section-2">Section 2</a></li>
@@ -1088,22 +1310,22 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="show-code" data-title="Linear Scroll Spy">
+                <article id="gggg" class="show-code" data-title="Linear Scroll Spy">
                     <div class="row columns-2">
                         <div class="max-w-200">
-                            <nav id="my-scrollspy-nav2" class="sticky list bg-theme p-3 b-1" style="top:180px;">
+                            <nav class="scrollspy sticky list bg-theme p-3 b-1" data-scrollspy-class-active="h" data-scrollspy-threshold="400" data-scrollspy-progress="linear" style="top:180px;">
                                 <div class="relative p-2">
-                                    <span class="absolute top left bl-3 border-primary h-0 transition" data-scrollspy=".scrollspy-custom-section h4:nth-of-type(1)"></span>
+                                    <span class="absolute top left bl-3 border-primary h-0 transition" data-scrollspy-section=".scrollspy-custom-section h4:nth-of-type(1)"></span>
                                     Section A
                                 </div>
                                 <div class="relative p-2">
-                                    <span class="absolute top left bl-3 border-primary h-0 transition" data-scrollspy=".scrollspy-custom-section h4:nth-of-type(2)"></span>
+                                    <span class="absolute top left bl-3 border-primary h-0 transition" data-scrollspy-section=".scrollspy-custom-section h4:nth-of-type(2)"></span>
                                     Section B
                                 </div>
                                 <div class="relative p-2">
-                                    <span class="absolute top left bl-3 border-primary h-0 transition" data-scrollspy=".scrollspy-custom-section h4:nth-of-type(3)"></span>
+                                    <span class="absolute top left bl-3 border-primary h-0 transition" data-scrollspy-section=".scrollspy-custom-section h4:nth-of-type(3)"></span>
                                     Section C
                                 </div>
                             </nav>
@@ -1130,7 +1352,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </article>
                 
             </section>
             

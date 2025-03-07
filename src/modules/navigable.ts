@@ -16,7 +16,7 @@ export type SpryJsNavigableOptions = {
 export function navigable({
     items = '.navigable',
     selectorAnchor = 'a, button, input, [tabindex]',
-    attributeAnchor = 'data-navigable-anchors',
+    attributeAnchor = 'data-navigable-anchors'
 }: SpryJsNavigableOptions = {}): {destroy: Function, update: Function} {
 
     let controller: AbortController | null = null;

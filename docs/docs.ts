@@ -153,6 +153,12 @@ const SpryJsDocs = {
                 var setLang = langElement.getAttribute('data-language');
                 langElement.classList.toggle('none', !setLang || setLang !== api);
             });
+
+            document.querySelectorAll('.language-selector').forEach(selector => {
+                if (selector.querySelector('option[value="'+api+'"]')) {
+                    (selector as HTMLSelectElement).value = api;
+                }
+            });
         }
         if (installer) {
             document.querySelectorAll('.installer-select').forEach(installerElement => {
@@ -212,7 +218,6 @@ const SpryJsDocs = {
         }
 
         var noHeader = elemContainer.hasAttribute('data-no-header');
-
         var codeDivContents = (type === 'bash' ? '<svg class="icon block color-gray absolute inset my-auto ml-3 index-1" viewBox="0 0 24 24"><path d="M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z" /></svg>' : '') + '<code class="language-'+type+' '+(type === 'bash' ? 'pl-5' : '')+' '+(noHeader ? 'b-1 r-2' : 'bb-1 border/5')+' block w auto bg-surface p-4 content-center sm'+(elemContainer.classList.contains('with-wrap')?' pre-wrap':'')+'"' + (minHeight ? ' style="min-height: '+minHeight+'px;"' : '') + '>' + html + '</code>';
 
         codeDiv.innerHTML = codeDivContents;
@@ -265,12 +270,12 @@ document.querySelectorAll('.show-code').forEach((elemContainer, index) => {
     var note = (elemContainer.hasAttribute('data-note') ? '<p>'+elemContainer.getAttribute('data-note')+'</p>' : '');
     var warning = (elemContainer.hasAttribute('data-warning') ? '<p class="color-warning">'+elemContainer.getAttribute('data-warning')+'</p>' : '');
     var footer = (elemContainer.hasAttribute('data-footer') ? '<p>'+elemContainer.getAttribute('data-footer')+'</p>' : '');
-    var footerNote = (elemContainer.hasAttribute('data-footer-note') ? '<p>'+elemContainer.getAttribute('data-footer-note')+'</p>' : '');
+    var footerNote = (elemContainer.hasAttribute('data-footer-note') ? '<p class="note">'+elemContainer.getAttribute('data-footer-note')+'</p>' : '');
     var codeDiv = '<div class="collapse"><div class="code-preview-container hidden"></div></div>';
     var title = elemContainer.getAttribute('data-title');
     var object = elemContainer.getAttribute('data-object');
     var codeOnly = elemContainer.hasAttribute('data-code-only');
-    var hideLanguageSelector = elemContainer.hasAttribute('data-language-selector-hide');
+    // var hideLanguageSelector = elemContainer.hasAttribute('data-language-selector-hide');
 
     var noHeader = elemContainer.hasAttribute('data-no-header');
     
@@ -298,7 +303,7 @@ document.querySelectorAll('.show-code').forEach((elemContainer, index) => {
 
     var languageSelector = '';
     var headerNote = warning || note ? '<div class="note bg-faint bb-1 py-2 mt-0">' + warning + note + '</div>' : '';
-    var footerNote = footerNote || footer ? '<footer class="bg-faint note py-2">' + footer + footerNote + '</footer>' : '';
+    var footerNote = footerNote || footer ? '<footer class="bg-faint py-2">' + footer + footerNote + '</footer>' : '';
 
     var headerNotes = headerNote;
     var footerNotes = footerNote;
@@ -360,23 +365,27 @@ document.querySelectorAll('.show-code').forEach((elemContainer, index) => {
         elemContainer.insertAdjacentHTML('beforeend', '<div class="code-content relative p-3 md:p-4"></div>');
 
         var children = elemContainer.children;
-        for (let c = 0; c < children.length; c++) {
-            var codeContent = elemContainer.querySelector('.code-content');
-            if (codeContent && codeContent.parentElement && !children[c].classList.contains('code-content') && children[c].tagName && !['SCRIPT', 'STYLE'].includes(children[c].tagName)) {
-                codeContent.appendChild(children[c]);
+        var codeContent = elemContainer.querySelector('.code-content');
+        if (codeContent) {
+            for (let c = 0; c < children.length; c++) {
+                if (codeContent && codeContent.parentElement && !children[c].classList.contains('code-content') && children[c].tagName && !['SCRIPT', 'STYLE'].includes(children[c].tagName)) {
+                    codeContent.appendChild(children[c]);
+                }
             }
+            codeContent.insertAdjacentHTML('beforeend', '<div class="code-resize-handle"></div>');
         }
 
         themeButton = '<button class="shy icon link" title="Toggle Theme" onclick="SpryJsDocs.toggleTheme(this.parentElement.parentElement.parentElement);"><svg viewBox="0 0 24 24"><path d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z" /></svg></button>';
         showCodeButton = '<button onclick="SpryJsDocs.loadCodeContainer(this)" class="shy icon link" title="Show HTML code"><svg class="lg" viewBox="0 0 24 24"><path d="m14.6 16.6 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4m-5.2 0L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4z" /></svg></button>';
         copyCodeButton = '<button class="shy icon link f:swap" title="Copy HTML to Clipboard" onclick="SpryJsDocs.copyCode(event); setTimeout(() => {this.classList.remove(\'open\'); this.classList.remove(\'active\'); this.setAttribute(\'aria-pressed\', false)}, 2000)"><svg viewBox="0 0 24 24"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1z" /></svg><svg viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z" /></svg></button>';
-        elemContainer.insertAdjacentHTML('beforeend', '<div class="code-resize-handle"></div>');
     }
-
+    
     var header = '<header class="block md:flex '+(noHeader ? 'bg-none p-0' : 'rt-1 hidden')+'">'+(title || badge || tooltipWarning ? '<h4><a href="#'+elemContainerId+'" class="color-inherit">'+title+'</a> '+badge+tooltipWarning+'</h4>' : '')+'<div class="flex content-end mt-2 md:mt-0 ml-auto">'+languageSelector+themeButton+showCodeButton+copyCodeButton+'</div></header>';
     var codeContainer = '<div class="code-container p-0" id="code-'+toggleId+'">'+codeDiv+'</div>';
+    
+    elemContainer.insertAdjacentHTML('afterbegin', header + headerNotes + codeContainer);
 
-    elemContainer.insertAdjacentHTML('afterbegin', header + headerNotes + codeContainer + footerNotes);
+    elemContainer.insertAdjacentHTML('beforeend', footerNotes);
 
     if (elemContainer.hasAttribute('data-code-only')) {
         SpryJsDocs.loadCodeContainer(elemContainer);
