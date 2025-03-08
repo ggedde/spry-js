@@ -10,30 +10,36 @@ type SpryJsToggler = {
     escapable: boolean;
     timeout: number;
     timer: Timer | null;
+    classOpen: string[];
+    classActive: string[];
 }
 
 export type SpryJsToggleOptions = {
     items?: Element[] | string;
-    classOpen?: string;
-    classActive?: string;
-    dataToggleAttribute?: string;
-    dataToggleCloseAttribute?: string;
-    dataToggleOpenAttribute?: string;
-    dataToggleEscapableAttribute?: string;
-    dataToggleDismissibleAttribute?: string;
-    dataToggleTimeoutAttribute?: string;
+    classOpen?: string | string[];
+    classActive?: string | string[];
+    attributeClassOpen?: string;
+    attributeClassActive?: string;
+    attributeToggle?: string;
+    attributeClose?: string;
+    attributeOpen?: string;
+    attributeEscapable?: string;
+    attributeDismissible?: string;
+    attributeTimeout?: string;
 }
 
 export function toggle({
     items = '[data-toggle], [data-toggle-close]',
     classOpen = 'open',
     classActive = 'active',
-    dataToggleAttribute = 'data-toggle',
-    dataToggleCloseAttribute = 'data-toggle-close',
-    dataToggleOpenAttribute = 'data-toggle-open',
-    dataToggleEscapableAttribute = 'data-toggle-escapable',
-    dataToggleDismissibleAttribute = 'data-toggle-dismissible',
-    dataToggleTimeoutAttribute = 'data-toggle-timeout',
+    attributeClassOpen = 'data-toggle-class-open',
+    attributeClassActive = 'data-toggle-class-active',
+    attributeToggle = 'data-toggle',
+    attributeClose = 'data-toggle-close',
+    attributeOpen = 'data-toggle-open',
+    attributeEscapable = 'data-toggle-escapable',
+    attributeDismissible = 'data-toggle-dismissible',
+    attributeTimeout = 'data-toggle-timeout',
 }: SpryJsToggleOptions = {}): {update: Function, destroy: Function} {
 
     let controller: AbortController | null = null;
@@ -126,27 +132,48 @@ export function toggle({
                 }
 
                 if (togglers[i].closeSelector === '') {
-                    if (togglers[i].el.classList.contains(classOpen)) {
-                        if (event && event.target === togglers[i].el) {
-                            togglers[i].el.classList.remove(classOpen);
-                            togglers[i].el.setAttribute('aria-expanded', 'false');
-                            elementData.push(togglers[i].el);
-                            opened = false;
-                        }
-                    } else {
-                        var closestOpen = togglers[i].el.closest('.'+classOpen);
-                        if (closestOpen) {
-                            closestOpen.classList.remove(classOpen);
-                            closestOpen.setAttribute('aria-expanded', 'false');
-                            elementData.push(closestOpen);
-                            opened = false;
-                        }
+                    if (togglers[i].classOpen) {
+                        // togglers[i].classOpen.forEach(className => {
+                            if (!togglers[i].classOpen.some(className => !togglers[i].el.classList.contains(className))) {
+                            // if (togglers[i].el.classList.contains(className)) {
+                                if (event && event.target === togglers[i].el) {
+                                    togglers[i].el.classList.remove(...togglers[i].classOpen);
+                                    togglers[i].el.setAttribute('aria-expanded', 'false');
+                                    elementData.push(togglers[i].el);
+                                    opened = false;
+                                }
+                            } else {
+                                var closestOpen = togglers[i].el.closest('.'+togglers[i].classOpen.join('.'));
+                                if (closestOpen) {
+                                    closestOpen.classList.remove(...togglers[i].classOpen);
+                                    closestOpen.setAttribute('aria-expanded', 'false');
+                                    elementData.push(closestOpen);
+                                    opened = false;
+                                }
+                            }
+                        // });
                     }
+                    // if (togglers[i].el.classList.contains(togglers[i].classOpen)) {
+                    //     if (event && event.target === togglers[i].el) {
+                    //         togglers[i].el.classList.remove(togglers[i].classOpen);
+                    //         togglers[i].el.setAttribute('aria-expanded', 'false');
+                    //         elementData.push(togglers[i].el);
+                    //         opened = false;
+                    //     }
+                    // } else {
+                    //     var closestOpen = togglers[i].el.closest('.'+togglers[i].classOpen);
+                    //     if (closestOpen) {
+                    //         closestOpen.classList.remove(togglers[i].classOpen);
+                    //         closestOpen.setAttribute('aria-expanded', 'false');
+                    //         elementData.push(closestOpen);
+                    //         opened = false;
+                    //     }
+                    // }
                 }
 
                 if (togglers[i].closeSelector) {
                     getElements((togglers[i].closeSelector as string), elem).forEach(closeElement => {
-                        closeElement.classList.remove(classOpen);
+                        closeElement.classList.remove(...togglers[i].classOpen);
                         closeElement.setAttribute('aria-expanded', 'false');
                         elementData.push(closeElement);
                         opened = false;
@@ -155,13 +182,21 @@ export function toggle({
 
                 if (togglers[i].toggleSelector && (!forceAction || forceAction === 'toggle')) {
                     getElements((togglers[i].toggleSelector as string), elem).forEach(toggleElement => {
-                        toggleElement.classList.toggle(classOpen);
-                        opened = toggleElement.classList.contains(classOpen) ? true : false;
+
+                        opened = !togglers[i].classOpen.some(className => !toggleElement.classList.contains(className)) ? true : false;
+
                         if (opened) {
-                            toggleElement.setAttribute('aria-expanded', 'true');
-                        } else {
+                            toggleElement.classList.remove(...togglers[i].classOpen);
                             toggleElement.setAttribute('aria-expanded', 'false');
+                        } else {
+                            toggleElement.classList.add(...togglers[i].classOpen);
+                            toggleElement.setAttribute('aria-expanded', 'true');
                         }
+
+                        // toggleElement.classList.toggle(togglers[i].classOpen);
+                        // // opened = toggleElement.classList.contains(togglers[i].classOpen) ? true : false;
+                        // opened = !togglers[i].classOpen.some(className => !toggleElement.classList.contains(className)) ? true : false;
+                        // toggleElement.setAttribute('aria-expanded', opened ? 'true' : 'false');
                         
                         elementData.push(toggleElement);
                     });
@@ -169,7 +204,7 @@ export function toggle({
 
                 if (togglers[i].openSelector && (!forceAction || forceAction === 'open')) {
                     getElements((togglers[i].openSelector as string), elem).forEach(openElement => {
-                        openElement.classList.add(classOpen);
+                        openElement.classList.add(...togglers[i].classOpen);
                         openElement.setAttribute('aria-expanded', 'true');
                         elementData.push(openElement);
                         opened = true;
@@ -177,7 +212,13 @@ export function toggle({
                 }
 
                 togglers[i].el.toggleAttribute('aria-pressed', opened);
-                togglers[i].el.classList.toggle(classActive, opened);
+
+                if (opened) {
+                    togglers[i].el.classList.add(...togglers[i].classActive);
+                } else {
+                    togglers[i].el.classList.remove(...togglers[i].classActive);
+                }
+                // togglers[i].el.classList.toggle(togglers[i].classActive, opened);
 
                 if (opened && togglers[i].timeout && togglers[i].timeout > 0) {
                     togglers[i].timer = setTimeout(() => {
@@ -196,7 +237,7 @@ export function toggle({
                     elementData.forEach(element => {
                         if (element === closeElement) {
                             togglers[i].el.toggleAttribute('aria-pressed', false);
-                            togglers[i].el.classList.toggle(classActive, false);
+                            togglers[i].el.classList.remove(...togglers[i].classActive);
                         }
                     });
                 });
@@ -206,9 +247,14 @@ export function toggle({
                 getElements((togglers[i].toggleSelector as string), togglers[i].el).forEach(toggleElement => {
                     elementData.forEach(element => {
                         if (element === toggleElement) {
-                            opened = toggleElement.classList.contains(classOpen) ? true : false;
+                            // opened = toggleElement.classList.contains(togglers[i].classOpen) ? true : false;
+                            opened = !togglers[i].classOpen.some(className => !toggleElement.classList.contains(className)) ? true : false;
                             togglers[i].el.toggleAttribute('aria-pressed', opened);
-                            togglers[i].el.classList.toggle(classActive, opened);
+                            if (opened) {
+                                togglers[i].el.classList.add(...togglers[i].classActive);
+                            } else {
+                                togglers[i].el.classList.remove(...togglers[i].classActive);
+                            }
                         }
                     });
                 });
@@ -219,7 +265,7 @@ export function toggle({
                     elementData.forEach(element => {
                         if (element === openElement) {
                             togglers[i].el.toggleAttribute('aria-pressed', true);
-                            togglers[i].el.classList.toggle(classActive, true);
+                            togglers[i].el.classList.add(...togglers[i].classActive);
                         }
                     });
                 });
@@ -267,10 +313,12 @@ export function toggle({
                                     }
                                 }
                             }
-
-                            if (toggleElement.classList.contains(classOpen)) {
+                            if (!togglerObject.classOpen.some(className => !toggleElement.classList.contains(className))) {
                                 toggleItem(togglerObject.el);
                             }
+                            // if (toggleElement.classList.contains(togglerObject.classOpen)) {
+                            //     toggleItem(togglerObject.el);
+                            // }
                         }, 20);
                     });
                 }
@@ -304,24 +352,28 @@ export function toggle({
     }
 
     function update() {
-        let toggleSelector, openSelector, closeSelector, timeout;
+        let toggleSelector, openSelector, closeSelector, timeout, dataClassOpen, dataClassActive;
         destroy();
         const elements = typeof items === 'object' ? items : document.querySelectorAll(items);
         if (elements) {
             for (let e = 0; e < elements.length; e++) {
-                toggleSelector = elements[e].getAttribute(dataToggleAttribute);
-                openSelector   = elements[e].getAttribute(dataToggleOpenAttribute);
-                closeSelector  = elements[e].getAttribute(dataToggleCloseAttribute);
-                timeout        = elements[e].getAttribute(dataToggleTimeoutAttribute);
+                closeSelector   = elements[e].getAttribute(attributeClose);
+                dataClassActive = elements[e].getAttribute(attributeClassActive) ?? classActive;
+                dataClassOpen   = elements[e].getAttribute(attributeClassOpen) ?? classOpen;
+                openSelector    = elements[e].getAttribute(attributeOpen);
+                timeout         = elements[e].getAttribute(attributeTimeout);
+                toggleSelector  = elements[e].getAttribute(attributeToggle);
                 togglers.push({
                     el: elements[e],
-                    toggleSelector: toggleSelector ? toggleSelector : null,
-                    openSelector: openSelector ? openSelector : null,
+                    classActive: typeof dataClassActive === 'string' ? dataClassActive.split(' ') : dataClassActive,
+                    classOpen: typeof dataClassOpen === 'string' ? dataClassOpen.split(' ') : dataClassOpen,
                     closeSelector: closeSelector || closeSelector === '' ? closeSelector : null,
-                    dismissible: elements[e].hasAttribute(dataToggleDismissibleAttribute),
-                    escapable: elements[e].hasAttribute(dataToggleEscapableAttribute),
+                    dismissible: elements[e].hasAttribute(attributeDismissible),
+                    escapable: elements[e].hasAttribute(attributeEscapable),
+                    openSelector: openSelector ? openSelector : null,
                     timeout: timeout ? parseInt(timeout) : 0,
-                    timer: null
+                    timer: null,
+                    toggleSelector: toggleSelector ? toggleSelector : null,
                 });
             }
         }
