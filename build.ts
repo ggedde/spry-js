@@ -12,6 +12,12 @@ await Bun.build({
         syntax: true,
     },
 });
+await Bun.write('docs/spry.mjs', Bun.file('dist/spry.mjs'));
+
+// const file = Bun.file('./dist/spry.mjs');
+// await Bun.write('docs/spry.mjs', file);
+
+
 
 await Bun.build({
     entrypoints: ['./src/spry.ts'],
@@ -25,6 +31,7 @@ await Bun.build({
         syntax: true,
     },
 });
+await Bun.write('docs/spry.js', Bun.file('dist/spry.js'));
 
 await Bun.build({
     entrypoints: ['./src/docs.ts'],

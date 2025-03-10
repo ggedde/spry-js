@@ -1521,33 +1521,323 @@
                     </h2>
                 </div>
 
-                <h5>These are basic lightweight slider. If you are looking for something more robust, you might want to check out <a
-                        target="_blank" href="https://swiperjs.com">Swiper</a> or <a target="_blank" href="https://glidejs.com">Glide</a>
+                <h5>
+                    SpryJS provides a basic lightweight slider. If you are looking for something more robust, you might want to check out
+                    <a target="_blank" href="https://swiperjs.com">Swiper</a> or <a target="_blank" href="https://glidejs.com">Glide</a>.
                 </h5>
-                
-                <p class="mb-3">You can add <code class="color-primary">loading="lazy"</code> to the images, but it may be a little choppy when scrolling on some browsers.
-                    The Slider will detect the lazy loading images and pre load them on the next and previous slides when using SprySliderJS. If you want a smooth transition it is best to load all the images initially.</p>
-                
-                <code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;!-- Slider No JS --&gt;
-&lt;div class="slider" data-snap&gt;
-    &lt;div class="slider-slides"&gt;
-        &lt;img id="no-js-slide1" src="/placeholder-1.jpg" loading="lazy"&gt;
-        &lt;img id="no-js-slide2" src="/placeholder-2.jpg" loading="lazy"&gt;
-        &lt;img id="no-js-slide3" src="/placeholder-3.jpg" loading="lazy"&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code>
+            
+                <p class="mb-3">
+                    You can add <code class="color-primary">loading="lazy"</code> to the images, but it may be a little choppy when scrolling on some browsers.
+                    The Slider will detect the lazy loading images and pre load them on the next and previous slides. If you want a smooth transition it is best to load all the images initially.
+                </p>
 
-<code class="language-html block w auto bg-surface b-1 r-2 p-3 sm">&lt;!-- Slider With SprySliderJS --&gt;
-&lt;div class="slider" data-snap&gt;
-    &lt;button class="slider-prev link icon prev circle"&gt;&lt;/button&gt;
-    &lt;button class="slider-next link icon next circle"&gt;&lt;/button&gt;
-    &lt;div class="slider-slides"&gt;
-        &lt;img src="/placeholder-1.jpg" loading="lazy"&gt;
-        &lt;img src="/placeholder-2.jpg" loading="lazy"&gt;
-        &lt;img src="/placeholder-3.jpg" loading="lazy"&gt;
-    &lt;/div&gt;
-    &lt;div class="slider-pagination p-3"&gt;&lt;/div&gt;
-&lt;/div&gt;</code>
+                <!-- Usage -->
+                <h3 class="mt-3"><a id="slider.usage" href="#slider.usage" class="color-inherit">Usage</a></h3>
+                <div class="relative">
+                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                        &lt;div class="slider" data-snap&gt;
+                            &lt;button class="prev link icon prev circle"&gt;&lt;/button&gt;
+                            &lt;button class="next link icon next circle"&gt;&lt;/button&gt;
+                            &lt;div class="slides"&gt;
+                                &lt;img src="/placeholder-1.jpg" loading="lazy"&gt;
+                                &lt;img src="/placeholder-2.jpg" loading="lazy"&gt;
+                                &lt;img src="/placeholder-3.jpg" loading="lazy"&gt;
+                            &lt;/div&gt;
+                            &lt;div class="pagination p-3"&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                    </code>
+                </div>
+
+                <h3 id="slider.api" class="flex mt-4 block-center">
+                    <a id="slider.api" href="#slider.api" class="color-inherit">API</a>
+                    <div class="items-center inline-flex ml-3 xs">
+                        <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1 sm md:md">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
+                                <option value="cdnEsm">CDN ES Module Build</option>
+                                <option value="cdn">CDN Global Build</option>
+                                <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
+                                <option value="node">Node</option>
+                            </select>
+                        </div>
+                    </div>
+                </h3>
+
+                <!-- Initiate -->
+                <h4 class="color-primary mb-1"><a id="slider.initiate" href="#slider.initiate">Initiate</a></h4>
+                <div class="language-select" data-language="cdnLoad">
+                    <div class="relative">
+                        <code class="language-html w block bg-surface b-1 p-3 rt-2 auto sm static">
+                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        </code>
+                    </div>
+                    <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/5">
+                        <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
+                    </div>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <div class="relative">
+                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                            &lt;script&gt;
+                                var spryObj = SpryJS('.slider').slider();
+                            &lt;/script&gt;
+                        </code>
+                    </div>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <div class="relative">
+                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                            &lt;script type="module"&gt;
+                                import { slider } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                                const obj = slider();
+                            &lt;/script&gt;
+                        </code>
+                    </div>
+                </div>
+                <div class="language-select" data-language="node">
+                    <div class="relative">
+                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                            import { slider } from 'spry-js';
+                            const obj = slider();
+                        </code>
+                    </div>
+                </div>
+
+                <!-- Update -->
+                <h4 class="color-primary mt-3 mb-1"><a id="slider.update" href="#slider.update">Update</a></h4>
+                <p class="note mt-1 mb-2">This allows you to update the objects after Dom changes have been made without duplicating the event listeners. Useful with page builders and other dynamic Dom loading applications.</p>
+                <div class="language-select" data-language="cdnLoad">
+                    <div class="relative">
+                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                            // Update Objects
+                            spryJs.sliderUpdate();
+
+                            // OR Update All Components
+                            spryJs.update();
+                        </code>
+                    </div>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <div class="relative">
+                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                            // Update Objects
+                            spryObj.sliderUpdate();
+
+                            // OR Update All Components
+                            spryObj.update();
+                        </code>
+                    </div>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <div class="relative">
+                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                            obj.update();
+                        </code>
+                    </div>
+                </div>
+                <div class="language-select" data-language="node">
+                    <div class="relative">
+                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                            obj.update();
+                        </code>
+                    </div>
+                </div>
+
+                <!-- Destroy -->
+                <h4 class="color-primary mt-3 mb-1"><a id="slider.destroy" href="#slider.destroy">Destroy</a></h4>
+                <p class="note mt-1 mb-2">This allows you to remove all event listeners and added functionality for the objects.</p>
+                <div class="language-select" data-language="cdnLoad">
+                    <div class="relative">
+                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                            // Destroy Objects
+                            spryJs.sliderDestroy();
+
+                            // OR Destroy All Components
+                            spryJs.destroy();
+                        </code>
+                    </div>
+                </div>
+                <div class="language-select" data-language="cdn">
+                    <div class="relative">
+                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                            // Destroy Objects
+                            spryObj.sliderDestroy();
+
+                            // OR Destroy All Components
+                            spryObj.destroy();
+                        </code>
+                    </div>
+                </div>
+                <div class="language-select" data-language="cdnEsm">
+                    <div class="relative">
+                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                            obj.destroy();
+                        </code>
+                    </div>
+                </div>
+                <div class="language-select" data-language="node">
+                    <div class="relative">
+                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                            obj.destroy();
+                        </code>
+                    </div>
+                </div>
+
+                <!-- Options -->
+                <h3 class="mt-4"><a id="slider.options" href="#slider.options" class="color-inherit">Options</a></h3>
+                <table class="mb-3 md:responsive">
+                    <tbody>
+                        <tr>
+                            <td colspan="2" class="px-0 b-0 pt-0">
+                                <p class="note sm">Default Options</p>
+                                <code class="language-typescript block w auto bg-surface b-1 r-2 p-3 sm my-3 mt-2">
+                                    slider({
+                                        items: ".slider",
+                                        classSliding: "sliding",
+                                        classShowing: "showing",
+                                        classShowingFirst: "showing-first",
+                                        classShowingLast: "showing-last",
+                                        selectorSlides: ".slides",
+                                        selectorNext: ".next",
+                                        selectorPrev: ".prev",
+                                        selectorPagination: ".pagination",
+                                        attributeClassSliding: "data-slider-class-sliding",
+                                        attributeClassShowing: "data-slider-class-showing",
+                                        attributeClassShowingFirst: "data-slider-class-showing-first",
+                                        attributeClassShowingLast: "data-slider-class-showing-last",
+                                        attributeSelectorSlides: "data-slider-selector-slides",
+                                        attributeSelectorNext: "data-slider-selector-next",
+                                        attributeSelectorPrev: "data-slider-selector-prev",
+                                        attributeSelectorPagination: "data-slider-selector-pagination",
+                                        attributePlay: "data-slider-play",
+                                        attributeLoop: "data-slider-loop",
+                                        attributeSnap: "data-slider-snap",
+                                        attributeStop: "data-slider-stop",
+                                        attributePosition: "data-slider-position"
+                                    });
+                                </code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="bt-0"><a id="scrollspy.options.items" href="#scrollspy.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: string | Element[]</code></td>
+                            <td class="bt-0">
+                                <p>Selector or array of Elements for scrollspy containers. This will capture scroll events and activate anchors within the container when the section is visible within the viewport.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">".scrollspy"</code></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="scrollspy.options.threshold" href="#scrollspy.options.threshold"><code class="color-primary">threshold</code></a><code class="color-gray">?: number</code></td>
+                            <td>
+                                <p>The threshold is the buffer in pixels before the anchor is considered active within the viewport.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">200</code></p>
+                                <p class="note sm mt-3">Override with <a href="#scrollspy.options.attribute.threshold"><code class="color-primary">attributeThreshold</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="scrollspy.options.progress" href="#scrollspy.options.progress"><code class="color-primary">progress</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>Type of action to use when activating and deactivated anchors.</p>
+                                <div class="mt-2 color-gray">Options: </div>
+                                <ul>
+                                    <li>
+                                        <code class="color-primary">"active"</code> <code class="color-gray sm ml-2">(default)</code>
+                                        <p class="mt-0">This will activate only one anchor at a time.</p>
+                                    </li>
+                                    <li>
+                                        <code class="color-primary">"linear"</code>
+                                        <p class="mt-0">This will progress each anchor based on the position of the scroll. Essentially keeping all previous anchors active while you move forward and removing active anchors as you go back.</p>
+                                    </li>
+                                    <li>
+                                        <code class="color-primary">"seen"</code>
+                                        <p class="mt-0">This will activate each anchor as it is seen, but does not remove any active anchors.</p>
+                                    </li>
+                                </ul>
+                                <p class="note sm mt-3">Override with <a href="#scrollspy.options.attribute.progress"><code class="color-primary">attributeProgress</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="scrollspy.options.class.active" href="#scrollspy.options.class.active"><code class="color-primary">classActive</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>The class that gets applied to the active anchor.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"active"</code></p>
+                                <p class="note sm mt-3">Override with <a href="#scrollspy.options.attribute.active"><code class="color-primary">attributeClassActive</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="scrollspy.options.selector.anchor" href="#scrollspy.options.selector.anchor"><code class="color-primary">selectorAnchor</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>
+                                    Selector for the Scroll Spy Anchors with Hashes within the Containers or attribute that matches
+                                    <a href="#scrollspy.options.attribute.section"><code class="color-primary">attributeSection</code></a>.
+                                </p>
+                                <p>
+                                    Any anchors found will then calculate the <a href="#scrollspy.options.attribute.section"><code class="color-primary">attributeSection</code></a>
+                                    first and if nothing is found then it will calculate the hash value from the href url. The url must be a valid url or relative path with a valid window.location.href.
+                                </p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">'[href*="#"],[data-scrollspy-section]'</code></p>
+                                <p class="note sm mt-3">Override with <a href="#scrollspy.options.attribute.anchor"><code class="color-primary">attributeAnchor</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="scrollspy.options.attribute.anchor" href="#scrollspy.options.attribute.anchor"><code class="color-primary">attributeAnchor</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>Allows you to use data attributes to specify your own selectors for the anchors within the containers. Uses a selector as its value.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-anchors"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#scrollspy.options.selector.anchor"><code class="color-primary">selectorAnchor</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="scrollspy.options.attribute.active" href="#scrollspy.options.attribute.active"><code class="color-primary">attributeClassActive</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>Data attribute to set the class that gets applied to the active anchor.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-class-active"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#scrollspy.options.class.active"><code class="color-primary">classActive</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="scrollspy.options.attribute.section" href="#scrollspy.options.attribute.section"><code class="color-primary">attributeSection</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>
+                                    This is an alternative to using <a href="#scrollspy.options.selector.anchor"><code class="color-primary">selectorAnchor</code></a> for your anchors.
+                                    When using this attribute you can specify a selector for the anchor to connect with instead of using a hash and a section id="".
+                                </p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-section"</code></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="scrollspy.options.attribute.threshold" href="#scrollspy.options.attribute.threshold"><code class="color-primary">attributeThreshold</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>Data attribute to set the Threshold for the anchors.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-threshold"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#scrollspy.options.threshold"><code class="color-primary">threshold</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="scrollspy.options.attribute.progress" href="#scrollspy.options.attribute.progress"><code class="color-primary">attributeProgress</code></a><code class="color-gray">?: string</code></td>
+                            <td>
+                                <p>Data attribute to set the Progress type for the anchors.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-progress"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#scrollspy.options.progress"><code class="color-primary">progress</code></a></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 
                 <table class="mb-3 mt-3 border-faint">
                     <thead>
@@ -1618,21 +1908,21 @@
                     </tbody>
                 </table>
 
-                <div class="show-code" data-title="Image Slider with Accent" data-badge="With SprySliderJS">
-                    <div class="slider primary" data-snap>
+                <article class="show-code" data-title="Basic Slider">
+                    <div class="slider primary">
                         <button class="prev link icon circle xl"></button>
                         <button class="next link icon circle xl"></button>
                         <div class="slides">
-                            <img src="/placeholder-1.jpg" height="768" width="1366" alt="Placeholder Image" loading="lazy">
-                            <img src="/placeholder-2.jpg" height="768" width="1366" alt="Placeholder Image" loading="lazy">
-                            <img src="/placeholder-3.jpg" height="768" width="1366" alt="Placeholder Image" loading="lazy">
+                            <img src="/placeholder-1.jpg" height="768" width="1366" loading="lazy" alt="Placeholder Image">
+                            <img src="/placeholder-2.jpg" height="768" width="1366" loading="lazy" alt="Placeholder Image">
+                            <img src="/placeholder-3.jpg" height="768" width="1366" loading="lazy" alt="Placeholder Image">
                         </div>
                         <div class="pagination p-3"></div>
                     </div>
-                </div>
-    
-                <div class="show-code" data-title="Breakpoints, Autoplay, Loop, Snap and Stop on Action" data-badge="With SprySliderJS">
-                    <div class="slider @container primary px-5" data-play="6000" data-stop="action" data-sna data-loop>
+                </article>
+
+                <article class="show-code" data-title="Breakpoints, Autoplay, Loop and Stop on Action">
+                    <div class="slider @container primary px-5" data-slider-play="6000" data-slider-stop="action" data-slider-loop>
                         <button class="prev link icon circle xl"></button>
                         <button class="next link icon circle xl"></button>
                         <div class="slides row md:columns-1 @md:columns-3 @md:g-2">
@@ -1687,10 +1977,68 @@
                         </div>
                         <div class="pagination p-3"></div>
                     </div>
-                </div>
+                </article>
+    
+                <article class="show-code" data-title="Use Snap to scroll single slide">
+                    <div class="slider @container primary px-5" data-slider-play="6000" data-slider-stop="action" data-slider-snap data-slider-loop>
+                        <button class="prev link icon circle xl"></button>
+                        <button class="next link icon circle xl"></button>
+                        <div class="slides row md:columns-3 @md:columns-4 @md:g-2">
+                            <div>
+                                <h5>Image 1</h5>
+                                <img src="/placeholder-1.jpg" height="768" width="1366" alt="Placeholder Image" loading="lazy">
+                            </div>
+                            <div>
+                                <h5>Image 2</h5>
+                                <img src="/placeholder-2.jpg" height="768" width="1366" alt="Placeholder Image" loading="lazy">
+                            </div>
+                            <div>
+                                <h5>Image 3</h5>
+                                <img src="/placeholder-3.jpg" height="768" width="1366" alt="Placeholder Image" loading="lazy">
+                            </div>
+                            <div>
+                                <h5>Image 4</h5>
+                                <img src="/placeholder-4.jpg" height="768" width="1366" alt="Placeholder Image" loading="lazy">
+                            </div>
+                            <div>
+                                <h5>Image 5</h5>
+                                <img src="/placeholder-5.jpg" height="768" width="1366" alt="Placeholder Image" loading="lazy">
+                            </div>
+                            <div>
+                                <h5>Image 6</h5>
+                                <img src="/placeholder-6.jpg" height="768" width="1366" alt="Placeholder Image" loading="lazy">
+                            </div>
+                            <div>
+                                <h5>Image 7</h5>
+                                <img src="/placeholder-7.jpg" height="768" width="1366" alt="Placeholder Image" loading="lazy">
+                            </div>
+                            <div>
+                                <h5>Image 8</h5>
+                                <img src="/placeholder-8.jpg" height="768" width="1366" alt="Placeholder Image" loading="lazy">
+                            </div>
+                            <div>
+                                <h5>Image 9</h5>
+                                <img src="/placeholder-9.jpg" height="768" width="1366" alt="Placeholder Image" loading="lazy">
+                            </div>
+                            <div>
+                                <h5>Image 10</h5>
+                                <img src="/placeholder-10.jpg" height="768" width="1366" alt="Placeholder Image" loading="lazy">
+                            </div>
+                            <div>
+                                <h5>Image 11</h5>
+                                <img src="/placeholder-11.jpg" height="768" width="1366" alt="Placeholder Image" loading="lazy">
+                            </div>
+                            <div>
+                                <h5>Image 12</h5>
+                                <img src="/placeholder-12.jpg" height="768" width="1366" alt="Placeholder Image" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="pagination p-3"></div>
+                    </div>
+                </article>
 
-                <div class="show-code" data-title="Slider with Thumbnail Slider" data-badge="With SprySliderJS">
-                    <div id="slider2" class="slider" data-snap>
+                <article class="show-code" data-title="Slider with Thumbnails">
+                    <div id="slider2" class="slider">
                         <button class="prev gray link icon circle xl"></button>
                         <button class="next gray link icon circle xl"></button>
                         <div class="slides" id="featured-slides">
@@ -1707,7 +2055,7 @@
                     </div>
 
                     <div class="@container">
-                        <div class="slider mt-1 @md:mt-2" data-snap>
+                        <div class="slider mt-1 @md:mt-2" data-slider-snap>
                             <button class="prev gray link icon circle"></button>
                             <button class="next gray link icon circle"></button>
                             <div class="slides row columns-3 g-1 @md:columns-5 @md:g-2">
@@ -1723,7 +2071,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </article>
             </section>
             
             <!-- TOGGLE -->

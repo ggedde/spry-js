@@ -11,10 +11,27 @@ declare global {
 
 export type SpryJsSliderOptions = {
 	items?: Element[] | string,
+	classSliding?: string | string[];
+	classShowing?: string | string[];
+	classShowingFirst?: string | string[];
+	classShowingLast?: string | string[];
 	selectorSlides?: string;
 	selectorNext?: string;
 	selectorPrev?: string;
 	selectorPagination?: string;
+	attributeClassSliding?: string;
+	attributeClassShowing?: string;
+	attributeClassShowingFirst?: string;
+	attributeClassShowingLast?: string;
+	attributeSelectorSlides?: string;
+	attributeSelectorNext?: string;
+	attributeSelectorPrev?: string;
+	attributeSelectorPagination?: string;
+	attributePlay?: string;
+	attributeLoop?: string;
+	attributeSnap?: string;
+	attributeStop?: string;
+	attributePosition?: string;
 };
 
 type SpryJsSliderObject = {
@@ -24,10 +41,27 @@ type SpryJsSliderObject = {
 
 export function slider({
 	items = ".slider",
+	classSliding = "sliding",
+	classShowing = "showing",
+	classShowingFirst = "showing-first",
+	classShowingLast = "showing-last",
 	selectorSlides = ".slides",
 	selectorNext = ".next",
 	selectorPrev = ".prev",
 	selectorPagination = ".pagination",
+	attributeClassSliding = "data-slider-class-sliding",
+	attributeClassShowing = "data-slider-class-showing",
+	attributeClassShowingFirst = "data-slider-class-showing-first",
+	attributeClassShowingLast = "data-slider-class-showing-last",
+	attributeSelectorSlides = "data-slider-selector-slides",
+	attributeSelectorNext = "data-slider-selector-next",
+	attributeSelectorPrev = "data-slider-selector-prev",
+	attributeSelectorPagination = "data-slider-selector-pagination",
+	attributePlay = "data-slider-play",
+	attributeLoop = "data-slider-loop",
+	attributeSnap = "data-slider-snap",
+	attributeStop = "data-slider-stop",
+	attributePosition = "data-slider-position",
 }: SpryJsSliderOptions = {}): {destroy: Function, update: Function} {
 
 	let controller: AbortController | null = null;
@@ -36,15 +70,35 @@ export function slider({
 
 	function createSliderObject(slider: Element): SpryJsSliderObject | null {
 		
-		const play = parseInt((slider.getAttribute("data-play") || 0).toString());
-		const loop = slider.hasAttribute("data-loop");
-		const snap = slider.hasAttribute("data-snap");
-		const stop = slider.getAttribute("data-stop");
-		const next = slider.querySelector(selectorNext);
-		const prev = slider.querySelector(selectorPrev);
-		const pagination = slider.querySelector(selectorPagination);
-		const slides = slider.querySelector(selectorSlides);
-		
+		const play = parseInt((slider.getAttribute(attributePlay) || 0).toString());
+		const loop = slider.hasAttribute(attributeLoop);
+		const snap = slider.hasAttribute(attributeSnap);
+		const stop = slider.getAttribute(attributeStop);
+		const next = slider.querySelector(slider.getAttribute(attributeSelectorNext) ?? selectorNext);
+		const prev = slider.querySelector(slider.getAttribute(attributeSelectorPrev) ?? selectorPrev);
+		const pagination = slider.querySelector(slider.getAttribute(attributeSelectorPagination) ?? selectorPagination);
+		const slides = slider.querySelector(slider.getAttribute(attributeSelectorSlides) ?? selectorSlides);
+
+		let sliderClassSliding = slider.getAttribute(attributeClassSliding) ?? classSliding;
+		if (sliderClassSliding && typeof sliderClassSliding === 'string') {
+			sliderClassSliding = sliderClassSliding.split(' ');
+		}
+
+		let sliderClassShowing = slider.getAttribute(attributeClassShowing) ?? classShowing;
+		if (sliderClassShowing && typeof sliderClassShowing === 'string') {
+			sliderClassShowing = sliderClassShowing.split(' ');
+		}
+
+		let sliderClassShowingFirst = slider.getAttribute(attributeClassShowingFirst) ?? classShowingFirst;
+		if (sliderClassShowingFirst && typeof sliderClassShowingFirst === 'string') {
+			sliderClassShowingFirst = sliderClassShowingFirst.split(' ');
+		}
+
+		let sliderClassShowingLast = slider.getAttribute(attributeClassShowingLast) ?? classShowingLast;
+		if (sliderClassShowingLast && typeof sliderClassShowingLast === 'string') {
+			sliderClassShowingLast = sliderClassShowingLast.split(' ');
+		}
+
 		let currentIndex: number;
 		let scrollTimer: Timer | null = null;
 		let playTimer: Timer | null = null;
@@ -143,13 +197,13 @@ export function slider({
 		}
 
 		function sliderScroll() {
-			slider.setAttribute('data-sliding', '');
-			slider.removeAttribute('data-position');
+			if (sliderClassSliding) slider.classList.add(...sliderClassSliding);
+			slider.removeAttribute(attributePosition);
 			if (scrollTimer) clearTimeout(scrollTimer);
 			playStop();
 			scrollTimer = setTimeout(function () {
 				if (!slider.spryJsSliderCount) return;
-				slider.removeAttribute('data-sliding');
+				if (sliderClassSliding) slider.classList.remove(...sliderClassSliding);
 				resetPlay();
 				if (loop && slides) {
 					var blockWidth = (slides.scrollWidth / 3);
@@ -164,25 +218,31 @@ export function slider({
 
 				} else if(slides) {
 					if (!slides.scrollLeft) {
-						slider.setAttribute('data-position', 'start');
+						slider.setAttribute(attributePosition, 'start');
 					} else if (slides.scrollLeft + (slider as HTMLElement).offsetWidth >= (slides.scrollWidth - 2)) {
-						slider.setAttribute('data-position', 'end');
+						slider.setAttribute(attributePosition, 'end');
 					}
 				}
 
 				const sliderLeft = slider.getBoundingClientRect().left;
 				if (slides) {
 					for (let c = 0; c < slides.children.length; c++) {
-						slides.children[c].removeAttribute('data-first');
-						slides.children[c].removeAttribute('data-last');
+						slides.children[c].classList.remove(...sliderClassShowingFirst);
+						slides.children[c].classList.remove(...sliderClassShowingLast);
 						var left = Math.round(slides.children[c].getBoundingClientRect().left - sliderLeft);						
-						slides.children[c].toggleAttribute('data-showing', (left >= -50 && left < slides.clientWidth));
+						if (sliderClassShowing) {
+							if ((left >= -50 && left < slides.clientWidth)) {
+								slides.children[c].classList.add(...sliderClassShowing);
+							} else {
+								slides.children[c].classList.remove(...sliderClassShowing);
+							}
+						}
 					};
 				}
 
 				currentIndex = getIndex();
-				var showing = slider.querySelectorAll('[data-showing]');
-				if (showing.length && currentIndex !== undefined) {
+				var showing = sliderClassShowing && typeof sliderClassShowing !== 'string' ? slider.querySelectorAll('.'+sliderClassShowing.join('.')) : false;
+				if (showing && showing.length && currentIndex !== undefined) {
 					if (pagination && slides) {
 						pagination.querySelectorAll('.active').forEach(active => {
 							active.classList.remove('active');
@@ -191,8 +251,8 @@ export function slider({
 							pagination.children[currentIndex].classList.add('active');
 						}
 					}
-					showing[0].setAttribute('data-first', '');
-					showing[showing.length - 1].setAttribute('data-last', '');
+					showing[0].classList.add(...sliderClassShowingFirst);
+					showing[showing.length - 1].classList.add(...sliderClassShowingLast);
 					var preLoadImages = function (elem: HTMLImageElement | null, type: string, total: number) {
 						var i = 0;
 						var imageSrcs = [];
@@ -214,8 +274,12 @@ export function slider({
 							newImg.src = imageSrc;
 						});
 					}
-					preLoadImages(slider.querySelector('[data-last]'), 'next', showing.length);
-					preLoadImages(slider.querySelector('[data-last]'), 'prev', showing.length);
+					if (sliderClassShowingFirst && typeof sliderClassShowingFirst !== 'string') {
+						preLoadImages(slider.querySelector('.'+sliderClassShowingFirst.join('.')), 'next', showing.length);
+					}
+					if (sliderClassShowingLast && typeof sliderClassShowingLast !== 'string') {
+						preLoadImages(slider.querySelector('.'+sliderClassShowingLast.join('.')), 'prev', showing.length);
+					}
 				}
 			}, 100);
 		}
@@ -318,7 +382,7 @@ export function slider({
 					}
 				} else if (slides) {
 					slides.dispatchEvent(new CustomEvent('scroll'));
-					slider.setAttribute('data-position', 'start');
+					slider.setAttribute(attributePosition, 'start');
 				}
 			}
 
