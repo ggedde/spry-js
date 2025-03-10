@@ -1,7 +1,6 @@
-/**!
- * Spry Docs JS
+/*!
+ * SpryJS Docs
  *
- * Version: 1.0.0
  * Author: gedde.dev
  * Github: https://github.com/ggedde/spry-css
  */

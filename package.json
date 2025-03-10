@@ -24,21 +24,12 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build-esm": "bun build ./src/spry.mts --outdir ./dist --entry-naming spry.mjs --minify --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'; cp ./dist/spry.mjs ./docs/spry.mjs",
-    "build-js": "bun build ./src/spry.ts --outdir ./dist --entry-naming spry.js --minify --format iife --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'; cp ./dist/spry.js ./docs/spry.js",
-    "build-bits": "bun build ./src/bits.mts --outdir ./docs --entry-naming bits.mjs --minify --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
     "watch-esm": "bun build ./src/spry.mts --outdir ./dist --entry-naming spry.mjs --minify --watch --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
     "watch-js": "bun build ./src/spry.ts --outdir ./dist --entry-naming spry.js --minify --watch --format iife --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
-    "build": "bun run build-esm; bun run build-js",
-    "build-docs-css": "node_modules/.bin/postcss ./docs/docs.css --map false -o ./docs/docs.min.css; wc -c ./docs/docs.min.css | awk '{ total = int( ($1 / 1024) * 10) / 10; print total \" KB\"}' && gzip -c4 ./docs/docs.min.css | wc -c | awk '{ total = int( ($1 / 1024) * 10) / 10; print total \" KB\" }'",
-    "build-docs-js2": "node_modules/.bin/terser ./docs/docs.js --config-file .terser -o ./docs/docs.min.js; wc -c ./docs/docs.min.js | awk '{ total = int( ($1 / 1024) * 10) / 10; print total \" KB\"}' && gzip -c4 ./docs/docs.min.js | wc -c | awk '{ total = int( ($1 / 1024) * 10) / 10; print total \" KB\" }'",
-    "build-docs-js": "bun build ./docs/docs.ts --outdir ./docs --entry-naming docs.min.js --minify-whitespace --minify-syntax",
-    "build-docs": "npm run build-docs-css; npm run build-docs-js",
+    "build-esm": "bun build ./src/spry.mts --outdir ./dist --entry-naming spry.mjs --minify --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'; cp ./dist/spry.mjs ./docs/spry.mjs",
+    "build-js": "bun build ./src/spry.ts --outdir ./dist --entry-naming spry.js --minify --format iife --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'; cp ./dist/spry.js ./docs/spry.js",
+    "build": "bun build.ts",
     "dev": "bun run watch-esm | bun run watch-js"
   },
-  "type": "module",
-  "dependencies": {
-    "crypto-js": "^4.2.0",
-    "postcss-cli": "^11.0.0"
-  }
+  "type": "module"
 }
