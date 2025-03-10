@@ -4,9 +4,11 @@
 declare global {
     interface Element {
         sliderGoTo?: Function;
-        sliderIndex?: number;
+        sliderGetIndex?: Function;
         spryJsSliderCount: number;
     }
+
+	// interface Window { [key: string]: any[] } {}
 }
 
 export type SpryJsSliderOptions = {
@@ -15,6 +17,8 @@ export type SpryJsSliderOptions = {
 	classShowing?: string | string[];
 	classShowingFirst?: string | string[];
 	classShowingLast?: string | string[];
+	classStart?: string | string[];
+	classEnd?: string | string[];
 	selectorSlides?: string;
 	selectorNext?: string;
 	selectorPrev?: string;
@@ -23,6 +27,8 @@ export type SpryJsSliderOptions = {
 	attributeClassShowing?: string;
 	attributeClassShowingFirst?: string;
 	attributeClassShowingLast?: string;
+	attributeClassStart?: string;
+	attributeClassEnd?: string;
 	attributeSelectorSlides?: string;
 	attributeSelectorNext?: string;
 	attributeSelectorPrev?: string;
@@ -31,7 +37,7 @@ export type SpryJsSliderOptions = {
 	attributeLoop?: string;
 	attributeSnap?: string;
 	attributeStop?: string;
-	attributePosition?: string;
+	attributeEventSlide?: string;
 };
 
 type SpryJsSliderObject = {
@@ -45,6 +51,8 @@ export function slider({
 	classShowing = "showing",
 	classShowingFirst = "showing-first",
 	classShowingLast = "showing-last",
+	classStart = "slider-start",
+	classEnd = "slider-end",
 	selectorSlides = ".slides",
 	selectorNext = ".next",
 	selectorPrev = ".prev",
@@ -53,6 +61,8 @@ export function slider({
 	attributeClassShowing = "data-slider-class-showing",
 	attributeClassShowingFirst = "data-slider-class-showing-first",
 	attributeClassShowingLast = "data-slider-class-showing-last",
+	attributeClassStart = "data-slider-class-start",
+	attributeClassEnd = "data-slider-class-end",
 	attributeSelectorSlides = "data-slider-selector-slides",
 	attributeSelectorNext = "data-slider-selector-next",
 	attributeSelectorPrev = "data-slider-selector-prev",
@@ -61,7 +71,7 @@ export function slider({
 	attributeLoop = "data-slider-loop",
 	attributeSnap = "data-slider-snap",
 	attributeStop = "data-slider-stop",
-	attributePosition = "data-slider-position",
+	attributeEventSlide = "data-slider-event-slide",
 }: SpryJsSliderOptions = {}): {destroy: Function, update: Function} {
 
 	let controller: AbortController | null = null;
@@ -98,6 +108,19 @@ export function slider({
 		if (sliderClassShowingLast && typeof sliderClassShowingLast === 'string') {
 			sliderClassShowingLast = sliderClassShowingLast.split(' ');
 		}
+
+		let sliderClassStart = slider.getAttribute(attributeClassStart) ?? classStart;
+		if (sliderClassStart && typeof sliderClassStart === 'string') {
+			sliderClassStart = sliderClassStart.split(' ');
+		}
+
+		let sliderClassEnd = slider.getAttribute(attributeClassEnd) ?? classEnd;
+		if (sliderClassEnd && typeof sliderClassEnd === 'string') {
+			sliderClassEnd = sliderClassEnd.split(' ');
+		}
+
+		// Events
+		const eventSlide = slider.getAttribute(attributeEventSlide);
 
 		let currentIndex: number;
 		let scrollTimer: Timer | null = null;
@@ -198,29 +221,32 @@ export function slider({
 
 		function sliderScroll() {
 			if (sliderClassSliding) slider.classList.add(...sliderClassSliding);
-			slider.removeAttribute(attributePosition);
+			slider.classList.remove(...sliderClassStart, ...sliderClassEnd);
 			if (scrollTimer) clearTimeout(scrollTimer);
 			playStop();
 			scrollTimer = setTimeout(function () {
 				if (!slider.spryJsSliderCount) return;
 				if (sliderClassSliding) slider.classList.remove(...sliderClassSliding);
 				resetPlay();
+				let loopScroll = false;
 				if (loop && slides) {
 					var blockWidth = (slides.scrollWidth / 3);
 					if (slides.scrollLeft < blockWidth) {
 						var offset = blockWidth - slides.scrollLeft;
 						slides.scrollTo({ left: (((blockWidth * 2) - offset)), behavior: 'instant' });
+						loopScroll = true;
 					}
 					if (slides.scrollLeft >= (blockWidth * 2)) {
 						var offset = slides.scrollLeft - (blockWidth * 2);
 						slides.scrollTo({ left: blockWidth + offset, behavior: 'instant' });
+						loopScroll = true;
 					}
 
 				} else if(slides) {
 					if (!slides.scrollLeft) {
-						slider.setAttribute(attributePosition, 'start');
+						slider.classList.add(...sliderClassStart);
 					} else if (slides.scrollLeft + (slider as HTMLElement).offsetWidth >= (slides.scrollWidth - 2)) {
-						slider.setAttribute(attributePosition, 'end');
+						slider.classList.add(...sliderClassEnd);
 					}
 				}
 
@@ -279,6 +305,14 @@ export function slider({
 					}
 					if (sliderClassShowingLast && typeof sliderClassShowingLast !== 'string') {
 						preLoadImages(slider.querySelector('.'+sliderClassShowingLast.join('.')), 'prev', showing.length);
+					}
+				}
+				if (!loopScroll) {
+					const slideChanged =  new CustomEvent('spryjs-slider-event-slide', {detail: {index: currentIndex}});
+					slider.dispatchEvent(slideChanged);
+
+					if (eventSlide && (window as { [key: string]: any })[eventSlide] && typeof (window as { [key: string]: any })[eventSlide] === 'function') {
+						(window as { [key: string]: any })[eventSlide](currentIndex);
 					}
 				}
 			}, 100);
@@ -382,7 +416,7 @@ export function slider({
 					}
 				} else if (slides) {
 					slides.dispatchEvent(new CustomEvent('scroll'));
-					slider.setAttribute(attributePosition, 'start');
+					slider.classList.add(...sliderClassStart);
 				}
 			}
 
@@ -390,8 +424,8 @@ export function slider({
 				slider.sliderGoTo = goTo;
 			}
 
-			if (!slider.sliderIndex) {
-				slider.sliderIndex = currentIndex ? currentIndex : 0;
+			if (!slider.sliderGetIndex) {
+				slider.sliderGetIndex = getIndex;
 			}
 
 			resetPlay();
@@ -419,8 +453,8 @@ export function slider({
 				delete slider.sliderGoTo;
 			}
 
-			if (typeof slider.sliderIndex !== 'undefined') {
-				delete slider.sliderIndex;
+			if (slider.sliderGetIndex) {
+				delete slider.sliderGetIndex;
 			}
 		}
 

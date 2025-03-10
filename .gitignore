@@ -15,4 +15,5 @@ ehthumbs.db
 error_log
 access_log
 .sass-cache
+.vscode
 node_modules

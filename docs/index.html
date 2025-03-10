@@ -123,7 +123,7 @@
                     <h5>
                         SpryJS is a lightweight and straightforward JavaScript toolkit designed to complement
                         <a target="_blank" href="https://ggedde.github.io/spry-css">SpryCSS</a>, though it can also be used independently.
-                        Its primary objective is to offer essential functionality and utilities that accelerate development.
+                        Its primary objective is to offer essential functionality and utilities that accelerate development while keeping your development kit light and free of dependencies.
                     </h5>
                 </div>
             
@@ -178,8 +178,8 @@
                 </h3>
                 <div class="row columns-2 g-0">
                     <div class="flex span-auto">
-                        <div class="flex bg-primary bg-to-success bg/4 b-1 border/0 rl-1">
-                            <select class="language-selector rl-1 pr-4 bg-theme b-0 pr-4 pl-3 py-1 bg/9 border/10 border-success relative index-1" onchange="SpryJsDocs.loadSingleCodeContainers(null, this.value)">
+                        <div class="flex bg-gray bg-to-primary bg/4 b-1 border/0 rl-1">
+                            <select class="language-selector rl-1 pr-4 bg-theme b-0 pr-4 pl-3 py-1 bg/9 border/10 border-primary color-primary relative index-1" onchange="SpryJsDocs.loadSingleCodeContainers(null, this.value)">
                                 <option value="npm">npm</option>
                                 <option value="yarn">yarn</option>
                                 <option value="pnpm">pnpm</option>
@@ -329,8 +329,8 @@
                 <h3 id="navigable.api" class="flex mt-4 block-center">
                     <a id="navigable.api" href="#navigable.api" class="color-inherit">API</a>
                     <div class="items-center inline-flex ml-3 xs">
-                        <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1 sm md:md">
-                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
+                        <div class="bg-gray bg-to-primary bg/5 b-1 border/0 r-1 sm md:md">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-primary color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
                                 <option value="cdnEsm">CDN ES Module Build</option>
                                 <option value="cdn">CDN Global Build</option>
                                 <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
@@ -480,14 +480,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="bt-0"><a id="navigable.options.items" href="#navigable.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: string | Element[]</code></td>
+                            <td class="bt-0" width="280"><a id="navigable.options.items" href="#navigable.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-2 opacity/8">|</span><span class="color-success">Element[]</span></code></td>
                             <td class="bt-0">
                                 <p>Selector or array of Elements for navigable containers. This will capture keyboard events within this element and navigate between the anchors.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">".navigable"</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="navigable.options.selector.anchor" href="#navigable.options.selector.anchor"><code class="color-primary">selectorAnchor</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="navigable.options.selector.anchor" href="#navigable.options.selector.anchor"><code class="color-primary">selectorAnchor</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Selector Name for anchor items within the Navigable container. Which items within the Navigable container you wont to be able to navigate through.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"a, button, input, [tabindex]"</code></p>
@@ -495,7 +495,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="navigable.options.attribute.anchor" href="#navigable.options.attribute.anchor"><code class="color-primary">attributeAnchor</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="navigable.options.attribute.anchor" href="#navigable.options.attribute.anchor"><code class="color-primary">attributeAnchor</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Data attribute for custom anchor selector.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-navigable-anchors"</code></p>
@@ -557,8 +557,8 @@
                 <h3 id="observe.api" class="flex mt-4 block-center">
                     <a id="observe.api" href="#observe.api" class="color-inherit">API</a>
                     <div class="items-center inline-flex ml-3 xs">
-                        <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1">
-                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
+                        <div class="bg-gray bg-to-primary bg/5 b-1 border/0 r-1">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-primary color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
                                 <option value="cdnEsm">CDN ES Module Build</option>
                                 <option value="cdn">CDN Global Build</option>
                                 <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
@@ -713,14 +713,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="bt-0"><a id="observe.options.items" href="#observe.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: string | Element[]</code></td>
+                            <td class="bt-0" width="350"><a id="observe.options.items" href="#observe.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-2 opacity/8">|</span><span class="color-success">Element[]</span></code></td>
                             <td class="bt-0">
                                 <p>Selector or array of Elements to watch in the observer.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">".observe"</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="observe.options.rootmargin" href="#observe.options.rootmargin"><code class="color-primary">rootMargin</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="observe.options.rootmargin" href="#observe.options.rootmargin"><code class="color-primary">rootMargin</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Bounding box before computing intersections. Negative values will shrink the bounding box.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"0px 0px 0px 0px"</code></p>
@@ -731,7 +731,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="observe.options.threshold" href="#observe.options.threshold"><code class="color-primary">threshold</code></a><code class="color-gray">?: number</code></td>
+                            <td><a id="observe.options.threshold" href="#observe.options.threshold"><code class="color-primary">threshold</code></a><code class="color-gray">?: <span class="color-success">number</span></code></td>
                             <td>
                                 <p>Either a single number from 0 - 1 or an array of numbers which indicate at what percentage of the target's visibility the observer's callback should be executed.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">0</code></p>
@@ -742,7 +742,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="observe.options.delay" href="#observe.options.delay"><code class="color-primary">delay</code></a><code class="color-gray">?: number</code></td>
+                            <td><a id="observe.options.delay" href="#observe.options.delay"><code class="color-primary">delay</code></a><code class="color-gray">?: <span class="color-success">number</span></code></td>
                             <td>
                                 <p>
                                     Delay in milliseconds before the Observer acknowledges the observed element.
@@ -753,7 +753,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="observe.options.class.observed" href="#observe.options.class.observed"><code class="color-primary">classObserved</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="observe.options.class.observed" href="#observe.options.class.observed"><code class="color-primary">classObserved</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span></code></td>
                             <td>
                                 <p>Class that gets added when elements become visible within the viewport, but does not get removed.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"observed"</code></p>
@@ -761,7 +761,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="observe.options.class.observing" href="#observe.options.class.observing"><code class="color-primary">classObserving</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="observe.options.class.observing" href="#observe.options.class.observing"><code class="color-primary">classObserving</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span></code></td>
                             <td>
                                 <p>Class that gets toggled when elements are visible within the viewport.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"observing"</code></p>
@@ -769,7 +769,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="observe.options.attribute.delay" href="#observe.options.attribute.delay"><code class="color-primary">attributeDelay</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="observe.options.attribute.delay" href="#observe.options.attribute.delay"><code class="color-primary">attributeDelay</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Data attribute to specify the delay. This will override <a href="#observe.options.delay"><code class="color-primary">delay</code></a>.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-observe-delay"</code></p>
@@ -777,7 +777,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="observe.options.attribute.observed" href="#observe.options.attribute.observed"><code class="color-primary">attributeClassObserved</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="observe.options.attribute.observed" href="#observe.options.attribute.observed"><code class="color-primary">attributeClassObserved</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Data attribute to specify the observed class. This will override <a href="#observe.options.class.observed"><code class="color-primary">classObserved</code></a>.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-observe-class-observed"</code></p>
@@ -785,7 +785,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="observe.options.attribute.observing" href="#observe.options.attribute.observing"><code class="color-primary">attributeClassObserving</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="observe.options.attribute.observing" href="#observe.options.attribute.observing"><code class="color-primary">attributeClassObserving</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Data attribute to specify the observing class. This will override <a href="#observe.options.class.observing"><code class="color-primary">classObserving</code></a>.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-observe-class-observing"</code></p>
@@ -846,8 +846,8 @@
                 <h3 id="parallax.api" class="flex mt-4 block-center">
                     <a id="parallax.api" href="#parallax.api" class="color-inherit">API</a>
                     <div class="items-center inline-flex ml-3 xs">
-                        <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1">
-                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
+                        <div class="bg-gray bg-to-primary bg/5 b-1 border/0 r-1">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-primary color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
                                 <option value="cdnEsm">CDN ES Module Build</option>
                                 <option value="cdn">CDN Global Build</option>
                                 <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
@@ -1004,28 +1004,28 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="bt-0"><a id="parallax.options.items" href="#parallax.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: string | Element[]</code></td>
+                            <td class="bt-0" width="330"><a id="parallax.options.items" href="#parallax.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-2 opacity/8">|</span><span class="color-success">Element[]</span></code></td>
                             <td class="bt-0">
                                 <p>Selector or array of Elements to parallax.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">".parallax"</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="parallax.options.threshold" href="#parallax.options.threshold"><code class="color-primary">threshold</code></a><code class="color-gray">?: number</code></td>
+                            <td><a id="parallax.options.threshold" href="#parallax.options.threshold"><code class="color-primary">threshold</code></a><code class="color-gray">?: <span class="color-success">number</span></code></td>
                             <td>
                                 <p>The threshold is the buffer in pixels before the parallax element starts to animate before it reaches the viewport. This helps reduce flickering when the element animates from baseline position. You can use a positive number to prevent animation while partially in viewport.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">-300</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="parallax.options.minwidth" href="#parallax.options.minwidth"><code class="color-primary">minWidth</code></a><code class="color-gray">?: number</code></td>
+                            <td><a id="parallax.options.minwidth" href="#parallax.options.minwidth"><code class="color-primary">minWidth</code></a><code class="color-gray">?: <span class="color-success">number</span></code></td>
                             <td>
                                 <p>Minimum width in pixels of the window to apply effects. Useful if you do not what to apply parallax for smaller devices.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">0</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="parallax.options.delay" href="#parallax.options.delay"><code class="color-primary">delay</code></a><code class="color-gray">?: number</code></td>
+                            <td><a id="parallax.options.delay" href="#parallax.options.delay"><code class="color-primary">delay</code></a><code class="color-gray">?: <span class="color-success">number</span></code></td>
                             <td>
                                 <p>Number in milliseconds to apply easing delay. This allows for a smoother animation on non-smooth scrolling devices and might need adjustment based on your needs. Set to 0 to disable.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">0</code></p>
@@ -1033,15 +1033,15 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="parallax.options.class.active" href="#parallax.options.class.active"><code class="color-primary">classActive</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="parallax.options.class.active" href="#parallax.options.class.active"><code class="color-primary">classActive</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span></code></td>
                             <td>
                                 <p>Class added to element when being viewed by observer and active. Removed when out of view.</p>
-                                <p><code class="color-gray">default:</code> <code class="color-primary">".parallaxing"</code></p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"parallaxing"</code></p>
                                 <p class="note sm mt-3">Override with <a href="#parallax.options.attribute.active"><code class="color-primary">attributeClassActive</code></a></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="parallax.options.attribute.active" href="#parallax.options.attribute.active"><code class="color-primary">attributeClassActive</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="parallax.options.attribute.active" href="#parallax.options.attribute.active"><code class="color-primary">attributeClassActive</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Data attribute to set the active class when the element is being viewed by observer and active.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-parallax-class-active"</code></p>
@@ -1049,28 +1049,28 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="parallax.options.attribute.background" href="#parallax.options.attribute.background"><code class="color-primary">attributeBackground</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="parallax.options.attribute.background" href="#parallax.options.attribute.background"><code class="color-primary">attributeBackground</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Data attribute to indicate that parallaxing should be done on the "background-position" style instead of the element.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-parallax-background"</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="parallax.options.attribute.horizontal" href="#parallax.options.attribute.horizontal"><code class="color-primary">attributeHorizontal</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="parallax.options.attribute.horizontal" href="#parallax.options.attribute.horizontal"><code class="color-primary">attributeHorizontal</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Data attribute to indicate that parallaxing should be done horizontally instead of vertically.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-parallax-horizontal"</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="parallax.options.attribute.invert" href="#parallax.options.attribute.invert"><code class="color-primary">attributeInvert</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="parallax.options.attribute.invert" href="#parallax.options.attribute.invert"><code class="color-primary">attributeInvert</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Data attribute to indicate that parallaxing should be done in the opposite direction.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-parallax-invert"</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="parallax.options.attribute.delay" href="#parallax.options.attribute.delay"><code class="color-primary">attributeDelay</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="parallax.options.attribute.delay" href="#parallax.options.attribute.delay"><code class="color-primary">attributeDelay</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Data attribute that sets the value of the delay time. This will override the <a href="#parallax.options.delay"><code class="color-primary">delay</code></a> option if present and allows for different values per element.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-parallax-delay"</code></p>
@@ -1159,8 +1159,8 @@
                 <h3 id="scrollspy.api" class="flex mt-4 block-center">
                     <a id="scrollspy.api" href="#scrollspy.api" class="color-inherit">API</a>
                     <div class="items-center inline-flex ml-3 xs">
-                        <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1 sm md:md">
-                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
+                        <div class="bg-gray bg-to-primary bg/5 b-1 border/0 r-1 sm md:md">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-primary color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
                                 <option value="cdnEsm">CDN ES Module Build</option>
                                 <option value="cdn">CDN Global Build</option>
                                 <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
@@ -1315,14 +1315,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="bt-0"><a id="scrollspy.options.items" href="#scrollspy.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: string | Element[]</code></td>
+                            <td class="bt-0" width="330"><a id="scrollspy.options.items" href="#scrollspy.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-2 opacity/8">|</span><span class="color-success">Element[]</span></code></td>
                             <td class="bt-0">
                                 <p>Selector or array of Elements for scrollspy containers. This will capture scroll events and activate anchors within the container when the section is visible within the viewport.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">".scrollspy"</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="scrollspy.options.threshold" href="#scrollspy.options.threshold"><code class="color-primary">threshold</code></a><code class="color-gray">?: number</code></td>
+                            <td><a id="scrollspy.options.threshold" href="#scrollspy.options.threshold"><code class="color-primary">threshold</code></a><code class="color-gray">?: <span class="color-success">number</span></code></td>
                             <td>
                                 <p>The threshold is the buffer in pixels before the anchor is considered active within the viewport.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">200</code></p>
@@ -1330,7 +1330,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="scrollspy.options.progress" href="#scrollspy.options.progress"><code class="color-primary">progress</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="scrollspy.options.progress" href="#scrollspy.options.progress"><code class="color-primary">progress</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Type of action to use when activating and deactivated anchors.</p>
                                 <div class="mt-2 color-gray">Options: </div>
@@ -1352,7 +1352,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="scrollspy.options.class.active" href="#scrollspy.options.class.active"><code class="color-primary">classActive</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="scrollspy.options.class.active" href="#scrollspy.options.class.active"><code class="color-primary">classActive</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span></code></td>
                             <td>
                                 <p>The class that gets applied to the active anchor.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"active"</code></p>
@@ -1360,7 +1360,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="scrollspy.options.selector.anchor" href="#scrollspy.options.selector.anchor"><code class="color-primary">selectorAnchor</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="scrollspy.options.selector.anchor" href="#scrollspy.options.selector.anchor"><code class="color-primary">selectorAnchor</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>
                                     Selector for the Scroll Spy Anchors with Hashes within the Containers or attribute that matches
@@ -1375,7 +1375,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="scrollspy.options.attribute.anchor" href="#scrollspy.options.attribute.anchor"><code class="color-primary">attributeAnchor</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="scrollspy.options.attribute.anchor" href="#scrollspy.options.attribute.anchor"><code class="color-primary">attributeAnchor</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Allows you to use data attributes to specify your own selectors for the anchors within the containers. Uses a selector as its value.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-anchors"</code></p>
@@ -1383,7 +1383,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="scrollspy.options.attribute.active" href="#scrollspy.options.attribute.active"><code class="color-primary">attributeClassActive</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="scrollspy.options.attribute.active" href="#scrollspy.options.attribute.active"><code class="color-primary">attributeClassActive</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Data attribute to set the class that gets applied to the active anchor.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-class-active"</code></p>
@@ -1391,7 +1391,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="scrollspy.options.attribute.section" href="#scrollspy.options.attribute.section"><code class="color-primary">attributeSection</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="scrollspy.options.attribute.section" href="#scrollspy.options.attribute.section"><code class="color-primary">attributeSection</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>
                                     This is an alternative to using <a href="#scrollspy.options.selector.anchor"><code class="color-primary">selectorAnchor</code></a> for your anchors.
@@ -1401,7 +1401,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="scrollspy.options.attribute.threshold" href="#scrollspy.options.attribute.threshold"><code class="color-primary">attributeThreshold</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="scrollspy.options.attribute.threshold" href="#scrollspy.options.attribute.threshold"><code class="color-primary">attributeThreshold</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Data attribute to set the Threshold for the anchors.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-threshold"</code></p>
@@ -1409,7 +1409,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="scrollspy.options.attribute.progress" href="#scrollspy.options.attribute.progress"><code class="color-primary">attributeProgress</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="scrollspy.options.attribute.progress" href="#scrollspy.options.attribute.progress"><code class="color-primary">attributeProgress</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Data attribute to set the Progress type for the anchors.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-progress"</code></p>
@@ -1522,7 +1522,9 @@
                 </div>
 
                 <h5>
-                    SpryJS provides a basic lightweight slider. If you are looking for something more robust, you might want to check out
+                    This is a basic slider that leverages the browser's native smooth scrolling feature, resulting in a lightweight codebase.
+                    However, it lacks certain functionalities, such as the ability to specify transition speeds or early detection of scroll positioning.
+                    For a more robust solution, you may consider exploring alternative options like: 
                     <a target="_blank" href="https://swiperjs.com">Swiper</a> or <a target="_blank" href="https://glidejs.com">Glide</a>.
                 </h5>
             
@@ -1551,8 +1553,8 @@
                 <h3 id="slider.api" class="flex mt-4 block-center">
                     <a id="slider.api" href="#slider.api" class="color-inherit">API</a>
                     <div class="items-center inline-flex ml-3 xs">
-                        <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1 sm md:md">
-                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
+                        <div class="bg-gray bg-to-primary bg/5 b-1 border/0 r-1 sm md:md">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-primary color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
                                 <option value="cdnEsm">CDN ES Module Build</option>
                                 <option value="cdn">CDN Global Build</option>
                                 <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
@@ -1574,33 +1576,27 @@
                         <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
                     </div>
                 </div>
-                <div class="language-select" data-language="cdn">
-                    <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
-                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
-                            &lt;script&gt;
-                                var spryObj = SpryJS('.slider').slider();
-                            &lt;/script&gt;
-                        </code>
-                    </div>
+                <div class="language-select relative" data-language="cdn">
+                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script&gt;
+                            var spryObj = SpryJS('.slider').slider();
+                        &lt;/script&gt;
+                    </code>
                 </div>
-                <div class="language-select" data-language="cdnEsm">
-                    <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
-                            &lt;script type="module"&gt;
-                                import { slider } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
-                                const obj = slider();
-                            &lt;/script&gt;
-                        </code>
-                    </div>
-                </div>
-                <div class="language-select" data-language="node">
-                    <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
-                            import { slider } from 'spry-js';
+                <div class="language-select relative" data-language="cdnEsm">
+                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                        &lt;script type="module"&gt;
+                            import { slider } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
                             const obj = slider();
-                        </code>
-                    </div>
+                        &lt;/script&gt;
+                    </code>
+                </div>
+                <div class="language-select relative" data-language="node">
+                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        import { slider } from 'spry-js';
+                        const obj = slider();
+                    </code>
                 </div>
 
                 <!-- Update -->
@@ -1697,6 +1693,8 @@
                                         classShowing: "showing",
                                         classShowingFirst: "showing-first",
                                         classShowingLast: "showing-last",
+                                        classStart: "slider-start",
+                                        classEnd: "slider-end",
                                         selectorSlides: ".slides",
                                         selectorNext: ".next",
                                         selectorPrev: ".prev",
@@ -1705,6 +1703,8 @@
                                         attributeClassShowing: "data-slider-class-showing",
                                         attributeClassShowingFirst: "data-slider-class-showing-first",
                                         attributeClassShowingLast: "data-slider-class-showing-last",
+                                        attributeClassStart: "data-slider-class-start",
+                                        attributeClassEnd: "data-slider-class-end",
                                         attributeSelectorSlides: "data-slider-selector-slides",
                                         attributeSelectorNext: "data-slider-selector-next",
                                         attributeSelectorPrev: "data-slider-selector-prev",
@@ -1713,201 +1713,413 @@
                                         attributeLoop: "data-slider-loop",
                                         attributeSnap: "data-slider-snap",
                                         attributeStop: "data-slider-stop",
-                                        attributePosition: "data-slider-position"
+                                        attributeEventSlide: "data-slider-event-slide"
                                     });
                                 </code>
                             </td>
                         </tr>
                         <tr>
-                            <td class="bt-0"><a id="scrollspy.options.items" href="#scrollspy.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: string | Element[]</code></td>
+                            <td class="bt-0" width="380"><a id="slider.options.items" href="#slider.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-2 opacity/8">|</span><span class="color-success">Element[]</span></code></td>
                             <td class="bt-0">
-                                <p>Selector or array of Elements for scrollspy containers. This will capture scroll events and activate anchors within the container when the section is visible within the viewport.</p>
-                                <p><code class="color-gray">default:</code> <code class="color-primary">".scrollspy"</code></p>
+                                <p>Selector or array of Elements for slider containers.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">".slider"</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="scrollspy.options.threshold" href="#scrollspy.options.threshold"><code class="color-primary">threshold</code></a><code class="color-gray">?: number</code></td>
+                            <td><a id="slider.options.class.sliding" href="#slider.options.class.sliding"><code class="color-primary">classSliding</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span></code></td>
                             <td>
-                                <p>The threshold is the buffer in pixels before the anchor is considered active within the viewport.</p>
-                                <p><code class="color-gray">default:</code> <code class="color-primary">200</code></p>
-                                <p class="note sm mt-3">Override with <a href="#scrollspy.options.attribute.threshold"><code class="color-primary">attributeThreshold</code></a></p>
+                                <p>The Class added to the slider container when the slider is sliding.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"sliding"</code></p>
+                                <p class="note sm mt-3">Override with <a href="#slider.options.attribute.sliding"><code class="color-primary">attributeClassSliding</code></a></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="scrollspy.options.progress" href="#scrollspy.options.progress"><code class="color-primary">progress</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="slider.options.class.showing" href="#slider.options.class.showing"><code class="color-primary">classShowing</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span></code></td>
                             <td>
-                                <p>Type of action to use when activating and deactivated anchors.</p>
-                                <div class="mt-2 color-gray">Options: </div>
-                                <ul>
-                                    <li>
-                                        <code class="color-primary">"active"</code> <code class="color-gray sm ml-2">(default)</code>
-                                        <p class="mt-0">This will activate only one anchor at a time.</p>
-                                    </li>
-                                    <li>
-                                        <code class="color-primary">"linear"</code>
-                                        <p class="mt-0">This will progress each anchor based on the position of the scroll. Essentially keeping all previous anchors active while you move forward and removing active anchors as you go back.</p>
-                                    </li>
-                                    <li>
-                                        <code class="color-primary">"seen"</code>
-                                        <p class="mt-0">This will activate each anchor as it is seen, but does not remove any active anchors.</p>
-                                    </li>
+                                <p>
+                                    A class added to each slide that are viewable in the slider.
+                                    It is currently only available to switch the showing classes when the slider has finished sliding.
+                                </p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"showing"</code></p>
+                                <p class="note sm mt-3">Override with <a href="#slider.options.attribute.showing"><code class="color-primary">attributeClassShowing</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.class.showingfirst" href="#slider.options.class.showingfirst"><code class="color-primary">classShowingFirst</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span></code></td>
+                            <td>
+                                <p>
+                                    A class added to the first viewable slide in the slider.
+                                    It is currently only set when the slider has finished sliding.
+                                </p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"showing-first"</code></p>
+                                <p class="note sm mt-3">Override with <a href="#slider.options.attribute.showingfirst"><code class="color-primary">attributeClassShowingFirst</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.class.showinglast" href="#slider.options.class.showinglast"><code class="color-primary">classShowingLast</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span></code></td>
+                            <td>
+                                <p>
+                                    A class added to the last viewable slide in the slider.
+                                    It is currently only set when the slider has finished sliding.
+                                </p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"showing-last"</code></p>
+                                <p class="note sm mt-3">Override with <a href="#slider.options.attribute.showinglast"><code class="color-primary">attributeClassShowingLast</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.class.start" href="#slider.options.class.start"><code class="color-primary">classStart</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span></code></td>
+                            <td>
+                                <p>
+                                    A class added to the slider container when the slider is at the start position.
+                                    It is currently only set when the slider has finished sliding.
+                                </p>
+                                <p class="note">* Ignored when Slider has loop enabled</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"slider-start"</code></p>
+                                <p class="note sm mt-3">Override with <a href="#slider.options.attribute.start"><code class="color-primary">attributeClassStart</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.class.end" href="#slider.options.class.end"><code class="color-primary">classEnd</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span></code></td>
+                            <td>
+                                <p>
+                                    A class added to the slider container when the slider is at the end position.
+                                    It is currently only set when the slider has finished sliding.
+                                </p>
+                                <p class="note">* Ignored when Slider has loop enabled</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"slider-end"</code></p>
+                                <p class="note sm mt-3">Override with <a href="#slider.options.attribute.end"><code class="color-primary">attributeClassEnd</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.slector.slides" href="#slider.options.slector.slides"><code class="color-primary">selectorSlides</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The selector to set the slides container within the slider container.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">".slides"</code></p>
+                                <p class="note sm mt-3">Override with <a href="#slider.options.attribute.slector.slides"><code class="color-primary">attributeSelectorSlides</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.slector.next" href="#slider.options.slector.next"><code class="color-primary">selectorNext</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The selector to set the next button within the slider container.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">".next"</code></p>
+                                <p class="note sm mt-3">Override with <a href="#slider.options.attribute.slector.next"><code class="color-primary">attributeSelectorNext</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.slector.prev" href="#slider.options.slector.prev"><code class="color-primary">selectorPrev</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The selector to set the prev button within the slider container.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">".prev"</code></p>
+                                <p class="note sm mt-3">Override with <a href="#slider.options.attribute.slector.prev"><code class="color-primary">attributeSelectorPrev</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.slector.pagination" href="#slider.options.slector.pagination"><code class="color-primary">selectorPagination</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The selector to set the pagination container within the slider container.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">".pagination"</code></p>
+                                <p class="note sm mt-3">Override with <a href="#slider.options.attribute.slector.pagination"><code class="color-primary">attributeSelectorPagination</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.attribute.sliding" href="#slider.options.attribute.sliding"><code class="color-primary">attributeClassSliding</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The attribute on the slider container to override the sliding class.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-class-sliding"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#slider.options.class.sliding"><code class="color-primary">classSliding</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.attribute.showing" href="#slider.options.attribute.showing"><code class="color-primary">attributeClassShowing</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The attribute on the slider container to override the showing class.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-class-showing"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#slider.options.class.showing"><code class="color-primary">classShowing</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.attribute.showingfirst" href="#slider.options.attribute.showingfirst"><code class="color-primary">attributeClassShowingFirst</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The attribute on the slider container to override the showing-first class.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-class-showing-first"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#slider.options.class.showingfirst"><code class="color-primary">classShowingFirst</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.attribute.showinglast" href="#slider.options.attribute.showinglast"><code class="color-primary">attributeClassShowingLast</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The attribute on the slider container to override the showing-last class.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-class-showing-last"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#slider.options.class.showinglast"><code class="color-primary">classShowingLast</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.attribute.start" href="#slider.options.attribute.start"><code class="color-primary">attributeClassStart</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The attribute on the slider container to override the start class.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-class-start"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#slider.options.class.start"><code class="color-primary">classStart</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.attribute.end" href="#slider.options.attribute.end"><code class="color-primary">attributeClassEnd</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The attribute on the slider container to override the end class.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-class-end"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#slider.options.class.end"><code class="color-primary">classEnd</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.attribute.slector.slides" href="#slider.options.attribute.slector.slides"><code class="color-primary">attributeSelectorSlides</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The attribute on the slider container to override the slides selector.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-selector-slides"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#slider.options.slector.slides"><code class="color-primary">selectorSlides</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.attribute.slector.next" href="#slider.options.attribute.slector.next"><code class="color-primary">attributeSelectorNext</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The attribute on the slider container to override the next selector.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-selector-next"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#slider.options.slector.next"><code class="color-primary">selectorNext</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.attribute.slector.prev" href="#slider.options.attribute.slector.prev"><code class="color-primary">attributeSelectorPrev</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The attribute on the slider container to override the prev selector.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-selector-prev"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#slider.options.slector.prev"><code class="color-primary">selectorPrev</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.attribute.slector.pagination" href="#slider.options.attribute.slector.pagination"><code class="color-primary">attributeSelectorPagination</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The attribute on the slider container to override the pagination selector.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-selector-pagination"</code></p>
+                                <p class="note sm mt-3">Overrides <a href="#slider.options.slector.pagination"><code class="color-primary">selectorPagination</code></a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.attribute.play" href="#slider.options.attribute.play"><code class="color-primary">attributePlay</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The attribute on the slider container to set the play value.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-play"</code></p>
+
+                                <p class="mt-4">Usage:</p>
+                                <p><code class="color-primary">data-slider-play="<span class="color-success">{n}</span>"</code></p>
+                                <p><code class="color-primary">n</code><code class="color-gray">: </code><code class="color-success">number</code> &nbsp; Enable autoplay in milliseconds.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.attribute.loop" href="#slider.options.attribute.loop"><code class="color-primary">attributeLoop</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The attribute on the slider container to enable loop.</p>
+                                <p>Loop enables the slider to loop through the slides.</p>
+                                <p class="note">* This duplicates the slides for the previous and next sections which can cause side effects. You can use the <a href="#slider.destroy"><code class="color-primary">destroy</code></a> method to remove the duplicate sections when no longer needing the slider functionality.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-loop"</code></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.attribute.snap" href="#slider.options.attribute.snap"><code class="color-primary">attributeSnap</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The attribute on the slider container to enable snap.</p>
+                                <p>Snap activates the slider to move one slide at a time instead of then entire viewable slides.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-snap"</code></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a id="slider.options.attribute.stop" href="#slider.options.attribute.stop"><code class="color-primary">attributeStop</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                            <td>
+                                <p>The attribute on the slider container to set the stop value.</p>
+                                <p>Stop activates the slider to pause "play" when the slider has a specific state.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-stop"</code></p>
+                                <p class="mt-4">Usage:</p>
+                                <p><code class="color-primary">data-slider-stop="<span class="color-success">{enum}</span>"</code></p>
+                                <p class="note mt-3"><span class="color-success">enum</span> Options:</p>
+                                <ul class="mt-1">
+                                    <li><code class="color-primary">hover</code> - Pause play while hovering over slider</li>
+                                    <li><code class="color-primary">action</code> - Pause play while hovering over a link, button or making a text selection within the slider.</li>
                                 </ul>
-                                <p class="note sm mt-3">Override with <a href="#scrollspy.options.attribute.progress"><code class="color-primary">attributeProgress</code></a></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="scrollspy.options.class.active" href="#scrollspy.options.class.active"><code class="color-primary">classActive</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="slider.options.attribute.event.slide" href="#slider.options.attribute.event.slide"><code class="color-primary">attributeEventSlide</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
-                                <p>The class that gets applied to the active anchor.</p>
-                                <p><code class="color-gray">default:</code> <code class="color-primary">"active"</code></p>
-                                <p class="note sm mt-3">Override with <a href="#scrollspy.options.attribute.active"><code class="color-primary">attributeClassActive</code></a></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a id="scrollspy.options.selector.anchor" href="#scrollspy.options.selector.anchor"><code class="color-primary">selectorAnchor</code></a><code class="color-gray">?: string</code></td>
-                            <td>
-                                <p>
-                                    Selector for the Scroll Spy Anchors with Hashes within the Containers or attribute that matches
-                                    <a href="#scrollspy.options.attribute.section"><code class="color-primary">attributeSection</code></a>.
-                                </p>
-                                <p>
-                                    Any anchors found will then calculate the <a href="#scrollspy.options.attribute.section"><code class="color-primary">attributeSection</code></a>
-                                    first and if nothing is found then it will calculate the hash value from the href url. The url must be a valid url or relative path with a valid window.location.href.
-                                </p>
-                                <p><code class="color-gray">default:</code> <code class="color-primary">'[href*="#"],[data-scrollspy-section]'</code></p>
-                                <p class="note sm mt-3">Override with <a href="#scrollspy.options.attribute.anchor"><code class="color-primary">attributeAnchor</code></a></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a id="scrollspy.options.attribute.anchor" href="#scrollspy.options.attribute.anchor"><code class="color-primary">attributeAnchor</code></a><code class="color-gray">?: string</code></td>
-                            <td>
-                                <p>Allows you to use data attributes to specify your own selectors for the anchors within the containers. Uses a selector as its value.</p>
-                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-anchors"</code></p>
-                                <p class="note sm mt-3">Overrides <a href="#scrollspy.options.selector.anchor"><code class="color-primary">selectorAnchor</code></a></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a id="scrollspy.options.attribute.active" href="#scrollspy.options.attribute.active"><code class="color-primary">attributeClassActive</code></a><code class="color-gray">?: string</code></td>
-                            <td>
-                                <p>Data attribute to set the class that gets applied to the active anchor.</p>
-                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-class-active"</code></p>
-                                <p class="note sm mt-3">Overrides <a href="#scrollspy.options.class.active"><code class="color-primary">classActive</code></a></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a id="scrollspy.options.attribute.section" href="#scrollspy.options.attribute.section"><code class="color-primary">attributeSection</code></a><code class="color-gray">?: string</code></td>
-                            <td>
-                                <p>
-                                    This is an alternative to using <a href="#scrollspy.options.selector.anchor"><code class="color-primary">selectorAnchor</code></a> for your anchors.
-                                    When using this attribute you can specify a selector for the anchor to connect with instead of using a hash and a section id="".
-                                </p>
-                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-section"</code></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a id="scrollspy.options.attribute.threshold" href="#scrollspy.options.attribute.threshold"><code class="color-primary">attributeThreshold</code></a><code class="color-gray">?: string</code></td>
-                            <td>
-                                <p>Data attribute to set the Threshold for the anchors.</p>
-                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-threshold"</code></p>
-                                <p class="note sm mt-3">Overrides <a href="#scrollspy.options.threshold"><code class="color-primary">threshold</code></a></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a id="scrollspy.options.attribute.progress" href="#scrollspy.options.attribute.progress"><code class="color-primary">attributeProgress</code></a><code class="color-gray">?: string</code></td>
-                            <td>
-                                <p>Data attribute to set the Progress type for the anchors.</p>
-                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-scrollspy-progress"</code></p>
-                                <p class="note sm mt-3">Overrides <a href="#scrollspy.options.progress"><code class="color-primary">progress</code></a></p>
+                                <p>The attribute on the slider container to call the slide Event.</p>
+                                <p>This only accepts a string as the name of the global function to call. It does not support inline functions.</p>
+                                <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-event-slide"</code></p>
+                                <p class="note mt-3">See the <a href="#slider.event.slide">Slide Event</a> on how to use.</p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                
-                <table class="mb-3 mt-3 border-faint">
-                    <thead>
-                        <tr>
-                            <th width="190"><h4>Classes</h4></th>
-                            <th></th>
-                        </tr>
-                    </thead>
+                <!-- Options -->
+                <h3 class="mt-4"><a id="slider.methods" href="#slider.methods" class="color-inherit">Methods</a></h3>
+                <table class="mt-4 responsive">
                     <tbody>
                         <tr>
-                            <td><code class="color-primary">slider</code></td>
-                            <td>Main Slider Container</td>
-                        </tr>
-                        <tr>
-                            <td><code class="color-primary">slider-slides</code></td>
-                            <td>Slides Wrapper</td>
-                        </tr>
-                        <tr>
-                            <td><code class="color-primary">slider-prev</code></td>
-                            <td>Previous Navigation Button. Used with SprySliderJS</td>
-                        </tr>
-                        <tr>
-                            <td><code class="color-primary">slider-next</code></td>
-                            <td>Next Navigation Button. Used with SprySliderJS</td>
-                        </tr>
-                        <tr>
-                            <td><code class="color-primary">slider-pagination</code></td>
-                            <td>Pagination Navigation. Used with SprySliderJS</td>
-                        </tr>
-                        <tr>
-                            <td><code class="color-primary">{color}</code></td>
-                            <td>Adds Accent color to component</td>
-                        </tr>
-                    </tbody>
-                </table>
+                            <td>
+                                <a id="slider.methods.goto" href="#slider.methods.goto"><code class="color-primary">sliderGoTo(<span class="color-contrast">index</span><span class="color-gray">:</span> <span class="color-success">int</span><span class="color-gray sm px-1">|</span><span class="color-success">string</span>)</code></a>
+                                <p class="mt-2 mb-4"><code class="color-contrast">index</code> can either be a <code class="color-success">int</code> of the index or one of <code class="color-gray">(<span class="color-success">"next"</span>|<span class="color-success">"prev"</span>)</code></p>
+                                <p>Typescript Example:</p>
 
-                <table class="mb-3 mt-3 border-faint">
-                    <thead>
-                        <tr>
-                            <th width="190"><h4>Data Options</h4></th>
-                            <th></th>
+                                <div class="language-select relative" data-language="cdnEsm">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                        const slider = slider('#my-slider'); // Create New Slider
+                                        slider.sliderGoTo(2);
+                                    </code>
+                                </div>
+                                <div class="language-select relative" data-language="cdn">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                        const slider = SpryJS.slider('#my-slider'); // Create New Slider
+                                        slider.sliderGoTo(2);
+                                    </code>
+                                </div>
+                                <div class="language-select relative" data-language="cdnLoad">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                        const slider = spryJs.slider('#my-slider'); // Create New Slider
+                                        slider.sliderGoTo(2);
+                                    </code>
+                                </div>
+                                <div class="language-select relative" data-language="node">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                        const slider = slider('#my-slider'); // Create New Slider
+                                        slider.sliderGoTo(2);
+                                    </code>
+                                </div>
+
+                                <p class="mt-4">DOM Example:</p>
+                                <div class="relative bg-surface sm block b-1 r-2 mt-2 mb-4 hidden">
+                                    <code class="language-typescript block static p-3 pr-5 auto">
+                                        const slider = document.getElementById('my-slider'); // Get Slider from Dom
+                                        slider.sliderGoTo('next');
+                                    </code>
+                                </div>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
                         <tr>
-                            <td><code class="color-primary">data-snap</code></td>
-                            <td>Forces stopping on each slide even when using grid layout. This is not forced with momentum scrolling.</td>
-                        </tr>
-                        <tr>
-                            <td><code class="color-primary">data-loop</code></td>
-                            <td>Allows the Slides to Loop. <span class="color-secondary">Requires SprySliderJS</span></td>
-                        </tr>
-                        
-                        <tr>
-                            <td><code class="color-primary">data-play="{n}"</code></td>
-                            <td>Enable autoplay in milliseconds. <span class="color-secondary">Requires SprySliderJS</span></td>
-                        </tr>
-                        <tr>
-                            <td><code class="color-primary">data-stop="{enum}"</code></td>
-                            <td>Pauses Autoplay. <span class="color-secondary">Requires SprySliderJS</span>
-                                <p class="note mt-2">Options:</p>
-                                <ul>
-                                    <li><code class="color-primary">hover</code> - Pause autoplay while hovering over slider</li>
-                                    <li><code class="color-primary">action</code> - Pause autoplay while hovering over a link, button or making a text selection within slider.</li>
-                                </ul>
+                            <td>
+                                <a id="slider.methods.getindex" href="#slider.methods.getindex"><code class="color-primary">sliderGetIndex()</code></a>
+                                <p class="mt-2 mb-4">Retrieves the current index of the slider</p>
+                                <p>Typescript Example:</p>
+                                <div class="language-select relative" data-language="cdnEsm">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                        const slider = slider('#my-slider'); // Create New Slider
+                                        const currentIndex = slider.sliderGetIndex();
+                                    </code>
+                                </div>
+                                <div class="language-select relative" data-language="cdn">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                        const slider = SpryJS.slider('#my-slider'); // Create New Slider
+                                        const currentIndex = slider.sliderGetIndex();
+                                    </code>
+                                </div>
+                                <div class="language-select relative" data-language="cdnLoad">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                        const slider = spryJs.slider('#my-slider'); // Create New Slider
+                                        const currentIndex = slider.sliderGetIndex();
+                                    </code>
+                                </div>
+                                <div class="language-select relative" data-language="node">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                        const slider = slider('#my-slider'); // Create New Slider
+                                        const currentIndex = slider.sliderGetIndex();
+                                    </code>
+                                </div>
+                                <p class="mt-4">DOM Example:</p>
+                                <div class="relative bg-surface sm block b-1 r-2 mt-2 mb-4 hidden">
+                                    <code class="language-typescript block static p-3 pr-5 auto">
+                                        const slider = document.getElementById('my-slider'); // Get Slider from Dom
+                                        const currentIndex = slider.sliderGetIndex();
+                                    </code>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
+                <!-- Options -->
+                <h3 class="mt-4"><a id="slider.events" href="#slider.events" class="color-inherit">Events</a></h3>
+                <table class="mt-4 responsive">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a id="slider.event.slide" href="#slider.event.slide"><code class="color-primary">slide(<span class="color-contrast">index</span><span class="color-gray">:</span> <span class="color-success">int</span>)</code></a>
+                                <p class="mt-2 mb-4">Event called when the slider has finished sliding.</p>
+
+                                <h5>Event Listener Name</h5>
+                                <code class="color-primary">spryjs-slider-event-slide</code>
+                                <p class="note">* Only applicable on the slider element</p>
+
+                                <h5>Attribute</h5>
+                                <code class="color-primary">data-slider-event-slide</code>
+                                <p class="note">See <a href="#slider.options.attribute.event.slide"><code class="color-primary">attributeEventSlide</code></a> for more details.</p>
+
+                                <p class="mt-4">Typescript Example:</p>
+                                <div class="language-select relative" data-language="cdnEsm">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                        const slider = slider('#my-slider'); // Create New Slider
+                                        slider.addEventListener('spryjs-slider-event-slide', (eventInfo) => {
+                                            console.log(eventInfo.detail.index);
+                                        });
+                                    </code>
+                                </div>
+                                <div class="language-select relative" data-language="cdn">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                        const slider = SpryJS.slider('#my-slider'); // Create New Slider
+                                        slider.addEventListener('spryjs-slider-event-slide', (eventInfo) => {
+                                            console.log(eventInfo.detail.index);
+                                        });
+                                    </code>
+                                </div>
+                                <div class="language-select relative" data-language="cdnLoad">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                        const slider = spryJs.slider('#my-slider'); // Create New Slider
+                                        slider.addEventListener('spryjs-slider-event-slide', (eventInfo) => {
+                                            console.log(eventInfo.detail.index);
+                                        });
+                                    </code>
+                                </div>
+                                <div class="language-select relative" data-language="node">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                        const slider = slider('#my-slider'); // Create New Slider
+                                        slider.addEventListener('spryjs-slider-event-slide', (eventInfo) => {
+                                            console.log(eventInfo.detail.index);
+                                        });
+                                    </code>
+                                </div>
+                                <p class="mt-4">Attribute Example:</p>
+                                <div class="relative bg-surface sm block b-1 r-2 mt-2 mb-4 hidden">
+                                    <code class="language-html block static p-3 pr-5 auto">
+                                        &lt;script&gt;
+                                            function myEvent(index) {
+                                                console.log(index);
+                                            }
+                                        &lt;/script&gt;
+
+                                        &lt;div class="slider" data-slider-event-slide="myEvent"&gt;
+                                            &lt;button class="prev link icon prev circle"&gt;&lt;/button&gt;
+                                            &lt;button class="next link icon next circle"&gt;&lt;/button&gt;
+                                            &lt;div class="slides"&gt;
+                                                &lt;img src="/placeholder-1.jpg" loading="lazy"&gt;
+                                                &lt;img src="/placeholder-2.jpg" loading="lazy"&gt;
+                                                &lt;img src="/placeholder-3.jpg" loading="lazy"&gt;
+                                            &lt;/div&gt;
+                                            &lt;div class="pagination p-3"&gt;&lt;/div&gt;
+                                        &lt;/div&gt;
+                                    </code>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Examples -->
+                <h3 class="mt-4"><a id="slider.examples" href="#slider.examples" class="color-inherit">Examples</a></h3>
                 <article class="show-code" data-title="Basic Slider">
                     <div class="slider primary">
                         <button class="prev link icon circle xl"></button>
@@ -1922,7 +2134,7 @@
                 </article>
 
                 <article class="show-code" data-title="Breakpoints, Autoplay, Loop and Stop on Action">
-                    <div class="slider @container primary px-5" data-slider-play="6000" data-slider-stop="action" data-slider-loop>
+                    <div id="ddd" class="slider @container primary px-5" data-slider-play="6000" data-slider-stop="action" data-slider-loop>
                         <button class="prev link icon circle xl"></button>
                         <button class="next link icon circle xl"></button>
                         <div class="slides row md:columns-1 @md:columns-3 @md:g-2">
@@ -2102,8 +2314,8 @@
                 <h3 id="toggle.api" class="flex mt-4 block-center">
                     <a id="toggle.api" href="#toggle.api" class="color-inherit">API</a>
                     <div class="items-center inline-flex ml-3 xs">
-                        <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1 sm md:md">
-                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
+                        <div class="bg-gray bg-to-primary bg/5 b-1 border/0 r-1 sm md:md">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-primary color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
                                 <option value="cdnEsm">CDN ES Module Build</option>
                                 <option value="cdn">CDN Global Build</option>
                                 <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
@@ -2261,14 +2473,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="bt-0"><a id="toggle.options.items" href="#toggle.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: string | Element[]</code></td>
+                            <td class="bt-0" width="330"><a id="toggle.options.items" href="#toggle.options.items"><code class="color-primary">items</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-2 opacity/8">|</span><span class="color-success">Element[]</span></code></td>
                             <td class="bt-0">
                                 <p>Selector or array of Elements for toggles.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"[data-toggle], [data-toggle-close]"</code></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="toggle.options.class.open" href="#toggle.options.class.open"><code class="color-primary">classOpen</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="toggle.options.class.open" href="#toggle.options.class.open"><code class="color-primary">classOpen</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span></code></td>
                             <td>
                                 <p>The class that gets applied to an opened toggled element.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"open"</code></p>
@@ -2276,7 +2488,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="toggle.options.class.active" href="#toggle.options.class.active"><code class="color-primary">classActive</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="toggle.options.class.active" href="#toggle.options.class.active"><code class="color-primary">classActive</code></a><code class="color-gray">?: <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span></code></td>
                             <td>
                                 <p>The class that gets applied to an active toggler element.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"active"</code></p>
@@ -2284,7 +2496,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="toggle.options.attribute.class.open" href="#toggle.options.attribute.class.open"><code class="color-primary">attributeClassOpen</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="toggle.options.attribute.class.open" href="#toggle.options.attribute.class.open"><code class="color-primary">attributeClassOpen</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>The attribute to define the open class of the toggle element when opened.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-toggle-class-open"</code></p>
@@ -2292,7 +2504,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="toggle.options.attribute.class.active" href="#toggle.options.attribute.class.active"><code class="color-primary">attributeClassActive</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="toggle.options.attribute.class.active" href="#toggle.options.attribute.class.active"><code class="color-primary">attributeClassActive</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>The attribute to define the active class of the toggler element when active.</p>
                                 <p><code class="color-gray">default:</code> <code class="color-primary">"data-toggle-class-active"</code></p>
@@ -2300,7 +2512,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="toggle.options.attribute.toggle" href="#toggle.options.attribute.toggle"><code class="color-primary">attributeToggle</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="toggle.options.attribute.toggle" href="#toggle.options.attribute.toggle"><code class="color-primary">attributeToggle</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Specifies the attribute used to determine what element needs to be toggled.</p>
                                 <p>The value of the attribute is used as the selector for the element to toggle.<br>Ex: <code class="color-primary">data-toggle="<code class="color-success">selector</code>"</code></p>
@@ -2315,7 +2527,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="toggle.options.attribute.close" href="#toggle.options.attribute.close"><code class="color-primary">attributeClose</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="toggle.options.attribute.close" href="#toggle.options.attribute.close"><code class="color-primary">attributeClose</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Specifies the attribute used to determine what toggled elements need to be closed <span class="note bold color-primary">before</span> performing any other toggle actions.</p>
                                 <p>The value of the attribute is used as the selector for the element to close.<br>Ex: <code class="color-primary">data-toggle-close="<code class="color-success">selector</code>"</code></p>
@@ -2330,7 +2542,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="toggle.options.attribute.open" href="#toggle.options.attribute.open"><code class="color-primary">attributeOpen</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="toggle.options.attribute.open" href="#toggle.options.attribute.open"><code class="color-primary">attributeOpen</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>Specifies the attribute used to determine what toggled elements need to be opened <span class="note bold color-primary">after</span> performing any other toggle actions.</p>
                                 <p>The value of the attribute is used as the selector for the element to open.<br>Ex: <code class="color-primary">data-toggle-open="<code class="color-success">selector</code>"</code></p>
@@ -2345,7 +2557,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="toggle.options.attribute.escapable" href="#toggle.options.attribute.escapable"><code class="color-primary">attributeEscapable</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="toggle.options.attribute.escapable" href="#toggle.options.attribute.escapable"><code class="color-primary">attributeEscapable</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>This attribute allows the toggled element to close when the ESC Keyboard button is pressed.</p>
                                 <p>This needs to be on the toggler and not the Toggled element. Keep in mind that when using multiple togglers they might override each other.</p>
@@ -2353,7 +2565,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="toggle.options.attribute.dismissible" href="#toggle.options.attribute.dismissible"><code class="color-primary">attributeDismissible</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="toggle.options.attribute.dismissible" href="#toggle.options.attribute.dismissible"><code class="color-primary">attributeDismissible</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>This attribute allows the toggled element to close when the ESC Keyboard button is pressed or when clicking outside the Toggled Element.</p>
                                 <p>This needs to be on the toggler and not the Toggled element. Keep in mind that when using multiple togglers they might override each other.</p>
@@ -2361,7 +2573,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><a id="toggle.options.attribute.timeout" href="#toggle.options.attribute.timeout"><code class="color-primary">attributeTimeout</code></a><code class="color-gray">?: string</code></td>
+                            <td><a id="toggle.options.attribute.timeout" href="#toggle.options.attribute.timeout"><code class="color-primary">attributeTimeout</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                             <td>
                                 <p>This attribute allows the toggled element to close in a specified time in milliseconds.</p>
                                 <p>This needs to be on the toggler and not the Toggled element. Keep in mind that when using multiple togglers they might override each other.</p>
@@ -2397,9 +2609,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td width="260"><code class="color-primary">{n}</code></td>
+                            <td width="260"><code class="color-success">{n}</code></td>
                             <td>
-                                Using <code class="color-primary">{n}</code> will get replaced with the current nodes index value.
+                                Using <code class="color-success">{n}</code> will get replaced with the current nodes index value.
                                 <br><br>
 
                                 Example: <code class="color-primary">"ul li:nth-child({n}) > div"</code>
@@ -2551,8 +2763,8 @@
                 <h3 class="flex mt-4 block-center">
                     <a id="cookie.api" href="#cookie.api" class="color-inherit">API</a>
                     <div class="items-center inline-flex ml-3 xs">
-                        <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1 sm md:md">
-                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
+                        <div class="bg-gray bg-to-primary bg/5 b-1 border/0 r-1 sm md:md">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-primary color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
                                 <option value="cdnEsm">CDN ES Module Build</option>
                                 <option value="cdn">CDN Global Build</option>
                                 <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
@@ -2719,8 +2931,8 @@
                 <h3 id="hash.api" class="flex mt-4 block-center">
                     <a id="hash.api" href="#hash.api" class="color-inherit">API</a>
                     <div class="items-center inline-flex ml-3 xs">
-                        <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1 sm md:md">
-                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
+                        <div class="bg-gray bg-to-primary bg/5 b-1 border/0 r-1 sm md:md">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-primary color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
                                 <option value="cdnEsm">CDN ES Module Build</option>
                                 <option value="cdn">CDN Global Build</option>
                                 <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
@@ -2847,8 +3059,8 @@
                 <h3 id="query.api" class="flex mt-4 block-center">
                     <a id="query.api" href="#query.api" class="color-inherit">API</a>
                     <div class="items-center inline-flex ml-3 xs">
-                        <div class="bg-primary bg-to-success bg/5 b-1 border/0 r-1 sm md:md">
-                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-success color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
+                        <div class="bg-gray bg-to-primary bg/5 b-1 border/0 r-1 sm md:md">
+                            <select class="language-selector compact sm bg-theme bg/9 b-0 pr-5 pl-3 py-1 border/10 border-primary color-contrast color/9" onchange="SpryJsDocs.loadSingleCodeContainers(this.value)">
                                 <option value="cdnEsm">CDN ES Module Build</option>
                                 <option value="cdn">CDN Global Build</option>
                                 <option value="cdnLoad">CDN Global Build + Auto Loaded</option>
@@ -3417,6 +3629,7 @@
  *
  * <span class="color-primary">@param</span> <span class="color-contrast">start</span><span class="color-gray">:</span>  <span class="color-success">number</span> - Start index of Range.
  * <span class="color-primary">@param</span> <span class="color-contrast">end</span><span class="color-gray">?:</span>   <span class="color-success">number</span> - End index of range.
+ * <span class="color-warning"># Warning - Invalid params could lead to a truncated collection.</span>
  *
  * <span class="color-primary">@returns</span> SpryJsQueryCollection
  */</code>
@@ -3499,8 +3712,10 @@
             </button>
         </div>
     </div>
-    <footer id="ssss" class="bg-faint color-gray p-2 text-right sm">
-        &copy; 2023 - SpryJS
+    <footer class="bg-faint color-gray p-2 sm md:pl-200">
+        <div class="pl-3 flex block-center">
+            &copy; 2025 - SpryJS <span class="px-3 xs">|</span>Created by <a target="_blank" class="ml-2 color-gray" href="https://gedde.dev">Gedde Development</a>
+        </div>
     </footer>
 
     
@@ -3523,7 +3738,9 @@
             spryJs.scrollspy({
                 items: '#my-scroll-spy-nav',
                 classActive: 'active'
-            });            
+            });
+            
+            console.log(5555);
         }
 
         // setTimeout(() => {
