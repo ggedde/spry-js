@@ -16,7 +16,6 @@
     <!-- <script defer src="https://buttons.github.io/buttons.js"></script> -->
     <script defer src="docs.min.js"></script>
     <script defer src="spry.js?load=spryJs"></script>
-
 </head>
 
 <body id="about">
@@ -225,18 +224,18 @@
                 </h3>
                 <p class="note">Using Default Export</p>
                 <div class="relative">
-                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                    <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                         &lt;script type="module"&gt;
-                            import SpryJS from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                            import SpryJS from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
                             SpryJS('.something').addClass('open');
                         &lt;/script&gt;
                     </code>
                 </div>
                 <p class="note">Using Partials</p>
                 <div class="relative">
-                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                    <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                         &lt;script type="module"&gt;
-                            import { cookie, hash, navigable, observe, parallax, scrollspy, slider, toggle, query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                            import { cookie, hash, navigable, observe, parallax, scrollspy, slider, toggle, query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
                             query('.something').addClass('open');
                         &lt;/script&gt;
                     </code>
@@ -247,13 +246,13 @@
                     <a href="#installation.cdn.global" class="color-inherit">Using the CDN Global Build</a>
                 </h3>
                 <div class="relative">
-                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
-                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                    <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
                     </code>
                 </div>
                 <p class="note">Usage</p>
                 <div class="relative">
-                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                    <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                         &lt;script&gt;
                             // Run after dom ready
                             SpryJS('.something').addClass('open');
@@ -270,13 +269,13 @@
                 <h4 class="color-primary mt-3 mb-1"><a id="navigable.update" href="#navigable.update">load</a></h4>
                 <p class="note mt-1 mb-2">Automatically load SpryJS to a variable you specify and initialize all components with default options.</p>
                 <div class="relative">
-                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                    <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                     </code>
                 </div>
                 <p class="note">You then have access to your variable when the Dom has been loaded.</p>
                 <div class="relative">
-                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                    <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                         &lt;button onclick="spryJs.query('.something').toggleClass('open')"&gt;
                             Click Me
                         &lt;/button&gt;
@@ -286,8 +285,8 @@
                 <h4 class="color-primary mt-3 mb-1"><a id="navigable.update" href="#navigable.update">run</a></h4>
                 <p class="note mt-1 mb-2">Run a function you specify when SpryJS is fully loaded.</p>
                 <div class="relative">
-                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?run=spryJsLoaded"&gt;&lt;/script&gt;
+                    <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?run=spryJsLoaded"&gt;&lt;/script&gt;
                         &lt;script&gt;
                         function spryJsLoaded() {
                             SpryJS('.something').addClass('open');
@@ -315,7 +314,7 @@
                 <!-- Usage -->
                 <h3 class="mt-3"><a id="navigable.usage" href="#navigable.usage" class="color-inherit">Usage</a></h3>
                 <div class="relative">
-                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                    <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                         &lt;nav class="navigable"&gt;
                             &lt;ul&gt;
                                 &lt;li&gt;&lt;a href="#"&gt;Link 1&lt;/a&gt;&lt;/li&gt;
@@ -344,8 +343,8 @@
                 <h4 class="color-primary mb-1"><a id="navigable.initiate" href="#navigable.initiate">Initiate</a></h4>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 rt-2 auto sm static">
-                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 rt-2 auto sm static">
+                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                         </code>
                     </div>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/5">
@@ -354,8 +353,8 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
-                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
+                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
                             &lt;script&gt;
                                 var spryObj = SpryJS('.navigable').navigable();
                             &lt;/script&gt;
@@ -364,9 +363,9 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             &lt;script type="module"&gt;
-                                import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                                import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
                                 const obj = navigable();
                             &lt;/script&gt;
                         </code>
@@ -374,7 +373,7 @@
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             import { navigable } from 'spry-js';
                             const obj = navigable();
                         </code>
@@ -386,7 +385,7 @@
                 <p class="note mt-1 mb-2">This allows you to update the objects after Dom changes have been made without duplicating the event listeners. Useful with page builders and other dynamic Dom loading applications.</p>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Update Objects
                             spryJs.navigableUpdate();
 
@@ -397,7 +396,7 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Update Objects
                             spryObj.navigableUpdate();
 
@@ -408,14 +407,14 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.update();
                         </code>
                     </div>
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.update();
                         </code>
                     </div>
@@ -426,7 +425,7 @@
                 <p class="note mt-1 mb-2">This allows you to remove all event listeners and added functionality for the objects.</p>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Destroy Objects
                             spryJs.navigableDestroy();
 
@@ -437,7 +436,7 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Destroy Objects
                             spryObj.navigableDestroy();
 
@@ -448,14 +447,14 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.destroy();
                         </code>
                     </div>
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.destroy();
                         </code>
                     </div>
@@ -469,7 +468,7 @@
                             <td colspan="2" class="px-0 b-0 pt-0">
                                 <p class="note sm mb-2">Default Options</p>
                                 <div class="relative">
-                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                                         navigable({
                                             items: '.navigable',
                                             selectorAnchor: 'a, button, input, [tabindex]',
@@ -549,7 +548,7 @@
                 <!-- Usage -->
                 <h3 class="mt-3"><a id="observe.usage" href="#observe.usage" class="color-inherit">Usage</a></h3>
                 <div class="relative">
-                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                    <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                         &lt;div class="observe"&gt;&lt;/div&gt;
                     </code>
                 </div>
@@ -572,8 +571,8 @@
                 <h4 class="color-primary mb-1"><a id="observe.initiate" href="#observe.initiate">Initiate</a></h4>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 rt-2 auto sm static">
-                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 rt-2 auto sm static">
+                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                         </code>
                     </div>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/5">
@@ -582,8 +581,8 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
-                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
+                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
                             &lt;script&gt;
                                 var spryObj = SpryJS('.observe').observe();
                             &lt;/script&gt;
@@ -592,9 +591,9 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             &lt;script type="module"&gt;
-                                import { observe } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                                import { observe } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
                                 const obj = observe();
                             &lt;/script&gt;
                         </code>
@@ -602,7 +601,7 @@
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             import { observe } from 'spry-js';
                             const obj = observe();
                         </code>
@@ -614,7 +613,7 @@
                 <p class="note mt-1 mb-2">This allows you to update the objects after Dom changes have been made without duplicating the event listeners. Useful with page builders and other dynamic Dom loading applications.</p>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Update Objects
                             spryJs.observeUpdate();
 
@@ -625,7 +624,7 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Update Objects
                             spryObj.observeUpdate();
 
@@ -636,14 +635,14 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.update();
                         </code>
                     </div>
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.update();
                         </code>
                     </div>
@@ -654,7 +653,7 @@
                 <p class="note mt-1 mb-2">This allows you to remove all event listeners and added functionality for the objects.</p>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Destroy Objects
                             spryJs.observeDestroy();
 
@@ -665,7 +664,7 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Destroy Objects
                             spryObj.observeDestroy();
 
@@ -676,14 +675,14 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.destroy();
                         </code>
                     </div>
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.destroy();
                         </code>
                     </div>
@@ -697,7 +696,7 @@
                             <td colspan="2" class="px-0 b-0 pt-0">
                                 <p class="note sm mb-2">Default Options</p>
                                 <div class="relative">
-                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                                     observe({
                                         items: '.observe',
                                         rootMargin: '0px 0px 0px 0px',
@@ -834,7 +833,7 @@
                 <!-- Usage -->
                 <h3 class="mt-3"><a id="parallax.usage" href="#parallax.usage" class="color-inherit">Usage</a></h3>
                 <div class="relative">
-                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                    <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                         &lt;!-- Parallax Container --&gt;
                         &lt;div style="max-height: 200px; overflow: hidden;"&gt;
                             &lt;!-- Parallax Element --&gt;
@@ -861,8 +860,8 @@
                 <h4 class="color-primary mb-1"><a id="parallax.initiate" href="#parallax.initiate">Initiate</a></h4>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 rt-2 auto sm static">
-                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 rt-2 auto sm static">
+                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                         </code>
                     </div>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/5">
@@ -871,8 +870,8 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
-                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
+                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
                             &lt;script&gt;
                                 var spryObj = SpryJS('.parallax').parallax();
                             &lt;/script&gt;
@@ -881,9 +880,9 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             &lt;script type="module"&gt;
-                                import { parallax } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                                import { parallax } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
                                 const obj = parallax();
                             &lt;/script&gt;
                         </code>
@@ -891,7 +890,7 @@
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             import { parallax } from 'spry-js';
                             const obj = parallax();
                         </code>
@@ -903,7 +902,7 @@
                 <p class="note mt-1 mb-2">This allows you to update the objects after Dom changes have been made without duplicating the event listeners. Useful with page builders and other dynamic Dom loading applications.</p>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Update Objects
                             spryJs.parallaxUpdate();
 
@@ -914,7 +913,7 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Update Objects
                             spryObj.parallaxUpdate();
 
@@ -925,14 +924,14 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.update();
                         </code>
                     </div>
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.update();
                         </code>
                     </div>
@@ -943,7 +942,7 @@
                 <p class="note mt-1 mb-2">This allows you to remove all event listeners and added functionality for the objects.</p>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Destroy Objects
                             spryJs.parallaxDestroy();
 
@@ -954,7 +953,7 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Destroy Objects
                             spryObj.parallaxDestroy();
 
@@ -965,14 +964,14 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.destroy();
                         </code>
                     </div>
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.destroy();
                         </code>
                     </div>
@@ -986,7 +985,7 @@
                             <td colspan="2" class="px-0 b-0 pt-0">
                                 <p class="note sm mb-2">Default Options</p>
                                 <div class="relative">
-                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                                         parallax({
                                             items: '.parallax',
                                             threshold: -300,
@@ -1140,7 +1139,7 @@
                 <!-- Usage -->
                 <h3 class="mt-3"><a id="scrollspy.usage" href="#scrollspy.usage" class="color-inherit">Usage</a></h3>
                 <div class="relative">
-                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                    <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                         &lt;!-- ScrollSpy Container --&gt;
                         &lt;div class="scrollspy"&gt;
                             &lt;!-- ScrollSpy Anchors --&gt;
@@ -1174,8 +1173,8 @@
                 <h4 class="color-primary mb-1"><a id="scrollspy.initiate" href="#scrollspy.initiate">Initiate</a></h4>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 rt-2 auto sm static">
-                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 rt-2 auto sm static">
+                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                         </code>
                     </div>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/5">
@@ -1184,8 +1183,8 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
-                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
+                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
                             &lt;script&gt;
                                 var spryObj = SpryJS('.scrollspy').scrollspy();
                             &lt;/script&gt;
@@ -1194,9 +1193,9 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             &lt;script type="module"&gt;
-                                import { scrollspy } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                                import { scrollspy } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
                                 const obj = scrollspy();
                             &lt;/script&gt;
                         </code>
@@ -1204,7 +1203,7 @@
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             import { scrollspy } from 'spry-js';
                             const obj = scrollspy();
                         </code>
@@ -1216,7 +1215,7 @@
                 <p class="note mt-1 mb-2">This allows you to update the objects after Dom changes have been made without duplicating the event listeners. Useful with page builders and other dynamic Dom loading applications.</p>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Update Objects
                             spryJs.scrollspyUpdate();
 
@@ -1227,7 +1226,7 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Update Objects
                             spryObj.scrollspyUpdate();
 
@@ -1238,14 +1237,14 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.update();
                         </code>
                     </div>
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.update();
                         </code>
                     </div>
@@ -1256,7 +1255,7 @@
                 <p class="note mt-1 mb-2">This allows you to remove all event listeners and added functionality for the objects.</p>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Destroy Objects
                             spryJs.scrollspyDestroy();
 
@@ -1267,7 +1266,7 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Destroy Objects
                             spryObj.scrollspyDestroy();
 
@@ -1278,14 +1277,14 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.destroy();
                         </code>
                     </div>
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.destroy();
                         </code>
                     </div>
@@ -1536,7 +1535,7 @@
                 <!-- Usage -->
                 <h3 class="mt-3"><a id="slider.usage" href="#slider.usage" class="color-inherit">Usage</a></h3>
                 <div class="relative">
-                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                    <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                         &lt;div class="slider" data-snap&gt;
                             &lt;button class="prev link icon prev circle"&gt;&lt;/button&gt;
                             &lt;button class="next link icon next circle"&gt;&lt;/button&gt;
@@ -1568,8 +1567,8 @@
                 <h4 class="color-primary mb-1"><a id="slider.initiate" href="#slider.initiate">Initiate</a></h4>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 rt-2 auto sm static">
-                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 rt-2 auto sm static">
+                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                         </code>
                     </div>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/5">
@@ -1577,23 +1576,23 @@
                     </div>
                 </div>
                 <div class="language-select relative" data-language="cdn">
-                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
-                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                    <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
                         &lt;script&gt;
                             var spryObj = SpryJS('.slider').slider();
                         &lt;/script&gt;
                     </code>
                 </div>
                 <div class="language-select relative" data-language="cdnEsm">
-                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                    <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                         &lt;script type="module"&gt;
-                            import { slider } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                            import { slider } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
                             const obj = slider();
                         &lt;/script&gt;
                     </code>
                 </div>
                 <div class="language-select relative" data-language="node">
-                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                         import { slider } from 'spry-js';
                         const obj = slider();
                     </code>
@@ -1604,7 +1603,7 @@
                 <p class="note mt-1 mb-2">This allows you to update the objects after Dom changes have been made without duplicating the event listeners. Useful with page builders and other dynamic Dom loading applications.</p>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Update Objects
                             spryJs.sliderUpdate();
 
@@ -1615,7 +1614,7 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Update Objects
                             spryObj.sliderUpdate();
 
@@ -1626,14 +1625,14 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.update();
                         </code>
                     </div>
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.update();
                         </code>
                     </div>
@@ -1644,7 +1643,7 @@
                 <p class="note mt-1 mb-2">This allows you to remove all event listeners and added functionality for the objects.</p>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Destroy Objects
                             spryJs.sliderDestroy();
 
@@ -1655,7 +1654,7 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Destroy Objects
                             spryObj.sliderDestroy();
 
@@ -1666,14 +1665,14 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.destroy();
                         </code>
                     </div>
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.destroy();
                         </code>
                     </div>
@@ -1968,25 +1967,25 @@
                                 <p>Typescript Example:</p>
 
                                 <div class="language-select relative" data-language="cdnEsm">
-                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                                         const slider = slider('#my-slider'); // Create New Slider
                                         slider.sliderGoTo(2);
                                     </code>
                                 </div>
                                 <div class="language-select relative" data-language="cdn">
-                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                                         const slider = SpryJS.slider('#my-slider'); // Create New Slider
                                         slider.sliderGoTo(2);
                                     </code>
                                 </div>
                                 <div class="language-select relative" data-language="cdnLoad">
-                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                                         const slider = spryJs.slider('#my-slider'); // Create New Slider
                                         slider.sliderGoTo(2);
                                     </code>
                                 </div>
                                 <div class="language-select relative" data-language="node">
-                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                                         const slider = slider('#my-slider'); // Create New Slider
                                         slider.sliderGoTo(2);
                                     </code>
@@ -2007,25 +2006,25 @@
                                 <p class="mt-2 mb-4">Retrieves the current index of the slider</p>
                                 <p>Typescript Example:</p>
                                 <div class="language-select relative" data-language="cdnEsm">
-                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                                         const slider = slider('#my-slider'); // Create New Slider
                                         const currentIndex = slider.sliderGetIndex();
                                     </code>
                                 </div>
                                 <div class="language-select relative" data-language="cdn">
-                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                                         const slider = SpryJS.slider('#my-slider'); // Create New Slider
                                         const currentIndex = slider.sliderGetIndex();
                                     </code>
                                 </div>
                                 <div class="language-select relative" data-language="cdnLoad">
-                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                                         const slider = spryJs.slider('#my-slider'); // Create New Slider
                                         const currentIndex = slider.sliderGetIndex();
                                     </code>
                                 </div>
                                 <div class="language-select relative" data-language="node">
-                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                                         const slider = slider('#my-slider'); // Create New Slider
                                         const currentIndex = slider.sliderGetIndex();
                                     </code>
@@ -2061,7 +2060,7 @@
 
                                 <p class="mt-4">Typescript Example:</p>
                                 <div class="language-select relative" data-language="cdnEsm">
-                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                                         const slider = slider('#my-slider'); // Create New Slider
                                         slider.addEventListener('spryjs-slider-event-slide', (eventInfo) => {
                                             console.log(eventInfo.detail.index);
@@ -2069,7 +2068,7 @@
                                     </code>
                                 </div>
                                 <div class="language-select relative" data-language="cdn">
-                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                                         const slider = SpryJS.slider('#my-slider'); // Create New Slider
                                         slider.addEventListener('spryjs-slider-event-slide', (eventInfo) => {
                                             console.log(eventInfo.detail.index);
@@ -2077,7 +2076,7 @@
                                     </code>
                                 </div>
                                 <div class="language-select relative" data-language="cdnLoad">
-                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                                         const slider = spryJs.slider('#my-slider'); // Create New Slider
                                         slider.addEventListener('spryjs-slider-event-slide', (eventInfo) => {
                                             console.log(eventInfo.detail.index);
@@ -2085,7 +2084,7 @@
                                     </code>
                                 </div>
                                 <div class="language-select relative" data-language="node">
-                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                                         const slider = slider('#my-slider'); // Create New Slider
                                         slider.addEventListener('spryjs-slider-event-slide', (eventInfo) => {
                                             console.log(eventInfo.detail.index);
@@ -2302,7 +2301,7 @@
                 <!-- Usage -->
                 <h3 class="mt-3"><a id="toggle.usage" href="#toggle.usage" class="color-inherit">Usage</a></h3>
                 <div class="relative">
-                    <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                    <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                         &lt;!-- Toggle Activator --&gt;
                         &lt;button data-toggle="#toggle-container-1"&gt;Click Me&lt;/button&gt;
                         
@@ -2329,8 +2328,8 @@
                 <h4 class="color-primary mb-1"><a id="toggle.initiate" href="#toggle.initiate">Initiate</a></h4>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 rt-2 auto sm static">
-                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 rt-2 auto sm static">
+                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                         </code>
                     </div>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/5">
@@ -2339,8 +2338,8 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
-                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
+                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
                             &lt;script&gt;
                                 var spryObj = SpryJS('.toggle').toggle();
                             &lt;/script&gt;
@@ -2349,9 +2348,9 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             &lt;script type="module"&gt;
-                                import { toggle } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                                import { toggle } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
                                 const obj = toggle();
                             &lt;/script&gt;
                         </code>
@@ -2359,7 +2358,7 @@
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             import { toggle } from 'spry-js';
                             const obj = toggle();
                         </code>
@@ -2371,7 +2370,7 @@
                 <p class="note mt-1 mb-2">This allows you to update the objects after Dom changes have been made without duplicating the event listeners. Useful with page builders and other dynamic Dom loading applications.</p>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Update Objects
                             spryJs.toggleUpdate();
 
@@ -2382,7 +2381,7 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Update Objects
                             spryObj.toggleUpdate();
 
@@ -2393,14 +2392,14 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.update();
                         </code>
                     </div>
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.update();
                         </code>
                     </div>
@@ -2411,7 +2410,7 @@
                 <p class="note mt-1 mb-2">This allows you to remove all event listeners and added functionality for the objects.</p>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Destroy Objects
                             spryJs.toggleDestroy();
 
@@ -2422,7 +2421,7 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             // Destroy Objects
                             spryObj.toggleDestroy();
 
@@ -2433,14 +2432,14 @@
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.destroy();
                         </code>
                     </div>
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             obj.destroy();
                         </code>
                     </div>
@@ -2454,7 +2453,7 @@
                             <td colspan="2" class="px-0 b-0 pt-0">
                                 <p class="note sm mb-2">Default Options</p>
                                 <div class="relative">
-                                    <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                                    <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                                         toggle({
                                             items: '[data-toggle], [data-toggle-close]',
                                             classOpen: 'open',
@@ -2778,8 +2777,8 @@
                 <h4 class="color-primary mb-1"><a id="cookie.initiate" href="#cookie.initiate">Initiate</a></h4>
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 rt-2 auto sm static">
-                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 rt-2 auto sm static">
+                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                         </code>
                     </div>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/5">
@@ -2788,23 +2787,23 @@
                 </div>
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
-                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
+                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
                         </code>
                     </div>
                 </div>
                 <div class="language-select" data-language="cdnEsm">
                     <div class="relative">
-                        <code class="language-html w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             &lt;script type="module"&gt;
-                                import { cookie } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                                import { cookie } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
                             &lt;/script&gt;
                         </code>
                     </div>
                 </div>
                 <div class="language-select" data-language="node">
                     <div class="relative">
-                        <code class="language-typescript w block bg-surface b-1 p-3 r-2 auto sm static">
+                        <code class="language-typescript w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             import { cookie } from 'spry-js';
                         </code>
                     </div>
@@ -2947,7 +2946,7 @@
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
                         <code class="language-html w block bg-surface b-1 p-3 pr-5 rt-2 auto sm static">
-                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                         </code>
                     </div>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/5">
@@ -2957,7 +2956,7 @@
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
                         <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
-                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
                         </code>
                     </div>
                 </div>
@@ -2965,7 +2964,7 @@
                     <div class="relative">
                         <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             &lt;script type="module"&gt;
-                                import { hash } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                                import { hash } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
                             &lt;/script&gt;
                         </code>
                     </div>
@@ -3075,7 +3074,7 @@
                 <div class="language-select" data-language="cdnLoad">
                     <div class="relative">
                         <code class="language-html w block bg-surface b-1 p-3 pr-5 rt-2 auto sm static">
-                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                         </code>
                     </div>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/5">
@@ -3085,7 +3084,7 @@
                 <div class="language-select" data-language="cdn">
                     <div class="relative">
                         <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
-                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.js"&gt;&lt;/script&gt;
+                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
                         </code>
                     </div>
                 </div>
@@ -3093,7 +3092,7 @@
                     <div class="relative">
                         <code class="language-html w block bg-surface b-1 p-3 pr-5 r-2 auto sm static">
                             &lt;script type="module"&gt;
-                                import { query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.0/dist/spry.mjs';
+                                import { query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
                             &lt;/script&gt;
                         </code>
                     </div>
@@ -3717,61 +3716,5 @@
             &copy; 2025 - SpryJS <span class="px-3 xs">|</span>Created by <a target="_blank" class="ml-2 color-gray" href="https://gedde.dev">Gedde Development</a>
         </div>
     </footer>
-
-    
-
-    <script>
-
-        function spryJsLoaded() {
-            // spryJs.observe({
-            //     items: '.observe-example > *',
-            //     classObserving: 'opacity scale', // Classes provided by SpryCSS - https://ggedde.github.io/spry-css/
-            // });
-
-            spryJs.scrollspy({
-                items: '#my-scrollspy-nav2',
-                classActive: 'h',
-                threshold: 400,
-                progress: 'linear',
-            });
-
-            spryJs.scrollspy({
-                items: '#my-scroll-spy-nav',
-                classActive: 'active'
-            });
-            
-            console.log(5555);
-        }
-
-        // setTimeout(() => {
-        //     spryJs.update();
-        //     spryJs.destroy();
-        //     spryJs.update();
-        //     spryJs.destroy();
-        //     spryJs.update();
-        //     spryJs.destroy();
-        // }, 2000);
-
-        // setTimeout(() => {
-        //     var d = document.querySelector('.slides > :first-child').cloneNode(true);
-        //     document.querySelector('.slides').appendChild(d);
-            
-        //     spryJs.update();
-        //     spryJs.update();
-        //     spryJs.update();
-        //     spryJs.update();
-        //     spryJs.update();
-        //     spryJs.update();
-        //     spryJs.update();
-        //     spryJs.update();
-        //     spryJs.update();
-        //     spryJs.update();
-        //     spryJs.update();
-
-        // }, 4000);
-
-        
-    </script>
 </body>
-
 </html>

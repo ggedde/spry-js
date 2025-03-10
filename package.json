@@ -24,12 +24,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "watch-esm": "bun build ./src/spry.mts --outdir ./dist --entry-naming spry.mjs --minify --watch --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
-    "watch-js": "bun build ./src/spry.ts --outdir ./dist --entry-naming spry.js --minify --watch --format iife --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'",
-    "build-esm": "bun build ./src/spry.mts --outdir ./dist --entry-naming spry.mjs --minify --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'; cp ./dist/spry.mjs ./docs/spry.mjs",
-    "build-js": "bun build ./src/spry.ts --outdir ./dist --entry-naming spry.js --minify --format iife --banner='/*\n* SpryJs 1.0.0\n* https://ggedde.github.io/spry-js\n*/'; cp ./dist/spry.js ./docs/spry.js",
-    "build": "bun build.ts",
-    "dev": "bun run watch-esm | bun run watch-js"
+    "build": "bun build.ts"
   },
   "type": "module"
 }

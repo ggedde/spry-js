@@ -12,12 +12,8 @@ await Bun.build({
         syntax: true,
     },
 });
-await Bun.write('docs/spry.mjs', Bun.file('dist/spry.mjs'));
-
-// const file = Bun.file('./dist/spry.mjs');
-// await Bun.write('docs/spry.mjs', file);
-
-
+const spryModuleFile = Bun.file('dist/spry.mjs');
+await Bun.write('docs/spry.mjs', spryModuleFile);
 
 await Bun.build({
     entrypoints: ['./src/spry.ts'],
@@ -31,7 +27,8 @@ await Bun.build({
         syntax: true,
     },
 });
-await Bun.write('docs/spry.js', Bun.file('dist/spry.js'));
+const spryFile = Bun.file('dist/spry.js');
+await Bun.write('docs/spry.js', spryFile);
 
 await Bun.build({
     entrypoints: ['./src/docs.ts'],
@@ -54,3 +51,9 @@ const docsCss = Bun.file('./src/docs.css');
 if (docsCss) {
     Bun.write('docs/docs.min.css', (await docsCss.text()).replaceAll("\n", '').replaceAll("\t", '').replaceAll(/[\ ]{2,}/g, ' ').replaceAll(/\ :/g, ':').replaceAll(';}', '}').replaceAll(': ', ':').replaceAll(' {', '{'));
 }
+
+console.log('\x1b[34mspry.js: \x1b[33m'+Math.round((new Blob([Bun.gzipSync(await spryFile.text())])).size / 10) / 100 + '\x1b[0m KB');
+console.log('\x1b[34mspry.mjs: \x1b[33m'+Math.round((new Blob([Bun.gzipSync(await spryModuleFile.text())])).size / 10) / 100 + '\x1b[0m KB');
+
+const spryDocsFile = Bun.file('docs/docs.min.js');
+console.log('\x1b[34mdocs.min.js: \x1b[33m'+Math.round((new Blob([Bun.gzipSync(await spryDocsFile.text())])).size / 10) / 100 + '\x1b[0m KB');
