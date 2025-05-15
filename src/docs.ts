@@ -97,11 +97,11 @@ const SpryJsDocs = {
             if (id && this._panelContents[id]) {
                 html = this._panelContents[id];
             }
-            var languageSelector = elem.querySelector('.language-selector');
+            var languageSelector = elem.querySelector('.l-selector');
             if (languageSelector && (languageSelector as HTMLInputElement).value && id && this._panelContents[id]) {
                 var div = document.createElement("div");
                 div.innerHTML = this._panelContents[id];
-                var divElement = div.querySelector('.language-select[data-language='+(languageSelector as HTMLInputElement).value+']');
+                var divElement = div.querySelector('.l-select[data-language='+(languageSelector as HTMLInputElement).value+']');
                 html = divElement ? divElement.innerHTML : '';
             }
         }
@@ -149,11 +149,11 @@ const SpryJsDocs = {
         
         if (api) {
             localStorage.setItem('SpryJSDocsApi', api);
-            document.querySelectorAll('.language-select').forEach(langElement => {
+            document.querySelectorAll('.l-select').forEach(langElement => {
                 var setLang = langElement.getAttribute('data-language');
                 langElement.classList.toggle('none', !setLang || setLang !== api);
             });
-            document.querySelectorAll('.language-selector').forEach(selector => {
+            document.querySelectorAll('.l-selector').forEach(selector => {
                 if (selector.querySelector('option[value="'+api+'"]')) {
                     (selector as HTMLSelectElement).value = api;
                 }
@@ -165,7 +165,7 @@ const SpryJsDocs = {
                 var setLang = installerElement.getAttribute('data-language');
                 installerElement.classList.toggle('none', !setLang || setLang !== installer);
             });
-            document.querySelectorAll('.language-selector').forEach(selector => {
+            document.querySelectorAll('.l-selector').forEach(selector => {
                 if (selector.querySelector('option[value="'+installer+'"]')) {
                     (selector as HTMLSelectElement).value = installer;
                 }
@@ -189,16 +189,16 @@ const SpryJsDocs = {
 
         var minHeight: string | null = '';
 
-        var lang = elemContainer.querySelector('.language-selector');
+        var lang = elemContainer.querySelector('.l-selector');
         
         if (lang && (lang as HTMLInputElement).value) {
             langValue = (lang as HTMLInputElement).value;
-            var langSelect = elemContainer.querySelector('.language-select[data-language='+langValue+']');
+            var langSelect = elemContainer.querySelector('.l-select[data-language='+langValue+']');
             if (langSelect) {
                 minHeight = langSelect.getAttribute('data-min-height');
             }
             if (langValue && languageSync) {
-                document.querySelectorAll('.language-selector option[value='+langValue+']').forEach((option) => {
+                document.querySelectorAll('.l-selector option[value='+langValue+']').forEach((option) => {
                     var select = option.closest('select');
                     if (select && select.value !== langValue) {
                         select.value = langValue;
@@ -223,7 +223,7 @@ const SpryJsDocs = {
         }
 
         var noHeader = elemContainer.hasAttribute('data-no-header');
-        var codeDivContents = (type === 'bash' ? '<svg class="icon block color-gray absolute inset my-auto ml-3 index-1" viewBox="0 0 24 24"><path d="M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z" /></svg>' : '') + '<code class="language-'+type+' '+(type === 'bash' ? 'pl-5' : '')+' '+(noHeader ? 'b-1 r-2' : 'bb-1 border/5')+' block w auto bg-surface p-4 content-center sm'+(elemContainer.classList.contains('with-wrap')?' pre-wrap':'')+'"' + (minHeight ? ' style="min-height: '+minHeight+'px;"' : '') + '>' + html + '</code>';
+        var codeDivContents = (type === 'bash' ? '<svg class="icon block color-gray absolute inset my-auto ml-3 index-1" viewBox="0 0 24 24"><path d="M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z" /></svg>' : '') + '<code class="language-'+type+' '+(type === 'bash' ? 'pl-5' : '')+' '+(noHeader ? 'b-1 r-2' : 'border/5')+' block w auto bg-surface p-4 content-center sm'+(elemContainer.classList.contains('with-wrap')?' pre-wrap':'')+'"' + (minHeight ? ' style="min-height: '+minHeight+'px;"' : '') + '>' + html + '</code>';
 
         codeDiv.innerHTML = codeDivContents;
 
@@ -283,43 +283,29 @@ document.querySelectorAll('.show-code').forEach((elemContainer, index) => {
     var warning = (elemContainer.hasAttribute('data-warning') ? '<p class="color-warning">'+elemContainer.getAttribute('data-warning')+'</p>' : '');
     var footer = (elemContainer.hasAttribute('data-footer') ? '<p>'+elemContainer.getAttribute('data-footer')+'</p>' : '');
     var footerNote = (elemContainer.hasAttribute('data-footer-note') ? '<p class="note">'+elemContainer.getAttribute('data-footer-note')+'</p>' : '');
-    var codeDiv = '<div class="collapse"><div class="code-preview-container hidden"></div></div>';
+    var codeDiv = '<div class="collapse"><div class="code-preview-container bb-1 border/60 hidden"></div></div>';
     var title = elemContainer.getAttribute('data-title');
     var object = elemContainer.getAttribute('data-object');
     var codeOnly = elemContainer.hasAttribute('data-code-only');
-    // var hideLanguageSelector = elemContainer.hasAttribute('data-language-selector-hide');
-
     var noHeader = elemContainer.hasAttribute('data-no-header');
-    
     var languageSync = elemContainer.hasAttribute('data-language-sync');
-
+    var hideThemeButton = elemContainer.hasAttribute('data-hide-theme')
     var elemContainerId = elemContainer.getAttribute('id');
-
-    if (!elemContainerId) {
-        if (object) {
-            elemContainerId = object+'.'+index;
-        } else {
-            elemContainerId = 'code-container-'+index;
-        }
-        elemContainer.setAttribute('id', elemContainerId);
-    }
-
-    if (noHeader) {
-        elemContainer.classList.add('b-0');
-    }
-
-    var innerContents = elemContainer.innerHTML;
-    SpryJsDocs._panelContents[elemContainerId] = innerContents+'';
-
-    var languages = elemContainer.querySelectorAll('.language-select');
-
-    var languageSelector = '';
-    var headerNote = warning || note ? '<div class="note bg-faint bb-1 py-2 mt-0">' + warning + note + '</div>' : '';
+    var languages = elemContainer.querySelectorAll('.l-select');
+    var headerNote = warning || note ? '<div class="note bg-faint bb-1 border/60 py-2 mt-0">' + warning + note + '</div>' : '';
     var footerNote = footerNote || footer ? '<footer class="bg-faint py-2">' + footer + footerNote + '</footer>' : '';
-
     var headerNotes = headerNote;
     var footerNotes = footerNote;
-
+    var languageSelector = '';
+    var languageKey: string | null = '';
+    var languageNote = '';
+    var languageTitle = '';
+    var languageWarning = '';
+    var languageFooterNote = '';
+    var languageFooter = '';
+    var themeButton = '';
+    var showCodeButton = '';
+    var copyCodeButton = '';
     var languageNames: any = {
         html: 'HTML',
         js: 'JS',
@@ -339,12 +325,26 @@ document.querySelectorAll('.show-code').forEach((elemContainer, index) => {
         alpineJs: 'Alpine.js',
     };
 
-    var languageKey: string | null = '';
-    var languageNote = '';
-    var languageTitle = '';
-    var languageWarning = '';
-    var languageFooterNote = '';
-    var languageFooter = '';
+    if (!elemContainerId) {
+        if (object) {
+            elemContainerId = object+'.'+index;
+        } else {
+            elemContainerId = 'code-container-'+index;
+        }
+        elemContainer.setAttribute('id', elemContainerId);
+    }
+
+    if (noHeader) {
+        elemContainer.classList.add('b-0');
+    }
+
+    var innerContents = elemContainer.innerHTML;
+    var innerCodeContents = elemContainer.querySelector('.code-content')?.innerHTML;
+    if (innerCodeContents) {
+        innerContents = innerCodeContents;
+    }
+    
+    SpryJsDocs._panelContents[elemContainerId] = innerContents+'';
 
     if (languages && languages.length) {
         languageSelector += '<div class="items-center flex'+(noHeader ? ' mb-2' : '')+'"><select class="language-selector dense pr-4 pl-3 py-2 border/6" onchange="SpryJsDocs.loadCodeContainer(this, '+languageSync+')">';
@@ -358,45 +358,27 @@ document.querySelectorAll('.show-code').forEach((elemContainer, index) => {
                 languageFooterNote = (language.hasAttribute('data-footer-note') ? '<footer class="language-'+languageKey+' note p-2 px-3 bg-faint mt-0">'+language.getAttribute('data-footer-note')+'</footer>' : '');
                 languageFooter = (language.hasAttribute('data-footer') ? '<footer class="language-'+languageKey+' block p-2 px-3 bg-faint mt-0">'+language.getAttribute('data-footer')+'</footer>' : '');
 
-                headerNotes += languageNote || languageWarning ? '<div class="language-'+languageKey+' note bg-faint bb-1 py-2 mt-0">' + languageNote + languageWarning + '</div>' : '';
+                headerNotes += languageNote || languageWarning ? '<div class="language-'+languageKey+' note bg-faint bb-1 border/60 py-2 mt-0">' + languageNote + languageWarning + '</div>' : '';
                 footerNotes = languageFooter + languageFooterNote + footerNotes;
             }
         });
         languageSelector += '</select></div>';
     }
 
-    var innerContents = elemContainer.innerHTML;
-
-    elemContainer.classList.add('outline', 'code-content-container', noHeader ? 'bg-none' : 'bg-theme');
-
-    var themeButton = '';
-    var showCodeButton = '';
-    var copyCodeButton = '';
+    elemContainer.classList.add('outline', 'code-content-container', noHeader ? 'no-bg' : 'bg-theme');
 
     if (!codeOnly) {
-        elemContainer.insertAdjacentHTML('beforeend', '<div class="code-content relative p-3 md:p-4"></div>');
-
-        var children = elemContainer.children;
-        var codeContent = elemContainer.querySelector('.code-content');
-        if (codeContent) {
-            for (let c = 0; c < children.length; c++) {
-                if (codeContent && codeContent.parentElement && !children[c].classList.contains('code-content') && children[c].tagName && !['SCRIPT', 'STYLE'].includes(children[c].tagName)) {
-                    codeContent.appendChild(children[c]);
-                }
-            }
-            codeContent.insertAdjacentHTML('beforeend', '<div class="code-resize-handle"></div>');
+        if (!hideThemeButton) {
+            themeButton = '<button class="shy icon link" title="Toggle Theme" onclick="SpryJsDocs.toggleTheme(this.parentElement.parentElement.parentElement);"><svg viewBox="0 0 24 24"><path d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z" /></svg></button>';
         }
-
-        themeButton = '<button class="shy icon link" title="Toggle Theme" onclick="SpryJsDocs.toggleTheme(this.parentElement.parentElement.parentElement);"><svg viewBox="0 0 24 24"><path d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z" /></svg></button>';
         showCodeButton = '<button onclick="SpryJsDocs.loadCodeContainer(this)" class="shy icon link" title="Show HTML code"><svg class="lg" viewBox="0 0 24 24"><path d="m14.6 16.6 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4m-5.2 0L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4z" /></svg></button>';
         copyCodeButton = '<button class="shy icon link f:swap" title="Copy HTML to Clipboard" onclick="SpryJsDocs.copyCode(event); setTimeout(() => {this.classList.remove(\'open\'); this.classList.remove(\'active\'); this.setAttribute(\'aria-pressed\', false)}, 2000)"><svg viewBox="0 0 24 24"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12V1z" /></svg><svg viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z" /></svg></button>';
     }
     
-    var header = '<header class="block md:flex '+(noHeader ? 'bg-none p-0' : 'rt-1 hidden')+'">'+(title || badge || tooltipWarning ? '<h4><a href="#'+elemContainerId+'" class="color-inherit">'+title+'</a> '+badge+tooltipWarning+'</h4>' : '')+'<div class="flex content-end mt-2 md:mt-0 ml-auto">'+languageSelector+themeButton+showCodeButton+copyCodeButton+'</div></header>';
+    var header = '<header class="'+(noHeader ? 'no-bg p-0' : 'rt-1 hidden')+'">'+(title || badge || tooltipWarning ? '<h4><a href="#'+elemContainerId+'" class="color-inherit">'+title+'</a> '+badge+tooltipWarning+'</h4>' : '')+'<div class="flex inline-end ml-auto">'+languageSelector+themeButton+showCodeButton+copyCodeButton+'</div></header>';
     var codeContainer = '<div class="code-container p-0" id="code-'+toggleId+'">'+codeDiv+'</div>';
     
     elemContainer.insertAdjacentHTML('afterbegin', header + headerNotes + codeContainer);
-
     elemContainer.insertAdjacentHTML('beforeend', footerNotes);
 
     if (elemContainer.hasAttribute('data-code-only')) {

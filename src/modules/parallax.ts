@@ -1,12 +1,34 @@
 //!
 //! SpryJs Parallax Module
 
+type SpryJsParallaxContainer = {
+    bottom: number;
+    el: Element;
+    isBackground: boolean;
+    isHorizontal: boolean;
+    isInvert: boolean;
+    offsetHeight: number;
+    offsetWidth: number;
+    percentHeight: number;
+    percentWidth: number;
+    scroller: Window | Element;
+    top: number;
+    totalHeight: number;
+    classActive: string | null;
+    minWidth: number;
+    threshold: number;
+}
+
 export type SpryJsParallaxOptions = {
     items?: Element[] | string,
-    threshold?: number;
-    minWidth?: number;
     delay?: number;
+    minWidth?: number;
+    threshold?: number;
     classActive?: string;
+    scrollingElement?: Window | Element;
+    attributeMinWidth?: string;
+    attributeThreshold?: string;
+    attributeScrollingElement?: string;
     attributeClassActive?: string;
     attributeBackground?: string;
     attributeHorizontal?: string;
@@ -16,11 +38,15 @@ export type SpryJsParallaxOptions = {
 
 export function parallax({
     items = '.parallax',
-    threshold = -300,
-    minWidth = 0,
     delay = 300,
+    minWidth = 0,
+    threshold = -300,
     classActive = 'parallaxing',
-    attributeClassActive = 'data-parallax-class-active',
+    scrollingElement = window,
+    attributeMinWidth = 'data-parallax-width',
+    attributeThreshold = 'data-parallax-threshold',
+    attributeScrollingElement = 'data-parallax-scroller',
+    attributeClassActive = 'data-parallax-active',
     attributeBackground = 'data-parallax-background',
     attributeHorizontal = 'data-parallax-horizontal',
     attributeInvert = 'data-parallax-invert',
@@ -30,98 +56,147 @@ export function parallax({
     let windowHeight: number = window.innerHeight;
     let windowWidth: number = window.innerWidth;
     let elements: Element[] | NodeListOf<Element> | null = null;
-    let observer: IntersectionObserver | null = null;
     let controller: AbortController | null = null;
-
-    function createObserver() {
-        observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                const elementClassActive = entry.target.getAttribute(attributeClassActive);
-                entry.target.classList.toggle(elementClassActive ? elementClassActive : classActive, entry.isIntersecting);
-            });
-            runScrollEvents();
-        }, {
-            rootMargin: (threshold * -1).toString() + 'px'
-        });
-    }
+    let scrollers: (Window | Element)[] = [];
+    let containers: SpryJsParallaxContainer[] = [];
+    let resizeTimer: Timer | null = null;
 
     function updateWindowSize() {
-        windowHeight = window.innerHeight;
-        windowWidth = window.innerWidth;
+        if (resizeTimer) {
+            clearTimeout(resizeTimer);
+        }
+        resizeTimer = setTimeout(() => {
+            windowHeight = window.innerHeight;
+            windowWidth = window.innerWidth;
+            update();
+        }, 100);
     }
 
     function runScrollEvents() {
-        if (elements && windowWidth >= minWidth) {
-            for (let e = 0; e < elements.length; e++) {
-                const elementClassActive = elements[e].getAttribute(attributeClassActive);
-                if (elements[e] && elements[e].classList.contains(elementClassActive ? elementClassActive : classActive)) {
-                    const rectElement = elements[e].getBoundingClientRect();
-                    const isBackground = elements[e].hasAttribute(attributeBackground);
-                    const isHorizontal = elements[e].hasAttribute(attributeHorizontal);
-                    const isInvert = elements[e].hasAttribute(attributeInvert);
-                    const rectContainer = !isBackground && elements[e].parentElement ? (elements[e].parentElement as HTMLElement).getBoundingClientRect() : rectElement;
-                    const totalHeight = windowHeight + rectContainer.height;
-                    const position = rectContainer.top + rectContainer.height;
-                    const percent = (isInvert ? 1 - (position / totalHeight) : (position / totalHeight));
 
-                    if (position > threshold && position < (totalHeight + (threshold * -1))) {
-                        // Parallax on Background Position
-                        if (isBackground) {
-                            (elements[e] as HTMLElement).style.backgroundPosition = isHorizontal ? (percent * 100) + '% center' : 'center ' + (percent * 100) + '%';
+        if (!containers) return;
 
-                            // Parallax on Child Position
-                        } else {
-                            const dist = isHorizontal ? rectElement.width - rectContainer.width : rectElement.height - rectContainer.height;
+        for (let c = 0; c < containers.length; c++) {
+            const container = containers[c];
+            if (container.minWidth && windowWidth < container.minWidth) {
+                continue; // Skip this container.
+            }
 
-                            if (dist < 0) {
-                                (elements[e] as HTMLElement).style.translate = '0';
-                                return;
-                            }
+            const scroller = container.scroller;
+            const scrollPos = scroller === window ? window.scrollY : (scroller instanceof Element ? scroller.scrollTop : 0);
+            const isParallaxing = scrollPos + windowHeight > (container.bottom + container.threshold) && scrollPos < (container.top - container.threshold);
 
-                            const offset = 1 - (isHorizontal ? (rectContainer.width / rectElement.width) : (rectContainer.height / rectElement.height));
-                            const p = Math.round(((percent * 100) * offset) * 100) / 100;
-                            const t = (elements[e] as HTMLElement).style.translate ? (elements[e] as HTMLElement).style.translate.toString().split(' ') : ['0px', '0px'];
-                            if (isHorizontal) {
-                                (elements[e] as HTMLElement).style.translate = '-' + p + '% ' + (t[1] ? t[1] : '0px');
-                            } else {
-                                (elements[e] as HTMLElement).style.translate = t[0] + ' -' + p + '%';
-                            }
-                        }
+            requestAnimationFrame(() => {
+                container.el.classList.toggle(container.classActive ? container.classActive : classActive, isParallaxing);
+            })
+
+            if (isParallaxing) {
+
+                let percent = ((scrollPos + windowHeight - container.bottom) / container.totalHeight) * 100;
+
+                if (container.isInvert) percent = 100 - percent;
+                if (percent > 100) percent = 100;
+                if (percent < 0) percent = 0;
+
+                // Parallax on Background Position
+                if (container.isBackground) {
+                    (container.el as HTMLElement).style.backgroundPosition = container.isHorizontal ? percent + '% center' : 'center ' + percent + '%';
+
+                // Parallax on Child Position
+                } else {
+                    const dist = container.isHorizontal ? container.offsetWidth : container.offsetHeight;
+
+                    if (dist < 0) {
+                        (container.el as HTMLElement).style.translate = '0';
+                        continue;
+                    }
+
+                    const offset = 1 - (container.isHorizontal ? container.percentWidth : container.percentHeight);
+                    const p = Math.round((percent * offset) * 100) / 100;
+                    const t = (container.el as HTMLElement).style.translate ? (container.el as HTMLElement).style.translate.toString().split(' ') : ['0px', '0px'];
+                    if (container.isHorizontal) {
+                        (container.el as HTMLElement).style.translate = '-' + p + '% ' + (t[1] ? t[1] : '0px');
+                    } else {
+                        (container.el as HTMLElement).style.translate = t[0] + ' -' + p + '%';
                     }
                 }
-            };
+            }
         }
     }
 
     function update() {
         destroy();
         elements = typeof items === 'object' ? items : document.querySelectorAll(items);
-        if (elements) {
-            if (!observer) {
-                createObserver();
-            }
-            if (observer) {
-                for (let e = 0; e < elements.length; e++) {
-                    const style = elements[e].hasAttribute(attributeBackground) ? 'background-position' : 'translate';
-                    const elementDelay = elements[e].hasAttribute(attributeDelay) ? elements[e].getAttribute(attributeDelay) : delay;
-                    (elements[e] as HTMLElement).style.willChange = style;
-                    if (elementDelay) {
-                        (elements[e] as HTMLElement).style.transition = style + ' ' + elementDelay + 'ms cubic-bezier(0, 0, 0, 1)';
-                    }
-                    if (observer) observer.observe(elements[e]);
-                };
-
-                if (!controller) {
-                    controller = new AbortController();
-                }
-                
-                if (controller) {
-                    window.addEventListener('scroll', runScrollEvents, {signal: controller.signal});
-                    window.addEventListener('resize', runScrollEvents, {signal: controller.signal});
-                    window.addEventListener('resize', updateWindowSize, {signal: controller.signal});
-                }
-            }
+        containers = [];
+        if (!elements) {
+            return;
         }
+        
+        for (let e = 0; e < elements.length; e++) {
+            const style = elements[e].hasAttribute(attributeBackground) ? 'background-position' : 'translate';
+            const elementDelay = elements[e].hasAttribute(attributeDelay) ? elements[e].getAttribute(attributeDelay) : delay;
+            const scrollElementSelector = elements[e].hasAttribute(attributeScrollingElement) ? elements[e].getAttribute(attributeScrollingElement) : null;
+            const scrollElement = scrollElementSelector ? document.querySelector(scrollElementSelector) : scrollingElement;
+
+            if (!scrollElement) {
+                return;
+            }
+
+            if (!scrollers.includes(scrollElement)) {
+                scrollers.push(scrollElement);
+            }
+
+            const scrollPos = scrollElement === window ? window.scrollY : (scrollElement instanceof Element ? scrollElement.scrollTop : 0);
+            const rectElement = elements[e].getBoundingClientRect();
+            const isBackground = elements[e].hasAttribute(attributeBackground);
+            const isInvert = elements[e].hasAttribute(attributeInvert);
+            const containerMinWidth = elements[e].getAttribute(attributeMinWidth);
+            const containerThreshold = elements[e].getAttribute(attributeThreshold);
+            const rectContainer = !isBackground && elements[e].parentElement ? (elements[e].parentElement as HTMLElement).getBoundingClientRect() : rectElement;
+            const totalHeight = windowHeight + rectContainer.height;
+
+            (elements[e] as HTMLElement).style.willChange = style;
+            if (elementDelay) {
+                (elements[e] as HTMLElement).style.transition = style + ' ' + elementDelay + 'ms cubic-bezier(0, 0, 0, 1)';
+            }
+
+            containers.push({
+                bottom: rectContainer.top + scrollPos,
+                el: elements[e],
+                isBackground: isBackground,
+                isHorizontal: elements[e].hasAttribute(attributeHorizontal),
+                isInvert: isInvert,
+                offsetHeight: rectElement.height - rectContainer.height,
+                offsetWidth: rectElement.width - rectContainer.width,
+                percentHeight: rectContainer.height / rectElement.height,
+                percentWidth: rectContainer.width / rectElement.width,
+                scroller: scrollElement,
+                top: rectContainer.bottom + scrollPos,
+                totalHeight: totalHeight,
+                classActive: elements[e].getAttribute(attributeClassActive),
+                minWidth: containerMinWidth ? parseInt(containerMinWidth) : minWidth,
+                threshold: containerThreshold ? parseInt(containerThreshold) : threshold,
+            });
+        };
+
+        if (!controller) {
+            controller = new AbortController();
+        }
+
+        if (!containers || !controller || !scrollers) {
+            destroy();
+            return;
+        }
+
+        for (let s = 0; s < scrollers.length; s++) {
+            scrollers[s].addEventListener('scroll', runScrollEvents, {signal: controller.signal});
+            scrollers[s].addEventListener('resize', runScrollEvents, {signal: controller.signal});
+        }
+
+        // Update Window Sizes.
+        window.addEventListener('resize', updateWindowSize, {signal: controller.signal});
+
+        runScrollEvents();
     };
 
     function destroy() {
@@ -133,14 +208,14 @@ export function parallax({
         if (elements) {
             for (let e = 0; e < elements.length; e++) {
                 const elementClassActive = elements[e].getAttribute(attributeClassActive);
-                elements[e].classList.remove(elementClassActive ? elementClassActive : classActive);
+                const elem = elements[e];
+                requestAnimationFrame(() => {
+                    elem.classList.remove(elementClassActive ? elementClassActive : classActive);
+                });
             };
         }
 
-        if (observer) {
-            observer.disconnect();
-            observer = null;
-        }
+        containers = [];
     };
 
     update();

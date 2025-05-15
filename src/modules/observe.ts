@@ -3,9 +3,9 @@
 
 export type SpryJsObserveOptions = {
     items?: Element[] | string,
-    rootMargin?: string;
-    threshold?: number | number[];
     delay?: number;
+    threshold?: number | number[];
+    rootMargin?: string;
     attributeDelay?: string;
     classObserving?: string | string[];
     attributeClassObserving?: string;
@@ -15,9 +15,9 @@ export type SpryJsObserveOptions = {
 
 export function observe({
     items = '.observe',
-    rootMargin = '0px 0px 0px 0px',
-    threshold = 0,
     delay = 50,
+    threshold = 0,
+    rootMargin = '0px 0px 0px 0px',
     classObserved = 'observed',
     classObserving = 'observing',
     attributeClassObserved = 'data-observe-class-observed',
@@ -42,12 +42,16 @@ export function observe({
                 const elementDelay = attributeDelay ? entry.target.getAttribute(attributeDelay) : delay;
 
                 if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        if (classObserving) entry.target.classList.add(...classObserving);
-                        if (classObserved) entry.target.classList.add(...classObserved);
-                    }, ((elementDelay ? parseInt(elementDelay.toString()) : 0) * index));
+                    requestAnimationFrame(() => {
+                        setTimeout(() => {
+                            if (classObserving) entry.target.classList.add(...classObserving);
+                            if (classObserved) entry.target.classList.add(...classObserved);
+                        }, ((elementDelay ? parseInt(elementDelay.toString()) : 0) * index));
+                    });
                 } else {
-                    if (classObserving) entry.target.classList.remove(...classObserving);
+                    requestAnimationFrame(() => {
+                        if (classObserving) entry.target.classList.remove(...classObserving);
+                    });
                 }
             });
         }, {

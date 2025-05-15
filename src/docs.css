@@ -2,7 +2,11 @@
  * SpryJS Docs Custom CSS
  */
 html:has(:not(section):target) {
-	scroll-padding-top: 180px;
+	scroll-padding-top: 164px;
+}
+
+html:has(#support:target) {
+	scroll-padding-top: 55px;
 }
 
 td code {
@@ -42,48 +46,48 @@ td code {
 	display: none;
 }
 
-.code-content-container .language-select,
+.code-content-container .l-select,
 footer[class*="language-"],
 .note[class*="language-"] {
 	display: none;
 }
 
-.code-content-container:has(option[value=html]:checked) .language-select[data-language=html],
+.code-content-container:has(option[value=html]:checked) .l-select[data-language=html],
 .code-content-container:has(option[value=html]:checked) .language-html,
-.code-content-container:has(option[value=node]:checked) .language-select[data-language=node],
+.code-content-container:has(option[value=node]:checked) .l-select[data-language=node],
 .code-content-container:has(option[value=node]:checked) .language-node,
-.code-content-container:has(option[value=npm]:checked) .language-select[data-language=npm],
+.code-content-container:has(option[value=npm]:checked) .l-select[data-language=npm],
 .code-content-container:has(option[value=npm]:checked) .language-npm,
-.code-content-container:has(option[value=pnpm]:checked) .language-select[data-language=pnpm],
+.code-content-container:has(option[value=pnpm]:checked) .l-select[data-language=pnpm],
 .code-content-container:has(option[value=pnpm]:checked) .language-pnpm,
-.code-content-container:has(option[value=yarn]:checked) .language-select[data-language=yarn],
+.code-content-container:has(option[value=yarn]:checked) .l-select[data-language=yarn],
 .code-content-container:has(option[value=yarn]:checked) .language-yarn,
-.code-content-container:has(option[value=bun]:checked) .language-select[data-language=bun],
+.code-content-container:has(option[value=bun]:checked) .l-select[data-language=bun],
 .code-content-container:has(option[value=bun]:checked) .language-bun,
-.code-content-container:has(option[value=cdn]:checked) .language-select[data-language=cdn],
+.code-content-container:has(option[value=cdn]:checked) .l-select[data-language=cdn],
 .code-content-container:has(option[value=cdn]:checked) .language-cdn,
-.code-content-container:has(option[value=cdnLoad]:checked) .language-select[data-language=cdnLoad],
+.code-content-container:has(option[value=cdnLoad]:checked) .l-select[data-language=cdnLoad],
 .code-content-container:has(option[value=cdnLoad]:checked) .language-cdnLoad,
-.code-content-container:has(option[value=cdnEsm]:checked) .language-select[data-language=cdnEsm],
+.code-content-container:has(option[value=cdnEsm]:checked) .l-select[data-language=cdnEsm],
 .code-content-container:has(option[value=cdnEsm]:checked) .language-cdnEsm,
-.code-content-container:has(option[value=jsGlobal]:checked) .language-select[data-language=jsGlobal],
+.code-content-container:has(option[value=jsGlobal]:checked) .l-select[data-language=jsGlobal],
 .code-content-container:has(option[value=jsGlobal]:checked) .language-jsGlobal,
-.code-content-container:has(option[value=jsEsm]:checked) .language-select[data-language=jsEsm],
+.code-content-container:has(option[value=jsEsm]:checked) .l-select[data-language=jsEsm],
 .code-content-container:has(option[value=jsEsm]:checked) .language-jsEsm,
-.code-content-container:has(option[value=js]:checked) .language-select[data-language=js],
+.code-content-container:has(option[value=js]:checked) .l-select[data-language=js],
 .code-content-container:has(option[value=js]:checked) .language-js,
-.code-content-container:has(option[value=spryJs]:checked) .language-select[data-language=spryJs],
+.code-content-container:has(option[value=spryJs]:checked) .l-select[data-language=spryJs],
 .code-content-container:has(option[value=spryJs]:checked) .language-spryJs,
-.code-content-container:has(option[value=petiteVue]:checked) .language-select[data-language=petiteVue],
+.code-content-container:has(option[value=petiteVue]:checked) .l-select[data-language=petiteVue],
 .code-content-container:has(option[value=petiteVue]:checked) .language-petiteVue,
-.code-content-container:has(option[value=vueJs]:checked) .language-select[data-language=vueJs],
+.code-content-container:has(option[value=vueJs]:checked) .l-select[data-language=vueJs],
 .code-content-container:has(option[value=vueJs]:checked) .language-vueJs,
-.code-content-container:has(option[value=alpineJs]:checked) .language-select[data-language=alpineJs],
+.code-content-container:has(option[value=alpineJs]:checked) .l-select[data-language=alpineJs],
 .code-content-container:has(option[value=alpineJs]:checked) .language-alpineJs {
 	display: block;
 }
 
-[data-code-only] .language-select {
+[data-code-only] .l-select {
 	display: none !important;
 }
 

@@ -220,13 +220,17 @@ export function slider({
 		}
 
 		function sliderScroll() {
-			if (sliderClassSliding) slider.classList.add(...sliderClassSliding);
-			slider.classList.remove(...sliderClassStart, ...sliderClassEnd);
+			requestAnimationFrame(() => {
+				if (sliderClassSliding) slider.classList.add(...sliderClassSliding);
+				slider.classList.remove(...sliderClassStart, ...sliderClassEnd);
+			});
 			if (scrollTimer) clearTimeout(scrollTimer);
 			playStop();
 			scrollTimer = setTimeout(function () {
 				if (!slider.spryJsSliderCount) return;
-				if (sliderClassSliding) slider.classList.remove(...sliderClassSliding);
+				requestAnimationFrame(() => {
+					if (sliderClassSliding) slider.classList.remove(...sliderClassSliding);
+				});
 				resetPlay();
 				let loopScroll = false;
 				if (loop && slides) {
@@ -244,23 +248,33 @@ export function slider({
 
 				} else if(slides) {
 					if (!slides.scrollLeft) {
-						slider.classList.add(...sliderClassStart);
+						requestAnimationFrame(() => {
+							slider.classList.add(...sliderClassStart);
+						});
 					} else if (slides.scrollLeft + (slider as HTMLElement).offsetWidth >= (slides.scrollWidth - 2)) {
-						slider.classList.add(...sliderClassEnd);
+						requestAnimationFrame(() => {
+							slider.classList.add(...sliderClassEnd);
+						});
 					}
 				}
 
 				const sliderLeft = slider.getBoundingClientRect().left;
 				if (slides) {
 					for (let c = 0; c < slides.children.length; c++) {
-						slides.children[c].classList.remove(...sliderClassShowingFirst);
-						slides.children[c].classList.remove(...sliderClassShowingLast);
-						var left = Math.round(slides.children[c].getBoundingClientRect().left - sliderLeft);						
+						requestAnimationFrame(() => {
+							slides.children[c].classList.remove(...sliderClassShowingFirst);
+							slides.children[c].classList.remove(...sliderClassShowingLast);
+						});
 						if (sliderClassShowing) {
+							var left = Math.round(slides.children[c].getBoundingClientRect().left - sliderLeft);						
 							if ((left >= -50 && left < slides.clientWidth)) {
-								slides.children[c].classList.add(...sliderClassShowing);
+								requestAnimationFrame(() => {
+									slides.children[c].classList.add(...sliderClassShowing);
+								});
 							} else {
-								slides.children[c].classList.remove(...sliderClassShowing);
+								requestAnimationFrame(() => {
+									slides.children[c].classList.remove(...sliderClassShowing);
+								});
 							}
 						}
 					};
@@ -270,15 +284,17 @@ export function slider({
 				var showing = sliderClassShowing && typeof sliderClassShowing !== 'string' ? slider.querySelectorAll('.'+sliderClassShowing.join('.')) : false;
 				if (showing && showing.length && currentIndex !== undefined) {
 					if (pagination && slides) {
-						pagination.querySelectorAll('.active').forEach(active => {
-							active.classList.remove('active');
+						requestAnimationFrame(() => {
+							pagination.querySelector('.active')?.classList.remove('active');
+							pagination.children[currentIndex]?.classList.add('active');
 						});
-						if (pagination.children[currentIndex]) {
-							pagination.children[currentIndex].classList.add('active');
-						}
 					}
-					showing[0].classList.add(...sliderClassShowingFirst);
-					showing[showing.length - 1].classList.add(...sliderClassShowingLast);
+					const showingFirst = showing[0];
+					const showingLast = showing[showing.length - 1];
+					requestAnimationFrame(() => {
+						showingFirst.classList.add(...sliderClassShowingFirst);
+						showingLast.classList.add(...sliderClassShowingLast);
+					});
 					var preLoadImages = function (elem: HTMLImageElement | null, type: string, total: number) {
 						var i = 0;
 						var imageSrcs = [];
@@ -315,7 +331,7 @@ export function slider({
 						(window as { [key: string]: any })[eventSlide](currentIndex);
 					}
 				}
-			}, 100);
+			}, 50);
 		}
 
 		function sliderSelectionChange() {
@@ -386,9 +402,14 @@ export function slider({
 					for (let index = 0; index < pagination.childNodes.length; index++) {
 						pagination.childNodes[index].addEventListener('click', () => {
 							goTo(index);
-							Array.from(pagination.children).forEach(paginate => {
-								paginate.classList.remove('active');
-							});
+							for (let c = 0; c < pagination.children.length; c++) {
+								pagination.children[c].classList.remove('active');
+							}
+							// Array.from(pagination.children).forEach(paginate => {
+							// 	requestAnimationFrame(() => {
+							// 		paginate.classList.remove('active');
+							// 	});
+							// });
 							(pagination.childNodes[index] as HTMLElement).classList.add('active');
 						}, {signal: controller.signal});
 					}
@@ -404,7 +425,12 @@ export function slider({
 				if (pagination && slider.spryJsSliderCount && pagination.childNodes.length !== slider.spryJsSliderCount) {
 					for (let index = 0; index < slider.spryJsSliderCount; index++) {
 						let btn = document.createElement("button");
-						if (index === currentIndex) btn.classList.add('active');
+						if (index === currentIndex) {
+							requestAnimationFrame(() => {
+								btn.classList.add('active');
+							});
+						}
+
 						pagination.append(btn);
 					}
 				}
@@ -415,8 +441,10 @@ export function slider({
 						goTo(currentIndex, true);
 					}
 				} else if (slides) {
-					slides.dispatchEvent(new CustomEvent('scroll'));
-					slider.classList.add(...sliderClassStart);
+					// slides.dispatchEvent(new CustomEvent('scroll'));
+					requestAnimationFrame(() => {
+						slider.classList.add(...sliderClassStart);
+					});
 				}
 			}
 
@@ -428,8 +456,10 @@ export function slider({
 				slider.sliderGetIndex = getIndex;
 			}
 
-			resetPlay();
-			sliderAddEvents();
+			requestAnimationFrame(() => {
+				resetPlay();
+				sliderAddEvents();
+			});
 		}
 
 		function sliderDestroy() {

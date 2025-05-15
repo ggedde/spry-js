@@ -1,9 +1,17 @@
 //!
 //! SpryJs ScrollSpy Module
 
+type SpryJsScrollSpyAnchorAction = {
+    activeClasses: string[];
+    el: Element;
+    replaceHash: string;
+    scrollDifference: number;
+}
+
 type SpryJsScrollSpyAnchor = {
     top: number;
     el: Element;
+    replaceHash: string;
 }
 
 type SpryJsScrollSpyContainer = {
@@ -11,14 +19,19 @@ type SpryJsScrollSpyContainer = {
     progress: string;
     classActive: string | string[];
     anchors: SpryJsScrollSpyAnchor[];
+    scroller: Window | Element;
 }
 
 export type SpryJsScrollSpyOptions = {
     items?: Element[] | string,
     threshold?: number;
     progress?: 'active' | 'linear' | 'seen';
+    replaceHistoryState?: boolean;
 	classActive?: string | string[];
     selectorAnchors?: string;
+    scrollingElement?: Window | Element;
+    attributeReplaceHistoryState?: string;
+    attributeScrollingElement?: string;
     attributeAnchors?: string;
     attributeClassActive?: string;
     attributeSection?: string;
@@ -31,9 +44,13 @@ export function scrollspy({
     threshold = 200,
     progress = 'active',
     classActive = 'active',
+    scrollingElement = window,
+    replaceHistoryState = false,
     selectorAnchors = '[href*="#"],[data-scrollspy-section]',
+    attributeReplaceHistoryState = 'data-scrollspy-replace',
+    attributeScrollingElement = 'data-scrollspy-scroller',
     attributeAnchors = 'data-scrollspy-anchors',
-    attributeClassActive = 'data-scrollspy-class-active',
+    attributeClassActive = 'data-scrollspy-active',
     attributeSection = 'data-scrollspy-section',
     attributeThreshold = 'data-scrollspy-threshold',
     attributeProgress = 'data-scrollspy-progress'
@@ -42,7 +59,9 @@ export function scrollspy({
     let controller: AbortController | null = null;
     let elements: Element[] | NodeListOf<Element> | null = null;
     let containers: SpryJsScrollSpyContainer[] = [];
+    let scrollers: (Window | Element)[] = [];
     let resizeTimer: Timer | null = null;
+    let currentHash: string = '';
 
     if (typeof classActive === 'string') {
         classActive = classActive.split(' ');
@@ -50,27 +69,68 @@ export function scrollspy({
 
     function runScrollEvents() {
 
-        const y = window.scrollY;
-
         if (!containers) return;
 
-        containers.forEach(container => {
+        let activeAnchors: SpryJsScrollSpyAnchorAction[] = [];
+        let inactiveAnchors: SpryJsScrollSpyAnchorAction[] = [];
+        let replaceCurrentHash = '';
+        let replaceCurrentHashDiff = 0;
 
-            if (typeof container.classActive === 'string') {
-                container.classActive = container.classActive.split(' ');
+        for (let c = 0; c < containers.length; c++) {
+
+            const scroller = containers[c].scroller;
+            const seen = containers[c].progress === 'seen';
+            const first = containers[c].anchors.length - 1;
+            const scrollPos = scroller === window ? window.scrollY : (scroller instanceof Element ? scroller.scrollTop : null);
+            let activeClasses = containers[c].classActive;
+            let mainActiveAnchor = null;
+
+            if (scrollPos === null) {
+                return;
             }
 
-            for (let a = 0; a < container.anchors.length; a++) {
-                if (container.progress === 'active' || (container.progress === 'linear' && y <= container.anchors[a].top)) {
-                    container.anchors[a].el.classList.remove(...container.classActive);
-                }
+            if (typeof activeClasses === 'string') {
+                activeClasses = activeClasses.split(' ');
             }
 
-            for (let a = 0; a < container.anchors.length; a++) {
-                if (y > container.anchors[a].top || (container.progress !== 'seen' && y <= container.anchors[a].top && a === (container.anchors.length - 1))) {
-                    container.anchors[a].el.classList.add(...container.classActive);
-                    if (container.progress === 'active') return;
+            for (let a = 0; a < containers[c].anchors.length; a++) {
+
+                const anchor: SpryJsScrollSpyAnchorAction = {
+                    el: containers[c].anchors[a].el,
+                    activeClasses: activeClasses,
+                    replaceHash: containers[c].anchors[a].replaceHash,
+                    scrollDifference: scrollPos - containers[c].anchors[a].top
+                };
+
+                if (scrollPos > containers[c].anchors[a].top) {
+                    if (!mainActiveAnchor || containers[c].progress === 'linear') {
+                        activeAnchors.push(anchor);
+                        mainActiveAnchor = containers[c].anchors[a].el;
+                    } else if (!seen) {
+                        inactiveAnchors.push(anchor);
+                    }
+                } else if (!seen && a !== first) {
+                    inactiveAnchors.push(anchor);
                 }
+            }
+        };
+
+        requestAnimationFrame(() => {
+            
+            for (let a = 0; a < activeAnchors.length; a++) {
+                activeAnchors[a].el.classList.add(...activeAnchors[a].activeClasses);
+                if (activeAnchors[a].replaceHash && (!replaceCurrentHashDiff || activeAnchors[a].scrollDifference < replaceCurrentHashDiff)) {
+                    replaceCurrentHash = activeAnchors[a].replaceHash;
+                    replaceCurrentHashDiff = activeAnchors[a].scrollDifference;
+                }
+            }
+    
+            for (let a = 0; a < inactiveAnchors.length; a++) {
+                inactiveAnchors[a].el.classList.remove(...inactiveAnchors[a].activeClasses);
+            }
+
+            if (replaceCurrentHash && replaceCurrentHash !== currentHash && (!window.location.hash || window.location.hash.indexOf("#"+replaceCurrentHash) < 0)) {
+                history.replaceState(undefined, '', "#"+replaceCurrentHash);
             }
         });
     }
@@ -81,14 +141,13 @@ export function scrollspy({
         }
         resizeTimer = setTimeout(() => {
             update();
-            runScrollEvents();
         }, 100);
     }
 
     function update() {
 
+        scrollers = [];
         containers = [];
-        const scrollPosition = window.scrollY;
 
         elements = typeof items === 'object' ? items : document.querySelectorAll(items);
         if (elements) {
@@ -97,14 +156,27 @@ export function scrollspy({
 
                     const containerProgress = elements[e].hasAttribute(attributeProgress) ? elements[e].getAttribute(attributeProgress) : progress;
                     const containerClassActive = elements[e].hasAttribute(attributeClassActive) ? elements[e].getAttribute(attributeClassActive) : classActive;
+                    const scrollElementSelector = elements[e].hasAttribute(attributeScrollingElement) ? elements[e].getAttribute(attributeScrollingElement) : null;
+                    const scrollElement = scrollElementSelector ? document.querySelector(scrollElementSelector) : scrollingElement;
+                    const containerReplaceState = elements[e].hasAttribute(attributeReplaceHistoryState) ? elements[e].getAttribute(attributeReplaceHistoryState) : replaceHistoryState;                    
+
+                    if (!scrollElement) {
+                        return; 
+                    }
+
+                    if (!scrollers.includes(scrollElement)) {
+                        scrollers.push(scrollElement);
+                    }
 
                     let container: SpryJsScrollSpyContainer = {
                         el: elements[e],
                         progress: containerProgress || '',
                         classActive: containerClassActive || '',
-                        anchors: []
+                        anchors: [],
+                        scroller: scrollElement,
                     };
 
+                    const scrollPos = scrollElement === window ? window.scrollY : (scrollElement instanceof Element ? scrollElement.scrollTop : null);
                     const elementThreshold = elements[e].hasAttribute(attributeThreshold) ? elements[e].getAttribute(attributeThreshold) : threshold;
                     const containerSelectorAnchors = elements[e].hasAttribute(attributeAnchors) ? elements[e].getAttribute(attributeAnchors) : selectorAnchors;
 
@@ -116,6 +188,7 @@ export function scrollspy({
                     elements[e].querySelectorAll(containerSelectorAnchors).forEach(anchor => {                        
 
                         let section = null;
+                        let hash = '';
 
                         const dataSelector = (anchor as HTMLElement).getAttribute(attributeSection);
                         if (dataSelector) {
@@ -129,7 +202,7 @@ export function scrollspy({
                                 try {
                                     const url = new URL(href, window.location.href);
                                     if (url && url.hash) {
-                                        const hash = url.hash.replace('#', '').trim();
+                                        hash = url.hash.replace('#', '').trim();
                                         if (hash) {
                                             section = document.querySelector('[id="'+hash+'"], a[name="'+hash+'"]');
                                         }
@@ -141,11 +214,12 @@ export function scrollspy({
                         }
 
                         // Add Anchors if found Section
-                        if (section && elements && elements[e]) {
+                        if (section && elements && elements[e] && scrollPos !== null) {
                             const sectionRect = section.getBoundingClientRect();
                             container.anchors.push({
-                                top: (sectionRect.y + scrollPosition) - ( elementThreshold ? parseInt( elementThreshold.toString() ) : 0 ),
+                                top: (sectionRect.y + scrollPos) - ( elementThreshold ? parseInt( elementThreshold.toString() ) : 0 ),
                                 el: anchor,
+                                replaceHash: (containerReplaceState === '' || (containerReplaceState && [1, '1', 'true', 'TRUE', 'True', true].includes(containerReplaceState))) ? hash : ''
                             });
                         }
                     });
@@ -162,8 +236,13 @@ export function scrollspy({
 
         if (!containers) {
             destroy();
-        } else if (controller) {
-            window.addEventListener('scroll', runScrollEvents, {signal: controller.signal});
+        } else if (controller && scrollers.length) {
+            scrollers.forEach(scroller => {
+                if (controller) {
+                    scroller.addEventListener('scroll', runScrollEvents, {signal: controller.signal});
+                    scroller.addEventListener('resize', runResizeEvents, {signal: controller.signal});
+                }
+            });
             window.addEventListener('resize', runResizeEvents, {signal: controller.signal});
             runScrollEvents();
         }
