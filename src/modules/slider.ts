@@ -405,11 +405,6 @@ export function slider({
 							for (let c = 0; c < pagination.children.length; c++) {
 								pagination.children[c].classList.remove('active');
 							}
-							// Array.from(pagination.children).forEach(paginate => {
-							// 	requestAnimationFrame(() => {
-							// 		paginate.classList.remove('active');
-							// 	});
-							// });
 							(pagination.childNodes[index] as HTMLElement).classList.add('active');
 						}, {signal: controller.signal});
 					}
@@ -425,6 +420,7 @@ export function slider({
 				if (pagination && slider.spryJsSliderCount && pagination.childNodes.length !== slider.spryJsSliderCount) {
 					for (let index = 0; index < slider.spryJsSliderCount; index++) {
 						let btn = document.createElement("button");
+						btn.setAttribute('title', 'Go To Slide ' + (index+1));
 						if (index === currentIndex) {
 							requestAnimationFrame(() => {
 								btn.classList.add('active');
