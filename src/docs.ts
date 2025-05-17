@@ -173,7 +173,7 @@ const SpryJsDocs = {
         }
     },
 
-    loadCodeContainer: function(el: Element, languageSync: boolean = false) {
+    loadCodeContainer: function(el: Element, languageSync: boolean = false, openCodePanel: boolean = true) {
 
         var elemContainer = el.closest('.code-content-container');
         var langValue = '';
@@ -233,12 +233,14 @@ const SpryJsDocs = {
             Prism.highlightAllUnder(codeDiv);
         }
 
-        var collapse = elemContainer.querySelector('.collapse');
-        if (collapse) {
-            if (elemContainer.hasAttribute('data-code-only')) {
-                collapse.classList.add('open');
-            } else {
-                collapse.classList.toggle('open');
+        if (openCodePanel) {
+            var collapse = elemContainer.querySelector('.collapse');
+            if (collapse) {
+                if (elemContainer.hasAttribute('data-code-only')) {
+                    collapse.classList.add('open');
+                } else {
+                    collapse.classList.toggle('open');
+                }
             }
         }
     }
@@ -255,18 +257,13 @@ SpryJsDocs.loadSingleCodeContainers(api ? api : 'cdnEsm', installer ? installer 
 
 document.querySelectorAll('code[class*=language-]').forEach(codeElement => {
     var html = codeElement.innerHTML;
-    var firsTagIndex = html.indexOf('&lt');
-    if (firsTagIndex === -1) {
-        firsTagIndex = html.indexOf('<');
-    }
-    if (firsTagIndex === -1) {
-        var match = html.match(/[a-zA-Z0-9\/\{]{1}/);
-        if (match && match.index) {
-            firsTagIndex = match.index;
-        }
+    var firsTagIndex = null;
+    var match = html.match(/[a-zA-Z0-9\/\{\:\@\$\&\<]{1}/);
+    if (match && match.index) {
+        firsTagIndex = match.index;
     }
     
-    if (firsTagIndex > -1) {
+    if (firsTagIndex !== null) {
         var firstSpaces = html.slice(0, firsTagIndex);
         if (firstSpaces && firsTagIndex) {
             html = html.replaceAll(firstSpaces, "\n").trim();
@@ -288,11 +285,10 @@ document.querySelectorAll('.show-code').forEach((elemContainer, index) => {
     var object = elemContainer.getAttribute('data-object');
     var codeOnly = elemContainer.hasAttribute('data-code-only');
     var noHeader = elemContainer.hasAttribute('data-no-header');
-    var languageSync = elemContainer.hasAttribute('data-language-sync');
     var hideThemeButton = elemContainer.hasAttribute('data-hide-theme')
     var elemContainerId = elemContainer.getAttribute('id');
     var languages = elemContainer.querySelectorAll('.l-select');
-    var headerNote = warning || note ? '<div class="note bg-faint bb-1 border/60 py-2 mt-0">' + warning + note + '</div>' : '';
+    var headerNote = warning || note ? '<div class="note bg-faint bb-1 border/60 p-2">' + warning + note + '</div>' : '';
     var footerNote = footerNote || footer ? '<footer class="bg-faint py-2">' + footer + footerNote + '</footer>' : '';
     var headerNotes = headerNote;
     var footerNotes = footerNote;
@@ -347,7 +343,7 @@ document.querySelectorAll('.show-code').forEach((elemContainer, index) => {
     SpryJsDocs._panelContents[elemContainerId] = innerContents+'';
 
     if (languages && languages.length) {
-        languageSelector += '<div class="items-center flex'+(noHeader ? ' mb-2' : '')+'"><select class="language-selector dense pr-4 pl-3 py-2 border/6" onchange="SpryJsDocs.loadCodeContainer(this, '+languageSync+')">';
+        languageSelector += '<div class="items-center flex'+(noHeader ? ' mb-2' : '')+'"><select title="Select Language" class="l-selector dense pr-4 pl-3 py-2 border/6" onchange="SpryJsDocs.loadCodeContainer(this, true, false)">';
         languages.forEach(language => {
             languageKey = language.getAttribute('data-language');
             languageTitle = languageKey && languageNames[languageKey] ? languageNames[languageKey] : '';
@@ -358,7 +354,7 @@ document.querySelectorAll('.show-code').forEach((elemContainer, index) => {
                 languageFooterNote = (language.hasAttribute('data-footer-note') ? '<footer class="language-'+languageKey+' note p-2 px-3 bg-faint mt-0">'+language.getAttribute('data-footer-note')+'</footer>' : '');
                 languageFooter = (language.hasAttribute('data-footer') ? '<footer class="language-'+languageKey+' block p-2 px-3 bg-faint mt-0">'+language.getAttribute('data-footer')+'</footer>' : '');
 
-                headerNotes += languageNote || languageWarning ? '<div class="language-'+languageKey+' note bg-faint bb-1 border/60 py-2 mt-0">' + languageNote + languageWarning + '</div>' : '';
+                headerNotes += languageNote || languageWarning ? '<div class="language-'+languageKey+' note bg-faint bb-1 border/60 p-2">' + languageNote + languageWarning + '</div>' : '';
                 footerNotes = languageFooter + languageFooterNote + footerNotes;
             }
         });
