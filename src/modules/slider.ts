@@ -5,7 +5,8 @@ declare global {
     interface Element {
         sliderGoTo?: Function;
         sliderGetIndex?: Function;
-        spryJsSliderCount: number;
+		sliderUpdate?: Function;
+        sliderCount: number;
     }
 
 	// interface Window { [key: string]: any[] } {}
@@ -78,6 +79,9 @@ export function slider({
 	let isSelecting = false;
 	let sliders: SpryJsSliderObject[] = [];
 
+	const styleSheet = new CSSStyleSheet();
+	styleSheet.replaceSync(".spryJsSliderHide { display: none !important; }");
+
 	function createSliderObject(slider: Element): SpryJsSliderObject | null {
 		
 		const play = parseInt((slider.getAttribute(attributePlay) || 0).toString());
@@ -88,36 +92,27 @@ export function slider({
 		const prev = slider.querySelector(slider.getAttribute(attributeSelectorPrev) ?? selectorPrev);
 		const pagination = slider.querySelector(slider.getAttribute(attributeSelectorPagination) ?? selectorPagination);
 		const slides = slider.querySelector(slider.getAttribute(attributeSelectorSlides) ?? selectorSlides);
+		let   slidesShowingCount = 0;
 
 		let sliderClassSliding = slider.getAttribute(attributeClassSliding) ?? classSliding;
 		if (sliderClassSliding && typeof sliderClassSliding === 'string') {
 			sliderClassSliding = sliderClassSliding.split(' ');
 		}
 
-		let sliderClassShowing = slider.getAttribute(attributeClassShowing) ?? classShowing;
-		if (sliderClassShowing && typeof sliderClassShowing === 'string') {
-			sliderClassShowing = sliderClassShowing.split(' ');
-		}
+		const getClassShowing = slider.getAttribute(attributeClassShowing);
+		const sliderClassShowing: string[] = getClassShowing ? getClassShowing.split(' ') : (typeof classShowing === 'string' ? classShowing.split(' ') : []);
 
-		let sliderClassShowingFirst = slider.getAttribute(attributeClassShowingFirst) ?? classShowingFirst;
-		if (sliderClassShowingFirst && typeof sliderClassShowingFirst === 'string') {
-			sliderClassShowingFirst = sliderClassShowingFirst.split(' ');
-		}
+		const getClassShowingFirst = slider.getAttribute(attributeClassShowingFirst);
+		const sliderClassShowingFirst: string[] = getClassShowingFirst ? getClassShowingFirst.split(' ') : (typeof classShowingFirst === 'string' ? classShowingFirst.split(' ') : []);
+		
+		const getClassShowingLast = slider.getAttribute(attributeClassShowingLast);
+		const sliderClassShowingLast: string[] = getClassShowingLast ? getClassShowingLast.split(' ') : (typeof classShowingLast === 'string' ? classShowingLast.split(' ') : []);
 
-		let sliderClassShowingLast = slider.getAttribute(attributeClassShowingLast) ?? classShowingLast;
-		if (sliderClassShowingLast && typeof sliderClassShowingLast === 'string') {
-			sliderClassShowingLast = sliderClassShowingLast.split(' ');
-		}
-
-		let sliderClassStart = slider.getAttribute(attributeClassStart) ?? classStart;
-		if (sliderClassStart && typeof sliderClassStart === 'string') {
-			sliderClassStart = sliderClassStart.split(' ');
-		}
-
-		let sliderClassEnd = slider.getAttribute(attributeClassEnd) ?? classEnd;
-		if (sliderClassEnd && typeof sliderClassEnd === 'string') {
-			sliderClassEnd = sliderClassEnd.split(' ');
-		}
+		const getClassStart = slider.getAttribute(attributeClassStart);
+		const sliderClassStart: string[] = getClassStart ? getClassStart.split(' ') : (typeof classStart === 'string' ? classStart.split(' ') : []);
+		
+		const getClassEnd = slider.getAttribute(attributeClassEnd);
+		const sliderClassEnd: string[] = getClassEnd ? getClassEnd.split(' ') : (typeof classEnd === 'string' ? classEnd.split(' ') : []);
 
 		// Events
 		const eventSlide = slider.getAttribute(attributeEventSlide);
@@ -138,7 +133,7 @@ export function slider({
 		function goTo(to: number | string, instant?: boolean) {
 			
 			if (!slides) return;
-			var scrollPosition = 0, offsetSlides = loop ? slider.spryJsSliderCount : 0, width = (slides as HTMLElement).offsetWidth;
+			var scrollPosition = 0, offsetSlides = loop ? slider.sliderCount : 0, width = (slides as HTMLElement).offsetWidth;
 			if (snap) {
 				var firstChild = slider.querySelector(selectorSlides+' > :first-child');
 				if (firstChild) width = (firstChild as HTMLElement).offsetWidth;
@@ -211,7 +206,7 @@ export function slider({
 				for (let c = 0; c < slides.children.length; c++) {
 					var left = Math.round((slides.children[c] as HTMLElement).getBoundingClientRect().left - sliderLeft);
 					if (left >= -50 && left < slides.clientWidth) {
-						return (loop && slider && slider.spryJsSliderCount) ? ((c === slider.spryJsSliderCount * 2) ? 0 : c - slider.spryJsSliderCount) : c;
+						return (loop && slider && slider.sliderCount) ? ((c === slider.sliderCount * 2) ? 0 : c - slider.sliderCount) : c;
 					}
 				}
 			}
@@ -222,15 +217,11 @@ export function slider({
 		function sliderScroll() {
 			requestAnimationFrame(() => {
 				if (sliderClassSliding) slider.classList.add(...sliderClassSliding);
-				slider.classList.remove(...sliderClassStart, ...sliderClassEnd);
 			});
 			if (scrollTimer) clearTimeout(scrollTimer);
 			playStop();
 			scrollTimer = setTimeout(function () {
-				if (!slider.spryJsSliderCount) return;
-				requestAnimationFrame(() => {
-					if (sliderClassSliding) slider.classList.remove(...sliderClassSliding);
-				});
+				if (!slider.sliderCount) return;
 				resetPlay();
 				let loopScroll = false;
 				if (loop && slides) {
@@ -245,84 +236,18 @@ export function slider({
 						slides.scrollTo({ left: blockWidth + offset, behavior: 'instant' });
 						loopScroll = true;
 					}
-
-				} else if(slides) {
-					if (!slides.scrollLeft) {
-						requestAnimationFrame(() => {
-							slider.classList.add(...sliderClassStart);
-						});
-					} else if (slides.scrollLeft + (slider as HTMLElement).offsetWidth >= (slides.scrollWidth - 2)) {
-						requestAnimationFrame(() => {
-							slider.classList.add(...sliderClassEnd);
-						});
-					}
 				}
-
-				const sliderLeft = slider.getBoundingClientRect().left;
-				if (slides) {
-					for (let c = 0; c < slides.children.length; c++) {
-						requestAnimationFrame(() => {
-							slides.children[c].classList.remove(...sliderClassShowingFirst);
-							slides.children[c].classList.remove(...sliderClassShowingLast);
-						});
-						if (sliderClassShowing) {
-							var left = Math.round(slides.children[c].getBoundingClientRect().left - sliderLeft);						
-							if ((left >= -50 && left < slides.clientWidth)) {
-								requestAnimationFrame(() => {
-									slides.children[c].classList.add(...sliderClassShowing);
-								});
-							} else {
-								requestAnimationFrame(() => {
-									slides.children[c].classList.remove(...sliderClassShowing);
-								});
-							}
-						}
-					};
+				
+				if (slidesShowingCount) {
+					if (sliderClassShowingFirst && typeof sliderClassShowingFirst !== 'string') {
+						preLoadImages(slider.querySelector('.'+sliderClassShowingFirst.join('.')), 'prev', slidesShowingCount);
+					}
+					if (sliderClassShowingLast && typeof sliderClassShowingLast !== 'string') {
+						preLoadImages(slider.querySelector('.'+sliderClassShowingLast.join('.')), 'next', slidesShowingCount);
+					}
 				}
 
 				currentIndex = getIndex();
-				var showing = sliderClassShowing && typeof sliderClassShowing !== 'string' ? slider.querySelectorAll('.'+sliderClassShowing.join('.')) : false;
-				if (showing && showing.length && currentIndex !== undefined) {
-					if (pagination && slides) {
-						requestAnimationFrame(() => {
-							pagination.querySelector('.active')?.classList.remove('active');
-							pagination.children[currentIndex]?.classList.add('active');
-						});
-					}
-					const showingFirst = showing[0];
-					const showingLast = showing[showing.length - 1];
-					requestAnimationFrame(() => {
-						showingFirst.classList.add(...sliderClassShowingFirst);
-						showingLast.classList.add(...sliderClassShowingLast);
-					});
-					var preLoadImages = function (elem: HTMLImageElement | null, type: string, total: number) {
-						var i = 0;
-						var imageSrcs = [];
-						if (!elem) return;
-						while ((elem = type === "next" ? (elem.nextSibling as HTMLImageElement) : (elem.previousSibling as HTMLImageElement))) {
-							if (i >= total || !elem.nodeType || elem.nodeType === 3) continue; // text node
-							var loading = elem.getAttribute("loading");
-							if (elem.tagName === 'IMG' && loading && loading.toLowerCase() === 'lazy') {
-								imageSrcs.push(elem.src);
-							} else {
-								elem.querySelectorAll('img[loading="lazy"]').forEach(img => {
-									imageSrcs.push((img as HTMLImageElement).src);
-								});
-							}
-							i++;
-						}
-						imageSrcs.forEach(imageSrc => {
-							var newImg = new Image();
-							newImg.src = imageSrc;
-						});
-					}
-					if (sliderClassShowingFirst && typeof sliderClassShowingFirst !== 'string') {
-						preLoadImages(slider.querySelector('.'+sliderClassShowingFirst.join('.')), 'next', showing.length);
-					}
-					if (sliderClassShowingLast && typeof sliderClassShowingLast !== 'string') {
-						preLoadImages(slider.querySelector('.'+sliderClassShowingLast.join('.')), 'prev', showing.length);
-					}
-				}
 				if (!loopScroll) {
 					const slideChanged =  new CustomEvent('spryjs-slider-event-slide', {detail: {index: currentIndex}});
 					slider.dispatchEvent(slideChanged);
@@ -331,7 +256,109 @@ export function slider({
 						(window as { [key: string]: any })[eventSlide](currentIndex);
 					}
 				}
+
+				requestAnimationFrame(() => {
+					updateClasses();
+				});
 			}, 50);
+		}
+
+		function preLoadImages (elem: HTMLImageElement | null, type: string, total: number) {
+			if (!elem) return;
+			var i = 0;
+			var imageSrcs = [];
+			while ((elem = type === "next" ? (elem.nextSibling as HTMLImageElement) : (elem.previousSibling as HTMLImageElement))) {
+				if (i >= total || !elem.nodeType || elem.nodeType === 3) continue; // text node
+				var loading = elem.getAttribute("loading");
+				if (elem.tagName === 'IMG' && loading && loading.toLowerCase() === 'lazy') {
+					imageSrcs.push(elem.src);
+				} else {
+					elem.querySelectorAll('img[loading="lazy"]').forEach(img => {
+						imageSrcs.push((img as HTMLImageElement).src);
+					});
+				}
+				i++;
+			}
+			imageSrcs.forEach(imageSrc => {
+				var newImg = new Image();
+				newImg.src = imageSrc;
+			});
+		}
+
+		function getShowing() {
+			let showing = [];
+			if (slides) {
+				const sliderLeft = slider.getBoundingClientRect().left;
+				for (let c = 0; c < slides.children.length; c++) {
+					var left = Math.round(slides.children[c].getBoundingClientRect().left - sliderLeft);						
+					if ((left >= -50 && left < slides.clientWidth)) {
+						showing.push(slides.children[c]);
+					}
+				};
+			}
+			return showing;
+		}
+
+		function updateClasses() {
+
+			if (slides) {
+				const showing = getShowing();
+				const emptyClasses: string[] = [];
+				const allClasses = emptyClasses.concat(sliderClassShowing, sliderClassShowingFirst, sliderClassShowingLast);
+				const firstClasses = emptyClasses.concat(sliderClassShowing, sliderClassShowingFirst);
+				const lastClasses = emptyClasses.concat(sliderClassShowing, sliderClassShowingLast);
+
+				slidesShowingCount = showing ? showing.length : 0;
+				
+				for (let c = 0; c < slides.children.length; c++) {
+					slides.children[c].classList.remove(...allClasses);
+				};
+
+				for (let s = 0; s < showing.length; s++) {
+					if (!s && (s+1) === showing.length) {
+						showing[s].classList.add(...allClasses);
+					} else if (!s) {
+						showing[s].classList.add(...firstClasses);
+					} else if ((s+1) === showing.length) {
+						showing[s].classList.add(...lastClasses);
+					} else {
+						showing[s].classList.add(...sliderClassShowing);
+					}
+				}
+
+				// Update Pagination Active Classes
+				if (pagination && currentIndex !== undefined) {
+					pagination.querySelector('.active')?.classList.remove('active');
+					pagination.children[currentIndex]?.classList.add('active');
+				}
+
+				if (sliderClassSliding) {
+					slider.classList.remove(...sliderClassSliding);
+				}
+
+				// Update Start and End Classes
+				if (!loop) {
+					slider.classList.remove(...sliderClassStart, ...sliderClassEnd);
+					if (!slides.scrollLeft) {
+						slider.classList.add(...sliderClassStart);
+					} else if (slides.scrollLeft + (slider as HTMLElement).offsetWidth >= (slides.scrollWidth - 2)) {
+						slider.classList.add(...sliderClassEnd);
+					}
+				}
+
+				// Update Display Classes
+				for (let c = 0; c < slides.children.length; c++) {
+					var index = loop ? c + slider.sliderCount : c;
+					var d = slides.children[index] ? window.getComputedStyle((slides.children[index] as HTMLElement), null).display : null;
+					if (loop) {
+						(slides.children[c] as HTMLElement)?.classList.toggle('spryJsSliderHide', d === 'none');
+						(slides.children[(c + (slider.sliderCount * 2))] as HTMLElement)?.classList.toggle('spryJsSliderHide', d === 'none');
+					}
+					if (pagination && pagination.children[c] && d !== null) {
+						(pagination.children[c] as HTMLElement)?.classList.toggle('spryJsSliderHide', d === 'none');
+					}
+				}
+			}
 		}
 
 		function sliderSelectionChange() {
@@ -398,7 +425,7 @@ export function slider({
 						}
 					}
 				}
-				if (slides && slider.spryJsSliderCount && pagination && pagination.childNodes.length) {
+				if (slides && slider.sliderCount && pagination && pagination.childNodes.length) {
 					for (let index = 0; index < pagination.childNodes.length; index++) {
 						pagination.childNodes[index].addEventListener('click', () => {
 							goTo(index);
@@ -413,12 +440,12 @@ export function slider({
 		}
 
 		function sliderUpdate() {
-
-			if (!slider.spryJsSliderCount) {
+			if (!slider.sliderCount) {
 				currentIndex = getIndex();
-				slider.spryJsSliderCount = slides ? slides.childElementCount : 0;
-				if (pagination && slider.spryJsSliderCount && pagination.childNodes.length !== slider.spryJsSliderCount) {
-					for (let index = 0; index < slider.spryJsSliderCount; index++) {
+				slider.sliderCount = slides ? slides.childElementCount : 0;
+
+				if (pagination && slider.sliderCount && pagination.childNodes.length !== slider.sliderCount) {
+					for (let index = 0; index < slider.sliderCount; index++) {
 						let btn = document.createElement("button");
 						btn.setAttribute('title', 'Go To Slide ' + (index+1));
 						if (index === currentIndex) {
@@ -430,6 +457,7 @@ export function slider({
 						pagination.append(btn);
 					}
 				}
+
 				if (loop && slides) {
 					var block = slides.innerHTML.trim();
 					if (block) {						
@@ -437,11 +465,12 @@ export function slider({
 						goTo(currentIndex, true);
 					}
 				} else if (slides) {
-					// slides.dispatchEvent(new CustomEvent('scroll'));
 					requestAnimationFrame(() => {
 						slider.classList.add(...sliderClassStart);
 					});
 				}
+
+				updateClasses();
 			}
 
 			if (!slider.sliderGoTo) {
@@ -452,7 +481,20 @@ export function slider({
 				slider.sliderGetIndex = getIndex;
 			}
 
+			if (!slider.sliderUpdate) {
+				slider.sliderUpdate = function() {
+					sliderDestroy();
+					sliderUpdate();
+				};
+			}
+
 			requestAnimationFrame(() => {
+				if (styleSheet) {
+					const styleSheetIndex = document.adoptedStyleSheets.indexOf(styleSheet);
+					if (styleSheetIndex < 0) {
+						document.adoptedStyleSheets.push(styleSheet);
+					}
+				}
 				resetPlay();
 				sliderAddEvents();
 			});
@@ -460,12 +502,12 @@ export function slider({
 
 		function sliderDestroy() {
 			playStop();
-			if (loop && slider.spryJsSliderCount && slides && selectorSlides && slides.childElementCount > slider.spryJsSliderCount) {
-				slider.querySelectorAll(selectorSlides + '> :nth-child(-n+'+slider.spryJsSliderCount+'), '+selectorSlides + '> :nth-child(n+'+((slider.spryJsSliderCount*2)+1)+')').forEach(slide => {
+			if (loop && slider.sliderCount && slides && selectorSlides && slides.childElementCount > slider.sliderCount) {
+				slider.querySelectorAll(selectorSlides + '> :nth-child(-n+'+slider.sliderCount+'), '+selectorSlides + '> :nth-child(n+'+((slider.sliderCount*2)+1)+')').forEach(slide => {
 					slide.remove();
 				});
 			}
-			slider.spryJsSliderCount = 0;
+			slider.sliderCount = 0;
 
 			if (pagination) {
 				pagination.innerHTML = '';
@@ -482,6 +524,19 @@ export function slider({
 			if (slider.sliderGetIndex) {
 				delete slider.sliderGetIndex;
 			}
+
+			if (slider.sliderUpdate) {
+				delete slider.sliderUpdate;
+			}
+
+			requestAnimationFrame(() => {
+				if (styleSheet) {
+					const styleSheetIndex = document.adoptedStyleSheets.indexOf(styleSheet);
+					if (styleSheetIndex > -1) {
+						document.adoptedStyleSheets.splice(styleSheetIndex, 1);
+					}
+				}
+			});
 		}
 
 		sliderUpdate();

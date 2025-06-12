@@ -84,6 +84,7 @@
                                 <li><a class="ml-2 sm" href="#query.addclass"><code>addClass</code></a></li>
                                 <li><a class="ml-2 sm" href="#query.toggleclass"><code>toggleClass</code></a></li>
                                 <li><a class="ml-2 sm" href="#query.removeclass"><code>removeClass</code></a></li>
+                                <li><a class="ml-2 sm" href="#query.hasclass"><code>hasClass</code></a></li>
                                 <li><a class="ml-2 sm" href="#query.attr"><code>attr</code></a></li>
                                 <li><a class="ml-2 sm" href="#query.toggleattr"><code>toggleAttr</code></a></li>
                                 <li><a class="ml-2 sm" href="#query.removeattr"><code>removeAttr</code></a></li>
@@ -1932,6 +1933,46 @@
                                 </article>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <a id="slider.methods.update" href="#slider.methods.update"><code class="color-primary">sliderUpdate()</code></a>
+                                <p class="mt-2 mb-4">Destroys and Rebuilds the Slider. Useful if adding/removing slides / setting slides to display `none` etc.</p>
+                                
+                                <p>Typescript Example:</p>
+                                <article class="l-select relative" data-language="cdnEsm">
+                                    <code class="language-typescript block auto bg-surface b-1 border/100 r-2 p-3 pr-5 sm">
+                                        const slider = slider('#my-slider'); // Create New Slider
+                                        slider.sliderUpdate();
+                                    </code>
+                                </article>
+                                <article class="l-select relative" data-language="cdn">
+                                    <code class="language-typescript block auto bg-surface b-1 border/100 r-2 p-3 pr-5 sm">
+                                        const slider = SpryJS.slider('#my-slider'); // Create New Slider
+                                        slider.sliderUpdate();
+                                    </code>
+                                </article>
+                                <article class="l-select relative" data-language="cdnLoad">
+                                    <code class="language-typescript block auto bg-surface b-1 border/100 r-2 p-3 pr-5 sm">
+                                        const slider = spryJs.slider('#my-slider'); // Create New Slider
+                                        slider.sliderUpdate();
+                                    </code>
+                                </article>
+                                <article class="l-select relative" data-language="node">
+                                    <code class="language-typescript block auto bg-surface b-1 border/100 r-2 p-3 pr-5 sm">
+                                        const slider = slider('#my-slider'); // Create New Slider
+                                        slider.sliderUpdate();
+                                    </code>
+                                </article>
+                                
+                                <p class="mt-4">DOM Example:</p>
+                                <article class="relative mt-2">
+                                    <code class="language-typescript block auto bg-surface b-1 border/100 r-2 p-3 pr-5 sm">
+                                        const slider = document.getElementById('my-slider'); // Get Slider from Dom
+                                        slider.sliderUpdate();
+                                    </code>
+                                </article>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 
@@ -2016,7 +2057,7 @@
                 <h3 class="mt-4"><a id="slider.examples" href="#slider.examples" class="color-inherit">Examples</a></h3>
                 <article class="card show-code" data-title="Basic Slider" data-hide-theme>
                     <div class="code-content relative p-3 md:p-4">
-                        <div class="slider primary">
+                        <div id="sss" class="slider primary">
                             <button title="Previous" class="prev link icon circle xl"></button>
                             <button title="Next" class="next link icon circle xl"></button>
                             <div class="slides">
@@ -2026,12 +2067,20 @@
                             </div>
                             <div class="pagination p-3"></div>
                         </div>
+
+                        <script>
+                            setTimeout(() => {
+                                var sl = document.getElementById('sss');
+                                sl.querySelector('.slides img:nth-child(2)').classList.add('none');
+                                sl.sliderUpdate();
+                            }, 2000);
+                        </script>
                     </div>
                 </article>
 
                 <article class="card show-code" data-title="Breakpoints, Autoplay, Loop and Stop on Action" data-hide-theme>
                     <div class="code-content relative p-3 md:p-4">
-                        <div class="slider @container primary px-5" data-slider-play="6000" data-slider-stop="action" data-slider-loop>
+                        <div id="ggg" class="slider @container primary px-5" data-slider-play="6000" data-slider-stop="action" data-slider-loop>
                             <button title="Previous" class="prev link icon circle xl"></button>
                             <button title="Next" class="next link icon circle xl"></button>
                             <div class="slides row md:columns-1 @md:columns-3 @md:g-2">
@@ -3079,7 +3128,7 @@
  *
  * <span class="color-primary">@param</span> <span class="color-contrast">className</span><span class="color-gray">:</span> <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span> - The class(s) to add.
  * 
- * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ * <span class="color-primary">@returns</span> <span class="color-success">SpryJsQueryCollection</span>
  */</code>
                 <div class="l-select relative" data-language="cdnLoad">
                     <code class="language-typescript block auto bg-surface b-1 rb-2 p-3 pr-5 static sm">                        
@@ -3115,7 +3164,7 @@
 * Force true to add class or false to remove class.
 * Undefined will check to determine toggle state.
 * 
-* <span class="color-primary">@returns</span> SpryJsQueryCollection
+* <span class="color-primary">@returns</span> <span class="color-success">SpryJsQueryCollection</span>
 */</code>
                 <div class="l-select relative" data-language="cdnLoad">
                     <code class="language-typescript block auto bg-surface b-1 rb-2 p-3 pr-5 static sm">
@@ -3145,7 +3194,7 @@
  *
  * <span class="color-primary">@param</span> <span class="color-contrast">className</span><span class="color-gray">:</span> <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span> - The class(s) to remove.
  * 
- * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ * <span class="color-primary">@returns</span> <span class="color-success">SpryJsQueryCollection</span>
  */</code>
                 <div class="l-select relative" data-language="cdnLoad">
                     <code class="language-typescript block auto bg-surface b-1 rb-2 p-3 pr-5 static sm">                        
@@ -3168,6 +3217,36 @@
                     </code>
                 </div>
 
+                <!-- HasClass -->
+                <h4 class="color-primary mt-3 mb-1"><a id="query.hasclass" href="#query.hasclass">hasClass</a></h4>
+                <code class="block auto layer b-1 bb-0 rt-2 p-3 note sm">/**
+ * Check if Element(s) have Class(es). <span class="color-primary">All need to be true</span>. Otherwise false.
+ *
+ * <span class="color-primary">@param</span> <span class="color-contrast">className</span><span class="color-gray">:</span> <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span> - The class(s) to remove.
+ * 
+ * <span class="color-primary">@returns</span> <span class="color-success">boolean</span>
+ */</code>
+                <div class="l-select relative" data-language="cdnLoad">
+                    <code class="language-typescript block auto bg-surface b-1 rb-2 p-3 pr-5 static sm">                        
+                        spryJs.query('.selector').hasClass(className);
+                    </code>
+                </div>
+                <div class="l-select relative" data-language="cdn">
+                    <code class="language-typescript block auto bg-surface b-1 rb-2 p-3 pr-5 static sm">                       
+                        SpryJS.query('.selector').hasClass(className);
+                    </code>
+                </div>
+                <div class="l-select relative" data-language="cdnEsm">
+                    <code class="language-typescript block auto bg-surface b-1 rb-2 p-3 pr-5 static sm">                       
+                        query('.selector').hasClass(className);
+                    </code>
+                </div>
+                <div class="l-select relative" data-language="node">
+                    <code class="language-typescript block auto bg-surface b-1 rb-2 p-3 pr-5 static sm">                       
+                        query('.selector').hasClass(className);
+                    </code>
+                </div>
+
                 <!-- Attr -->
                 <h4 class="color-primary mt-3 mb-1"><a id="query.attr" href="#query.attr">attr</a></h4>
                 <code class="block auto layer b-1 bb-0 rt-2 p-3 note sm">/**
@@ -3176,7 +3255,7 @@
  * <span class="color-primary">@param</span> <span class="color-contrast">attributeName</span><span class="color-gray">:</span>  <span class="color-success">string</span> - Attribute name to Set.
  * <span class="color-primary">@param</span> <span class="color-contrast">attributeValue</span><span class="color-gray">:</span> <span class="color-success">string</span> - Attribute value to Set. If empty it will default to a blank string "".
  * 
- * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ * <span class="color-primary">@returns</span> <span class="color-success">SpryJsQueryCollection</span>
  */</code>
                 <div class="l-select relative" data-language="cdnLoad">
                     <code class="language-typescript block auto bg-surface b-1 rb-2 p-3 pr-5 static sm">                        
@@ -3212,7 +3291,7 @@
 * Force true to add Attribute or false to remove Attribute.
 * Undefined will check to determine toggle state.
 * 
-* <span class="color-primary">@returns</span> SpryJsQueryCollection
+* <span class="color-primary">@returns</span> <span class="color-success">SpryJsQueryCollection</span>
 */</code>
                 <div class="l-select relative" data-language="cdnLoad">
                     <code class="language-typescript block auto bg-surface b-1 rb-2 p-3 pr-5 static sm">
@@ -3242,7 +3321,7 @@
  *
  * <span class="color-primary">@param</span> <span class="color-contrast">attributeName</span><span class="color-gray">:</span> <span class="color-success">string</span><span class="color-gray sm px-1">|</span><span class="color-success">string[]</span> - The Attribute(s) to remove.
  * 
- * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ * <span class="color-primary">@returns</span> <span class="color-success">SpryJsQueryCollection</span>
  */</code>
                 <div class="l-select relative" data-language="cdnLoad">
                     <code class="language-typescript block auto bg-surface b-1 rb-2 p-3 pr-5 static sm">                        
@@ -3279,7 +3358,7 @@
  * <span class="color-primary">@param</span> <span class="color-contrast">options</span><span class="color-gray">?:</span> <span class="color-success">AddEventListenerOptions</span>
  * Additional Event Listener Options.
  * 
- * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ * <span class="color-primary">@returns</span> <span class="color-success">SpryJsQueryCollection</span>
  * 
  * For more details see: <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">MDN addEventListener</a>
  */</code>
@@ -3318,7 +3397,7 @@
  * <span class="color-primary">@param</span> <span class="color-contrast">options</span><span class="color-gray">?:</span> <span class="color-success">AddEventListenerOptions</span>
  * Additional Event Listener Options.
  * 
- * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ * <span class="color-primary">@returns</span> <span class="color-success">SpryJsQueryCollection</span>
  * 
  * For more details see: <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener">MDN removeEventListener</a>
  */</code>
@@ -3351,7 +3430,7 @@
  * <span class="color-primary">@param</span> <span class="color-contrast">callbackFn</span><span class="color-gray">:</span> <span class="color-success">Function</span> - Callback function to apply to each element in the Collection.
  * Callback provides <span class="color-warning">(</span><span class="color-contrast">el</span><span class="color-gray">:</span> <span class="color-success">Element</span>, <span class="color-contrast">index</span><span class="color-gray">:</span> <span class="color-success">number</span><span class="color-warning">)</span>
  * 
- * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ * <span class="color-primary">@returns</span> <span class="color-success">SpryJsQueryCollection</span>
  */</code>
                 <div class="l-select relative" data-language="cdnLoad">
                     <code class="language-typescript block auto bg-surface b-1 rb-2 p-3 pr-5 static sm">                        
@@ -3382,7 +3461,7 @@
  * <span class="color-primary">@param</span> <span class="color-contrast">i</span><span class="color-gray">:</span> <span class="color-success">number</span> - Index of element. Does not allow for negative numbers.
  * <span class="color-warning"># Warning - If index does not exit in the collection then elements in collection will be truncated.</span>
  * 
- * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ * <span class="color-primary">@returns</span> <span class="color-success">SpryJsQueryCollection</span>
  */</code>
                 <div class="l-select relative" data-language="cdnLoad">
                     <code class="language-typescript block auto bg-surface b-1 rb-2 p-3 pr-5 static sm">                        
@@ -3414,7 +3493,7 @@
  * Allows for inverse lookup with negative numbers. So -1 is the last item in the collection.
  * <span class="color-warning"># Warning - If index does not exit in the collection then elements in collection will be truncated.</span>
  * 
- * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ * <span class="color-primary">@returns</span> <span class="color-success">SpryJsQueryCollection</span>
  */</code>
                 <div class="l-select relative" data-language="cdnLoad">
                     <code class="language-typescript block auto bg-surface b-1 rb-2 p-3 pr-5 static sm">                        
@@ -3443,7 +3522,7 @@
  * Resets the collection to the first element in Collection.
  * Alias of <a href="#query.nth"><span class="color-primary">nth(1)</span></a>
  *
- * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ * <span class="color-primary">@returns</span> <span class="color-success">SpryJsQueryCollection</span>
  */</code>
                 <div class="l-select relative" data-language="cdnLoad">
                     <code class="language-typescript block auto bg-surface b-1 rb-2 p-3 pr-5 static sm">                        
@@ -3472,7 +3551,7 @@
  * Resets the collection to the last element in Collection.
  * Alias of <a href="#query.nth"><span class="color-primary">nth(-1)</span></a>
  *
- * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ * <span class="color-primary">@returns</span> <span class="color-success">SpryJsQueryCollection</span>
  */</code>
                 <div class="l-select relative" data-language="cdnLoad">
                     <code class="language-typescript block auto bg-surface b-1 rb-2 p-3 pr-5 static sm">                        
@@ -3505,7 +3584,7 @@
  * <span class="color-primary">@param</span> <span class="color-contrast">end</span><span class="color-gray">?:</span>   <span class="color-success">number</span> - End index of range.
  * <span class="color-warning"># Warning - Invalid params could lead to a truncated collection.</span>
  *
- * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ * <span class="color-primary">@returns</span> <span class="color-success">SpryJsQueryCollection</span>
  */</code>
                 <div class="l-select relative" data-language="cdnLoad">
                     <code class="language-typescript block auto bg-surface b-1 rb-2 p-3 pr-5 static sm">                        
@@ -3539,7 +3618,7 @@
  *
  * <span class="color-primary">@param</span> <span class="color-contrast">thisArg</span><span class="color-gray">?:</span> <span class="color-success">object</span> - A value to use as this when executing callbackFn.
  *
- * <span class="color-primary">@returns</span> SpryJsQueryCollection
+ * <span class="color-primary">@returns</span> <span class="color-success">SpryJsQueryCollection</span>
  *
  * For more details see: <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">MDN Array.prototype.filter()</a>
  */</code>

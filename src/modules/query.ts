@@ -5,12 +5,13 @@ export type SpryJsQueryCollection = {
     elements: Element[];
     el: Element | null;
     each(callbackFn: Function): SpryJsQueryCollection;
-    toggleClass(className: string, force?: boolean): SpryJsQueryCollection;
-    addClass(className: string): SpryJsQueryCollection;
-    removeClass(className: string): SpryJsQueryCollection;
-    toggleAttr(attributeName: string, force?: boolean): SpryJsQueryCollection;
+    toggleClass(className: string|string[], force?: boolean): SpryJsQueryCollection;
+    addClass(className: string|string[]): SpryJsQueryCollection;
+    hasClass(className: string|string[]): boolean;
+    removeClass(className: string|string[]): SpryJsQueryCollection;
+    toggleAttr(attributeName: string|string[], force?: boolean): SpryJsQueryCollection;
     attr(attributeName: string, attributeValue: string): SpryJsQueryCollection;
-    removeAttr(attributeName: string): SpryJsQueryCollection;
+    removeAttr(attributeName: string|string[]): SpryJsQueryCollection;
     on(type: string, listener: (el: Element, index: number, event: Event) => void, options?: AddEventListenerOptions): SpryJsQueryCollection;
     off(type: string, listener: EventListenerOrEventListenerObject, options?: AddEventListenerOptions): SpryJsQueryCollection;
     index(i?: number): SpryJsQueryCollection;
@@ -29,22 +30,25 @@ export type SpryJsQueryCollection = {
  * @var elements Elements[] - Queried elements.
  * @var el Element          - First Queried element.
  * 
- * @method toggleClass function(className: string, force?: boolean)
+ * @method toggleClass function(className: string|string[], force?: boolean)
  * Toggles Class of each element in query
  * 
- * @method addClass function(className: string)
+ * @method addClass function(className: string|string[])
  * Adds Class to each element in query
  * 
- * @method removeClass function(className: string)
+ * @method hasClass function(className: string|string[])
+ * Returns boolean if the element has the class
+ * 
+ * @method removeClass function(className: string|string[])
  * Removes Class of each element in query
  * 
- * @method toggleAttr function(attributeName: string, force?: boolean)
+ * @method toggleAttr function(attributeName: string|string[], force?: boolean)
  * Toggles Attribute of each element in query
  * 
  * @method attr function(attributeName: string, attributeValue: string)
  * Sets Attribute to each element in query
  * 
- * @method removeAttr function(attributeName: string)
+ * @method removeAttr function(attributeName: string|string[])
  * Removes Attribute of each element in query
  * 
  * @method on function(type: string, listener: EventListenerOrEventListenerObject, options?: AddEventListenerOptions)
@@ -128,6 +132,28 @@ export function query(selector: string): SpryJsQueryCollection {
                 if (typeof className === 'string') className = className.split(' ');
                 el.classList.add(...className);
             });
+        },
+
+        /**
+         * Check if Element(s) have Class(es). All need to be true. Otherwise false.
+         *
+         * @param className string | string[] - Class names to Add.
+         * 
+         * @returns boolean
+         */
+        hasClass: function (className: string | string[]): boolean {
+            let hasClass = true;
+
+            for (let e = 0; e < this.elements.length; e++) {
+                if (typeof className === 'string') className = className.split(' ');
+                for (let c = 0; c < className.length; c++) {
+                    if (!this.elements[e].classList.contains(className[c])) {
+                        hasClass = false;
+                    }
+                }
+            }
+
+            return hasClass;
         },
 
         /**
