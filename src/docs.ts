@@ -246,10 +246,6 @@ const SpryJsDocs = {
     }
 }
 
-const originalText = document.documentElement.innerHTML;
-const newText = originalText.replaceAll('spry-js@x.x.x', 'spry-js@1.0.0');
-document.documentElement.innerHTML = newText;
-
 const api = localStorage.getItem('SpryJSDocsApi');
 const installer = localStorage.getItem('SpryJSDocsInstaller');
 

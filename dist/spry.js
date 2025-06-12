@@ -1,5 +1,5 @@
 /*
-* SpryJs 1.0.0
+* SpryJs 1.0.1
 * https://ggedde.github.io/spry-js
 */
 (()=>{//!

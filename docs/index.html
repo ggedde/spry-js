@@ -12,9 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ggedde/spry-css@3.0.0-rc.3/dist/spry.min.css">
-    <link rel="stylesheet" href="docs.min.css?v=1.0.0">
-    <script defer src="docs.min.js?v=1.0.0"></script>
-    <script defer src="spry.js?v=1.0.0&load=spryJs"></script>
+    <link rel="stylesheet" href="docs.min.css?v=1.0.1">
+    <script defer src="docs.min.js?v=1.0.1"></script>
+    <script defer src="spry.js?v=1.0.1&load=spryJs"></script>
     <style>
         :root {
             --secondary: light-dark(#b6a101, #f7df1e);
@@ -224,7 +224,7 @@
                 <article class="relative">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                         &lt;script type="module"&gt;
-                            import SpryJS from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
+                            import SpryJS from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
                             SpryJS('.something').addClass('open');
                         &lt;/script&gt;
                     </code>
@@ -233,7 +233,7 @@
                 <article class="relative">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                         &lt;script type="module"&gt;
-                            import { cookie, hash, navigable, observe, parallax, scrollspy, slider, toggle, query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
+                            import { cookie, hash, navigable, observe, parallax, scrollspy, slider, toggle, query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
                             query('.something').addClass('open');
                         &lt;/script&gt;
                     </code>
@@ -245,7 +245,7 @@
                 </h3>
                 <article class="relative">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
                     </code>
                 </article>
                 <p class="note">Usage</p>
@@ -268,7 +268,7 @@
                 <p class="note mt-1 mb-2">Automatically load SpryJS to a variable you specify and initialize all components with default options.</p>
                 <article class="relative">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                     </code>
                 </article>
                 <p class="note">You then have access to your variable when the Dom has been loaded.</p>
@@ -284,7 +284,7 @@
                 <p class="note mt-1 mb-2">Run a function you specify when SpryJS is fully loaded.</p>
                 <article class="relative">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?run=spryJsLoaded"&gt;&lt;/script&gt;
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?run=spryJsLoaded"&gt;&lt;/script&gt;
                         &lt;script&gt;
                         function spryJsLoaded() {
                             SpryJS('.something').addClass('open');
@@ -340,7 +340,7 @@
                 <h4 class="color-primary mb-1"><a id="navigable.initiate" href="#navigable.initiate">Initiate</a></h4>
                 <article class="l-select relative" data-language="cdnLoad">
                     <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                     </code>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
                         <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
@@ -348,7 +348,7 @@
                 </article>
                 <article class="l-select relative" data-language="cdn">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
                         &lt;script&gt;
                             var spryObj = SpryJS('.navigable').navigable();
                         &lt;/script&gt;
@@ -357,7 +357,7 @@
                 <article class="l-select relative" data-language="cdnEsm">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                         &lt;script type="module"&gt;
-                            import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
+                            import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
                             const obj = navigable();
                         &lt;/script&gt;
                     </code>
@@ -529,7 +529,7 @@
                 <h4 class="color-primary mb-1"><a id="observe.initiate" href="#observe.initiate">Initiate</a></h4>
                 <article class="l-select relative" data-language="cdnLoad">
                     <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                     </code>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
                         <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
@@ -537,7 +537,7 @@
                 </article>
                 <article class="l-select relative" data-language="cdn">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
                         &lt;script&gt;
                             var spryObj = SpryJS('.observe').observe();
                         &lt;/script&gt;
@@ -546,7 +546,7 @@
                 <article class="l-select relative" data-language="cdnEsm">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                         &lt;script type="module"&gt;
-                            import { observe } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
+                            import { observe } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
                             const obj = observe();
                         &lt;/script&gt;
                     </code>
@@ -779,7 +779,7 @@
                 <h4 class="color-primary mb-1"><a id="parallax.initiate" href="#parallax.initiate">Initiate</a></h4>
                 <article class="l-select relative" data-language="cdnLoad">
                     <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                     </code>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
                         <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
@@ -787,7 +787,7 @@
                 </article>
                 <article class="l-select relative" data-language="cdn">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
                         &lt;script&gt;
                             var spryObj = SpryJS('.parallax').parallax();
                         &lt;/script&gt;
@@ -796,7 +796,7 @@
                 <article class="l-select relative" data-language="cdnEsm">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                         &lt;script type="module"&gt;
-                            import { parallax } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
+                            import { parallax } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
                             const obj = parallax();
                         &lt;/script&gt;
                     </code>
@@ -1095,7 +1095,7 @@
                 <h4 class="color-primary mb-1"><a id="scrollspy.initiate" href="#scrollspy.initiate">Initiate</a></h4>
                 <article class="l-select relative" data-language="cdnLoad">
                     <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                     </code>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
                         <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
@@ -1103,7 +1103,7 @@
                 </article>
                 <article class="l-select relative" data-language="cdn">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
                         &lt;script&gt;
                             var spryObj = SpryJS('.scrollspy').scrollspy();
                         &lt;/script&gt;
@@ -1112,7 +1112,7 @@
                 <article class="l-select relative" data-language="cdnEsm">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                         &lt;script type="module"&gt;
-                            import { scrollspy } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
+                            import { scrollspy } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
                             const obj = scrollspy();
                         &lt;/script&gt;
                     </code>
@@ -1495,7 +1495,7 @@
                 <h4 class="color-primary mb-1"><a id="slider.initiate" href="#slider.initiate">Initiate</a></h4>
                 <article class="l-select relative" data-language="cdnLoad">
                     <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                     </code>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
                         <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
@@ -1503,7 +1503,7 @@
                 </article>
                 <article class="l-select relative" data-language="cdn">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
                         &lt;script&gt;
                             var spryObj = SpryJS('.slider').slider();
                         &lt;/script&gt;
@@ -1512,7 +1512,7 @@
                 <article class="l-select relative" data-language="cdnEsm">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                         &lt;script type="module"&gt;
-                            import { slider } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
+                            import { slider } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
                             const obj = slider();
                         &lt;/script&gt;
                     </code>
@@ -2279,7 +2279,7 @@
                 <h4 class="color-primary mb-1"><a id="toggle.initiate" href="#toggle.initiate">Initiate</a></h4>
                 <article class="l-select relative" data-language="cdnLoad">
                     <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                     </code>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
                         <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
@@ -2287,7 +2287,7 @@
                 </article>
                 <article class="l-select relative" data-language="cdn">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
                         &lt;script&gt;
                             var spryObj = SpryJS('.toggle').toggle();
                         &lt;/script&gt;
@@ -2296,7 +2296,7 @@
                 <article class="l-select relative" data-language="cdnEsm">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                         &lt;script type="module"&gt;
-                            import { toggle } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
+                            import { toggle } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
                             const obj = toggle();
                         &lt;/script&gt;
                     </code>
@@ -2704,7 +2704,7 @@
                 <div class="l-select" data-language="cdnLoad">
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                         </code>
                     </div>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
@@ -2714,7 +2714,7 @@
                 <div class="l-select" data-language="cdn">
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
+                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
                         </code>
                     </div>
                 </div>
@@ -2722,7 +2722,7 @@
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                             &lt;script type="module"&gt;
-                                import { cookie } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
+                                import { cookie } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
                             &lt;/script&gt;
                         </code>
                     </div>
@@ -2871,7 +2871,7 @@
                 <div class="l-select" data-language="cdnLoad">
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                         </code>
                     </div>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
@@ -2881,7 +2881,7 @@
                 <div class="l-select" data-language="cdn">
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
+                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
                         </code>
                     </div>
                 </div>
@@ -2889,7 +2889,7 @@
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                             &lt;script type="module"&gt;
-                                import { hash } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
+                                import { hash } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
                             &lt;/script&gt;
                         </code>
                     </div>
@@ -2998,7 +2998,7 @@
                 <div class="l-select" data-language="cdnLoad">
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                         </code>
                     </div>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
@@ -3008,7 +3008,7 @@
                 <div class="l-select" data-language="cdn">
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.js"&gt;&lt;/script&gt;
+                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
                         </code>
                     </div>
                 </div>
@@ -3016,7 +3016,7 @@
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                             &lt;script type="module"&gt;
-                                import { query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@x.x.x/dist/spry.mjs';
+                                import { query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
                             &lt;/script&gt;
                         </code>
                     </div>
