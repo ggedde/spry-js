@@ -12,9 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ggedde/spry-css@3.0.0-rc.3/dist/spry.min.css">
-    <link rel="stylesheet" href="docs.min.css?v=1.0.1">
-    <script defer src="docs.min.js?v=1.0.1"></script>
-    <script defer src="spry.js?v=1.0.1&load=spryJs"></script>
+    <link rel="stylesheet" href="docs.min.css?v=1.0.2">
+    <script defer src="docs.min.js?v=1.0.2"></script>
+    <script defer src="spry.js?v=1.0.2&load=spryJs"></script>
     <style>
         :root {
             --secondary: light-dark(#b6a101, #f7df1e);
@@ -224,7 +224,7 @@
                 <article class="relative">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                         &lt;script type="module"&gt;
-                            import SpryJS from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
+                            import SpryJS from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.mjs';
                             SpryJS('.something').addClass('open');
                         &lt;/script&gt;
                     </code>
@@ -233,7 +233,7 @@
                 <article class="relative">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                         &lt;script type="module"&gt;
-                            import { cookie, hash, navigable, observe, parallax, scrollspy, slider, toggle, query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
+                            import { cookie, hash, navigable, observe, parallax, scrollspy, slider, toggle, query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.mjs';
                             query('.something').addClass('open');
                         &lt;/script&gt;
                     </code>
@@ -245,7 +245,7 @@
                 </h3>
                 <article class="relative">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js"&gt;&lt;/script&gt;
                     </code>
                 </article>
                 <p class="note">Usage</p>
@@ -268,7 +268,7 @@
                 <p class="note mt-1 mb-2">Automatically load SpryJS to a variable you specify and initialize all components with default options.</p>
                 <article class="relative">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                     </code>
                 </article>
                 <p class="note">You then have access to your variable when the Dom has been loaded.</p>
@@ -284,7 +284,7 @@
                 <p class="note mt-1 mb-2">Run a function you specify when SpryJS is fully loaded.</p>
                 <article class="relative">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?run=spryJsLoaded"&gt;&lt;/script&gt;
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js?run=spryJsLoaded"&gt;&lt;/script&gt;
                         &lt;script&gt;
                         function spryJsLoaded() {
                             SpryJS('.something').addClass('open');
@@ -340,7 +340,7 @@
                 <h4 class="color-primary mb-1"><a id="navigable.initiate" href="#navigable.initiate">Initiate</a></h4>
                 <article class="l-select relative" data-language="cdnLoad">
                     <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                     </code>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
                         <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
@@ -348,7 +348,7 @@
                 </article>
                 <article class="l-select relative" data-language="cdn">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js"&gt;&lt;/script&gt;
                         &lt;script&gt;
                             var spryObj = SpryJS('.navigable').navigable();
                         &lt;/script&gt;
@@ -357,7 +357,7 @@
                 <article class="l-select relative" data-language="cdnEsm">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                         &lt;script type="module"&gt;
-                            import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
+                            import { navigable } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.mjs';
                             const obj = navigable();
                         &lt;/script&gt;
                     </code>
@@ -529,7 +529,7 @@
                 <h4 class="color-primary mb-1"><a id="observe.initiate" href="#observe.initiate">Initiate</a></h4>
                 <article class="l-select relative" data-language="cdnLoad">
                     <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                     </code>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
                         <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
@@ -537,7 +537,7 @@
                 </article>
                 <article class="l-select relative" data-language="cdn">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js"&gt;&lt;/script&gt;
                         &lt;script&gt;
                             var spryObj = SpryJS('.observe').observe();
                         &lt;/script&gt;
@@ -546,7 +546,7 @@
                 <article class="l-select relative" data-language="cdnEsm">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                         &lt;script type="module"&gt;
-                            import { observe } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
+                            import { observe } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.mjs';
                             const obj = observe();
                         &lt;/script&gt;
                     </code>
@@ -779,7 +779,7 @@
                 <h4 class="color-primary mb-1"><a id="parallax.initiate" href="#parallax.initiate">Initiate</a></h4>
                 <article class="l-select relative" data-language="cdnLoad">
                     <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                     </code>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
                         <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
@@ -787,7 +787,7 @@
                 </article>
                 <article class="l-select relative" data-language="cdn">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js"&gt;&lt;/script&gt;
                         &lt;script&gt;
                             var spryObj = SpryJS('.parallax').parallax();
                         &lt;/script&gt;
@@ -796,7 +796,7 @@
                 <article class="l-select relative" data-language="cdnEsm">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                         &lt;script type="module"&gt;
-                            import { parallax } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
+                            import { parallax } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.mjs';
                             const obj = parallax();
                         &lt;/script&gt;
                     </code>
@@ -1095,7 +1095,7 @@
                 <h4 class="color-primary mb-1"><a id="scrollspy.initiate" href="#scrollspy.initiate">Initiate</a></h4>
                 <article class="l-select relative" data-language="cdnLoad">
                     <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                     </code>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
                         <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
@@ -1103,7 +1103,7 @@
                 </article>
                 <article class="l-select relative" data-language="cdn">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js"&gt;&lt;/script&gt;
                         &lt;script&gt;
                             var spryObj = SpryJS('.scrollspy').scrollspy();
                         &lt;/script&gt;
@@ -1112,7 +1112,7 @@
                 <article class="l-select relative" data-language="cdnEsm">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                         &lt;script type="module"&gt;
-                            import { scrollspy } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
+                            import { scrollspy } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.mjs';
                             const obj = scrollspy();
                         &lt;/script&gt;
                     </code>
@@ -1495,7 +1495,7 @@
                 <h4 class="color-primary mb-1"><a id="slider.initiate" href="#slider.initiate">Initiate</a></h4>
                 <article class="l-select relative" data-language="cdnLoad">
                     <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                     </code>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
                         <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
@@ -1503,7 +1503,7 @@
                 </article>
                 <article class="l-select relative" data-language="cdn">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js"&gt;&lt;/script&gt;
                         &lt;script&gt;
                             var spryObj = SpryJS('.slider').slider();
                         &lt;/script&gt;
@@ -1512,7 +1512,7 @@
                 <article class="l-select relative" data-language="cdnEsm">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                         &lt;script type="module"&gt;
-                            import { slider } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
+                            import { slider } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.mjs';
                             const obj = slider();
                         &lt;/script&gt;
                     </code>
@@ -1601,7 +1601,8 @@
                             attributeLoop: "data-slider-loop",
                             attributeSnap: "data-slider-snap",
                             attributeStop: "data-slider-stop",
-                            attributeEventSlide: "data-slider-event-slide"
+                            attributeEventBeforeSlide: "data-slider-event-before-slide"
+                            attributeEventAfterSlide: "data-slider-event-after-slide"
                         });
                     </code>
                 </article>
@@ -1837,19 +1838,28 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><a id="slider.options.attribute.event.slide" href="#slider.options.attribute.event.slide"><code class="color-primary">attributeEventSlide</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                                <td><a id="slider.options.attribute.event.beforeslide" href="#slider.options.attribute.event.beforeslide"><code class="color-primary">attributeEventBeforeSlide</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
                                 <td>
-                                    <p>The attribute on the slider container to call the slide Event.</p>
+                                    <p>The attribute on the slider container to call the Before Slide Event.</p>
                                     <p>This only accepts a string as the name of the global function to call. It does not support inline functions.</p>
-                                    <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-event-slide"</code></p>
-                                    <p class="note mt-3">See the <a href="#slider.event.slide">Slide Event</a> on how to use.</p>
+                                    <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-event-before-slide"</code></p>
+                                    <p class="note mt-3">See the <a href="#slider.event.beforeslide">Before Slide Event</a> on how to use.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a id="slider.options.attribute.event.afterslide" href="#slider.options.attribute.event.afterslide"><code class="color-primary">attributeEventAfterSlide</code></a><code class="color-gray">?: <span class="color-success">string</span></code></td>
+                                <td>
+                                    <p>The attribute on the slider container to call the After Slide Event.</p>
+                                    <p>This only accepts a string as the name of the global function to call. It does not support inline functions.</p>
+                                    <p><code class="color-gray">default:</code> <code class="color-primary">"data-slider-event-after-slide"</code></p>
+                                    <p class="note mt-3">See the <a href="#slider.event.afterslide">After Slide Event</a> on how to use.</p>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <!-- Options -->
+                <!-- Methods -->
                 <h3 class="mt-4"><a id="slider.methods" href="#slider.methods" class="color-inherit">Methods</a></h3>
                 <table class="mt-4 responsive">
                     <tbody>
@@ -1976,53 +1986,55 @@
                     </tbody>
                 </table>
 
-                <!-- Options -->
+                <!-- Events -->
                 <h3 class="mt-4"><a id="slider.events" href="#slider.events" class="color-inherit">Events</a></h3>
                 <table class="mt-4 responsive">
                     <tbody>
                         <tr>
                             <td>
-                                <a id="slider.event.slide" href="#slider.event.slide"><code class="color-primary">slide(<span class="color-contrast">index</span><span class="color-gray">:</span> <span class="color-success">int</span>)</code></a>
-                                <p class="mt-2 mb-4">Event called when the slider has finished sliding.</p>
+                                <a id="slider.event.beforeslide" href="#slider.event.beforeslide"><code class="color-primary">beforeSlide(<span class="color-contrast">currentIndex</span><span class="color-gray">:</span> <span class="color-success">int</span>, <span class="color-contrast">toIndex</span><span class="color-gray">:</span> <span class="color-success">int</span><span class="color-gray sm px-1">|</span><span class="color-success">null</span>)</code></a>
+                                <p class="mt-2">Event called before the slider starts sliding.</p>
+                                <p class="pl-3 mb-4"><span class="color-contrast">currentIndex</span>: Integer of current slide before sliding</p>
+                                <p class="pl-3 mb-4"><span class="color-contrast">toIndex</span>: Integer of index set to slide to. NULL if free form sliding.</p>
 
                                 <h4 class="h5">Event Listener Name</h4>
-                                <code class="color-primary">spryjs-slider-event-slide</code>
+                                <code class="color-primary">spryjs-slider-event-before-slide</code>
                                 <p class="note">* Only applicable on the slider element</p>
 
                                 <h4 class="h5">Attribute</h4>
-                                <code class="color-primary">data-slider-event-slide</code>
-                                <p class="note">See <a href="#slider.options.attribute.event.slide"><code class="color-primary">attributeEventSlide</code></a> for more details.</p>
+                                <code class="color-primary">data-slider-event-before-slide</code>
+                                <p class="note">See <a href="#slider.options.attribute.event.beforeslide"><code class="color-primary">attributeEventBeforeSlide</code></a> for more details.</p>
 
                                 <p class="mt-4">Typescript Example:</p>
                                 <article class="l-select relative mt-2" data-language="cdnEsm">
                                     <code class="language-typescript block auto bg-surface b-1 border/100 r-2 p-3 pr-5 sm">
                                         const slider = slider('#my-slider'); // Create New Slider
-                                        slider.addEventListener('spryjs-slider-event-slide', (eventInfo) => {
-                                            console.log(eventInfo.detail.index);
+                                        slider.addEventListener('spryjs-slider-event-before-slide', (eventInfo) => {
+                                            console.log(eventInfo.detail.currentIndex, eventInfo.detail.toIndex);
                                         });
                                     </code>
                                 </article>
                                 <article class="l-select relative mt-2" data-language="cdn">
                                     <code class="language-typescript block auto bg-surface b-1 border/100 r-2 p-3 pr-5 sm">
                                         const slider = SpryJS.slider('#my-slider'); // Create New Slider
-                                        slider.addEventListener('spryjs-slider-event-slide', (eventInfo) => {
-                                            console.log(eventInfo.detail.index);
+                                        slider.addEventListener('spryjs-slider-event-before-slide', (eventInfo) => {
+                                            console.log(eventInfo.detail.currentIndex, eventInfo.detail.toIndex);
                                         });
                                     </code>
                                 </article>
                                 <article class="l-select relative mt-2" data-language="cdnLoad">
                                     <code class="language-typescript block auto bg-surface b-1 border/100 r-2 p-3 pr-5 sm">
                                         const slider = spryJs.slider('#my-slider'); // Create New Slider
-                                        slider.addEventListener('spryjs-slider-event-slide', (eventInfo) => {
-                                            console.log(eventInfo.detail.index);
+                                        slider.addEventListener('spryjs-slider-event-before-slide', (eventInfo) => {
+                                            console.log(eventInfo.detail.currentIndex, eventInfo.detail.toIndex);
                                         });
                                     </code>
                                 </article>
                                 <article class="l-select relative mt-2" data-language="node">
                                     <code class="language-typescript block auto bg-surface b-1 border/100 r-2 p-3 pr-5 sm">
                                         const slider = slider('#my-slider'); // Create New Slider
-                                        slider.addEventListener('spryjs-slider-event-slide', (eventInfo) => {
-                                            console.log(eventInfo.detail.index);
+                                        slider.addEventListener('spryjs-slider-event-before-slide', (eventInfo) => {
+                                            console.log(eventInfo.detail.currentIndex, eventInfo.detail.toIndex);
                                         });
                                     </code>
                                 </article>
@@ -2031,12 +2043,86 @@
                                 <article class="relative mt-2">
                                     <code class="language-html block auto bg-surface b-1 border/100 r-2 p-3 pr-5 sm">
                                         &lt;script&gt;
-                                            function myEvent(index) {
-                                                console.log(index);
+                                            function myBeforeSlideEvent(currentIndex, toIndex) {
+                                                console.log(currentIndex, toIndex);
                                             }
                                         &lt;/script&gt;
 
-                                        &lt;div class="slider" data-slider-event-slide="myEvent"&gt;
+                                        &lt;div class="slider" data-slider-event-before-slide="myBeforeSlideEvent"&gt;
+                                            &lt;button class="prev link icon prev circle"&gt;&lt;/button&gt;
+                                            &lt;button class="next link icon next circle"&gt;&lt;/button&gt;
+                                            &lt;div class="slides"&gt;
+                                                &lt;img src="placeholder-1.jpg" loading="lazy"&gt;
+                                                &lt;img src="placeholder-2.jpg" loading="lazy"&gt;
+                                                &lt;img src="placeholder-3.jpg" loading="lazy"&gt;
+                                            &lt;/div&gt;
+                                            &lt;div class="pagination p-3"&gt;&lt;/div&gt;
+                                        &lt;/div&gt;
+                                    </code>
+                                </article>
+                            </td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td>
+                                <a id="slider.event.afterslide" href="#slider.event.afterslide"><code class="color-primary">afterSlide(<span class="color-contrast">currentIndex</span><span class="color-gray">:</span> <span class="color-success">int</span>)</code></a>
+                                <p class="mt-2">Event called when the slider has finished sliding.</p>
+                                <p class="pl-3 mb-4"><span class="color-contrast">currentIndex</span>: Integer of current slide after finished sliding</p>
+
+                                <h4 class="h5">Event Listener Name</h4>
+                                <code class="color-primary">spryjs-slider-event-after-slide</code>
+                                <p class="note">* Only applicable on the slider element</p>
+
+                                <h4 class="h5">Attribute</h4>
+                                <code class="color-primary">data-slider-event-after-slide</code>
+                                <p class="note">See <a href="#slider.options.attribute.event.afterslide"><code class="color-primary">attributeEventAfterSlide</code></a> for more details.</p>
+
+                                <p class="mt-4">Typescript Example:</p>
+                                <article class="l-select relative mt-2" data-language="cdnEsm">
+                                    <code class="language-typescript block auto bg-surface b-1 border/100 r-2 p-3 pr-5 sm">
+                                        const slider = slider('#my-slider'); // Create New Slider
+                                        slider.addEventListener('spryjs-slider-event-after-slide', (eventInfo) => {
+                                            console.log(eventInfo.detail.currentIndex);
+                                        });
+                                    </code>
+                                </article>
+                                <article class="l-select relative mt-2" data-language="cdn">
+                                    <code class="language-typescript block auto bg-surface b-1 border/100 r-2 p-3 pr-5 sm">
+                                        const slider = SpryJS.slider('#my-slider'); // Create New Slider
+                                        slider.addEventListener('spryjs-slider-event-after-slide', (eventInfo) => {
+                                            console.log(eventInfo.detail.currentIndex);
+                                        });
+                                    </code>
+                                </article>
+                                <article class="l-select relative mt-2" data-language="cdnLoad">
+                                    <code class="language-typescript block auto bg-surface b-1 border/100 r-2 p-3 pr-5 sm">
+                                        const slider = spryJs.slider('#my-slider'); // Create New Slider
+                                        slider.addEventListener('spryjs-slider-event-after-slide', (eventInfo) => {
+                                            console.log(eventInfo.detail.currentIndex);
+                                        });
+                                    </code>
+                                </article>
+                                <article class="l-select relative mt-2" data-language="node">
+                                    <code class="language-typescript block auto bg-surface b-1 border/100 r-2 p-3 pr-5 sm">
+                                        const slider = slider('#my-slider'); // Create New Slider
+                                        slider.addEventListener('spryjs-slider-event-after-slide', (eventInfo) => {
+                                            console.log(eventInfo.detail.currentIndex);
+                                        });
+                                    </code>
+                                </article>
+
+                                <p class="mt-4">Attribute Example:</p>
+                                <article class="relative mt-2">
+                                    <code class="language-html block auto bg-surface b-1 border/100 r-2 p-3 pr-5 sm">
+                                        &lt;script&gt;
+                                            function myAfterSlideEvent(currentIndex) {
+                                                console.log(currentIndex);
+                                            }
+                                        &lt;/script&gt;
+
+                                        &lt;div class="slider" data-slider-event-after-slide="myAfterSlideEvent"&gt;
                                             &lt;button class="prev link icon prev circle"&gt;&lt;/button&gt;
                                             &lt;button class="next link icon next circle"&gt;&lt;/button&gt;
                                             &lt;div class="slides"&gt;
@@ -2057,7 +2143,7 @@
                 <h3 class="mt-4"><a id="slider.examples" href="#slider.examples" class="color-inherit">Examples</a></h3>
                 <article class="card show-code" data-title="Basic Slider" data-hide-theme>
                     <div class="code-content relative p-3 md:p-4">
-                        <div id="sss" class="slider primary">
+                        <div id="sss" class="slider primary" data-slider-loop>
                             <button title="Previous" class="prev link icon circle xl"></button>
                             <button title="Next" class="next link icon circle xl"></button>
                             <div class="slides">
@@ -2069,11 +2155,18 @@
                         </div>
 
                         <script>
+
+                            var sl = document.getElementById('sss');
+                            sl.addEventListener('spryjs-slider-event-before-slide', (eventInfo) => {
+                                console.log('Before', eventInfo.detail.currentIndex, eventInfo.detail.toIndex);
+                            });
+                            sl.addEventListener('spryjs-slider-event-after-slide', (eventInfo) => {
+                                console.log('After', eventInfo.detail.currentIndex);
+                            });
                             setTimeout(() => {
-                                var sl = document.getElementById('sss');
                                 sl.querySelector('.slides img:nth-child(2)').classList.add('none');
                                 sl.sliderUpdate();
-                            }, 2000);
+                            }, 20000);
                         </script>
                     </div>
                 </article>
@@ -2279,7 +2372,7 @@
                 <h4 class="color-primary mb-1"><a id="toggle.initiate" href="#toggle.initiate">Initiate</a></h4>
                 <article class="l-select relative" data-language="cdnLoad">
                     <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                        &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                     </code>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
                         <span class="color-warning lg mx-1">*</span> <span class="color-primary">var</span> spryJs<span class="color-gray ml-2">is automatically created and loads all components with default options. You can customize the variable in the src of the script.</span>
@@ -2287,7 +2380,7 @@
                 </article>
                 <article class="l-select relative" data-language="cdn">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
+                        &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js"&gt;&lt;/script&gt;
                         &lt;script&gt;
                             var spryObj = SpryJS('.toggle').toggle();
                         &lt;/script&gt;
@@ -2296,7 +2389,7 @@
                 <article class="l-select relative" data-language="cdnEsm">
                     <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                         &lt;script type="module"&gt;
-                            import { toggle } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
+                            import { toggle } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.mjs';
                             const obj = toggle();
                         &lt;/script&gt;
                     </code>
@@ -2704,7 +2797,7 @@
                 <div class="l-select" data-language="cdnLoad">
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                         </code>
                     </div>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
@@ -2714,7 +2807,7 @@
                 <div class="l-select" data-language="cdn">
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
+                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js"&gt;&lt;/script&gt;
                         </code>
                     </div>
                 </div>
@@ -2722,7 +2815,7 @@
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                             &lt;script type="module"&gt;
-                                import { cookie } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
+                                import { cookie } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.mjs';
                             &lt;/script&gt;
                         </code>
                     </div>
@@ -2871,7 +2964,7 @@
                 <div class="l-select" data-language="cdnLoad">
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                         </code>
                     </div>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
@@ -2881,7 +2974,7 @@
                 <div class="l-select" data-language="cdn">
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
+                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js"&gt;&lt;/script&gt;
                         </code>
                     </div>
                 </div>
@@ -2889,7 +2982,7 @@
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                             &lt;script type="module"&gt;
-                                import { hash } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
+                                import { hash } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.mjs';
                             &lt;/script&gt;
                         </code>
                     </div>
@@ -2998,7 +3091,7 @@
                 <div class="l-select" data-language="cdnLoad">
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 rt-2 p-3 pr-5 sm">
-                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
+                            &lt;script defer src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js?load=spryJs"&gt;&lt;/script&gt;
                         </code>
                     </div>
                     <div class="italic bg-faint p-2 rb-2 b-1 bt-0 bg/50">
@@ -3008,7 +3101,7 @@
                 <div class="l-select" data-language="cdn">
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
-                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.js"&gt;&lt;/script&gt;
+                            &lt;script src="https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.js"&gt;&lt;/script&gt;
                         </code>
                     </div>
                 </div>
@@ -3016,7 +3109,7 @@
                     <div class="relative">
                         <code class="language-html block auto bg-surface b-1 r-2 p-3 pr-5 sm">
                             &lt;script type="module"&gt;
-                                import { query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.1/dist/spry.mjs';
+                                import { query } from 'https://cdn.jsdelivr.net/gh/ggedde/spry-js@1.0.2/dist/spry.mjs';
                             &lt;/script&gt;
                         </code>
                     </div>

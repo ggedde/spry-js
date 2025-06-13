@@ -38,7 +38,8 @@ export type SpryJsSliderOptions = {
 	attributeLoop?: string;
 	attributeSnap?: string;
 	attributeStop?: string;
-	attributeEventSlide?: string;
+	attributeEventBeforeSlide?: string;
+	attributeEventAfterSlide?: string;
 };
 
 type SpryJsSliderObject = {
@@ -72,7 +73,8 @@ export function slider({
 	attributeLoop = "data-slider-loop",
 	attributeSnap = "data-slider-snap",
 	attributeStop = "data-slider-stop",
-	attributeEventSlide = "data-slider-event-slide",
+	attributeEventBeforeSlide = "data-slider-event-before-slide",
+	attributeEventAfterSlide = "data-slider-event-after-slide",
 }: SpryJsSliderOptions = {}): {destroy: Function, update: Function} {
 
 	let controller: AbortController | null = null;
@@ -92,12 +94,14 @@ export function slider({
 		const prev = slider.querySelector(slider.getAttribute(attributeSelectorPrev) ?? selectorPrev);
 		const pagination = slider.querySelector(slider.getAttribute(attributeSelectorPagination) ?? selectorPagination);
 		const slides = slider.querySelector(slider.getAttribute(attributeSelectorSlides) ?? selectorSlides);
-		let   slidesShowingCount = 0;
+		let   slidesCount = slides ? slides.children.length : 0;
+		let   slidesShowingCount: number = 0;
+		let   isSliding: boolean = false;
+		let   isLoopScrollScrolling: boolean = false;
+		let   toIndex: number | null = null;
 
-		let sliderClassSliding = slider.getAttribute(attributeClassSliding) ?? classSliding;
-		if (sliderClassSliding && typeof sliderClassSliding === 'string') {
-			sliderClassSliding = sliderClassSliding.split(' ');
-		}
+		const getClassSliding = slider.getAttribute(attributeClassSliding);
+		const sliderClassSliding: string[] = getClassSliding ? getClassSliding.split(' ') : (typeof classSliding === 'string' ? classSliding.split(' ') : []);
 
 		const getClassShowing = slider.getAttribute(attributeClassShowing);
 		const sliderClassShowing: string[] = getClassShowing ? getClassShowing.split(' ') : (typeof classShowing === 'string' ? classShowing.split(' ') : []);
@@ -115,7 +119,8 @@ export function slider({
 		const sliderClassEnd: string[] = getClassEnd ? getClassEnd.split(' ') : (typeof classEnd === 'string' ? classEnd.split(' ') : []);
 
 		// Events
-		const eventSlide = slider.getAttribute(attributeEventSlide);
+		const eventBeforeSlide = slider.getAttribute(attributeEventBeforeSlide);
+		const eventAfterSlide = slider.getAttribute(attributeEventAfterSlide);
 
 		let currentIndex: number;
 		let scrollTimer: Timer | null = null;
@@ -141,11 +146,20 @@ export function slider({
 
 			if (to === 'next') {
 				scrollPosition = (slides.scrollLeft + width);
+				toIndex = currentIndex + (snap ? 1 : slidesShowingCount);
+				if (toIndex > (slidesCount - 1)) {
+					toIndex = loop ? 0 : (slidesCount - 1);
+				}
 			} else if (to === 'prev') {
 				scrollPosition = (slides.scrollLeft - width);
-			} else {
-				var child = slides.children[(parseFloat(to.toString()) + offsetSlides)];
+				toIndex = currentIndex - (snap ? 1 : slidesShowingCount);
+				if (toIndex < 0) {
+					toIndex = loop ? (slidesCount - 1) : 0;
+				}
+			} else if (typeof to === 'number' && Number.isInteger(to)) {
+				var child = slides.children[(to + offsetSlides)];
 				if (child) {
+					toIndex = to;
 					scrollPosition = (child as HTMLElement).offsetLeft;
 				}
 			}
@@ -214,7 +228,29 @@ export function slider({
 			return 0;
 		}
 
+		function beforeSlideEvent(current: number, to: number | null) {
+			const beforeSlideChanged = new CustomEvent('spryjs-slider-event-before-slide', {detail: {currentIndex: current, toIndex: to}});
+			slider.dispatchEvent(beforeSlideChanged);
+			if (eventBeforeSlide && (window as { [key: string]: any })[eventBeforeSlide] && typeof (window as { [key: string]: any })[eventBeforeSlide] === 'function') {
+				(window as { [key: string]: any })[eventBeforeSlide](current, to);
+			}
+		}
+
+		function afterSlideEvent(current: number) {
+			const afterSlideChanged = new CustomEvent('spryjs-slider-event-after-slide', {detail: {currentIndex: current}});
+			slider.dispatchEvent(afterSlideChanged);
+			if (eventAfterSlide && (window as { [key: string]: any })[eventAfterSlide] && typeof (window as { [key: string]: any })[eventAfterSlide] === 'function') {
+				(window as { [key: string]: any })[eventAfterSlide](current);
+			}
+		}
+
 		function sliderScroll() {
+			if (!isSliding) {
+				isSliding = true;
+				if (!isLoopScrollScrolling) {
+					beforeSlideEvent(currentIndex, toIndex);
+				}
+			}
 			requestAnimationFrame(() => {
 				if (sliderClassSliding) slider.classList.add(...sliderClassSliding);
 			});
@@ -222,19 +258,22 @@ export function slider({
 			playStop();
 			scrollTimer = setTimeout(function () {
 				if (!slider.sliderCount) return;
+				currentIndex = getIndex();
+				toIndex = null;
+				isSliding = false;
+				isLoopScrollScrolling = false;
 				resetPlay();
-				let loopScroll = false;
 				if (loop && slides) {
 					var blockWidth = (slides.scrollWidth / 3);
 					if (slides.scrollLeft < blockWidth) {
 						var offset = blockWidth - slides.scrollLeft;
+						isLoopScrollScrolling = true;
 						slides.scrollTo({ left: (((blockWidth * 2) - offset)), behavior: 'instant' });
-						loopScroll = true;
 					}
 					if (slides.scrollLeft >= (blockWidth * 2)) {
 						var offset = slides.scrollLeft - (blockWidth * 2);
+						isLoopScrollScrolling = true;
 						slides.scrollTo({ left: blockWidth + offset, behavior: 'instant' });
-						loopScroll = true;
 					}
 				}
 				
@@ -247,14 +286,8 @@ export function slider({
 					}
 				}
 
-				currentIndex = getIndex();
-				if (!loopScroll) {
-					const slideChanged =  new CustomEvent('spryjs-slider-event-slide', {detail: {index: currentIndex}});
-					slider.dispatchEvent(slideChanged);
-
-					if (eventSlide && (window as { [key: string]: any })[eventSlide] && typeof (window as { [key: string]: any })[eventSlide] === 'function') {
-						(window as { [key: string]: any })[eventSlide](currentIndex);
-					}
+				if (!isLoopScrollScrolling) {
+					afterSlideEvent(currentIndex);
 				}
 
 				requestAnimationFrame(() => {
