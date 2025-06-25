@@ -2,7 +2,7 @@ import SpryJS, { type SpryJsCollection } from './spry.mts';
 
 declare global {
     interface Window {
-        spry: (selector: string) => SpryJsCollection;
+        spry: SpryJsCollection;
     }
 }
 
@@ -11,9 +11,9 @@ declare global {
 if (document.currentScript) {
     const src = document.currentScript.getAttribute('src');
     if (src) {
-        const initLoad = (loadString: any) => {
+        const initLoad = (loadVar: any) => {
             requestAnimationFrame(() => {
-                ((window[loadString] as unknown) as Function)('').load();
+                ((window[loadVar] as unknown) as SpryJsCollection).load();
             });
         }
         const loadAndRun = () => {

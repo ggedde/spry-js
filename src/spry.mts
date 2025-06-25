@@ -16,6 +16,10 @@ type spryJsObjType = {
     update: Function
 }
 
+type spryCallableObject = {
+  (...args: any[]): void;
+} & SpryJsCollection;
+
 export type SpryJsComponentCollection = {
     cookie: SpryJsCookie;
     hash: SpryJsHash;
@@ -53,205 +57,205 @@ export type SpryJsCollection =  SpryJsComponentCollection & SpryJsQueryCollectio
 
 //!
 //! spry Collection Component
-const spry = function(selector: string): SpryJsCollection {
+const core: SpryJsCollection = {
 
-    return {
-        ...query(selector),
-        cookie: cookie,
-        hash: hash,
-        navigableObj: [],
-        observeObj: [],
-        parallaxObj: [],
-        scrollspyObj: [],
-        sliderObj: [],
-        toggleObj: [],
-        
-        query: function(selector: any): SpryJsCollection {
-            this.elements = query(selector).elements;
-            this.el = this.elements[0] ? this.elements[0] : null;
-            return this;
-        },
+    ...query(''),
+    cookie: cookie,
+    hash: hash,
+    navigableObj: [],
+    observeObj: [],
+    parallaxObj: [],
+    scrollspyObj: [],
+    sliderObj: [],
+    toggleObj: [],
+    
+    query: function(selector: any): SpryJsCollection {
+        this.selector = selector;
+        this.elements = query(selector).elements;
+        this.el = this.elements[0] ? this.elements[0] : null;
+        return this;
+    },
 
-        navigable: function(options?: SpryJsNavigableOptions): SpryJsCollection {            
-            this.navigableObj.push(navigable({...{items: this.elements}, ...options}));
-            return this;
-        },
+    navigable: function(options?: SpryJsNavigableOptions): SpryJsCollection {            
+        this.navigableObj.push(navigable({...{items: this.elements}, ...options}));
+        return this;
+    },
 
-        navigableUpdate: function(): SpryJsCollection {
-            if (this.navigableObj) {
-                for (let i = 0; i < this.navigableObj.length; i++) {
-                    this.navigableObj[i].update();
-                }
+    navigableUpdate: function(): SpryJsCollection {
+        if (this.navigableObj) {
+            for (let i = 0; i < this.navigableObj.length; i++) {
+                this.navigableObj[i].update();
             }
-            return this;
-        },
+        }
+        return this;
+    },
 
-        navigableDestroy: function(): SpryJsCollection {
-            if (this.navigableObj) {
-                for (let i = 0; i < this.navigableObj.length; i++) {
-                    this.navigableObj[i].destroy();
-                }
+    navigableDestroy: function(): SpryJsCollection {
+        if (this.navigableObj) {
+            for (let i = 0; i < this.navigableObj.length; i++) {
+                this.navigableObj[i].destroy();
             }
-            return this;
-        },
+        }
+        return this;
+    },
 
-        observe: function(options?: SpryJsObserveOptions): SpryJsCollection {
-            this.observeObj.push(observe({...{items: this.elements}, ...options}));
-            return this;
-        },
+    observe: function(options?: SpryJsObserveOptions): SpryJsCollection {
+        this.observeObj.push(observe({...{items: this.elements}, ...options}));
+        return this;
+    },
 
-        observeUpdate: function(): SpryJsCollection {
-            if (this.observeObj) {
-                for (let i = 0; i < this.observeObj.length; i++) {
-                    this.observeObj[i].update();
-                }
+    observeUpdate: function(): SpryJsCollection {
+        if (this.observeObj) {
+            for (let i = 0; i < this.observeObj.length; i++) {
+                this.observeObj[i].update();
             }
-            return this;
-        },
+        }
+        return this;
+    },
 
-        observeDestroy: function(): SpryJsCollection {
-            if (this.observeObj) {
-                for (let i = 0; i < this.observeObj.length; i++) {
-                    this.observeObj[i].destroy();
-                }
+    observeDestroy: function(): SpryJsCollection {
+        if (this.observeObj) {
+            for (let i = 0; i < this.observeObj.length; i++) {
+                this.observeObj[i].destroy();
             }
-            return this;
-        },
+        }
+        return this;
+    },
 
-        parallax: function(options?: SpryJsParallaxOptions): SpryJsCollection {
-            this.parallaxObj.push(parallax({...{items: this.elements}, ...options}));
-            return this;
-        },
-        
-        parallaxUpdate: function(): SpryJsCollection {
-            if (this.parallaxObj) {
-                for (let i = 0; i < this.parallaxObj.length; i++) {
-                    this.parallaxObj[i].update();
-                }
+    parallax: function(options?: SpryJsParallaxOptions): SpryJsCollection {
+        this.parallaxObj.push(parallax({...{items: this.elements}, ...options}));
+        return this;
+    },
+    
+    parallaxUpdate: function(): SpryJsCollection {
+        if (this.parallaxObj) {
+            for (let i = 0; i < this.parallaxObj.length; i++) {
+                this.parallaxObj[i].update();
             }
-            return this;
-        },
+        }
+        return this;
+    },
 
-        parallaxDestroy: function(): SpryJsCollection {
-            if (this.parallaxObj) {
-                for (let i = 0; i < this.parallaxObj.length; i++) {
-                    this.parallaxObj[i].destroy();
-                }
+    parallaxDestroy: function(): SpryJsCollection {
+        if (this.parallaxObj) {
+            for (let i = 0; i < this.parallaxObj.length; i++) {
+                this.parallaxObj[i].destroy();
             }
-            return this;
-        },
+        }
+        return this;
+    },
 
-        scrollspy: function(options?: SpryJsScrollSpyOptions): SpryJsCollection {
-            this.scrollspyObj.push(scrollspy({...{items: this.elements}, ...options}));
-            return this;
-        },
+    scrollspy: function(options?: SpryJsScrollSpyOptions): SpryJsCollection {
+        this.scrollspyObj.push(scrollspy({...{items: this.elements}, ...options}));
+        return this;
+    },
 
-        scrollspyUpdate: function(): SpryJsCollection {
-            if (this.scrollspyObj) {
-                for (let i = 0; i < this.scrollspyObj.length; i++) {
-                    this.scrollspyObj[i].update();
-                }
+    scrollspyUpdate: function(): SpryJsCollection {
+        if (this.scrollspyObj) {
+            for (let i = 0; i < this.scrollspyObj.length; i++) {
+                this.scrollspyObj[i].update();
             }
-            return this;
-        },
+        }
+        return this;
+    },
 
-        scrollspyDestroy: function(): SpryJsCollection {
-            if (this.scrollspyObj) {
-                for (let i = 0; i < this.scrollspyObj.length; i++) {
-                    this.scrollspyObj[i].destroy();
-                }
+    scrollspyDestroy: function(): SpryJsCollection {
+        if (this.scrollspyObj) {
+            for (let i = 0; i < this.scrollspyObj.length; i++) {
+                this.scrollspyObj[i].destroy();
             }
-            return this;
-        },
+        }
+        return this;
+    },
 
-        slider: function(options?: SpryJsSliderOptions): SpryJsCollection {
-            this.sliderObj.push(slider({...{items: this.elements}, ...options}));
-            return this;
-        },
+    slider: function(options?: SpryJsSliderOptions): SpryJsCollection {
+        this.sliderObj.push(slider({...{items: this.elements}, ...options}));
+        return this;
+    },
 
-        sliderUpdate: function(): SpryJsCollection {
-            if (this.sliderObj) {
-                for (let i = 0; i < this.sliderObj.length; i++) {
-                    this.sliderObj[i].update();
-                }
+    sliderUpdate: function(): SpryJsCollection {
+        if (this.sliderObj) {
+            for (let i = 0; i < this.sliderObj.length; i++) {
+                this.sliderObj[i].update();
             }
-            return this;
-        },
+        }
+        return this;
+    },
 
-        sliderDestroy: function(): SpryJsCollection {
-            if (this.sliderObj) {
-                for (let i = 0; i < this.sliderObj.length; i++) {
-                    this.sliderObj[i].destroy();
-                }
+    sliderDestroy: function(): SpryJsCollection {
+        if (this.sliderObj) {
+            for (let i = 0; i < this.sliderObj.length; i++) {
+                this.sliderObj[i].destroy();
             }
-            return this;
-        },
+        }
+        return this;
+    },
 
-        toggle: function(options?: SpryJsToggleOptions): SpryJsCollection {
-            this.toggleObj.push(toggle({...{items: this.elements}, ...options}));
-            return this;
-        },
+    toggle: function(options?: SpryJsToggleOptions): SpryJsCollection {
+        this.toggleObj.push(toggle({...{items: this.elements}, ...options}));
+        return this;
+    },
 
-        toggleUpdate: function(): SpryJsCollection {
-            if (this.toggleObj) {
-                for (let i = 0; i < this.toggleObj.length; i++) {
-                    this.toggleObj[i].update();
-                }
+    toggleUpdate: function(): SpryJsCollection {
+        if (this.toggleObj) {
+            for (let i = 0; i < this.toggleObj.length; i++) {
+                this.toggleObj[i].update();
             }
-            return this;
-        },
+        }
+        return this;
+    },
 
-        toggleDestroy: function(): SpryJsCollection {
-            if (this.toggleObj) {
-                for (let i = 0; i < this.toggleObj.length; i++) {
-                    this.toggleObj[i].destroy();
-                }
+    toggleDestroy: function(): SpryJsCollection {
+        if (this.toggleObj) {
+            for (let i = 0; i < this.toggleObj.length; i++) {
+                this.toggleObj[i].destroy();
             }
-            return this;
-        },
+        }
+        return this;
+    },
 
-        load: function() {
-            this.navigableObj.push(navigable());
-            this.observeObj.push(observe());
-            this.parallaxObj.push(parallax());
-            this.scrollspyObj.push(scrollspy());
-            this.sliderObj.push(slider());
-            this.toggleObj.push(toggle());
-            return this;
-        },
+    load: function(): SpryJsCollection {
+        this.navigableObj.push(navigable());
+        this.observeObj.push(observe());
+        this.parallaxObj.push(parallax());
+        this.scrollspyObj.push(scrollspy());
+        this.sliderObj.push(slider());
+        this.toggleObj.push(toggle());
+        return this;
+    },
 
-        update: function() {
-            this.navigableUpdate();
-            this.observeUpdate();
-            this.parallaxUpdate();
-            this.scrollspyUpdate();
-            this.sliderUpdate();
-            this.toggleUpdate();
-            return this;
-        },
+    update: function(): SpryJsCollection {
+        this.navigableUpdate();
+        this.observeUpdate();
+        this.parallaxUpdate();
+        this.scrollspyUpdate();
+        this.sliderUpdate();
+        this.toggleUpdate();
+        return this;
+    },
 
-        destroy: function() {
-            this.navigableDestroy();
-            this.observeDestroy();
-            this.parallaxDestroy();
-            this.scrollspyDestroy();
-            this.sliderDestroy();
-            this.toggleDestroy();
-            return this;
-        },
-    };
+    destroy: function(): SpryJsCollection {
+        this.navigableDestroy();
+        this.observeDestroy();
+        this.parallaxDestroy();
+        this.scrollspyDestroy();
+        this.sliderDestroy();
+        this.toggleDestroy();
+        return this;
+    }
 };
 
-spry.cookie    = cookie;
-spry.hash      = hash;
-spry.query     = query;
-spry.navigable = navigable;
-spry.observe   = observe;
-spry.parallax  = parallax;
-spry.scrollspy = scrollspy;
-spry.slider    = slider;
-spry.toggle    = toggle;
-spry.load      = () => { return spry('').load() };
+// Create proxy
+const spry = new Proxy<spryCallableObject>(function () {} as spryCallableObject, {
+  apply(_target, _thisArg, args: any[]) {
+    core.query.call(core, args[0]);
+    return spry;
+  },
+  get(_target, prop: keyof SpryJsCollection) {
+    const value = core[prop];
+    return typeof value === 'function' ? value.bind(core) : value;
+  }
+});
 
 //!
 //! SpryJS Exports

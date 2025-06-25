@@ -2,6 +2,7 @@
 //! SpryJs Query Module
 
 export type SpryJsQueryCollection = {
+    selector: string,
     elements: Element[];
     el: Element | null;
     each(callbackFn: Function): SpryJsQueryCollection;
@@ -27,6 +28,7 @@ export type SpryJsQueryCollection = {
  *
  * @param selector string   - Selector String.
  *
+ * @var selector string     - The Current Selector Used.
  * @var elements Elements[] - Queried elements.
  * @var el Element          - First Queried element.
  * 
@@ -86,6 +88,7 @@ export function query(selector: string): SpryJsQueryCollection {
     const el = els ? els[0] : null;
 
     return {
+        selector: selector,
         elements: els,
         el: el,
 
@@ -97,6 +100,9 @@ export function query(selector: string): SpryJsQueryCollection {
          * @returns SpryJsQueryCollection
          */
         each: function (callbackFn: Function): SpryJsQueryCollection {
+            if (!this.selector) {
+                console.warn('SpryJS - Missing `selector` for query action.');
+            }
             this.elements.forEach((el: Element, index: number) => {
                 callbackFn(el, index);
             });
@@ -142,16 +148,15 @@ export function query(selector: string): SpryJsQueryCollection {
          * @returns boolean
          */
         hasClass: function (className: string | string[]): boolean {
-            let hasClass = true;
-
-            for (let e = 0; e < this.elements.length; e++) {
+            let hasClass = this.elements.length ? true : false;
+            this.each((el: Element) => {
                 if (typeof className === 'string') className = className.split(' ');
                 for (let c = 0; c < className.length; c++) {
-                    if (!this.elements[e].classList.contains(className[c])) {
+                    if (!el.classList.contains(className[c])) {
                         hasClass = false;
                     }
                 }
-            }
+            });
 
             return hasClass;
         },
