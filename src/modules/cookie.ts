@@ -24,7 +24,7 @@ const cookie: SpryJsCookie = {
             expDate.setTime(expDate.getTime() + expireSeconds * 1000);
             expires = 'expires=' + expDate.toUTCString();
         }
-        document.cookie = encodeURIComponent(cookieName) + "=" + encodeURIComponent(JSON.stringify(cookieValue)) + ';' + expires;
+        document.cookie = encodeURIComponent(cookieName) + "=" + encodeURIComponent(JSON.stringify(cookieValue)) + '; path=/; Secure;' + expires;
     },
 
     /**

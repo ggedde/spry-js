@@ -56,7 +56,6 @@ const hash: SpryJsHash = {
 
 	sha256: function (inputString: string | number | object): string {
 		if (typeof inputString === 'object') inputString = JSON.stringify(inputString);
-		console.log(inputString);
 		
 		var hashSha256 = function hashSha256(ascii: any): string {
 			function rr(value: number, amount: number) {

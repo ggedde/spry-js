@@ -11,15 +11,20 @@ import { query, type SpryJsQueryCollection } from './modules/query.ts';
 import cookie, { type SpryJsCookie } from './modules/cookie.ts';
 import hash, { type SpryJsHash } from './modules/hash.ts';
 
+type spryJsObjType = {
+    destroy: Function,
+    update: Function
+}
+
 export type SpryJsComponentCollection = {
     cookie: SpryJsCookie;
     hash: SpryJsHash;
-    navigableObj: sprPbj[];
-    observeObj: sprPbj[];
-    parallaxObj: sprPbj[];
-    scrollspyObj: sprPbj[];
-    sliderObj: sprPbj[];
-    toggleObj: sprPbj[];
+    navigableObj: spryJsObjType[];
+    observeObj: spryJsObjType[];
+    parallaxObj: spryJsObjType[];
+    scrollspyObj: spryJsObjType[];
+    sliderObj: spryJsObjType[];
+    toggleObj: spryJsObjType[];
     query(selector: any): SpryJsCollection;
     load(): SpryJsCollection;
     update(): SpryJsCollection;
@@ -46,14 +51,9 @@ export type SpryJsComponentCollection = {
 
 export type SpryJsCollection =  SpryJsComponentCollection & SpryJsQueryCollection;
 
-type sprPbj = {
-    destroy: Function,
-    update: Function
-}
-
 //!
-//! SpryJS Collection Component
-const SpryJS = function(selector: string): SpryJsCollection {
+//! spry Collection Component
+const spry = function(selector: string): SpryJsCollection {
 
     return {
         ...query(selector),
@@ -219,6 +219,7 @@ const SpryJS = function(selector: string): SpryJsCollection {
             this.toggleObj.push(toggle());
             return this;
         },
+
         update: function() {
             this.navigableUpdate();
             this.observeUpdate();
@@ -241,16 +242,17 @@ const SpryJS = function(selector: string): SpryJsCollection {
     };
 };
 
-SpryJS.cookie    = cookie;
-SpryJS.hash      = hash;
-SpryJS.query     = query;
-SpryJS.navigable = navigable;
-SpryJS.observe   = observe;
-SpryJS.parallax  = parallax;
-SpryJS.scrollspy = scrollspy;
-SpryJS.slider    = slider;
-SpryJS.toggle    = toggle;
+spry.cookie    = cookie;
+spry.hash      = hash;
+spry.query     = query;
+spry.navigable = navigable;
+spry.observe   = observe;
+spry.parallax  = parallax;
+spry.scrollspy = scrollspy;
+spry.slider    = slider;
+spry.toggle    = toggle;
+spry.load      = () => { return spry('').load() };
 
 //!
 //! SpryJS Exports
-export { cookie, hash, navigable, observe, parallax, slider, scrollspy, toggle, query, SpryJS as default };
+export { cookie, hash, navigable, observe, parallax, slider, scrollspy, toggle, query, spry as default };

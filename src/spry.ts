@@ -2,37 +2,50 @@ import SpryJS, { type SpryJsCollection } from './spry.mts';
 
 declare global {
     interface Window {
-        SpryJS: SpryJsCollection;
+        spry: (selector: string) => SpryJsCollection;
     }
 }
 
 //!
 //! SpryJS Global Variable
-
-// @ts-ignore
-window.SpryJS = SpryJS;
-
 if (document.currentScript) {
     const src = document.currentScript.getAttribute('src');
     if (src) {
+        const initLoad = (loadString: any) => {
+            requestAnimationFrame(() => {
+                ((window[loadString] as unknown) as Function)('').load();
+            });
+        }
         const loadAndRun = () => {
             const urlParams = new URL(src, window.location.href);
-            const load = urlParams.searchParams.get('load');
+            const loadParam = urlParams.searchParams.get('load');
+            const loadParamString = loadParam !== null ? loadParam.toString().toLowerCase().trim() : '';
+            const load = loadParam !== null && loadParamString !== 'false' && loadParamString !== '0';
+            const loadVarParam = urlParams.searchParams.get('var');
+            const loadVarParamString = loadVarParam !== null ? loadVarParam.toString().trim() : '';
+            const loadVar: any = loadVarParamString && loadVarParamString.toLowerCase() !== 'true' && loadVarParamString.toLowerCase() !== '1' ? loadVarParamString : 'spry';
             const run = urlParams.searchParams.get('run');
-            const loadString: any = load ? load.toString().trim() : null;
             const runString: any = run ? run.toString().trim() : null;
+
             // Check Load
-            if (loadString) {
-                if (!isNaN(loadString) || loadString.toLowerCase() === 'true') {
-                    console.error("SpryJS Load Variable must be a valid JS variable name.");
-                } else {
-                    (window[loadString] as object) = SpryJS('').load();
+            if (loadVar && (!isNaN(loadVar) || loadVar.indexOf(' ') > 0)) {
+                console.error("SpryJS Load Variable must be a valid JS variable name with no spaces. Or use `true` for default `spry` variable.");
+            } else {
+                (window[loadVar] as object) = SpryJS;
+                if (load) {
+                    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+                        initLoad(loadVar);
+                    } else {
+                        document.addEventListener('DOMContentLoaded', function() {
+                            initLoad(loadVar);
+                        });
+                    }
                 }
             }
             // Check Run
             if (runString) {
-                if (!isNaN(runString) || runString.toLowerCase() === 'true') {
-                    console.error("SpryJS Run Function must be a valid JS function name");
+                if (!isNaN(runString) || runString.toLowerCase() === 'true' || runString.trim().indexOf(' ') > 0) {
+                    console.error("SpryJS Run Function must be a valid JS function name with no spaces");
                 } else if (window[runString] && typeof window[runString] === 'function') {
                     (window[runString] as Function)();
                 }
