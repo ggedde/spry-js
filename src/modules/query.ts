@@ -26,11 +26,12 @@ export type SpryJsQueryCollection = {
 /**
  * Query Elements
  *
- * @param selector string   - Selector String.
+ * @param selector    string             - Selector String.
+ * @param fromElement Element | Document - An Element to start the Selection from. Default is document.
  *
- * @var selector string     - The Current Selector Used.
- * @var elements Elements[] - Queried elements.
- * @var el Element          - First Queried element.
+ * @var selector string        - The Current Selector Used.
+ * @var elements Elements[]    - Queried elements.
+ * @var el       Element       - First Queried element.
  * 
  * @method toggleClass function(className: string|string[], force?: boolean)
  * Toggles Class of each element in query
@@ -82,9 +83,9 @@ export type SpryJsQueryCollection = {
  *
  * @returns SpryJsQueryCollection
  */
-export function query(selector: string): SpryJsQueryCollection {
-
-    const els = selector ? Array.from(document.querySelectorAll(selector)) : [];
+export function query(selector: string, fromElement: Element | Document = document): SpryJsQueryCollection {
+    
+    const els = selector ? Array.from(fromElement.querySelectorAll(selector)) : [];
     const el = els ? els[0] : null;
 
     return {

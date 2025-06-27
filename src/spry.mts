@@ -29,7 +29,7 @@ export type SpryJsComponentCollection = {
     scrollspyObj: spryJsObjType[];
     sliderObj: spryJsObjType[];
     toggleObj: spryJsObjType[];
-    query(selector: any): SpryJsCollection;
+    query(selector: any, fromElement?: Element | Document): SpryJsCollection;
     load(): SpryJsCollection;
     update(): SpryJsCollection;
     destroy(): SpryJsCollection;
@@ -69,9 +69,9 @@ const core: SpryJsCollection = {
     sliderObj: [],
     toggleObj: [],
     
-    query: function(selector: any): SpryJsCollection {
+    query: function(selector: any, fromElement: Element | Document = document): SpryJsCollection {
         this.selector = selector;
-        this.elements = query(selector).elements;
+        this.elements = query(selector, fromElement).elements;
         this.el = this.elements[0] ? this.elements[0] : null;
         return this;
     },
@@ -248,7 +248,9 @@ const core: SpryJsCollection = {
 // Create proxy
 const spry = new Proxy<spryCallableObject>(function () {} as spryCallableObject, {
   apply(_target, _thisArg, args: any[]) {
-    core.query.call(core, args[0]);
+    var selector    = args[0];
+    var fromElement = args.length > 1 ? args[1] : undefined;
+    core.query.call(core, selector, fromElement);
     return spry;
   },
   get(_target, prop: keyof SpryJsCollection) {

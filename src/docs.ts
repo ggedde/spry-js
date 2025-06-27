@@ -305,7 +305,6 @@ document.querySelectorAll('.show-code').forEach((elemContainer, index) => {
         jsEsm: 'JS ESM',
         cdn: 'CDN Custom',
         cdnEsm: 'CDN ESM',
-        cdnLoad: 'CDN Auto Loaded',
         node: 'Node',
         npm: 'npm',
         pnpm: 'pnpm',
