@@ -29,7 +29,7 @@ export type SpryJsComponentCollection = {
     scrollspyObj: spryJsObjType[];
     sliderObj: spryJsObjType[];
     toggleObj: spryJsObjType[];
-    query(selector: any, fromElement?: Element | Document): SpryJsCollection;
+    query(selector: string | Element | Element[], findSelector?: string): SpryJsCollection;
     load(): SpryJsCollection;
     update(): SpryJsCollection;
     destroy(): SpryJsCollection;
@@ -69,9 +69,9 @@ const core: SpryJsCollection = {
     sliderObj: [],
     toggleObj: [],
     
-    query: function(selector: any, fromElement: Element | Document = document): SpryJsCollection {
+    query: function(selector: string | Element | Element[], findSelector?: string): SpryJsCollection {
         this.selector = selector;
-        this.elements = query(selector, fromElement).elements;
+        this.elements = query(selector, findSelector).elements;
         this.el = this.elements[0] ? this.elements[0] : null;
         return this;
     },

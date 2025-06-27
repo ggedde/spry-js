@@ -2,7 +2,7 @@
 //! SpryJs Query Module
 
 export type SpryJsQueryCollection = {
-    selector: string,
+    selector: string | Element | Element[],
     elements: Element[];
     el: Element | null;
     each(callbackFn: Function): SpryJsQueryCollection;
@@ -26,12 +26,12 @@ export type SpryJsQueryCollection = {
 /**
  * Query Elements
  *
- * @param selector    string             - Selector String.
- * @param fromElement Element | Document - An Element to start the Selection from. Default is document.
+ * @param selector     string | Element | Element[] - Selector String, Element or array of Elements.
+ * @param findSelector string                       - Selector String to capture elements within Collection Elements.
  *
- * @var selector string        - The Current Selector Used.
- * @var elements Elements[]    - Queried elements.
- * @var el       Element       - First Queried element.
+ * @var selector string | Element | Element[] - The Current Selector Used.
+ * @var elements Elements[]                   - Queried elements.
+ * @var el       Element                      - First Queried element.
  * 
  * @method toggleClass function(className: string|string[], force?: boolean)
  * Toggles Class of each element in query
@@ -83,14 +83,35 @@ export type SpryJsQueryCollection = {
  *
  * @returns SpryJsQueryCollection
  */
-export function query(selector: string, fromElement: Element | Document = document): SpryJsQueryCollection {
+export function query(selector: string | Element | Element[], findSelector?: string): SpryJsQueryCollection {
     
-    const els = selector ? Array.from(fromElement.querySelectorAll(selector)) : [];
-    const el = els ? els[0] : null;
+    let selectorElements = [];
+    let elements = [];
+    if (typeof selector === 'string') {
+        selectorElements = selector ? Array.from(document.querySelectorAll(selector)) : [];
+    } else if (Array.isArray(selector)) {
+        selectorElements = selector;
+    } else {
+        selectorElements = [selector];
+    }
+
+    if (findSelector && selectorElements) {
+        for (let s = 0; s < selectorElements.length; s++) {
+            const els = selectorElements[s].querySelectorAll(findSelector);
+            for (let e = 0; e < els.length; e++) {
+                elements.push(els[e]);
+            }
+        }
+    } else {
+        elements = selectorElements;
+    }
+
+    // const els = selector ? Array.from(fromElement.querySelectorAll(selector)) : [];
+    const el = elements ? elements[0] : null;
 
     return {
         selector: selector,
-        elements: els,
+        elements: elements,
         el: el,
 
         /**
