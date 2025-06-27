@@ -95,7 +95,7 @@ export function query(selector: string | Element | Element[], findSelector?: str
         selectorElements = [selector];
     }
 
-    if (findSelector && selectorElements) {
+    if (findSelector && selectorElements.length) {
         for (let s = 0; s < selectorElements.length; s++) {
             const els = selectorElements[s].querySelectorAll(findSelector);
             for (let e = 0; e < els.length; e++) {
@@ -106,8 +106,7 @@ export function query(selector: string | Element | Element[], findSelector?: str
         elements = selectorElements;
     }
 
-    // const els = selector ? Array.from(fromElement.querySelectorAll(selector)) : [];
-    const el = elements ? elements[0] : null;
+    const el = elements.length ? elements[0] : null;
 
     return {
         selector: selector,
