@@ -39,7 +39,7 @@ export function observe({
                 const elementClassObserved = attributeClassObserved ? entry.target.getAttribute(attributeClassObserved) : null;
                 classObserved = elementClassObserved ? elementClassObserved.split(' ') : (typeof classObserved === 'string' ? classObserved.split(' ') : classObserved);
 
-                const elementDelay = attributeDelay ? entry.target.getAttribute(attributeDelay) : delay;
+                const elementDelay = attributeDelay && entry.target.hasAttribute(attributeDelay) ? entry.target.getAttribute(attributeDelay) : delay;
 
                 if (entry.isIntersecting) {
                     requestAnimationFrame(() => {
